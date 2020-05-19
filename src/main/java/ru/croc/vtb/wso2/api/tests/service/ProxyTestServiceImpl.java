@@ -9,6 +9,8 @@ import com.squareup.okhttp.Response;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpMethod;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ru.croc.vtb.wso2.api.tests.model.ProxyTestException;
 import ru.croc.vtb.wso2.api.tests.model.TokenDto;
 
