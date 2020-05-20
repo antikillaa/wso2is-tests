@@ -12,49 +12,37 @@ import org.springframework.stereotype.Component;
 @Setter
 @Configuration
 @ConfigurationProperties(prefix = "test")
-@PropertySource("application.properties")
+@PropertySource("/application.properties")
 @Component
 public class TestsProperties {
 
-    private Wso2Proxy wso2Proxy;
+    @Value("${test.urlToProxy}")
+    private String urlToProxy;
 
-    @Getter
-    @Setter
-    public static class Wso2Proxy {
+    @Value("${test.clientId}")
+    private String clientId;
 
-        @Value("${test.wso2Proxy.urlToProxy}")
-        private String urlToProxy;
+    @Value("${test.clientSecret}")
+    private String clientSecret;
 
-        private String clientId;
+    @Value("${test.mobileFingerPrint}")
+    private String mobileFingerPrint;
 
-        private String clientSecret;
+    @Value("${test.grantType}")
+    private String grantType;
 
-        @Value("${test.wso2Proxy.mobileFingerPrint}")
-        private String mobileFingerPrint;
+    @Value("${test.deviceTokenID}")
+    private String deviceTokenID;
 
-        @Value("${test.wso2Proxy.proxyBody}")
-        private ProxyBody proxyBody;
+    @Value("${test.secureCode}")
+    private String secureCode;
 
-        @Getter
-        @Setter
-        public static class ProxyBody {
+    @Value("${test.challenge}")
+    private String challenge;
 
-            @Value("${test.wso2Proxy.proxyBody.grantType}")
-            private String grantType;
+    @Value("${test.scope}")
+    private String scope;
 
-            @Value("${test.wso2Proxy.proxyBody.deviceTokenID}")
-            private String deviceTokenID;
-
-            @Value("${test.wso2Proxy.proxyBody.secureCode}")
-            private String secureCode;
-
-            @Value("${test.wso2Proxy.proxyBody.challenge}")
-            private String challenge;
-
-            @Value("${test.wso2Proxy.proxyBody.scope}")
-            private String scope;
-
-            private String otp;
-        }
-    }
+    @Value("${test.otp}")
+    private String otp;
 }

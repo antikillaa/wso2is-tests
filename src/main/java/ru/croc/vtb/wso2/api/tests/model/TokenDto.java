@@ -8,6 +8,8 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
+ * <b>ДТО, получаемое от прокси сервера</b>
+ *
  * @author Logvin I. N.
  */
 @Getter
@@ -25,13 +27,14 @@ public class TokenDto implements Serializable {
     @JsonProperty("id_token")
     private String idToken;
 
+    // параметры ошибок
+
     @JsonProperty("type")
     private String type;
 
-    @JsonProperty("description")
-    private String description;
+    @JsonProperty("message")
+    private String message;
 
     @JsonProperty("additional_properties")
     private Map<String, String> additionalProperties;
-
 }
