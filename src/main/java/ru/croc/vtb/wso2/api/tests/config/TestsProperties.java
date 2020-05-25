@@ -8,24 +8,29 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
+/**
+ * <b>Компонент конфигурации приложения</b>
+ *
+ * @author Logvin I. N.
+ */
 @Getter
 @Setter
 @Configuration
 @ConfigurationProperties(prefix = "test")
-@PropertySource("/application.properties")
+@PropertySource("classpath:/application.properties")
 @Component
 public class TestsProperties {
 
     @Value("${test.urlToProxy}")
     private String urlToProxy;
 
-    @Value("${test.clientId}")
+    @Value("${test.client-id}")
     private String clientId;
 
-    @Value("${test.clientSecret}")
+    @Value("${test.client-secret}")
     private String clientSecret;
 
-    @Value("${test.mobileFingerPrint}")
+    @Value("${test.mobileFingerprint}")
     private String mobileFingerPrint;
 
     @Value("${test.grantType}")
@@ -43,6 +48,6 @@ public class TestsProperties {
     @Value("${test.scope}")
     private String scope;
 
-    @Value("${test.otp}")
+    @Value("${test.otp:not-implemented}")
     private String otp;
 }

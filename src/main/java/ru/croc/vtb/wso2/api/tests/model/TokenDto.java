@@ -9,6 +9,7 @@ import java.util.Map;
 
 /**
  * <b>ДТО, получаемое от прокси сервера</b>
+ * <p>Дополнено атрибутами ДТО ошибки</p>
  *
  * @author Logvin I. N.
  */
@@ -26,6 +27,7 @@ public class TokenDto implements Serializable {
 
     @JsonProperty("id_token")
     private String idToken;
+
 
     // параметры ошибок
 
