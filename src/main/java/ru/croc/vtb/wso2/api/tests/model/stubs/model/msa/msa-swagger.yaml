@@ -1,0 +1,429 @@
+swagger: '2.0'
+info:
+  description: Session Context API
+  version: 0.0.14
+  title: Session Context
+  contact: {}
+host: '127.0.0.1:8080'
+basePath: /
+tags:
+  - name: Управление пользовательской сессией
+    description: Session Context Controller
+paths:
+  /sessions:
+    get:
+      tags:
+        - Управление пользовательской сессией
+      summary: Получить сессию
+      operationId: getSessionByHeaderUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: Msa-Session-ID
+          in: header
+          description: ID сессиии
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/SessionDto'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+        - Управление пользовательской сессией
+      summary: Создать сессию
+      operationId: createSessionUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: Device-Fingerprint
+          in: header
+          description: Device-Fingerprint
+          required: false
+          type: string
+        - name: Mobile-Sdk-Data
+          in: header
+          description: Mobile-Sdk-Data
+          required: false
+          type: string
+        - name: User-Agent
+          in: header
+          description: User-Agent
+          required: true
+          type: string
+        - in: body
+          name: authData
+          description: Информация для создания MSA сессии
+          required: true
+          schema:
+            $ref: '#/definitions/AuthDataRequestDto'
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/AuthDataResponseDto'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/sessions/{msaSessionId}':
+    get:
+      tags:
+        - Управление пользовательской сессией
+      summary: Получить сессию
+      operationId: getSessionUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: msaSessionId
+          in: path
+          description: ID сессиии
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/SessionDto'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - Управление пользовательской сессией
+      summary: Удалить сессию
+      operationId: deleteSessionUsingDELETE
+      produces:
+        - '*/*'
+      parameters:
+        - name: msaSessionId
+          in: path
+          description: ID сессиии
+          required: true
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+    patch:
+      tags:
+        - Управление пользовательской сессией
+      summary: Продлить сессию
+      operationId: extendSessionUsingPATCH
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: msaSessionId
+          in: path
+          description: ID сессиии
+          required: true
+          type: string
+        - name: prolongationTime
+          in: query
+          description: Время на которое нужно продлить (в секундах)
+          required: true
+          type: integer
+          format: int32
+          allowEmptyValue: false
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  '/sessions/{msaSessionId}/client-info':
+    get:
+      tags:
+        - Управление пользовательской сессией
+      summary: Получить информацию о клиенте
+      operationId: getClientInfoUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: msaSessionId
+          in: path
+          description: ID сессиии
+          required: true
+          type: string
+        - name: params
+          in: query
+          description: Параметры клиента
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+          allowEmptyValue: false
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: string
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    patch:
+      tags:
+        - Управление пользовательской сессией
+      summary: Изменить информацию о клиенте
+      operationId: updateClientInfoUsingPATCH
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: clientInfo
+          description: Информация о клиенте
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: string
+        - name: msaSessionId
+          in: path
+          description: ID сессиии
+          required: true
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+definitions:
+  AuthDataRequestDto:
+    type: object
+    required:
+      - clientIP
+      - clientInfo
+      - deviceId
+      - deviceName
+      - identification
+      - inSessionId
+    properties:
+      clientIP:
+        type: string
+        description: IP клиента
+      clientInfo:
+        type: object
+        description: Информация о клиенте
+        additionalProperties:
+          type: string
+      deviceId:
+        type: string
+        description: ID устройства клиента
+      deviceName:
+        type: string
+        description: Название устройства клиента
+      identification:
+        description: Username киента
+        $ref: '#/definitions/IdentificationDto'
+      inSessionId:
+        type: string
+        description: Сессия сервера интеграции
+    title: AuthDataRequestDto
+    description: Информация для создания MSA сессии
+  AuthDataResponseDto:
+    type: object
+    required:
+      - branchBicForSPMSharding
+      - crossReferences
+      - payload
+    properties:
+      branchBicForSPMSharding:
+        type: string
+        description: БИК
+      crossReferences:
+        type: array
+        description: Кросс ссылки клиента
+        items:
+          $ref: '#/definitions/CrossRefDTO'
+      payload:
+        description: Информация о текущей сессии
+        $ref: '#/definitions/PayloadDto'
+    title: AuthDataResponseDto
+  ClientDeviceDto:
+    type: object
+    required:
+      - clientIP
+      - deviceName
+      - id
+      - userAgent
+    properties:
+      clientIP:
+        type: string
+        description: IP клиента
+      deviceName:
+        type: string
+        description: Название устройства
+      fingerprint:
+        type: string
+        description: Отпечаток устройства
+      id:
+        type: string
+        description: ID устройства
+      mobileSdkData:
+        type: string
+        description: Mobile-SDK информация
+      userAgent:
+        type: string
+        description: User агент
+    title: ClientDeviceDto
+    description: Информация об устройстве клиента
+  ClientShardingInfoDto:
+    type: object
+    required:
+      - roles
+      - routeName
+      - shardName
+    properties:
+      roles:
+        type: array
+        description: Роли клиента
+        items:
+          type: string
+      routeName:
+        type: string
+        description: Название маршрута
+      shardName:
+        type: string
+        description: Название шарда
+      storage:
+        type: object
+        description: 'Ключ - значение (канал, ос, версия и т.п)'
+        additionalProperties:
+          type: string
+    title: ClientShardingInfoDto
+    description: Информация о шарде клиента
+  CrossRefDTO:
+    type: object
+    properties:
+      endDate:
+        type: string
+        format: date-time
+        description: Дата-время окончания кросс-ссылки
+      externalId:
+        type: string
+        description: Кросс-ссылка на систему
+      partyUId:
+        type: string
+        description: УИК клиента (или же MDM_ID)
+      savedAt:
+        type: string
+        format: date-time
+        description: Дата-время записи кросс-ссылки в кеше
+      systemNumber:
+        type: string
+        description: Код системы (в канонике)
+    title: CrossRefDTO
+    description: Кросс-ссылка на систему
+  IdentificationDto:
+    type: object
+    required:
+      - username
+      - usernameType
+    properties:
+      username:
+        type: string
+        description: Username клиента
+      usernameType:
+        type: string
+        description: Тип username
+        enum:
+          - UCN
+          - ALIAS
+          - PHONE
+          - CARD
+    title: IdentificationDto
+    description: Способ идентификации
+  PayloadDto:
+    type: object
+    required:
+      - msaSessionId
+      - routeName
+      - shardName
+      - uniqueClientNumber
+    properties:
+      msaSessionId:
+        type: string
+        description: ID сессии в MSA
+      routeName:
+        type: string
+        description: Название маршрута
+      shardName:
+        type: string
+        description: Название шарда
+      uniqueClientNumber:
+        type: string
+        description: УНК (уникальный номер клиента)
+    title: PayloadDto
+    description: Дополнительная информация о выходе
+  SessionDto:
+    type: object
+    required:
+      - clientDevice
+      - clientInfo
+      - clientShardingInfo
+      - inSessionId
+      - msaSessionId
+      - uniqueClientNumber
+    properties:
+      clientDevice:
+        description: Информация об устройстве клиента
+        $ref: '#/definitions/ClientDeviceDto'
+      clientInfo:
+        type: object
+        description: Информация о клиенте
+        additionalProperties:
+          type: string
+      clientShardingInfo:
+        description: Информация о шарде клиента
+        $ref: '#/definitions/ClientShardingInfoDto'
+      inSessionId:
+        type: string
+        description: Сессия сервера интеграции
+      msaSessionId:
+        type: string
+        description: ID сессии в MSA
+      uniqueClientNumber:
+        type: string
+        description: УНК (уникальный номер клиента)
+      url:
+        type: string
+        description: Опиши меня
+    title: SessionDto
+    description: MSA сессия клиента
