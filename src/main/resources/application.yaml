@@ -1,0 +1,185 @@
+# набор ответов для действий АЦ
+actions:
+  # набор ответов для запроса /authentication/deviceToken
+  deviceTokens:
+    # успешный запрос №1
+    - deviceTokenId: '0000900100000000223400'
+      response:
+        http_code: 200
+        body:
+          id: 111222
+          domain: master
+          mobile: 9163742359
+          accountLock: false
+          disableSmsotp: false
+          username: onetwothree
+          homePhone: 5551234567
+          email: testuser@mail.ru
+    # успешный запрос №2
+    - deviceTokenId: '0000900100000000223401'
+      response:
+        http_code: 200
+        body:
+          id: 333444
+          domain: master
+          mobile: 9235548796
+          accountLock: false
+          disableSmsotp: false
+          username: threetwoone
+          homePhone: 5681234567
+          email: usertest@mail.ru
+    # ошибка IncorrectPinException
+    - deviceTokenId: '0000900100000000223402'
+      response:
+        http_code: 401
+        exceptionObject:
+          exception: IncorrectPinException
+          message: Ошибка аутентификации
+          remainingPinAttempts: 2
+    # ошибка DeviceTokenNotActiveException
+    - deviceTokenId: '0000900100000000223403'
+      response:
+        http_code: 403
+        exceptionObject:
+          exception: DeviceTokenNotActiveException
+          message: Девайс-токен не активен
+    # ошибка NoMorePinAttemptsException
+    - deviceTokenId: '0000900100000000223404'
+      response:
+        http_code: 403
+        exceptionObject:
+          exception: NoMorePinAttemptsException
+          message: AUTHENTICATION_EXCEPTION
+    # ошибка GenericBusinessLogicException
+    - deviceTokenId: '0000900100000000223405'
+      response:
+        http_code: 403
+        exceptionObject:
+          exception: GenericBusinessLogicException
+          message: GENERIC_BUSINESS_LOGIC
+    # ошибка UserLockedException
+    - deviceTokenId: '0000900100000000223406'
+      response:
+        http_code: 403
+        exceptionObject:
+          exception: UserLockedException
+          message: USER_LOCKED
+    # ошибка DeviceNotFoundException
+    - deviceTokenId: '0000900100000000223407'
+      response:
+        http_code: 404
+        exceptionObject:
+          exception: DeviceNotFoundException
+          message: Устройство двухфакторной аутентификации не найдено
+    # ошибка UserNotFoundException
+    - deviceTokenId: '0000900100000000223408'
+      response:
+        http_code: 404
+        exceptionObject:
+          exception: UserNotFoundException
+          message: Учетная запись не найдена
+    # ошибка DirectoryAccessException
+    - deviceTokenId: '0000900100000000223409'
+      response:
+        http_code: 500
+        exceptionObject:
+          exception: DirectoryAccessException
+          message: Ошибка доступа
+  # набор ответов для запроса /authentication/getSmsOtp
+  getSmsOtps:
+    # успешный запрос №1
+    - ucn: '111222'
+      response:
+        http_code: 200
+        body:
+          transactionId: 1111111111111
+    # успешный запрос №2
+    - ucn: '333444'
+      response:
+        http_code: 200
+        body:
+          transactionId: 2222222222222
+    # ошибка UserNotFoundException
+    - ucn: '444555'
+      response:
+        http_code: 404
+        exceptionObject:
+          exception: UserNotFoundException
+          message: Учетная запись не найдена
+    # ошибка UserLockedException
+    - ucn: '555666'
+      response:
+        http_code: 403
+        exceptionObject:
+          exception: UserLockedException
+          message: USER_LOCKED
+    # ошибка AuthenticationException
+    - ucn: '666777'
+      response:
+        http_code: 401
+        exceptionObject:
+          exception: AuthenticationException
+          message: Ошибка проверки ОТП
+    # ошибка ImsiVerificationException
+    - ucn: '777888'
+      response:
+        http_code: 403
+        exceptionObject:
+          exception: ImsiVerificationException
+          message: Ошибка проверки IMSI
+    # ошибка Exception
+    - ucn: '888999'
+      response:
+        http_code: 500
+        exceptionObject:
+          exception: Exception
+          message: Ошибка
+  # набор ответов для запроса /authentication/smsOtp
+  smsOtps:
+    # успешный запрос №1
+    - ucn: '111222'
+      response:
+        http_code: 200
+        body:
+          transactionId: 1111111111111
+    # успешный запрос №2
+    - ucn: '333444'
+      response:
+        http_code: 200
+        body:
+          transactionId: 2222222222222
+    # ошибка UserNotFoundException
+    - ucn: '444555'
+      response:
+        http_code: 404
+        exceptionObject:
+          exception: UserNotFoundException
+          message: Учетная запись не найдена
+    # ошибка UserLockedException
+    - ucn: '555666'
+      response:
+        http_code: 403
+        exceptionObject:
+          exception: UserLockedException
+          message: USER_LOCKED
+    # ошибка AuthenticationException
+    - ucn: '666777'
+      response:
+        http_code: 401
+        exceptionObject:
+          exception: AuthenticationException
+          message: Ошибка проверки ОТП
+    # ошибка ImsiVerificationException
+    - ucn: '777888'
+      response:
+        http_code: 403
+        exceptionObject:
+          exception: ImsiVerificationException
+          message: Ошибка проверки IMSI
+    # ошибка Exception
+    - ucn: '888999'
+      response:
+        http_code: 500
+        exceptionObject:
+          exception: Exception
+          message: Ошибка

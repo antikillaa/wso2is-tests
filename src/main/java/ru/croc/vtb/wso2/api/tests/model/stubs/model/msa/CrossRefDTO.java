@@ -1,10 +1,11 @@
 package ru.croc.vtb.wso2.api.tests.model.stubs.model.msa;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.validation.annotation.Validated;
-import org.threeten.bp.OffsetDateTime;
 
 import javax.validation.Valid;
+import java.time.OffsetDateTime;
 import java.util.Objects;
 
 /**
@@ -16,6 +17,7 @@ import java.util.Objects;
 public class CrossRefDTO {
 
     @JsonProperty("endDate")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
     private OffsetDateTime endDate = null;
 
     @JsonProperty("externalId")
@@ -25,6 +27,7 @@ public class CrossRefDTO {
     private String partyUId = null;
 
     @JsonProperty("savedAt")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
     private OffsetDateTime savedAt = null;
 
     @JsonProperty("systemNumber")
