@@ -9,6 +9,9 @@ import org.springframework.web.client.RestTemplate;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
 
 /**
+ * <b>Старт приложения</b>
+ * <p>При запуске теста стартует автоматически, запускать самостоятельно только для ручного тестирования</p>
+ *
  * @author Logvin I. N.
  */
 @EnableConfigurationProperties({
@@ -30,5 +33,4 @@ public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
-
 }
