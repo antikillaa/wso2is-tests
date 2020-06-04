@@ -49,7 +49,7 @@ public class MockController {
             produces = {"application/json"},
             consumes = {"application/json"},
             method = RequestMethod.POST)
-    public ResponseEntity<User> deviceToken(@RequestBody DeviceTokenAuthentication body) throws  ProxyTestException {
+    public ResponseEntity<User> deviceToken(@RequestBody DeviceTokenAuthentication body) throws ProxyTestException {
 
         Optional<Actions.DeviceToken> oDeviceToken = mockActions
                 .getDeviceTokens()
@@ -62,9 +62,10 @@ public class MockController {
             String mockHttpStatus = dt.getResponse().getHttpCode();
             Actions.Body mockBody = dt.getResponse().getBody();
             Actions.ExceptionObject mockException = dt.getResponse().getExceptionObject();
-            if (mockBody != null && mockException != null) {
-                throw new ProxyTestException("Body and exception simultaneously filled!");
-            } else if (mockBody != null) {
+            if (mockBody != null) {
+                if (mockException != null) {
+                    throw new ProxyTestException("Body and exception simultaneously filled!");
+                }
                 User user = new User();
                 user.setId(mockBody.getId());
                 user.setDomain(mockBody.getDomain());
@@ -116,32 +117,37 @@ public class MockController {
         return new ResponseEntity<String>(soapResponse, HttpStatus.OK);
     }
 
+    //todo когда потребуется, обработать getSmsOtp
     @RequestMapping(value = "/authentication/smsOtp",
             produces = {"application/json"},
             consumes = {"application/json"},
             method = RequestMethod.POST)
-    public ResponseEntity<GetSmsOtpResponse> getSmsOtp(@RequestBody GetSmsOtpRequest body) throws ProxyTestException {
+    public ResponseEntity<GetSmsOtpResponse> smsOtp(@RequestBody GetSmsOtpRequest body) throws ProxyTestException {
         Optional<Actions.SmsOtp> oSmsOtp = mockActions
                 .getSmsOtps()
                 .stream()
                 .filter(sotp -> Objects.equals(sotp.getUcn(), body.getId()))
                 .findFirst();
         if (oSmsOtp.isPresent()) {
-            Actions.SmsOtp smsOtp = oSmsOtp.get();
-            String mockHttpStatus = smsOtp.getResponse().getHttpCode();
-            Actions.Body mockBody = smsOtp.getResponse().getBody();
-            Actions.ExceptionObject mockException = smsOtp.getResponse().getExceptionObject();
-            if (mockBody != null && mockException != null) {
-                throw new ProxyTestException("Body and exception simultaneously filled!");
-            } else if (mockBody != null) {
-                GetSmsOtpResponse response = new GetSmsOtpResponse();
-                response.setTransactionId(mockBody.getTransactionId());
-                return ResponseEntity.ok(response);
-            } else {
-                throw new ProxyTestException(mockHttpStatus, mockException.getException(), mockException.getMessage(), mockException.getRemainingPinAttempts());
-            }
+            Actions.Response response = oSmsOtp.get().getResponse();
+            return validateSmsOtpBodyAndGet(response.getBody(), response.getExceptionObject(), response.getHttpCode());
         }
-
         throw new ProxyTestException("Mock not found for ucn = " + body.getId());
+    }
+
+    private ResponseEntity<GetSmsOtpResponse> validateSmsOtpBodyAndGet(Actions.Body mockBody,
+                                                                       Actions.ExceptionObject ProxyTestException,
+                                                                       String mockHttpStatus) throws ProxyTestException {
+
+        if (mockBody != null) {
+            if (ProxyTestException != null) {
+                throw new ProxyTestException("Body and exception simultaneously filled!");
+            }
+            GetSmsOtpResponse response = new GetSmsOtpResponse();
+            response.setTransactionId(mockBody.getTransactionId());
+            return ResponseEntity.ok(response);
+        } else {
+            throw new ProxyTestException(mockHttpStatus, ProxyTestException.getException(), ProxyTestException.getMessage(), ProxyTestException.getRemainingPinAttempts());
+        }
     }
 }
