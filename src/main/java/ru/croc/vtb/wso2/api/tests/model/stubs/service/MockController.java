@@ -135,6 +135,23 @@ public class MockController {
         throw new ProxyTestException("Mock not found for ucn = " + body.getId());
     }
 
+    @RequestMapping(value = "/authentication/getSmsOtp",
+            produces = {"application/json"},
+            consumes = {"application/json"},
+            method = RequestMethod.POST)
+    public ResponseEntity<GetSmsOtpResponse> getSmsOtp(@RequestBody GetSmsOtpRequest body) throws ProxyTestException {
+        Optional<Actions.GetSmsOtp> oSmsOtp = mockActions
+                .getGetSmsOtps()
+                .stream()
+                .filter(sotp -> Objects.equals(sotp.getUcn(), body.getId()))
+                .findFirst();
+        if (oSmsOtp.isPresent()) {
+            Actions.Response response = oSmsOtp.get().getResponse();
+            return validateSmsOtpBodyAndGet(response.getBody(), response.getExceptionObject(), response.getHttpCode());
+        }
+        throw new ProxyTestException("Mock not found for ucn = " + body.getId());
+    }
+
     private ResponseEntity<GetSmsOtpResponse> validateSmsOtpBodyAndGet(Actions.Body mockBody,
                                                                        Actions.ExceptionObject ProxyTestException,
                                                                        String mockHttpStatus) throws ProxyTestException {
