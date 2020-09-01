@@ -24,6 +24,9 @@ public class TestsProperties {
     @Value("${test.urlToProxy}")
     private String urlToProxy;
 
+    @Value("${test.restorePasswordServiceUrl}")
+    private String restorePasswordServiceUrl;
+
     @Value("${test.client-id}")
     private String clientId;
 
@@ -32,6 +35,15 @@ public class TestsProperties {
 
     @Value("${test.mobileFingerprint}")
     private String mobileFingerPrint;
+
+    @Value("${test.mobileFingerprintK3}")
+    private String mobileFingerprintK3;
+
+    @Value("${test.authorization}")
+    private String authorization;
+
+    @Value("${test.authorizationK3}")
+    private String authorizationK3;
 
     @Value("${test.grantType}")
     private String grantType;
@@ -50,4 +62,34 @@ public class TestsProperties {
 
     @Value("${test.otp:not-implemented}")
     private String otp;
+
+    @Value("${test.ac.host}")
+    private String ac_host;
+
+    @Value("${test.alias}")
+    private String alias;
+
+    @Value("${test.phone}")
+    private String phone;
+
+    @Value("${test.domain}")
+    private String domain;
+
+    @Value("${test.acTestHost}")
+    private String acTestHost;
+
+    @Value("${test.ac.portMock}")
+    private String acPortMock;
+
+    @Value("${test.ac.port}")
+    private String acPort;
+
+    @Value("${test.id}")
+    private String userId;
+
+    @Value("${test.id.passwordTests}")
+    private String IdPasswordTests;
+
+    @Value("${test.userPassword}")
+    private String userPassword;
 }

@@ -1,0 +1,37 @@
+<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
+    <env:Header>
+        <wsa:Action>Request-Response</wsa:Action>
+        <wsa:MessageID>urn:1583c42b-e2e0-11ea-9aa7-0021f6de2cf5</wsa:MessageID>
+        <wsa:ReplyTo>
+            <wsa:Address>http://www.w3.org/2005/08/addressing/anonymous</wsa:Address>
+            <wsa:ReferenceParameters>
+                <instra:tracking.ecid xmlns:instra="http://xmlns.oracle.com/sca/tracking/1.0">db694b7f-ac13-4898-89d7-84152f44bd80-0f1c83f9</instra:tracking.ecid>
+                <instra:tracking.FlowEventId xmlns:instra="http://xmlns.oracle.com/sca/tracking/1.0">147874292</instra:tracking.FlowEventId>
+                <instra:tracking.FlowId xmlns:instra="http://xmlns.oracle.com/sca/tracking/1.0">9059894</instra:tracking.FlowId>
+                <instra:tracking.CorrelationFlowId xmlns:instra="http://xmlns.oracle.com/sca/tracking/1.0">0000NGBovvZ9HfaLtMg8yX1VEUjY0007Io</instra:tracking.CorrelationFlowId>
+                <instra:tracking.quiescing.SCAEntityId xmlns:instra="http://xmlns.oracle.com/sca/tracking/1.0">932840</instra:tracking.quiescing.SCAEntityId>
+            </wsa:ReferenceParameters>
+        </wsa:ReplyTo>
+        <wsa:FaultTo>
+            <wsa:Address>http://www.w3.org/2005/08/addressing/anonymous</wsa:Address>
+        </wsa:FaultTo>
+    </env:Header>
+    <env:Body>
+        <msg_in_out:MessageInfo xmlns:oracle-xsl-mapper="http://www.oracle.com/xsl/mapper/schemas" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/http/Application/TBReqTA_v1.0/SyncRemoteBankingRequest" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:msg_in_out="http://www.vtb24.ru/ULBS">
+            <msg_in_out:Header>
+                <msg_in_out:MessageID>a0c9c6db-c17a-4d4f-9644-872641768713</msg_in_out:MessageID>
+                <msg_in_out:CorrelationID>a0c9c6db-c17a-4d4f-9644-872641768713</msg_in_out:CorrelationID>
+                <msg_in_out:MessageDate>2017-10-09T12:47:22.4025757Z</msg_in_out:MessageDate>
+                <msg_in_out:MessageFormat>XML</msg_in_out:MessageFormat>
+                <msg_in_out:SessionID/>
+            </msg_in_out:Header>
+            <msg_in_out:Body>
+                <rem:GetBankCard xmlns:rem="http://www.vtb24.ru/RemoteBanking"/>
+                <msg_in_out:ResultInfo>
+                    <msg_in_out:Code>04</msg_in_out:Code>
+                    <msg_in_out:Message>Карта не найдена ECID[db694b7f-ac13-4898-89d7-84152f44bd80-0f1c83f9]</msg_in_out:Message>
+                </msg_in_out:ResultInfo>
+            </msg_in_out:Body>
+        </msg_in_out:MessageInfo>
+    </env:Body>
+</env:Envelope>

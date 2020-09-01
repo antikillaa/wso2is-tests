@@ -1,0 +1,23 @@
+{
+    "mappings": [
+        {
+          "request": {
+            "method": "POST",
+            "url": "/spm/ExtendedRuleEngine/services/AdaptiveAuthentication",
+            "bodyPatterns": [
+              {
+                "expression": "//request/identificationData/userName/text()",
+                "contains": "20007030"
+              }
+            ]
+          },
+          "response": {
+            "status": 200,
+            "bodyFileName": "second_factor_111222.xml",
+            "headers": {
+              "Content-Type": "text/xml"
+            }
+          }
+        }
+    ]
+}

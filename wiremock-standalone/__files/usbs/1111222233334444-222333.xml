@@ -1,0 +1,162 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ulbs="http://www.vtb24.ru/ULBS">
+    <ulbs:Header>
+        <ulbs:MessageID>93f27d1a-9fda-45e1-b029-519615cb4da8</ulbs:MessageID>
+        <ulbs:CorrelationID>93f27d1a-9fda-45e1-b029-519615cb4da8</ulbs:CorrelationID>
+        <ulbs:MessageDate>2020-07-13T12:41:49.7658556Z</ulbs:MessageDate>
+        <ulbs:MessageFormat>xml</ulbs:MessageFormat>
+        <ulbs:SessionID>C0D650AA87BB2B77EE099FBE56E2F4B5</ulbs:SessionID>
+    </ulbs:Header>
+    <soapenv:Body>
+        <ns11:GetBankCard xmlns:ns11="http://www.vtb24.ru/RemoteBanking"
+                          xmlns="http://www.vtb24.ru/ApplicationObjectLibrary/TB/Requesters/TBReqTA/V1"
+        >
+            <ns11:GetBankCardResponse>
+                <ns11:Card localID="531233******0046" ownerSystemID="99000">
+                    <ns11:Status>Active</ns11:Status>
+                    <ns11:ClosingDate>2022-11-30</ns11:ClosingDate>
+                    <ns11:ClientFullName>Амонский Василий Николаевич</ns11:ClientFullName>
+                    <ns11:BranchCode>00000</ns11:BranchCode>
+                    <ns11:Currency>643</ns11:Currency>
+                    <ns11:IsThirdClient>false</ns11:IsThirdClient>
+                    <ns11:AccountNumber>40817810103182740630</ns11:AccountNumber>
+                </ns11:Card>
+                <ns11:Identification>
+                    <ns11:IdntRecord ID="222333" SystemCode="91000" SystemBranchCode="91000"
+                                     Status="Actual"/>  <!--Нужно искать в Identification запись (IdntRecord) у которой атрибут SystemCode="91000" - необходимо брать значение атрибута ID (Это и будет УНК)-->
+                </ns11:Identification>
+                <ns11:MobilePhone>916 1807764</ns11:MobilePhone>
+                <ns11:PersonInfo>
+                    <ns7:GenderCode xmlns:ns7="http://www.vtb24.ru/EnterpriseObjectLibrary/Core/Common/V1">1</ns7:GenderCode>
+                    <ns7:BirthDateTime xmlns:ns7="http://www.vtb24.ru/EnterpriseObjectLibrary/Core/Common/V1">1979-06-30</ns7:BirthDateTime>
+                    <ns7:NationalityCountryCode xmlns:ns7="http://www.vtb24.ru/EnterpriseObjectLibrary/Core/Common/V1">РФ</ns7:NationalityCountryCode>
+                    <ns7:BirthPlace xmlns:ns7="http://www.vtb24.ru/EnterpriseObjectLibrary/Core/Common/V1">МЕСТО РОЖДЕНИЯ</ns7:BirthPlace>
+                    <ns7:PersonName xmlns:ns7="http://www.vtb24.ru/EnterpriseObjectLibrary/Core/Common/V1">
+                        <ns7:FirstName>Василий</ns7:FirstName>
+                        <ns7:MiddleName>Николаевич</ns7:MiddleName>
+                        <ns7:FamilyName>Амонский</ns7:FamilyName>
+                    </ns7:PersonName>
+                    <ns7:TaxRezident xmlns:ns7="http://www.vtb24.ru/EnterpriseObjectLibrary/Core/Common/V1">false</ns7:TaxRezident>
+                    <ns7:RezidentFlag xmlns:ns7="http://www.vtb24.ru/EnterpriseObjectLibrary/Core/Common/V1">true</ns7:RezidentFlag>
+                    <ns7:PersonDocumentIdentity xmlns:ns7="http://www.vtb24.ru/EnterpriseObjectLibrary/Core/Common/V1">
+                        <ns7:Number>044-111-111 11</ns7:Number>
+                        <ns7:IssuingCountryCode>РФ</ns7:IssuingCountryCode>
+                        <ns7:TypeCode>74</ns7:TypeCode>
+                        <ns7:IssueName>Пенсионный фонд РФ</ns7:IssueName>
+                    </ns7:PersonDocumentIdentity>
+                    <ns7:PersonDocumentIdentity xmlns:ns7="http://www.vtb24.ru/EnterpriseObjectLibrary/Core/Common/V1">
+                        <ns7:Series>АМ</ns7:Series>
+                        <ns7:Number>0661309</ns7:Number>
+                        <ns7:IssuingCountryCode>РФ</ns7:IssuingCountryCode>
+                        <ns7:TypeCode>7</ns7:TypeCode>
+                        <ns7:IssueName>ВК г. Ступино Московской области</ns7:IssueName>
+                        <ns7:IssueCode>770-018</ns7:IssueCode>
+                        <ns7:IssueDate>1998-06-11</ns7:IssueDate>
+                    </ns7:PersonDocumentIdentity>
+                    <ns7:PersonDocumentIdentity xmlns:ns7="http://www.vtb24.ru/EnterpriseObjectLibrary/Core/Common/V1">
+                        <ns7:Series>АМ</ns7:Series>
+                        <ns7:Number>0661309</ns7:Number>
+                        <ns7:TypeCode>27</ns7:TypeCode>
+                        <ns7:IssueName>ВК г. Ступино Московской области</ns7:IssueName>
+                        <ns7:IssueCode>770-018</ns7:IssueCode>
+                        <ns7:IssueDate>1998-06-11</ns7:IssueDate>
+                    </ns7:PersonDocumentIdentity>
+                    <ns7:PersonDocumentIdentity xmlns:ns7="http://www.vtb24.ru/EnterpriseObjectLibrary/Core/Common/V1">
+                        <ns7:Series>АМ</ns7:Series>
+                        <ns7:Number>0661309</ns7:Number>
+                        <ns7:TypeCode>32</ns7:TypeCode>
+                        <ns7:IssueName>ВК г. Ступино Московской области</ns7:IssueName>
+                        <ns7:IssueCode>770-018</ns7:IssueCode>
+                        <ns7:IssueDate>1998-06-11</ns7:IssueDate>
+                    </ns7:PersonDocumentIdentity>
+                    <ns7:PersonDocumentIdentity xmlns:ns7="http://www.vtb24.ru/EnterpriseObjectLibrary/Core/Common/V1">
+                        <ns7:Series>11 11</ns7:Series>
+                        <ns7:Number>111111</ns7:Number>
+                        <ns7:IssuingCountryCode>РФ</ns7:IssuingCountryCode>
+                        <ns7:TypeCode>21</ns7:TypeCode>
+                        <ns7:IssueName>Отделом УФМС России по гор. Москве...</ns7:IssueName>
+                        <ns7:IssueCode>770-018</ns7:IssueCode>
+                        <ns7:IssueDate>2011-11-11</ns7:IssueDate>
+                    </ns7:PersonDocumentIdentity>
+                    <ns7:LocationReference xmlns:ns7="http://www.vtb24.ru/EnterpriseObjectLibrary/Core/Common/V1">
+                        <ns7:TypeCode>1</ns7:TypeCode>
+                        <ns7:Address>
+                            <ns7:EntityHistory>
+                                <ns7:NameExternalSystem>SBL_FR</ns7:NameExternalSystem>
+                                <ns7:TrustFlag>true</ns7:TrustFlag>
+                                <ns7:LoginExternalSystem>1-16EHPSXR</ns7:LoginExternalSystem>
+                                <ns7:UpdateDate>2020-06-16</ns7:UpdateDate>
+                                <ns7:UpdateTime>09:36:37</ns7:UpdateTime>
+                            </ns7:EntityHistory>
+                            <ns7:NotFormAddrName>125445 Россия г Москва ш Ленинградское дом 000 кв 00</ns7:NotFormAddrName>
+                            <ns7:FullAddress>125445,Москва,ш Ленинградское,000,00</ns7:FullAddress>
+                            <ns7:Country>РФ</ns7:Country>
+                            <ns7:ZipCode>125445</ns7:ZipCode>
+                            <ns7:State>77</ns7:State>
+                            <ns7:ProvinceType>г</ns7:ProvinceType>
+                            <ns7:Province>Москва</ns7:Province>
+                            <ns7:CityType>г</ns7:CityType>
+                            <ns7:City>Москва</ns7:City>
+                            <ns7:StreetType>ш</ns7:StreetType>
+                            <ns7:Street>Ленинградское</ns7:Street>
+                            <ns7:House>126</ns7:House>
+                            <ns7:ApartmentNumber>36</ns7:ApartmentNumber>
+                            <ns7:KLADR>7700000000016860549</ns7:KLADR>
+                            <ns7:OKATO>45277583000</ns7:OKATO>
+                        </ns7:Address>
+                    </ns7:LocationReference>
+                    <ns7:LocationReference xmlns:ns7="http://www.vtb24.ru/EnterpriseObjectLibrary/Core/Common/V1">
+                        <ns7:TypeCode>3</ns7:TypeCode>
+                        <ns7:Address>
+                            <ns7:EntityHistory>
+                                <ns7:NameExternalSystem>SBL_FR</ns7:NameExternalSystem>
+                                <ns7:TrustFlag>true</ns7:TrustFlag>
+                                <ns7:LoginExternalSystem>1-16EHPSXR</ns7:LoginExternalSystem>
+                                <ns7:UpdateDate>2020-06-16</ns7:UpdateDate>
+                                <ns7:UpdateTime>09:36:37</ns7:UpdateTime>
+                            </ns7:EntityHistory>
+                            <ns7:NotFormAddrName>125445 Россия г Москва ш Ленинградское дом 000 кв 00</ns7:NotFormAddrName>
+                            <ns7:FullAddress>125445,,Москва,,ш Ленинградское,000,,00</ns7:FullAddress>
+                            <ns7:Country>РФ</ns7:Country>
+                            <ns7:ZipCode>125445</ns7:ZipCode>
+                            <ns7:State>77</ns7:State>
+                            <ns7:ProvinceType>г</ns7:ProvinceType>
+                            <ns7:Province>Москва</ns7:Province>
+                            <ns7:CityType>г</ns7:CityType>
+                            <ns7:City>Москва</ns7:City>
+                            <ns7:StreetType>ш</ns7:StreetType>
+                            <ns7:Street>Ленинградское</ns7:Street>
+                            <ns7:House>126</ns7:House>
+                            <ns7:ApartmentNumber>36</ns7:ApartmentNumber>
+                            <ns7:KLADR>7700000000016860549</ns7:KLADR>
+                            <ns7:OKATO>45277583000</ns7:OKATO>
+                        </ns7:Address>
+                    </ns7:LocationReference>
+                    <ns7:ContactPhoneCommunication xmlns:ns7="http://www.vtb24.ru/EnterpriseObjectLibrary/Core/Common/V1">
+                        <ns7:PhoneCommunication>
+                            <ns7:CompleteNumber>495 0000000</ns7:CompleteNumber>
+                            <ns7:NotFormFullPhone>4950000000</ns7:NotFormFullPhone>
+                            <ns7:UseCode>4</ns7:UseCode>
+                            <ns7:AreaName>Москва</ns7:AreaName>
+                        </ns7:PhoneCommunication>
+                    </ns7:ContactPhoneCommunication>
+                    <ns7:ContactPhoneCommunication xmlns:ns7="http://www.vtb24.ru/EnterpriseObjectLibrary/Core/Common/V1">
+                        <ns7:PhoneCommunication>
+                            <ns7:CompleteNumber>916 0000000</ns7:CompleteNumber>
+                            <ns7:NotFormFullPhone>9160000000</ns7:NotFormFullPhone>
+                            <ns7:UseCode>7</ns7:UseCode>
+                            <ns7:AreaName>Москва и Московская область</ns7:AreaName>
+                        </ns7:PhoneCommunication>
+                    </ns7:ContactPhoneCommunication>
+                    <ns7:ContactPhoneCommunication xmlns:ns7="http://www.vtb24.ru/EnterpriseObjectLibrary/Core/Common/V1">
+                        <ns7:PhoneCommunication>
+                            <ns7:CompleteNumber>916 0000000</ns7:CompleteNumber>
+                            <ns7:NotFormFullPhone>916 0000000</ns7:NotFormFullPhone>
+                            <ns7:UseCode>6</ns7:UseCode>
+                            <ns7:AreaName>Москва и Московская область</ns7:AreaName>
+                        </ns7:PhoneCommunication>
+                    </ns7:ContactPhoneCommunication>
+                </ns11:PersonInfo>
+            </ns11:GetBankCardResponse>
+        </ns11:GetBankCard>
+    </soapenv:Body>
+</soapenv:Envelope>

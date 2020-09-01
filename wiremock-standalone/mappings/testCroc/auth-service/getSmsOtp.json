@@ -1,0 +1,229 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/getSmsOtp",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.id == '111222')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "transactionId": "1111111111111"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/getSmsOtp",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.id == '222333')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "transactionId": "1111111111111"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/getSmsOtp",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.id == '11121')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "transactionId": "1111111111111"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/getSmsOtp",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.id == '11122')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "transactionId": "1111111111111"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/getSmsOtp",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.id == '333444')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "transactionId": "2222222222222"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/getSmsOtp",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.id == '444555')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 404,
+        "jsonBody": {
+          "exception": "UserNotFoundException",
+          "message": "Учетная запись не найдена"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/getSmsOtp",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.id == '222500')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "transactionId": "1111111111111"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/getSmsOtp",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.id == '555666')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 403,
+        "jsonBody": {
+          "exception": "UserLockedException",
+          "message": "USER_LOCKED"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/getSmsOtp",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.id == '666777')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 401,
+        "jsonBody": {
+          "exception": "AuthenticationException",
+          "message": "Ошибка проверки ОТП"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/getSmsOtp",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.id == '777888')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 403,
+        "jsonBody": {
+          "exception": "ImsiVerificationException",
+          "message": "Ошибка проверки IMSI"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/getSmsOtp",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.id == '888999')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 500,
+        "jsonBody": {
+          "exception": "Exception",
+          "message": "Ошибка"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    }
+  ]
+}

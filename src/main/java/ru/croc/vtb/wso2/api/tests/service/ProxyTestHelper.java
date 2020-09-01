@@ -1,22 +1,20 @@
 package ru.croc.vtb.wso2.api.tests.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
+import com.squareup.okhttp.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpMethod;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
 import ru.croc.vtb.wso2.api.tests.model.ProxyTestException;
-import ru.croc.vtb.wso2.api.tests.model.stubs.model.SpmActionCodes;
 import ru.croc.vtb.wso2.api.tests.model.TokenDto;
+import ru.croc.vtb.wso2.api.tests.model.stubs.model.SpmActionCodes;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import static org.apache.http.HttpHeaders.AUTHORIZATION;
@@ -133,14 +131,16 @@ public class ProxyTestHelper {
      * @return инстанс {@link TokenDto}
      * @throws ProxyTestException
      */
-    public TokenDto executeRequest(String additionalBodyProps) throws ProxyTestException {
+    public TokenDto getTokenDto(String additionalBodyProps) throws ProxyTestException {
         OkHttpClient client = new OkHttpClient();
         Request request = createOkHttpRequest(additionalBodyProps).build();
         try {
             Response response = client.newCall(request).execute();
             String responseBody = response.body().string();
             ObjectMapper mapper = new ObjectMapper();
-            return mapper.readValue(responseBody, TokenDto.class);
+            TokenDto tokenDto = mapper.readValue(responseBody, TokenDto.class);
+            tokenDto.setHttpCode(response.code());
+            return tokenDto;
         } catch (IOException e) {
             throw new ProxyTestException("Error occurred. ", e);
         }
@@ -148,14 +148,14 @@ public class ProxyTestHelper {
 
     /**
      * <b>Создает билдер OkHttp запроса</b>
-     * <p>Наполняет хэдеры, УРЛ, HTTP метод обращения и тело запроса (см. {@link ProxyTestHelper#buildBodyContent(java.lang.String)})</p>
+     * <p>Наполняет хэдеры, УРЛ, HTTP метод обращения и тело запроса (см. {@link ProxyTestHelper#buildDeviceTokenBodyContent(java.lang.String)})</p>
      *
      * @param additionalBodyProps дополнительные параметры запроса
      * @return билдер OkHttp запроса
      */
     private Request.Builder createOkHttpRequest(String additionalBodyProps) {
         MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
-        RequestBody body = RequestBody.create(mediaType, buildBodyContent(additionalBodyProps));
+        RequestBody body = RequestBody.create(mediaType, buildDeviceTokenBodyContent(additionalBodyProps));
         return new Request.Builder()
                 .url(testsProperties.getUrlToProxy() + PROXY_ENDPOINT + "?scope=" + testsProperties.getScope())
                 .method(HttpMethod.POST.name(), body)
@@ -171,7 +171,7 @@ public class ProxyTestHelper {
      * @param additionalBodyProps дополнительные параметры тела
      * @return строка-тело запроса (УРЛ с pathParams)
      */
-    private String buildBodyContent(String additionalBodyProps) {
+    private String buildDeviceTokenBodyContent(String additionalBodyProps) {
         String otp = testsProperties.getOtp();
         String result = String.format(BODY_GRANT_TYPE, testsProperties.getGrantType()) +
                 "&" +
@@ -190,6 +190,20 @@ public class ProxyTestHelper {
         }
         return result;
     }
+
+    private String buildLoginUcnBodyContent(String additionalBodyProps) {
+        String result = String.format(BODY_GRANT_TYPE, testsProperties.getGrantType()) +
+                "&" +
+                String.format(BODY_DEVICE_TOKEN_ID, testsProperties.getDeviceTokenID()) +
+                "&" +
+                String.format(BODY_CHALLENGE, testsProperties.getChallenge()) +
+                "&" +
+                String.format(BODY_SECURE_CODE, testsProperties.getSecureCode()) +
+                "&" +
+                String.format(BODY_SCOPE, testsProperties.getScope());
+        return result;
+    }
+
 
     /**
      * <b>Создает хэдер авторизации из clientId и clientSecret</b>
@@ -210,5 +224,15 @@ public class ProxyTestHelper {
      */
     public String buildSpmResponseMock(SpmActionCodes spmActionCode) {
         return String.format(SPM_RESPONSE_BODY, spmActionCode.name(), spmActionCode.name());
+    }
+
+    public Map<String, Object> getLoginByDeviceTokenBody(String deviceId) {
+        Map<String, Object> bodyLogin = new HashMap<>();
+        bodyLogin.put("deviceTokenID", deviceId);
+        bodyLogin.put("secureCode", "123123");
+        bodyLogin.put("challenge", "123123");
+        bodyLogin.put("grant_type", "device_token");
+        bodyLogin.put("scope", "openid");
+        return bodyLogin;
     }
 }

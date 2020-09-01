@@ -1,0 +1,27 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "PATCH",
+        "url": "/session-context/sessions/update-msession"
+      },
+      "response": {
+        "status": 204
+      }
+    },
+    {
+      "request": {
+        "method": "PATCH",
+        "url": "/session-context/sessions/update-msession",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.identification[?(@.username == '222501')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 500
+      }
+    }
+  ]
+}

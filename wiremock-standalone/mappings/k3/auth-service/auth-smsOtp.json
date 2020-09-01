@@ -1,0 +1,21 @@
+{
+    "mappings": [
+      {
+        "request": {
+          "method": "POST",
+          "url": "/auth-service/authentication/smsOtp",
+          "bodyPatterns": [
+            {
+              "matchesJsonPath": "$.[?(@.id == '20007030')]"
+            }
+          ]
+        },
+        "response": {
+          "status": 200,
+          "headers": {
+            "Content-Type": "application/json"
+          }
+        }
+      }
+    ]
+}
