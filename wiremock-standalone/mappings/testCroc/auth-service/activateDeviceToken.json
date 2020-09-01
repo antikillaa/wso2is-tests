@@ -1,0 +1,135 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/deviceToken/activateDeviceToken",
+        "bodyPatterns" : [ {
+          "matchesJsonPath" : "$.[?(@.deviceTokenID == '0000900100000000223400')]"
+        } ]
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "persoData": "OK"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/deviceToken/activateDeviceToken",
+        "bodyPatterns" : [ {
+          "matchesJsonPath" : "$.[?(@.deviceTokenID == '0000900100000000223401')]"
+        } ]
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "persoData": "OK"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/deviceToken/activateDeviceToken",
+        "bodyPatterns" : [ {
+          "matchesJsonPath" : "$.[?(@.deviceTokenID == '0000900100000000223402')]"
+        } ]
+      },
+      "response": {
+        "status": 403,
+        "jsonBody": {
+          "exception": "DeviceTokenException",
+          "message": "DeviceTokenException"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/deviceToken/activateDeviceToken",
+        "bodyPatterns" : [ {
+          "matchesJsonPath" : "$.[?(@.deviceTokenID == '0000900100000000223403')]"
+        } ]
+      },
+      "response": {
+        "status": 403,
+        "jsonBody": {
+          "exception": "GenericBusinessLogicException",
+          "message": "GenericBusinessLogicException"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/deviceToken/activateDeviceToken",
+        "bodyPatterns" : [ {
+          "matchesJsonPath" : "$.[?(@.deviceTokenID == '0000900100000000223404')]"
+        } ]
+      },
+      "response": {
+        "status": 404,
+        "jsonBody": {
+          "exception": "DeviceNotFoundException",
+          "message": "Устройство двухфакторной аутентификации не найдено"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/deviceToken/activateDeviceToken",
+        "bodyPatterns" : [ {
+          "matchesJsonPath" : "$.[?(@.deviceTokenID == '0000900100000000223405')]"
+        } ]
+      },
+      "response": {
+        "status": 500,
+        "jsonBody": {
+          "exception": "UnexpectedError",
+          "message": "Что то пошло не так"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/deviceToken/activateDeviceToken",
+        "bodyPatterns" : [ {
+          "matchesJsonPath" : "$.[?(@.deviceTokenID == '0000900100000000223406')]"
+        } ]
+      },
+      "response": {
+        "status": 500,
+        "jsonBody": {
+          "exception": "IllegalArgumentException",
+          "message": "Ошибка доступа"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    }
+  ]
+}

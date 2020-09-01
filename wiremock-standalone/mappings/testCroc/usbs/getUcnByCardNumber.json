@@ -1,0 +1,61 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "POST",
+        "url": "/usbs/SoapEndpoint/soa-infra/services/tb/TBReqTA_v1.0/SyncRemoteBankingRequest",
+        "bodyPatterns": [
+          {
+            "expression": "//rem:CardNumber/text()",
+            "contains": "1111222233334444"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "usbs/1111222233334444-222333.xml",
+        "headers": {
+          "Content-Type": "text/xml"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/usbs/SoapEndpoint/soa-infra/services/tb/TBReqTA_v1.0/SyncRemoteBankingRequest",
+        "bodyPatterns": [
+          {
+            "expression": "//rem:CardNumber/text()",
+            "contains": "4714870004240359"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "usbs/4714870004240359-11121.xml",
+        "headers": {
+          "Content-Type": "text/xml"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/usbs/SoapEndpoint/soa-infra/services/tb/TBReqTA_v1.0/SyncRemoteBankingRequest",
+        "bodyPatterns": [
+          {
+            "expression": "//rem:CardNumber/text()",
+            "contains": "1111111111111111111"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "usbs/error.xml",
+        "headers": {
+          "Content-Type": "text/xml"
+        }
+      }
+    }
+  ]
+}

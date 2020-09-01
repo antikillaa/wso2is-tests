@@ -39,4 +39,7 @@ public class TokenDto implements Serializable {
 
     @JsonProperty("additional_properties")
     private Map<String, String> additionalProperties;
+
+    @JsonProperty("code")
+    private int httpCode;
 }

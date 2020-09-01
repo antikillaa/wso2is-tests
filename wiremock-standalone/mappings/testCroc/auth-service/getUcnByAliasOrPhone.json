@@ -1,0 +1,68 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "url": "/auth-service/authentication/getUcnByAliasOrPhone?phone=9181112233"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "id": 11120,
+          "domain": "master"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/auth-service/authentication/getUcnByAliasOrPhone?phone=9181112234"
+      },
+      "response": {
+        "status": 403,
+        "jsonBody": {
+          "exception": "NonUniqueEntryFoundException",
+          "message": "Номер не уникален"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/auth-service/authentication/getUcnByAliasOrPhone?phone=9181112235"
+      },
+      "response": {
+        "status": 403,
+        "jsonBody": {
+          "exception": "IllegalMobilePhoneFormatException",
+          "message": "Не верный формат номера"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/auth-service/authentication/getUcnByAliasOrPhone?phone=9181112236"
+      },
+      "response": {
+        "status": 404,
+        "jsonBody": {
+          "exception": "UserNotFoundException",
+          "message": "Учетная запись не найдена"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    }
+  ]
+}

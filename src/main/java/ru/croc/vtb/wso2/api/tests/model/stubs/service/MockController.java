@@ -22,10 +22,7 @@ import ru.croc.vtb.wso2.api.tests.model.stubs.model.msa.CrossRefDTO;
 import ru.croc.vtb.wso2.api.tests.model.stubs.model.msa.PayloadDto;
 
 import java.time.OffsetDateTime;
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * <b>Контроллер заглушек</b>
@@ -91,7 +88,10 @@ public class MockController {
     public ResponseEntity<AuthDataResponseDto> createSessionUsingPOST(String userAgent, AuthDataRequestDto authData, String deviceFingerprint, String mobileSdkData) {
         AuthDataResponseDto dto = new AuthDataResponseDto();
         dto.setBranchBicForSPMSharding("organization bik");
-        dto.setCrossReferences(Arrays.asList(getCrossRef("123123"), getCrossRef("98000")));
+        List<CrossRefDTO> crossRefDTOS = new ArrayList<>();
+        crossRefDTOS.add(getCrossRef("cm.SystemInstance.IVR", "fvdsvgwe"));
+        crossRefDTOS.add(getCrossRef("cm.SystemInstance.SPM", "TB9004759"));
+        dto.setCrossReferences(crossRefDTOS);
         dto.setPayload(new PayloadDto()
                 .msaSessionId(UUID.randomUUID().toString())
                 .routeName("default")
@@ -101,10 +101,10 @@ public class MockController {
         return new ResponseEntity<AuthDataResponseDto>(dto, HttpStatus.OK);
     }
 
-    private CrossRefDTO getCrossRef(String systemNumber) {
+    private CrossRefDTO getCrossRef(String systemNumber, String externalId) {
         return new CrossRefDTO()
                 .endDate(OffsetDateTime.now())
-                .externalId(UUID.randomUUID().toString())
+                .externalId(externalId)
                 .partyUId(UUID.randomUUID().toString())
                 .savedAt(OffsetDateTime.now())
                 .systemNumber(systemNumber);

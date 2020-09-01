@@ -1,0 +1,97 @@
+{
+    "mappings": [
+        {
+            "request": {
+                "method": "GET", 
+                "url": "/auth-service/authentication/getUserDiscredited",
+                "bodyPatterns" : [ {
+                    "matchesJsonPath" : "$.[?(@.id =~ /deadpool|11121/i)]"
+                } ]
+            },
+            "response": {
+                "status": 200,
+                "jsonBody": {
+                    "discredited": false
+                },
+                "headers": {
+                    "Content-Type": "application/json"
+                }
+            }
+        },
+        {
+            "request": {
+                "method": "GET", 
+                "url": "/auth-service/authentication/getUserDiscredited",
+                "bodyPatterns" : [ {
+                    "matchesJsonPath" : "$.[?(@.id =~ /11122|11123|aussie/i)]"
+                } ]
+            },
+            "response": {
+                "status": 200,
+                "jsonBody": {
+                    "discredited": true
+                },
+                "headers": {
+                    "Content-Type": "application/json"
+                }
+            }
+        },
+        {
+            "request": {
+                "method": "GET", 
+                "url": "/auth-service/authentication/getUserDiscredited",
+                "bodyPatterns" : [ {
+                    "matchesJsonPath" : "$.[?(@.id == '11124')]"
+                } ]
+            },
+            "response": {
+                "status": 404,
+                "jsonBody": {
+                    "exception": "UserNotFoundException",
+                    "message": "Учетная запись не найдена"
+                },
+                "headers": {
+                    "Content-Type": "application/json"
+                }
+            }
+        },
+        {
+            "request": {
+                "method": "GET", 
+                "url": "/auth-service/authentication/getUserDiscredited",
+                "bodyPatterns" : [ {
+                    "matchesJsonPath" : "$.[?(@.id == '11125')]"
+                } ]
+            },
+            "response": {
+                "status": 500,
+                "jsonBody": {
+                    "exception": "Exception",
+                    "message": "Ошибка"
+                },
+                "headers": {
+                    "Content-Type": "application/json"
+                }
+            }
+        },
+        {
+            "request": {
+                "method": "GET", 
+                "url": "/auth-service/authentication/getUserDiscredited",
+                "bodyPatterns" : [ {
+                    "matchesJsonPath" : "$.[?(@.id == '11126')]"
+                } ]
+            },
+            "response": {
+                "status": 403,
+                "jsonBody": {
+                    "exception": "UserLockedException",
+                    "message": "USER_LOCKED"
+                },
+                "headers": {
+                    "Content-Type": "application/json"
+                }
+            }
+        }
+    ]
+}

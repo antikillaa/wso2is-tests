@@ -1,0 +1,306 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/deviceToken",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.deviceTokenId == '0000900100000000223400')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "id": "111222",
+          "domain": "master",
+          "username": "onetwothree",
+          "email": "testuser@mail.ru",
+          "homePhone": "5551234567",
+          "mobile": "9163742359",
+          "accountLock": false,
+          "passwordTemporary": true,
+          "disable_smsotp": false
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/deviceToken",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.deviceTokenId == '0000900100000000223401')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "id": "333444",
+          "domain": "master",
+          "username": "threetwoone",
+          "email": "usertest@mail.ru",
+          "homePhone": "5681234567",
+          "mobile": "9235548796",
+          "accountLock": false,
+          "passwordTemporary": true,
+          "disable_smsotp": false
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/deviceToken",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.deviceTokenId == '0000900100000000223500')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "id": "222500",
+          "domain": "master",
+          "username": "onetwothree",
+          "email": "testuser@mail.ru",
+          "homePhone": "5551234567",
+          "mobile": "9163742359",
+          "accountLock": false,
+          "passwordTemporary": true,
+          "disable_smsotp": false
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/deviceToken",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.deviceTokenId == '0000900100000000223402')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 401,
+        "jsonBody": {
+          "exception": "IncorrectPinException",
+          "message": "Ошибка аутентификации",
+          "remainingPinAttempts": 2
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/deviceToken",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.deviceTokenId == '0000900100000000223403')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 403,
+        "jsonBody": {
+          "exception": "DeviceTokenNotActiveException",
+          "message": "Девайс-токен не активен"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/deviceToken",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.deviceTokenId == '0000900100000000223404')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 403,
+        "jsonBody": {
+          "exception": "NoMorePinAttemptsException",
+          "message": "AUTHENTICATION_EXCEPTION"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/deviceToken",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.deviceTokenId == '0000900100000000223405')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 401,
+        "jsonBody": {
+          "exception": "GenericBusinessLogicException",
+          "message": "GENERIC_BUSINESS_LOGIC"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/deviceToken",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.deviceTokenId == '0000900100000000223406')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 403,
+        "jsonBody": {
+          "exception": "UserLockedException",
+          "message": "USER_LOCKED"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/deviceToken",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.deviceTokenId == '0000900100000000223407')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 404,
+        "jsonBody": {
+          "exception": "DeviceNotFoundException",
+          "message": "Устройство двухфакторной аутентификации не найдено"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/deviceToken",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.deviceTokenId == '0000900100000000223408')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 404,
+        "jsonBody": {
+          "exception": "UserNotFoundException",
+          "message": "Учетная запись не найдена"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/deviceToken",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.deviceTokenId == '0000900100000000223409')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 500,
+        "jsonBody": {
+          "exception": "DirectoryAccessException",
+          "message": "Ошибка доступа"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/deviceToken",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.deviceTokenId == '0000900100000000223444')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 403,
+        "jsonBody": {
+          "exception": "spm_access_deny",
+          "message": "Ошибка доступа"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/deviceToken",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.deviceTokenId == '0000900100000000223445')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "id": "222501",
+          "domain": "master",
+          "username": "onetwothree",
+          "email": "testuser@mail.ru",
+          "homePhone": "5551234567",
+          "mobile": "9163742359",
+          "accountLock": false,
+          "passwordTemporary": true,
+          "disable_smsotp": false
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    }
+  ]
+}

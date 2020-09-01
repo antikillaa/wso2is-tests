@@ -1,0 +1,67 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Body>
+      <ns1:analyzeResponse xmlns:ns1="http://ws.csd.rsa.com">
+         <ns1:analyzeReturn xsi:type="ns1:AnalyzeResponse" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns1:deviceResult>
+               <ns1:authenticationResult>
+                  <ns1:authStatusCode>SUCCESS</ns1:authStatusCode>
+                  <ns1:risk>0</ns1:risk>
+               </ns1:authenticationResult>
+               <ns1:callStatus>
+                  <ns1:statusCode>SUCCESS</ns1:statusCode>
+                  <ns1:statusDescription/>
+               </ns1:callStatus>
+               <ns1:deviceData>
+                  <ns1:bindingType>HARD_BIND</ns1:bindingType>
+                  <ns1:deviceTokenCookie>VxxCGogBcORPuTnnADIbrPYbEeOjCWfM</ns1:deviceTokenCookie>
+                  <ns1:deviceTokenFSO>VxxCGogBcORPuTnnADIbrPYbEeOjCWfM</ns1:deviceTokenFSO>
+                  <ns1:lookupLabel>No Label</ns1:lookupLabel>
+               </ns1:deviceData>
+            </ns1:deviceResult>
+            <ns1:identificationData>
+               <ns1:clientTransactionId>59ec1503-b1bb-4bcf-9e41-2b45dedfc54f</ns1:clientTransactionId>
+               <ns1:delegated>false</ns1:delegated>
+               <ns1:orgName>RETAIL</ns1:orgName>
+               <ns1:transactionId>db1b86b769fe47c68dbbab6285d9e8e0</ns1:transactionId>
+               <ns1:userName>TB9000495</ns1:userName>
+               <ns1:userStatus>UNVERIFIED</ns1:userStatus>
+               <ns1:userType>PERSISTENT</ns1:userType>
+            </ns1:identificationData>
+            <ns1:messageHeader>
+               <ns1:apiType>DIRECT_SOAP_API</ns1:apiType>
+               <ns1:requestType>ANALYZE</ns1:requestType>
+               <ns1:timeStamp>2020-07-03 11:56:28.607</ns1:timeStamp>
+               <ns1:version>7.0</ns1:version>
+            </ns1:messageHeader>
+            <ns1:statusHeader>
+               <ns1:reasonCode>0</ns1:reasonCode>
+               <ns1:reasonDescription>Operations were completed successfully</ns1:reasonDescription>
+               <ns1:statusCode>200</ns1:statusCode>
+            </ns1:statusHeader>
+           <ns1:deviceManagementResponse>
+               <ns1:acspAccountId>TB9000495@RETAIL</ns1:acspAccountId>
+               <ns1:callStatus>
+                  <ns1:statusCode>SUCCESS</ns1:statusCode>
+                  <ns1:statusDescription/>
+               </ns1:callStatus>
+               <ns1:deviceData>
+                  <ns1:bindingType>HARD_BIND</ns1:bindingType>
+                  <ns1:lookupLabel>No Label</ns1:lookupLabel>
+               </ns1:deviceData>
+            </ns1:deviceManagementResponse>
+            <ns1:riskResult>
+               <ns1:riskScore>0</ns1:riskScore>
+               <ns1:riskScoreBand>SCORE_BAND_0</ns1:riskScoreBand>
+               <ns1:triggeredRule>
+                  <ns1:actionCode>ALLOW</ns1:actionCode>
+                  <ns1:actionName>ALLOW</ns1:actionName>
+                  <ns1:actionType>STRICT</ns1:actionType>
+                  <ns1:clientFactList/>
+                  <ns1:ruleId>канал MOB_challenge</ns1:ruleId>
+                  <ns1:ruleName>канал MOB_challenge</ns1:ruleName>
+               <ns1:actionSubCode>AntiFraud</ns1:actionSubCode></ns1:triggeredRule>
+            </ns1:riskResult>
+         </ns1:analyzeReturn>
+      </ns1:analyzeResponse>
+   </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,179 @@
+{
+    "mappings": [
+        {
+            "request": {
+                "method": "POST", 
+                "url": "/auth-service/authentication/authenticateByClientId",
+                "bodyPatterns" : [ 
+                    {
+                        "matchesJsonPath" : "$.[?(@.id == '11121')]"
+                    }
+                ]
+            },
+            "response": {
+                "status": 200,
+                "jsonBody": {
+                    "id": "11121",
+                    "domain": "master",
+                    "username": "onetwothree",
+                    "email": "testuser@mail.ru",
+                    "homePhone": "5551234567",
+                    "mobile": "9163742359",
+                    "accountLock": false,
+                    "passwordTemporary": true,
+                    "disable_smsotp": false
+                },
+                "headers": {
+                    "Content-Type": "application/json"
+                }
+            }
+        },
+        {
+            "request": {
+                "method": "POST", 
+                "url": "/auth-service/authentication/authenticateByClientId",
+                "bodyPatterns" : [ 
+                    {
+                        "matchesJsonPath" : "$.[?(@.id == '11122')]"
+                    }
+                ]
+            },
+            "response": {
+                "status": 200,
+                "jsonBody": {
+                    "id": "11122",
+                    "domain": "master",
+                    "username": "onetwothree",
+                    "email": "testuser@mail.ru",
+                    "homePhone": "5551234567",
+                    "mobile": "9163742359",
+                    "accountLock": false,
+                    "passwordTemporary": true,
+                    "disable_smsotp": false
+                },
+                "headers": {
+                    "Content-Type": "application/json"
+                }
+            }
+        },
+        {
+            "request": {
+                "method": "POST", 
+                "url": "/auth-service/authentication/authenticateByClientId",
+                "bodyPatterns" : [ 
+                    {
+                        "matchesJsonPath" : "$.[?(@.id == 'deadpool')]"
+                    }
+                ]
+            },
+            "response": {
+                "status": 200,
+                "jsonBody": {
+                    "id": "deadpool",
+                    "domain": "master",
+                    "username": "onetwothree",
+                    "email": "testuser@mail.ru",
+                    "homePhone": "5551234567",
+                    "mobile": "9163742359",
+                    "accountLock": false,
+                    "passwordTemporary": true,
+                    "disable_smsotp": false
+                },
+                "headers": {
+                    "Content-Type": "application/json"
+                }
+            }
+        },
+        {
+            "request": {
+                "method": "POST", 
+                "url": "/auth-service/authentication/authenticateByClientId",
+                "bodyPatterns" : [ 
+                    {
+                        "matchesJsonPath" : "$.[?(@.id == 'aussie')]"
+                    }
+                ]
+            },
+            "response": {
+                "status": 200,
+                "jsonBody": {
+                    "id": "aussie",
+                    "domain": "master",
+                    "username": "onetwothree",
+                    "email": "testuser@mail.ru",
+                    "homePhone": "5551234567",
+                    "mobile": "9163742359",
+                    "accountLock": false,
+                    "passwordTemporary": true,
+                    "disable_smsotp": false
+                },
+                "headers": {
+                    "Content-Type": "application/json"
+                }
+            }
+        },
+        {
+            "request": {
+                "method": "POST", 
+                "url": "/auth-service/authentication/authenticateByClientId",
+                "bodyPatterns" : [ 
+                    {
+                        "matchesJsonPath" : "$.[?(@.id == '11123')]"
+                    }
+                ]
+            },
+            "response": {
+                "status": 404,
+                "jsonBody": {
+                    "exception": "UserNotFoundException",
+                    "message": "Учетная запись не найдена"
+                },
+                "headers": {
+                    "Content-Type": "application/json"
+                }
+            }
+        },
+        {
+            "request": {
+                "method": "POST", 
+                "url": "/auth-service/authentication/authenticateByClientId",
+                "bodyPatterns" : [ 
+                    {
+                        "matchesJsonPath" : "$.[?(@.id == '11124')]"
+                    }
+                ]
+            },
+            "response": {
+                "status": 401,
+                "jsonBody": {
+                    "exception": "AuthenticationException",
+                    "message": "Неверный код подтверждения"
+                },
+                "headers": {
+                    "Content-Type": "application/json"
+                }
+            }
+        },
+        {
+            "request": {
+                "method": "POST", 
+                "url": "/auth-service/authentication/authenticateByClientId",
+                "bodyPatterns" : [ 
+                    {
+                        "matchesJsonPath" : "$.[?(@.id == '11125')]"
+                    }
+                ]
+            },
+            "response": {
+                "status": 401,
+                "jsonBody": {
+                    "exception": "IncorrectCredentialsException",
+                    "message": "Ошибка аутентификации"
+                },
+                "headers": {
+                    "Content-Type": "application/json"
+                }
+            }
+        }
+    ]
+}

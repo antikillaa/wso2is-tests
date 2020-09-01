@@ -1,0 +1,131 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "POST",
+        "url": "/spm/ExtendedRuleEngine/services/AdaptiveAuthentication"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "default_response.xml",
+        "headers": {
+          "Content-Type": "text/xml"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/spm/ExtendedRuleEngine/services/AdaptiveAuthentication",
+        "bodyPatterns": [
+          {
+            "expression": "//request/identificationData/userName/text()",
+            "contains": "111222"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "second_factor_111222.xml",
+        "headers": {
+          "Content-Type": "text/xml"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/spm/ExtendedRuleEngine/services/AdaptiveAuthentication",
+        "bodyPatterns": [
+          {
+            "expression": "//request/identificationData/userName/text()",
+            "contains": "222111"
+          }
+        ]
+      },
+      "response": {
+        "status": 403,
+        "bodyFileName": "second_factor_111222.xml",
+        "headers": {
+          "Content-Type": "text/xml"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/spm/ExtendedRuleEngine/services/AdaptiveAuthentication",
+        "bodyPatterns": [
+          {
+            "expression": "//request/identificationData/userName/text()",
+            "contains": "11121"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "second_factor_111222.xml",
+        "headers": {
+          "Content-Type": "text/xml"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/spm/ExtendedRuleEngine/services/AdaptiveAuthentication",
+        "bodyPatterns": [
+          {
+            "expression": "//request/identificationData/userName/text()",
+            "contains": "222333"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "second_factor_111222.xml",
+        "headers": {
+          "Content-Type": "text/xml"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/spm/ExtendedRuleEngine/services/AdaptiveAuthentication",
+        "bodyPatterns": [
+          {
+            "expression": "//request/identificationData/userName/text()",
+            "contains": "222500"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "access_500_222500.xml",
+        "headers": {
+          "Content-Type": "text/xml"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/spm/ExtendedRuleEngine/services/AdaptiveAuthentication",
+        "bodyPatterns": [
+          {
+            "expression": "//request/identificationData/userName/text()",
+            "contains": "222501"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "default_response.xml",
+        "headers": {
+          "Content-Type": "text/xml"
+        }
+      }
+    }
+  ]
+}
