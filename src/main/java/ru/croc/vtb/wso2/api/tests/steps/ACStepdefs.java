@@ -86,4 +86,9 @@ public class ACStepdefs {
     public void sendGetUserDiscreditedRequestId(String arg0) {
         requestService.getUserDiscreditedRequest(arg0, testsProperties);
     }
+
+    @Then("Send CheckRemotePasswordRestore Request id: {string}")
+    public void sendCheckRemotePasswordRestoreRequestId(String arg0) {
+        requestService.getCheckRemotePasswordRestoreRequest(arg0, testsProperties);
+    }
 }

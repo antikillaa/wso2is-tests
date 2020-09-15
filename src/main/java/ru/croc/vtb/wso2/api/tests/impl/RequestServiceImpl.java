@@ -275,11 +275,29 @@ public class RequestServiceImpl implements RequestService {
         body.put("cred", arg0);
         body.put("type", arg1);
 
+        Map<String, Object> header = new HashMap<>();
+        header.put("User-Agent", "1");
+        header.put("X-Forwarded-For", "localhost");
+
         ValidatableResponse r = given().log().everything(true)
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
+                .headers(header)
                 .body(body)
                 .post(testsProperties.getRestorePasswordServiceUrl() + "/otp")
+                .then().log().all(true);
+        RUN_CONTEXT.put("responseBody", r);
+    }
+
+    @Override
+    public void getCheckRemotePasswordRestoreRequest(String id, TestsProperties testsProperties) {
+        ValidatableResponse r = given().log().everything(true)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .param("id", id)
+                .param("domain", "master")
+                .get("http://" + testsProperties.getAc_host() +
+                        testsProperties.getAcPort() + "/authentication/checkRemotePasswordRestore")
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
     }

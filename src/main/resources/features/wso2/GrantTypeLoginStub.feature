@@ -4,6 +4,8 @@ Feature: Grant type Login Stub
     Then Send login by Grant type Request
       | grandType | id_type | id    | finger_print | scope |
       | login     | login   | 11122 | true         | true  |
+    And Status code response is: "401"
+    Then Send Second Factor login by Grant type request
     And Status code response is: "200"
     And Response Body contains key: "access_token"
     And Response Body contains key: "id_token"
@@ -14,6 +16,8 @@ Feature: Grant type Login Stub
     Then Send login by Grant type Request
       | grandType | id_type | id    | finger_print | scope |
       | login     | login   | 11122 | false        | true  |
+    And Status code response is: "401"
+    Then Send Second Factor login by Grant type request
     And Status code response is: "200"
     And Response Body contains key: "access_token"
     And Response Body contains key: "id_token"
@@ -24,11 +28,12 @@ Feature: Grant type Login Stub
     Then Send login by Grant type Request
       | grandType | id_type | id    | finger_print | scope |
       | login     | login   | 11122 | true         | false |
+    And Status code response is: "401"
+    Then Send Second Factor login by Grant type request
     And Status code response is: "200"
     And Response Body contains key: "access_token"
-    And Response Body contains "id_token" equals "null"
+    And Response Body contains key: "id_token"
     And Response Body contains key: "refresh_token"
-    And Response Body contains "scope" equals "null"
 
   Scenario: Grant type Login Success Access 500
     Then Send login by Grant type Request

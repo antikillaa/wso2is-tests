@@ -37,4 +37,6 @@ public interface RequestService {
     void getSecondFactorGrandTypeRequest(TestsProperties testsProperties);
 
     void sendOtpRestorePasswordRequest(String arg0, String arg1, TestsProperties testsProperties);
+
+    void getCheckRemotePasswordRestoreRequest(String arg0, TestsProperties testsProperties);
 }
