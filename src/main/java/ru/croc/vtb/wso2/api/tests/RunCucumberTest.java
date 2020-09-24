@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         publish = true,
         features = "classpath:features",
-        plugin = {"pretty", "json:target/cucumber-report/cucumber.json"},
+        plugin = {"pretty", "html:test-report/cucumber-report.html"},
         tags = "not @wip and not @k3 and not @skip"
 )
 public class RunCucumberTest {

@@ -11,6 +11,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestTemplate;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
 
+import static java.lang.System.exit;
+
 /**
  * <b>Старт приложения</b>
  * <p>При запуске теста стартует автоматически, запускать самостоятельно только для ручного тестирования</p>
@@ -37,5 +39,6 @@ public class Application {
         SpringApplication.run(Application.class, args);
         Cucumber test = new Cucumber(RunCucumberTest.class);
         new JUnitCore().run(test);
+        exit(200);
     }
 }
