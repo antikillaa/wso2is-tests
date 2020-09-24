@@ -1,5 +1,8 @@
 package ru.croc.vtb.wso2.api.tests;
 
+import io.cucumber.junit.Cucumber;
+import org.junit.runner.JUnitCore;
+import org.junit.runners.model.InitializationError;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -30,7 +33,9 @@ public class Application {
         return new RestTemplate();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InitializationError {
         SpringApplication.run(Application.class, args);
+        Cucumber test = new Cucumber(RunCucumberTest.class);
+        new JUnitCore().run(test);
     }
 }
