@@ -24,45 +24,19 @@ public class RequestServiceImpl implements RequestService {
 
     BodyService bodyService = new BodyServiceImpl();
 
-    public void sendRestorePasswordRequest(TestsProperties testsProperties) {
+    public void sendRestorePasswordRequest(TestsProperties testsProperties, String id) {
         String URL = "http://" + testsProperties.getAc_host() +
                 testsProperties.getAcPort() + "/authentication/restorePassword";
 
-        RestorePasswordDTO restorePasswordDTO = bodyService.getRestorePasswordBody(testsProperties);
+        RestorePasswordDTO restorePasswordDTO = bodyService.getRestorePasswordBody(testsProperties, id);
 
         ValidatableResponse r = getRestorePasswordResponse(restorePasswordDTO, URL);
-        RUN_CONTEXT.put("restorePasswordResponse", r);
-
-        given().log().everything(true)
-                .get("http://" + testsProperties.getAc_host() + ":8090/SmsSender/SmsSenderLog?list=1")
-                .then().log().all(true)
-                .statusCode(200)
-                .body(containsString(testsProperties.getPhone()));
+        RUN_CONTEXT.put("responseBody", r);
     }
 
-    public void sendPasswordRandomPhoneRequest(TestsProperties testsProperties) {
-        String URL = "http://" + testsProperties.getAc_host() +
-                testsProperties.getAcPort() + "/authentication/restorePassword";
-
-        String randomPhone = RandomStringUtils.randomNumeric(9);
-
-        RestorePasswordDTO restorePasswordDTO = bodyService.getRestorePasswordBody(testsProperties);
-        restorePasswordDTO.setMobilePhone(randomPhone);
-
-        ValidatableResponse r = getRestorePasswordResponse(restorePasswordDTO, URL);
-        RUN_CONTEXT.put("restorePasswordResponse", r);
-
-
-        given().log().everything(true)
-                .get("http://" + testsProperties.getAc_host() + ":8090/SmsSender/SmsSenderLog?list=1")
-                .then().log().all(true)
-                .statusCode(200)
-                .body(containsString(randomPhone));
-    }
-
-    public ValidatableResponse getStaticPasswordResponse(String id, String URL) {
+    public ValidatableResponse getStaticPasswordResponse(String id, String URL, TestsProperties testsProperties) {
         return given().log().everything(true)
-                .body(bodyService.getStaticPasswordBody(id))
+                .body(bodyService.getStaticPasswordBody(id, testsProperties))
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .post(URL).then().log().all(true);
@@ -72,7 +46,7 @@ public class RequestServiceImpl implements RequestService {
         String URL = "http://" + testsProperties.getAc_host() +
                 testsProperties.getAcPortMock() + "/authentication/staticPassword";
 
-        ValidatableResponse r = getStaticPasswordResponse(id, URL);
+        ValidatableResponse r = getStaticPasswordResponse(id, URL, testsProperties);
         RUN_CONTEXT.put("responseBody", r);
         return r;
     }
@@ -143,7 +117,7 @@ public class RequestServiceImpl implements RequestService {
         RUN_CONTEXT.put("id_type", par.get("id_type"));
         RUN_CONTEXT.put("scope", par.get("scope"));
 
-        Map<String, Object> body = bodyService.getLoginByGrandTypeRequestBody(par);
+        Map<String, Object> body = bodyService.getLoginByGrandTypeRequestBody(par, testsProperties);
         RUN_CONTEXT.put("body", body);
 
         Map<String, Object> header = getLoginHeaderWithFinger(par, testsProperties);
@@ -232,7 +206,7 @@ public class RequestServiceImpl implements RequestService {
                 .body(body)
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .post("http://" + testsProperties.getAc_host() + testsProperties.getAcPort() + "/authentication/authenticateByClientId")
+                .post("http://" + testsProperties.getAcTestHost() + "/authentication/authenticateByClientId")
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
     }
@@ -258,7 +232,7 @@ public class RequestServiceImpl implements RequestService {
         Map<String, Object> body = RUN_CONTEXT.get("body", Map.class);
         body.put("sessionDataKey", property.get("sessionDataKey"));
         body.put("transactionId", property.get("transactionId"));
-        body.put("otp", "111");
+        body.put("otp", "000000");
 
         ValidatableResponse r = given().log().everything(true)
                 .headers(getLoginHeaderWithFinger(RUN_CONTEXT.get("par", Map.class), testsProperties))
@@ -310,6 +284,8 @@ public class RequestServiceImpl implements RequestService {
             body.put("Authorization", testsProperties.getAuthorization());
         } else if (par.get("Authorization").equals("k3")) {
             body.put("Authorization", testsProperties.getAuthorizationK3());
+        } else if (par.get("Authorization").toString().contains("Basic")) {
+            body.put("Authorization", par.get("Authorization"));
         } else
             LOGGER.error("Authorization is missing");
 

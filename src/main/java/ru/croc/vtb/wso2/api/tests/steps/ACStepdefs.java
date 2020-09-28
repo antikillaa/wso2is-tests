@@ -30,14 +30,9 @@ public class ACStepdefs {
         requestService.getStaticPasswordUserByIdResponse(arg0, testsProperties);
     }
 
-    @Then("Send Restore Password Success Request")
-    public void sendRestorePasswordSuccess() {
-        requestService.sendRestorePasswordRequest(testsProperties);
-    }
-
-    @Then("Send Restore Password Random Phone Request")
-    public void sendRestorePasswordRandomPasswordRequest() {
-        requestService.sendPasswordRandomPhoneRequest(testsProperties);
+    @Then("Send Restore Password Request id: {string}")
+    public void sendRestorePasswordSuccess(String arg0) {
+        requestService.sendRestorePasswordRequest(testsProperties, arg0);
     }
 
     @Then("Send GetSmsOtp Request id: {string}")

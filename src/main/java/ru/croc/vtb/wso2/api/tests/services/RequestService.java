@@ -6,11 +6,10 @@ import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
 import java.util.Map;
 
 public interface RequestService {
-    void sendPasswordRandomPhoneRequest(TestsProperties testsProperties);
 
-    void sendRestorePasswordRequest(TestsProperties testsProperties);
+    void sendRestorePasswordRequest(TestsProperties testsProperties, String id);
 
-    ValidatableResponse getStaticPasswordResponse(String id, String URL);
+    ValidatableResponse getStaticPasswordResponse(String id, String URL, TestsProperties testsProperties);
 
     ValidatableResponse getStaticPasswordUserByIdResponse(String id, TestsProperties testsProperties);
 
