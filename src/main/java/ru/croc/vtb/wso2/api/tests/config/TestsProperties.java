@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Setter
 @Configuration
 @ConfigurationProperties(prefix = "test")
-@PropertySource("classpath:/application.properties")
+@PropertySource("classpath:/applicationK3.properties")
 @Component
 public class TestsProperties {
 

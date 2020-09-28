@@ -122,6 +122,27 @@
           "Content-Type": "application/json"
         }
       }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/auth-service/authentication/getUserDiscredited",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.id == '11127')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 403,
+        "jsonBody": {
+          "exception": "UserLockedException",
+          "message": "USER_LOCKED"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
     }
   ]
 }

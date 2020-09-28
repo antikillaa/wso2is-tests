@@ -14,7 +14,7 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <springfox-version>2.9.2</springfox-version>
-        <cucumber.version>6.5.0</cucumber.version>
+        <cucumber.version>6.7.0</cucumber.version>
     </properties>
 
     <dependencies>
@@ -178,7 +178,7 @@
                     <finalName>ServiceCreate</finalName>
                     <archive>
                         <manifest>
-                            <mainClass>ru.croc.vtb.wso2.api.tests.RunCucumberTest</mainClass>
+                            <mainClass>ru.croc.vtb.wso2.api.tests.TestRunner</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

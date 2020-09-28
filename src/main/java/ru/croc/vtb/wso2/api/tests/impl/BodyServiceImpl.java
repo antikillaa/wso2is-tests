@@ -11,20 +11,20 @@ import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
 
 public class BodyServiceImpl implements BodyService {
 
-    public RestorePasswordDTO getRestorePasswordBody(TestsProperties testsProperties) {
+    public RestorePasswordDTO getRestorePasswordBody(TestsProperties testsProperties, String id) {
         return RestorePasswordDTO.builder()
-                .id(testsProperties.getUserId())
+                .id(id)
                 .domain(testsProperties.getDomain())
                 .systemId("98000")
                 .mobilePhone(testsProperties.getPhone())
                 .build();
     }
 
-    public Map<String, Object> getStaticPasswordBody(String id) {
+    public Map<String, Object> getStaticPasswordBody(String id, TestsProperties testsProperties) {
         Map<String, Object> body = new HashMap<>();
         body.put("id", id);
         body.put("domain", "master");
-        body.put("password", "99999");
+        body.put("password", testsProperties.getUserPassword());
         return body;
     }
 
@@ -40,7 +40,7 @@ public class BodyServiceImpl implements BodyService {
         return body;
     }
 
-    public Map<String, Object> getLoginByGrandTypeRequestBody(Map par) {
+    public Map<String, Object> getLoginByGrandTypeRequestBody(Map par, TestsProperties testsProperties) {
         Map<String, Object> body = new HashMap<>();
         if (par.get("grandType").equals("device_token")) {
             body.put("deviceTokenID", par.get("id"));
@@ -53,7 +53,7 @@ public class BodyServiceImpl implements BodyService {
         } else
             body.put((String) par.get("id_type"), par.get("id"));
         if (par.get("password") == null || par.get("password").equals("true")) {
-            body.put("password", "99999");
+            body.put("password", testsProperties.getUserPassword());
         }
         body.put("grant_type", par.get("grandType"));
         if (par.get("scope").equals("true")) {

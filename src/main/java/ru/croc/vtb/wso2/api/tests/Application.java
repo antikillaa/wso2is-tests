@@ -37,7 +37,7 @@ public class Application {
 
     public static void main(String[] args) throws InitializationError {
         SpringApplication.run(Application.class, args);
-        Cucumber test = new Cucumber(RunCucumberTest.class);
+        Cucumber test = new Cucumber(RunCucumberTestK3.class);
         new JUnitCore().run(test);
         exit(200);
     }
