@@ -10,7 +10,7 @@ import lombok.Setter;
 public class ChangePasswordDTO {
     private String id;
     private String domain;
-    private String systemId;
+    private String system;
     private String password;
     private String newPassword;
 }

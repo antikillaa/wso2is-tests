@@ -18,4 +18,9 @@ public class RestorePassworStepdefs {
     public void sendOtpRestorePasswordRequestCredType(String arg0, String arg1) {
         requestService.sendOtpRestorePasswordRequest(arg0, arg1, testsProperties);
     }
+
+    @Then("Send pwdRestorePasswordRequest")
+    public void sendPwdRestorePasswordRequest() {
+        requestService.sendOtpRestorePasswordRequest(testsProperties);
+    }
 }

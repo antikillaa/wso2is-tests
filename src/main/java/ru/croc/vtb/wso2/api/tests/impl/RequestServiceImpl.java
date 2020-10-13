@@ -2,7 +2,6 @@ package ru.croc.vtb.wso2.api.tests.impl;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
@@ -15,7 +14,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.containsString;
 import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
 
 public class RequestServiceImpl implements RequestService {
@@ -73,7 +71,7 @@ public class RequestServiceImpl implements RequestService {
             ChangePasswordDTO changePasswordDTO = ChangePasswordDTO.builder()
                     .id(testsProperties.getIdPasswordTests())
                     .domain(testsProperties.getDomain())
-                    .systemId("91000")
+                    .system("91000")
                     .password(i == 1 ? password : password + q)
                     .newPassword(i < 4 ? password + i : password)
                     .build();
@@ -96,7 +94,7 @@ public class RequestServiceImpl implements RequestService {
         ChangePasswordDTO changePasswordDTO = ChangePasswordDTO.builder()
                 .id(testsProperties.getIdPasswordTests())
                 .domain(testsProperties.getDomain())
-                .systemId("91000")
+                .system("91000")
                 .password(password)
                 .newPassword(password + password)
                 .build();
@@ -232,6 +230,7 @@ public class RequestServiceImpl implements RequestService {
         Map<String, Object> body = RUN_CONTEXT.get("body", Map.class);
         body.put("sessionDataKey", property.get("sessionDataKey"));
         body.put("transactionId", property.get("transactionId"));
+        body.put("x-finger-print", "123456");
         body.put("otp", "000000");
 
         ValidatableResponse r = given().log().everything(true)
@@ -259,6 +258,25 @@ public class RequestServiceImpl implements RequestService {
                 .headers(header)
                 .body(body)
                 .post(testsProperties.getRestorePasswordServiceUrl() + "/otp")
+                .then().log().all(true);
+        RUN_CONTEXT.put("responseBody", r);
+    }
+
+    @Override
+    public void sendOtpRestorePasswordRequest(TestsProperties testsProperties) {
+        ValidatableResponse otpResponse = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
+        Map responseBody = otpResponse.extract().as(Map.class);
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("otp", "000000");
+        body.put("transactionId", responseBody.get("transactionId"));
+        body.put("ucn", responseBody.get("ucn"));
+
+        ValidatableResponse r = given().log().everything(true)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body(body)
+                .post(testsProperties.getRestorePasswordServiceUrl() + "/pwd")
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
     }
@@ -301,7 +319,6 @@ public class RequestServiceImpl implements RequestService {
         } catch (NullPointerException e) {
             LOGGER.error("finger_print is missing");
         }
-
 
         return body;
     }

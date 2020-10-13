@@ -1,6 +1,7 @@
 package ru.croc.vtb.wso2.api.tests;
 
 import io.cucumber.junit.Cucumber;
+import io.restassured.RestAssured;
 import org.junit.runner.JUnitCore;
 import org.junit.runners.model.InitializationError;
 import org.springframework.boot.SpringApplication;
@@ -37,6 +38,7 @@ public class Application {
 
     public static void main(String[] args) throws InitializationError {
         SpringApplication.run(Application.class, args);
+        RestAssured.useRelaxedHTTPSValidation();
         Cucumber test = new Cucumber(RunCucumberTestK3.class);
         new JUnitCore().run(test);
         exit(200);

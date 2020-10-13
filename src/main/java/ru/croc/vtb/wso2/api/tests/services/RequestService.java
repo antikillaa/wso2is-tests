@@ -38,4 +38,6 @@ public interface RequestService {
     void sendOtpRestorePasswordRequest(String arg0, String arg1, TestsProperties testsProperties);
 
     void getCheckRemotePasswordRestoreRequest(String arg0, TestsProperties testsProperties);
+
+    void sendOtpRestorePasswordRequest(TestsProperties testsProperties);
 }

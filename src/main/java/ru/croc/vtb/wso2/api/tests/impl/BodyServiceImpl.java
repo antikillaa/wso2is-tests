@@ -34,6 +34,7 @@ public class BodyServiceImpl implements BodyService {
         body.put(id_type, id);
         body.put("password", "99999");
         body.put("grant_type", grandType);
+        body.put("x-finger-print", "123456");
         if (RUN_CONTEXT.get("scope", String.class).equals("true")) {
             body.put("scope", "openid");
         }
@@ -42,6 +43,7 @@ public class BodyServiceImpl implements BodyService {
 
     public Map<String, Object> getLoginByGrandTypeRequestBody(Map par, TestsProperties testsProperties) {
         Map<String, Object> body = new HashMap<>();
+        body.put("x-finger-print", "123456");
         if (par.get("grandType").equals("device_token")) {
             body.put("deviceTokenID", par.get("id"));
             body.put("secureCode", "123123");
