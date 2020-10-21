@@ -22,9 +22,9 @@ public class RequestServiceImpl implements RequestService {
 
     BodyService bodyService = new BodyServiceImpl();
 
-    public void sendRestorePasswordRequest(TestsProperties testsProperties, String id) {
-        String URL = "http://" + testsProperties.getAc_host() +
-                testsProperties.getAcPort() + "/authentication/restorePassword";
+    public void sendRestorePasswordRequest(TestsProperties testsProperties, String env, String id) {
+        String requestPath = "/authentication/restorePassword";
+        String URL = getAcRequestUrl(requestPath, env, testsProperties);
 
         RestorePasswordDTO restorePasswordDTO = bodyService.getRestorePasswordBody(testsProperties, id);
 
@@ -58,18 +58,15 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public void changePasswordRequest(TestsProperties testsProperties) {
-
-        String URL = "http://" + testsProperties.getAc_host() +
-                testsProperties.getAcPort() + "/authentication/changePassword";
-
-        String password = testsProperties.getUserPassword();
+    public void changePasswordRequest(String env, String id, String password, TestsProperties testsProperties) {
+        String requestPath = "/authentication/changePassword";
+        String URL = getAcRequestUrl(requestPath, env, testsProperties);
 
         for (int i = 1; i <= 4; i++) {
             int q = i - 1;
 
             ChangePasswordDTO changePasswordDTO = ChangePasswordDTO.builder()
-                    .id(testsProperties.getIdPasswordTests())
+                    .id(id)
                     .domain(testsProperties.getDomain())
                     .system("91000")
                     .password(i == 1 ? password : password + q)
@@ -87,29 +84,9 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public void changePasswordRequest(String password, TestsProperties testsProperties) {
-        String URL = "http://" + testsProperties.getAc_host() +
-                testsProperties.getAcPort() + "/authentication/changePassword";
-
-        ChangePasswordDTO changePasswordDTO = ChangePasswordDTO.builder()
-                .id(testsProperties.getIdPasswordTests())
-                .domain(testsProperties.getDomain())
-                .system("91000")
-                .password(password)
-                .newPassword(password + password)
-                .build();
-
-        ValidatableResponse r = given().log().everything(true)
-                .body(changePasswordDTO)
-                .contentType(ContentType.JSON)
-                .accept(ContentType.JSON)
-                .post(URL)
-                .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
-    }
-
-    @Override
     public void sendGetTokenDTORequest(Map par, TestsProperties testsProperties) {
+        String URL = getLoginURL(par, testsProperties);
+
         RUN_CONTEXT.put("id", par.get("id"));
         RUN_CONTEXT.put("grandType", par.get("grandType"));
         RUN_CONTEXT.put("id_type", par.get("id_type"));
@@ -124,10 +101,20 @@ public class RequestServiceImpl implements RequestService {
                 .headers(header)
                 .params(body)
                 .contentType(ContentType.URLENC)
-                .post(testsProperties.getUrlToProxy() + "/oauth2/token")
+                .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
 
+    }
+
+    private String getLoginURL(Map par, TestsProperties testsProperties) {
+        if (par.get("env") != null) {
+            switch (par.get("env").toString()) {
+                case "k4":
+                    return testsProperties.getUrlToProxyK4();
+            }
+        }
+        return testsProperties.getUrlToProxyK3();
     }
 
     @Override
@@ -143,7 +130,7 @@ public class RequestServiceImpl implements RequestService {
                 .headers(getLoginHeaderWithFinger(RUN_CONTEXT.get("par", Map.class), testsProperties))
                 .params(body)
                 .contentType(ContentType.URLENC)
-                .post(testsProperties.getUrlToProxy() + "/oauth2/token")
+                .post(testsProperties.getUrlToProxyK3() + "/oauth2/token")
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
     }
@@ -174,49 +161,55 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public void GetUcnByAliasAndPhoneAndDomainRequest(String alias, String phone, TestsProperties testsProperties) {
+    public void GetUcnByAliasAndPhoneAndDomainRequest(String alias, String phone, String env, TestsProperties testsProperties) {
+        String requestPath = "/authentication/getUcnByAliasOrPhone";
         Map<String, Object> body = bodyService.getUcnByAliasAndPhoneAndDomainRequestBody(alias, phone);
+        String URL = getAcRequestUrl(requestPath, env, testsProperties);
         ValidatableResponse r = given().log().everything(true)
                 .params(body)
-                .get("http://" + testsProperties.getAc_host() +
-                        testsProperties.getAcPort() + "/authentication/getUcnByAliasOrPhone")
+                .get(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
     }
 
     @Override
-    public void deviceTokenRequest(String arg0, TestsProperties testsProperties) {
+    public void deviceTokenRequest(String arg0, String env, TestsProperties testsProperties) {
+        String requestPath = "/deviceToken/";
+        String URL = getAcRequestUrl(requestPath, env, testsProperties) + arg0;
         ValidatableResponse r = given().log().everything(true)
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .get("http://" + testsProperties.getAc_host() +
-                        testsProperties.getAcPort() + "/deviceToken/" +
-                        arg0)
+                .get(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
     }
 
     @Override
-    public void authenticateByClientIdRequest(String id, TestsProperties testsProperties) {
+    public void authenticateByClientIdRequest(String id, String env, TestsProperties testsProperties) {
+        String requestPath = "/authentication/authenticateByClientId";
+        String URL = getAcRequestUrl(requestPath, env, testsProperties);
+
         Map<String, Object> body = bodyService.getAuthenticateByClientIdRequestBody(id);
 
         ValidatableResponse r = given().log().everything(true)
                 .body(body)
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .post("http://" + testsProperties.getAcTestHost() + "/authentication/authenticateByClientId")
+                .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
     }
 
-    public void getUserDiscreditedRequest(String id, TestsProperties testsProperties) {
+    public void getUserDiscreditedRequest(String id, String env, TestsProperties testsProperties) {
+        String requestPath = "/authentication/getUserDiscredited";
+        String URL = getAcRequestUrl(requestPath, env, testsProperties);
+
         ValidatableResponse r = given().log().everything(true)
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .param("id", id)
                 .param("domain", "master")
-                .get("http://" + testsProperties.getAc_host() +
-                        testsProperties.getAcPort() + "/authentication/getUserDiscredited")
+                .get(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
     }
@@ -226,6 +219,8 @@ public class RequestServiceImpl implements RequestService {
         ValidatableResponse firstFactor = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
         Map bodyResponse = firstFactor.extract().as(Map.class);
         Map property = (Map) bodyResponse.get("additional_properties");
+
+        String URL = getLoginURL((Map) RUN_CONTEXT.get("par"), testsProperties);
 
         Map<String, Object> body = RUN_CONTEXT.get("body", Map.class);
         body.put("sessionDataKey", property.get("sessionDataKey"));
@@ -237,7 +232,7 @@ public class RequestServiceImpl implements RequestService {
                 .headers(getLoginHeaderWithFinger(RUN_CONTEXT.get("par", Map.class), testsProperties))
                 .params(body)
                 .contentType(ContentType.URLENC)
-                .post(testsProperties.getUrlToProxy() + "/oauth2/token")
+                .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
     }
@@ -282,14 +277,16 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public void getCheckRemotePasswordRestoreRequest(String id, TestsProperties testsProperties) {
+    public void getCheckRemotePasswordRestoreRequest(String id, String env, TestsProperties testsProperties) {
+        String requestPath = "/authentication/checkRemotePasswordRestore";
+        String URL = getAcRequestUrl(requestPath, env, testsProperties);
+
         ValidatableResponse r = given().log().everything(true)
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .param("id", id)
                 .param("domain", "master")
-                .get("http://" + testsProperties.getAc_host() +
-                        testsProperties.getAcPort() + "/authentication/checkRemotePasswordRestore")
+                .get(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
     }
@@ -321,5 +318,18 @@ public class RequestServiceImpl implements RequestService {
         }
 
         return body;
+    }
+
+    private String getAcRequestUrl(String requestPath, String env, TestsProperties testsProperties) {
+        String url = null;
+        switch (env) {
+            case "k3":
+                url = testsProperties.getAcTestHostK3() + requestPath;
+                break;
+            case "k4":
+                url = testsProperties.getAcTestHostK4() + requestPath;
+                break;
+        }
+        return url;
     }
 }

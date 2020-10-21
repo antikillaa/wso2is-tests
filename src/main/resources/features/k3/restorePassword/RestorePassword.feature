@@ -5,7 +5,7 @@ Feature: Restore Password
     Then Send otpRestorePasswordRequest: cred: "18001042", type: "login"
     And Status code response is: "200"
     And Response Body contains "ucn" equals "18001042"
-    And Response Body contains "mobile" equals "495***1101"
+    And Response Body contains "mobile" equals "+7 495 ***-11-01"
     And Response Body contains key: "transactionId"
 
   @k3
@@ -19,7 +19,7 @@ Feature: Restore Password
     Then Send otpRestorePasswordRequest: cred: "18001042", type: "login"
     And Status code response is: "200"
     And Response Body contains "ucn" equals "18001042"
-    And Response Body contains "mobile" equals "495***1101"
+    And Response Body contains "mobile" equals "+7 495 ***-11-01"
     And Response Body contains key: "transactionId"
     Then Send pwdRestorePasswordRequest
     And Status code response is: "200"
@@ -29,7 +29,7 @@ Feature: Restore Password
     Then Send otpRestorePasswordRequest: cred: "18001042", type: "login"
     And Status code response is: "200"
     And Response Body contains "ucn" equals "18001042"
-    And Response Body contains "mobile" equals "495***1101"
+    And Response Body contains "mobile" equals "+7 495 ***-11-01"
     And Response Body contains key: "transactionId"
     Then Send pwdRestorePasswordRequest
     And Status code response is: "200"

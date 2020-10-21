@@ -21,8 +21,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestsProperties {
 
-    @Value("${test.urlToProxy}")
-    private String urlToProxy;
+    @Value("${test.urlToProxyK3}")
+    private String urlToProxyK3;
+
+    @Value("${test.urlToProxyK4}")
+    private String urlToProxyK4;
 
     @Value("${test.restorePasswordServiceUrl}")
     private String restorePasswordServiceUrl;
@@ -77,6 +80,12 @@ public class TestsProperties {
 
     @Value("${test.acTestHost}")
     private String acTestHost;
+
+    @Value("${test.acTestHostK3}")
+    private String acTestHostK3;
+
+    @Value("${test.acTestHostK4}")
+    private String acTestHostK4;
 
     @Value("${test.ac.portMock}")
     private String acPortMock;

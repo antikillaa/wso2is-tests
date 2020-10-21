@@ -1,11 +1,11 @@
-Feature: Change password Real AC
+Feature: Change password k3
 
   @k3
   Scenario: Change Password Success
-    Then Send Change Password Success Request
+    Then "k3" Send Change Password Success Request, id: "20002571" password: "Qa!123321"
     And Status code response is: "204"
 
   @k3
   Scenario: Change Password Wrong Password
-    Then Send Change Password Wrong Password Request
+    Then "k3" Send Change Password Success Request, id: "20002571" password: "3123123123123123"
     And Status code response is: "403"

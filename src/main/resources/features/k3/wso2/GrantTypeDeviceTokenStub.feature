@@ -1,6 +1,6 @@
 Feature: Grant type Device Token Stub
 
-  @k3
+  @skip
   Scenario: Grant type DeviceToken: Two Factor Success
     Then Send login by Grant type Request
       | grandType    | id_type       | id               | finger_print | scope | Authorization |

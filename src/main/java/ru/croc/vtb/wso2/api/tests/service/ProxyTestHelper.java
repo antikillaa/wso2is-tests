@@ -157,7 +157,7 @@ public class ProxyTestHelper {
         MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
         RequestBody body = RequestBody.create(mediaType, buildDeviceTokenBodyContent(additionalBodyProps));
         return new Request.Builder()
-                .url(testsProperties.getUrlToProxy() + PROXY_ENDPOINT + "?scope=" + testsProperties.getScope())
+                .url(testsProperties.getUrlToProxyK3() + PROXY_ENDPOINT + "?scope=" + testsProperties.getScope())
                 .method(HttpMethod.POST.name(), body)
                 .addHeader(CONTENT_TYPE, org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED_VALUE)
                 .addHeader(X_DEVICE_FINGERPRINT, testsProperties.getMobileFingerPrint())

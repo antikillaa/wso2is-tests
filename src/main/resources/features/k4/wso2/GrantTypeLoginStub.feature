@@ -1,10 +1,10 @@
 Feature: Grant type Login Stub
 
-  @k3
+  @k4
   Scenario: Grant type Login Success
     Then Send login by Grant type Request
-      | grandType| id_type | id    | scope | finger_print |
-      | login     | login   | 20002571 | true  | k3           |
+      | grandType | id_type | id       | scope | finger_print | env |
+      | login     | login   | 18005101 | true  | k3           | k4  |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"
@@ -13,11 +13,11 @@ Feature: Grant type Login Stub
     And Response Body contains key: "refresh_token"
     And Response Body contains "scope" equals "openid"
 
-  @k3
+  @k4
   Scenario: Grant type Login Mb Success
     Then Send login by Grant type Request
-      | grandType| id_type | id    | scope | finger_print |
-      | login_mb  | login   | 20002571 | true  | k3           |
+      | grandType | id_type | id       | scope | finger_print | env |
+      | login_mb  | login   | 18005101 | true  | k3           | k4  |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"

@@ -18,21 +18,14 @@ public class ACStepdefs {
     @Getter
     private TestsProperties testsProperties;
 
-/*    @Before
-    public void before() {
-        long threadId = Thread.currentThread().getId();
-        String processName = ManagementFactory.getRuntimeMXBean().getName();
-        System.out.println("Started in thread: " + threadId + ", in JVM: " + processName);
-    }*/
-
     @Then("Send Static password request with id: {string}")
     public void sendStaticPasswordRequestWithId(String arg0) {
         requestService.getStaticPasswordUserByIdResponse(arg0, testsProperties);
     }
 
-    @Then("Send Restore Password Request id: {string}")
-    public void sendRestorePasswordSuccess(String arg0) {
-        requestService.sendRestorePasswordRequest(testsProperties, arg0);
+    @Then("{string} Send Restore Password Request id: {string}")
+    public void sendRestorePasswordSuccess(String env, String arg0) {
+        requestService.sendRestorePasswordRequest(testsProperties, env, arg0);
     }
 
     @Then("Send GetSmsOtp Request id: {string}")
@@ -45,45 +38,40 @@ public class ACStepdefs {
         requestService.sendSmsOtpRequest(arg0, testsProperties);
     }
 
-    @Then("Send Change Password Success Request")
-    public void sendChangePasswordSuccessRequest() {
-        requestService.changePasswordRequest(testsProperties);
+    @Then("{string} Send Change Password Success Request, id: {string} password: {string}")
+
+    public void sendChangePasswordSuccessRequest(String env, String id, String password) {
+        requestService.changePasswordRequest(env, id, password, testsProperties);
     }
 
-    @Then("Send Change Password Wrong Password Request")
-    public void sendChangePasswordWrongPasswordRequest() {
-        String password = "12312312321";
-        requestService.changePasswordRequest(password, testsProperties);
-    }
-
-    @Then("Send GetUcnByAliasAndPhoneAndDomain Request Alias: {string}, Phone: {string}")
-    public void sendGetUcnByAliasAndPhoneAndDomainRequestAliasPhone(String arg0, String arg1) {
+    @Then("{string} Send GetUcnByAliasAndPhoneAndDomain Request Alias: {string}, Phone: {string}")
+    public void sendGetUcnByAliasAndPhoneAndDomainRequestAliasPhone(String env, String arg0, String arg1) {
         if (arg0.equals("null")) {
             arg0 = null;
         }
         if (arg1.equals("null")) {
             arg1 = null;
         }
-        requestService.GetUcnByAliasAndPhoneAndDomainRequest(arg0, arg1, testsProperties);
+        requestService.GetUcnByAliasAndPhoneAndDomainRequest(arg0, arg1, env, testsProperties);
     }
 
-    @Then("Send DeviceToken Request id: {string}")
-    public void sendDeviceTokenRequestId(String arg0) {
-        requestService.deviceTokenRequest(arg0, testsProperties);
+    @Then("{string} Send DeviceToken Request id: {string}")
+    public void sendDeviceTokenRequestId(String env, String arg0) {
+        requestService.deviceTokenRequest(arg0, env, testsProperties);
     }
 
-    @Then("Send authenticateByClientId Request id: {string}")
-    public void sendAuthenticateByClientIdRequestId(String arg0) {
-        requestService.authenticateByClientIdRequest(arg0, testsProperties);
+    @Then("{string} Send authenticateByClientId Request id: {string}")
+    public void sendAuthenticateByClientIdRequestId(String env, String arg0) {
+        requestService.authenticateByClientIdRequest(arg0, env, testsProperties);
     }
 
-    @Then("Send GetUserDiscredited Request id: {string}")
-    public void sendGetUserDiscreditedRequestId(String arg0) {
-        requestService.getUserDiscreditedRequest(arg0, testsProperties);
+    @Then("{string} Send GetUserDiscredited Request id: {string}")
+    public void sendGetUserDiscreditedRequestId(String env, String arg0) {
+        requestService.getUserDiscreditedRequest(arg0, env, testsProperties);
     }
 
-    @Then("Send CheckRemotePasswordRestore Request id: {string}")
-    public void sendCheckRemotePasswordRestoreRequestId(String arg0) {
-        requestService.getCheckRemotePasswordRestoreRequest(arg0, testsProperties);
+    @Then("{string} Send CheckRemotePasswordRestore Request id: {string}")
+    public void sendCheckRemotePasswordRestoreRequestId(String env, String arg0) {
+        requestService.getCheckRemotePasswordRestoreRequest(arg0, env, testsProperties);
     }
 }

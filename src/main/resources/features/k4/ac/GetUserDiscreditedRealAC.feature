@@ -1,13 +1,13 @@
-Feature: GetUserDiscredited k3
+Feature: GetUserDiscredited k4
 
-  @k3
+  @k4
   Scenario: GetUserDiscredited: true
-    Then "k3" Send GetUserDiscredited Request id: "20012216"
+    Then "k4" Send GetUserDiscredited Request id: "18020416"
     And Status code response is: "200"
     And Response Body contains "discredited" equals "true"
 
-  @k3
+  @k4
   Scenario: GetUserDiscredited: false
-    Then "k3" Send GetUserDiscredited Request id: "20012215"
+    Then "k4" Send GetUserDiscredited Request id: "18004626"
     And Status code response is: "200"
     And Response Body contains "discredited" equals "false"
