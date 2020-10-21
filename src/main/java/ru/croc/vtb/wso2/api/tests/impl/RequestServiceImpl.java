@@ -112,6 +112,8 @@ public class RequestServiceImpl implements RequestService {
             switch (par.get("env").toString()) {
                 case "k4":
                     return testsProperties.getUrlToProxyK4();
+                case "k5":
+                    return testsProperties.getUrlToProxyK5();
             }
         }
         return testsProperties.getUrlToProxyK3();

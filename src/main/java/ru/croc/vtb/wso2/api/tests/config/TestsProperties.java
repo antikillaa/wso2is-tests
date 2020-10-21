@@ -27,6 +27,9 @@ public class TestsProperties {
     @Value("${test.urlToProxyK4}")
     private String urlToProxyK4;
 
+    @Value("${test.urlToProxyK5}")
+    private String urlToProxyK5;
+
     @Value("${test.restorePasswordServiceUrl}")
     private String restorePasswordServiceUrl;
 
