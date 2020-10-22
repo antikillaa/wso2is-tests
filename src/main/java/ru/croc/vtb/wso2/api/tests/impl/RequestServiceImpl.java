@@ -331,6 +331,9 @@ public class RequestServiceImpl implements RequestService {
             case "k4":
                 url = testsProperties.getAcTestHostK4() + requestPath;
                 break;
+            case "k5":
+                url = testsProperties.getAcTestHostK5() + requestPath;
+                break;
         }
         return url;
     }

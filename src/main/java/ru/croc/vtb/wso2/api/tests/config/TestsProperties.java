@@ -90,6 +90,9 @@ public class TestsProperties {
     @Value("${test.acTestHostK4}")
     private String acTestHostK4;
 
+    @Value("${test.acTestHostK5}")
+    private String acTestHostK5;
+
     @Value("${test.ac.portMock}")
     private String acPortMock;
 
