@@ -114,6 +114,8 @@ public class RequestServiceImpl implements RequestService {
                     return testsProperties.getUrlToProxyK4();
                 case "k5":
                     return testsProperties.getUrlToProxyK5();
+                case "test":
+                    return testsProperties.getUrlToProxyTest();
             }
         }
         return testsProperties.getUrlToProxyK3();
@@ -326,15 +328,18 @@ public class RequestServiceImpl implements RequestService {
         String url = null;
         switch (env) {
             case "k3":
-                url = testsProperties.getAcTestHostK3() + requestPath;
+                url = testsProperties.getAcTestHostK3();
                 break;
             case "k4":
-                url = testsProperties.getAcTestHostK4() + requestPath;
+                url = testsProperties.getAcTestHostK4();
                 break;
             case "k5":
-                url = testsProperties.getAcTestHostK5() + requestPath;
+                url = testsProperties.getAcTestHostK5();
+                break;
+            case "test":
+                url = testsProperties.getAcTestHostTest();
                 break;
         }
-        return url;
+        return url + requestPath;
     }
 }

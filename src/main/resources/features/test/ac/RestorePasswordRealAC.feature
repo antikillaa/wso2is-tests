@@ -1,7 +1,9 @@
 Feature: Restore password Real AC
 
+  @skip
   Scenario: Restore Password Success
-    Then Send Restore Password Success Request
+    Then "test" Send Restore Password Request id: "30000377"
 
+  @skip
   Scenario: Restore Password Random Phone
-    Then Send Restore Password Random Phone Request
+    Then "test" Send Restore Password Request id: "30000377"

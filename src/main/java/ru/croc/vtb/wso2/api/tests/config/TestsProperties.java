@@ -21,6 +21,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestsProperties {
 
+    @Value("${test.urlToProxyTest}")
+    private String urlToProxyTest;
+
     @Value("${test.urlToProxyK3}")
     private String urlToProxyK3;
 
@@ -81,8 +84,8 @@ public class TestsProperties {
     @Value("${test.domain}")
     private String domain;
 
-    @Value("${test.acTestHost}")
-    private String acTestHost;
+    @Value("${test.acTestHostTest}")
+    private String acTestHostTest;
 
     @Value("${test.acTestHostK3}")
     private String acTestHostK3;

@@ -1,9 +1,10 @@
 Feature: Grant type Login Stub
 
+  @test
   Scenario: Grant type Login Success
     Then Send login by Grant type Request
-      | grandType | id_type | id    | finger_print | scope |
-      | login     | login   | 11122 | true         | true  |
+      | grandType | id_type | id    | finger_print | scope | env  |
+      | login     | login   | 11122 | true         | true  | test |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"
@@ -12,10 +13,11 @@ Feature: Grant type Login Stub
     And Response Body contains key: "refresh_token"
     And Response Body contains "scope" equals "openid"
 
+  @test
   Scenario: Grant type Login: Success no fingerprint
     Then Send login by Grant type Request
-      | grandType | id_type | id    | finger_print | scope |
-      | login     | login   | 11122 | false        | true  |
+      | grandType | id_type | id    | finger_print | scope | env  |
+      | login     | login   | 11122 | false        | true  | test |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"
@@ -24,10 +26,11 @@ Feature: Grant type Login Stub
     And Response Body contains key: "refresh_token"
     And Response Body contains "scope" equals "openid"
 
+  @test
   Scenario: Grant type Login: Success No Scope
     Then Send login by Grant type Request
-      | grandType | id_type | id    | finger_print | scope |
-      | login     | login   | 11122 | true         | false |
+      | grandType | id_type | id    | finger_print | scope | env  |
+      | login     | login   | 11122 | true         | false | test |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"
@@ -35,10 +38,11 @@ Feature: Grant type Login Stub
     And Response Body contains key: "id_token"
     And Response Body contains key: "refresh_token"
 
+  @test
   Scenario: Grant type Login Success Access 500
     Then Send login by Grant type Request
-      | grandType | id_type | id     | finger_print | scope |
-      | login     | login   | 222500 | true         | true  |
+      | grandType | id_type | id     | finger_print | scope | env  |
+      | login     | login   | 222500 | true         | true  | test |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"
@@ -47,10 +51,11 @@ Feature: Grant type Login Stub
     And Response Body contains key: "refresh_token"
     And Response Body contains "scope" equals "openid"
 
+  @test
   Scenario: Grant type Login: Учетная запись не найдена
     Then Send login by Grant type Request
-      | grandType | id_type | id    | finger_print | scope |
-      | login     | login   | 11123 | true         | false |
+      | grandType | id_type | id    | finger_print | scope | env  |
+      | login     | login   | 11123 | true         | false | test |
     And Status code response is: "404"
     And Response Body contains "additional_properties.exception" equals "UserNotFoundException"
     And Response Body contains "additional_properties.message" equals "Учетная запись не найдена"
@@ -58,10 +63,11 @@ Feature: Grant type Login Stub
     And Response Body contains "message" equals "Обратитесь в техподдержку Банка."
     And Response Body contains "message_title" equals "Возникла непредвиденная ошибка"
 
+  @test
   Scenario: Grant type Login: Неверный код подтверждения
     Then Send login by Grant type Request
-      | grandType | id_type | id    | finger_print | scope |
-      | login     | login   | 11124 | true         | false |
+      | grandType | id_type | id    | finger_print | scope | env  |
+      | login     | login   | 11124 | true         | false | test |
     And Status code response is: "401"
     And Response Body contains "additional_properties.exception" equals "AuthenticationException"
     And Response Body contains "additional_properties.message" equals "Неверный код подтверждения"
@@ -69,10 +75,11 @@ Feature: Grant type Login Stub
     And Response Body contains "message" equals "Проверьте корректность введенных данных (логин, номер карты или пароль)."
     And Response Body contains "message_title" equals "Вход невозможен"
 
+  @test
   Scenario: Grant type Login: Ошибка
     Then Send login by Grant type Request
-      | grandType | id_type | id    | finger_print | scope |
-      | login     | login   | 11125 | true         | false |
+      | grandType | id_type | id    | finger_print | scope | env  |
+      | login     | login   | 11125 | true         | false | test |
     And Status code response is: "500"
     And Response Body contains "additional_properties.exception" equals "Exception"
     And Response Body contains "additional_properties.message" equals "Ошибка"
@@ -80,10 +87,11 @@ Feature: Grant type Login Stub
     And Response Body contains "message" equals "Приносим извинения за доставленные неудобства. Попробуйте войти в ВТБ Онлайн позднее."
     And Response Body contains "message_title" equals "Система временно недоступна"
 
+  @test
   Scenario: Grant type Login: USER_LOCKED
     Then Send login by Grant type Request
-      | grandType | id_type | id    | finger_print | scope |
-      | login     | login   | 11126 | true         | false |
+      | grandType | id_type | id    | finger_print | scope | env  |
+      | login     | login   | 11126 | true         | false | test |
     And Status code response is: "403"
     And Response Body contains "additional_properties.exception" equals "UserLockedException"
     And Response Body contains "additional_properties.message" equals "USER_LOCKED"

@@ -1,9 +1,10 @@
 Feature: Grant type Card Number Stub
 
+  @test
   Scenario: Grant type Card Number: Success
     Then Send login by Grant type Request
-      | grandType   | id_type    | id               | finger_print | scope |
-      | card_number | cardNumber | 4714870004240359 | true         | true  |
+      | grandType   | id_type    | id               | finger_print | scope | env  |
+      | card_number | cardNumber | 4714870004240359 | true         | true  | test |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"
@@ -12,10 +13,11 @@ Feature: Grant type Card Number Stub
     And Response Body contains key: "refresh_token"
     And Response Body contains "scope" equals "openid"
 
+  @test
   Scenario: Grant type Card Number: Success no fingerprint
     Then Send login by Grant type Request
-      | grandType   | id_type    | id               | finger_print | scope |
-      | card_number | cardNumber | 4714870004240359 | false        | true  |
+      | grandType   | id_type    | id               | finger_print | scope | env  |
+      | card_number | cardNumber | 4714870004240359 | false        | true  | test |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"
@@ -24,10 +26,11 @@ Feature: Grant type Card Number Stub
     And Response Body contains key: "refresh_token"
     And Response Body contains "scope" equals "openid"
 
+  @test
   Scenario: Grant type Card Number: Success No Scope
     Then Send login by Grant type Request
-      | grandType   | id_type    | id               | finger_print | scope |
-      | card_number | cardNumber | 4714870004240359 | true         | false |
+      | grandType   | id_type    | id               | finger_print | scope | env  |
+      | card_number | cardNumber | 4714870004240359 | true         | false | test |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"
@@ -39,8 +42,8 @@ Feature: Grant type Card Number Stub
   @skip
   Scenario: Grant type Card Number: Учетная запись не найдена
     Then Send login by Grant type Request
-      | grandType   | id_type    | id     | finger_print | scope |
-      | card_number | cardNumber | 111223 | true         | true  |
+      | grandType   | id_type    | id     | finger_print | scope | env  |
+      | card_number | cardNumber | 111223 | true         | true  | test |
     And Status code response is: "404"
     And Response Body contains "additional_properties.exception" equals "CardNotFoundException"
     And Response Body contains "additional_properties.message" equals "Карта не найдена"
@@ -50,8 +53,8 @@ Feature: Grant type Card Number Stub
   @skip
   Scenario: Grant type Card Number: Карта не найдена
     Then Send login by Grant type Request
-      | grandType   | id_type    | id     | finger_print | scope |
-      | card_number | cardNumber | 111224 | true         | true  |
+      | grandType   | id_type    | id     | finger_print | scope | env  |
+      | card_number | cardNumber | 111224 | true         | true  | test |
     And Status code response is: "404"
     And Response Body contains "additional_properties.exception" equals "CardNotFoundException"
     And Response Body contains "additional_properties.message" equals "Карта не найдена"
@@ -61,8 +64,8 @@ Feature: Grant type Card Number Stub
   @skip
   Scenario: Grant type Card Number: Внешняя система недоступна
     Then Send login by Grant type Request
-      | grandType   | id_type    | id     | finger_print | scope |
-      | card_number | cardNumber | 111226 | true         | true  |
+      | grandType   | id_type    | id     | finger_print | scope | env  |
+      | card_number | cardNumber | 111226 | true         | true  | test |
     And Status code response is: "500"
     And Response Body contains "additional_properties.exception" equals "GenericException"
     And Response Body contains "additional_properties.message" equals "Внешная система недоступна"

@@ -1,6 +1,6 @@
 Feature: Grant type Login Stub K4
 
-  @k4
+  @skip
   Scenario: Grant type Login Success
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
