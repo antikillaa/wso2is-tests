@@ -14,13 +14,13 @@ public class RestorePassworStepdefs {
     @Getter
     private TestsProperties testsProperties;
 
-    @Then("Send otpRestorePasswordRequest: cred: {string}, type: {string}")
-    public void sendOtpRestorePasswordRequestCredType(String arg0, String arg1) {
-        requestService.sendOtpRestorePasswordRequest(arg0, arg1, testsProperties);
+    @Then("{string} Send otpRestorePasswordRequest: cred: {string}, type: {string}")
+    public void sendOtpRestorePasswordRequestCredType(String env, String arg0, String arg1) {
+        requestService.sendOtpRestorePasswordRequest(arg0, arg1, env, testsProperties);
     }
 
-    @Then("Send pwdRestorePasswordRequest")
-    public void sendPwdRestorePasswordRequest() {
-        requestService.sendOtpRestorePasswordRequest(testsProperties);
+    @Then("{string} Send pwdRestorePasswordRequest")
+    public void sendPwdRestorePasswordRequest(String env) {
+        requestService.sendOtpRestorePasswordRequest(env, testsProperties);
     }
 }

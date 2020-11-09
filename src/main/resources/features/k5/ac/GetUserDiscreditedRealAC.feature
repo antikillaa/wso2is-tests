@@ -2,7 +2,7 @@ Feature: GetUserDiscredited k5
 
   @k5
   Scenario: GetUserDiscredited: true
-    Then "k5" Send GetUserDiscredited Request id: "30000377"
+    Then "k5" Send GetUserDiscredited Request id: "30005986"
     And Status code response is: "200"
     And Response Body contains "discredited" equals "true"
 

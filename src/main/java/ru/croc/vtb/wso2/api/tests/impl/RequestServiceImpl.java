@@ -242,7 +242,10 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public void sendOtpRestorePasswordRequest(String arg0, String arg1, TestsProperties testsProperties) {
+    public void sendOtpRestorePasswordRequest(String arg0, String arg1, String env, TestsProperties testsProperties) {
+        String requestPath = "/otp";
+        String URL = getRestorePasswordUrlURL(env, requestPath, testsProperties);
+
         Map<String, Object> body = new HashMap<>();
         body.put("cred", arg0);
         body.put("type", arg1);
@@ -256,13 +259,16 @@ public class RequestServiceImpl implements RequestService {
                 .accept(ContentType.JSON)
                 .headers(header)
                 .body(body)
-                .post(testsProperties.getRestorePasswordServiceUrl() + "/otp")
+                .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
     }
 
     @Override
-    public void sendOtpRestorePasswordRequest(TestsProperties testsProperties) {
+    public void sendOtpRestorePasswordRequest(String env, TestsProperties testsProperties) {
+        String requestPath = "/pwd";
+        String URL = getRestorePasswordUrlURL(env, requestPath, testsProperties);
+
         ValidatableResponse otpResponse = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
         Map responseBody = otpResponse.extract().as(Map.class);
 
@@ -275,7 +281,7 @@ public class RequestServiceImpl implements RequestService {
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .body(body)
-                .post(testsProperties.getRestorePasswordServiceUrl() + "/pwd")
+                .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
     }
@@ -322,6 +328,22 @@ public class RequestServiceImpl implements RequestService {
         }
 
         return body;
+    }
+
+    private String getRestorePasswordUrlURL(String env, String requestPath, TestsProperties testsProperties) {
+        String url = null;
+        switch (env) {
+            case "k3":
+                url = testsProperties.getRestorePasswordServiceUrlK3();
+                break;
+            case "k4":
+                url = testsProperties.getRestorePasswordServiceUrlK4();
+                break;
+            case "k5":
+                url = testsProperties.getRestorePasswordServiceUrlK5();
+                break;
+        }
+        return url + requestPath;
     }
 
     private String getAcRequestUrl(String requestPath, String env, TestsProperties testsProperties) {

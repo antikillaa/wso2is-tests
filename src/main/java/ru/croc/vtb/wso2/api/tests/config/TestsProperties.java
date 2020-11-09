@@ -33,8 +33,14 @@ public class TestsProperties {
     @Value("${test.urlToProxyK5}")
     private String urlToProxyK5;
 
-    @Value("${test.restorePasswordServiceUrl}")
-    private String restorePasswordServiceUrl;
+    @Value("${test.restorePasswordServiceUrlK3}")
+    private String restorePasswordServiceUrlK3;
+
+    @Value("${test.restorePasswordServiceUrlK4}")
+    private String restorePasswordServiceUrlK4;
+
+    @Value("${test.restorePasswordServiceUrlK5}")
+    private String restorePasswordServiceUrlK5;
 
     @Value("${test.client-id}")
     private String clientId;
