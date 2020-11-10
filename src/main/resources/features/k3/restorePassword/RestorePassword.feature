@@ -1,4 +1,4 @@
-Feature: Restore Password
+Feature: Restore Password K3
 
   @k3
   Scenario: otp alias: Success

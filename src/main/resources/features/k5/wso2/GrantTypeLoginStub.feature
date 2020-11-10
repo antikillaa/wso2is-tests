@@ -4,7 +4,7 @@ Feature: Grant type Login Stub K5
   Scenario: Grant type Login Mb Success
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
-      | login     | login   | 30000377 | true  | k3           | k5  |
+      | login     | login   | 30005986 | true  | k3           | k5  |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"
@@ -14,10 +14,10 @@ Feature: Grant type Login Stub K5
     And Response Body contains "scope" equals "openid"
 
   @k5
-  Scenario: Grant type Login Mb Success
+  Scenario: Grant type Login Success
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
-      | login_mb  | login_mb | 30000377 | true  | k3           | k5  |
+      | login_mb  | login   | 30005986 | true  | k3           | k5  |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"
