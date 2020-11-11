@@ -4,11 +4,11 @@ import io.cucumber.java.en.Then;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
-import ru.croc.vtb.wso2.api.tests.impl.RequestServiceImpl;
-import ru.croc.vtb.wso2.api.tests.services.RequestService;
+import ru.croc.vtb.wso2.api.tests.impl.RestorePasswordRequestServiceImpl;
+import ru.croc.vtb.wso2.api.tests.services.RestorePasswordRequestService;
 
 public class RestorePassworStepdefs {
-    RequestService requestService = new RequestServiceImpl();
+    RestorePasswordRequestService restorePasswordRequestService = new RestorePasswordRequestServiceImpl();
 
     @Autowired
     @Getter
@@ -16,11 +16,11 @@ public class RestorePassworStepdefs {
 
     @Then("{string} Send otpRestorePasswordRequest: cred: {string}, type: {string}")
     public void sendOtpRestorePasswordRequestCredType(String env, String arg0, String arg1) {
-        requestService.sendOtpRestorePasswordRequest(arg0, arg1, env, testsProperties);
+        restorePasswordRequestService.sendOtpRestorePasswordRequest(arg0, arg1, env, testsProperties);
     }
 
     @Then("{string} Send pwdRestorePasswordRequest")
     public void sendPwdRestorePasswordRequest(String env) {
-        requestService.sendOtpRestorePasswordRequest(env, testsProperties);
+        restorePasswordRequestService.sendOtpRestorePasswordRequest(env, testsProperties);
     }
 }

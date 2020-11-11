@@ -5,16 +5,16 @@ import io.cucumber.java.en.Then;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
-import ru.croc.vtb.wso2.api.tests.impl.RequestServiceImpl;
-import ru.croc.vtb.wso2.api.tests.services.RequestService;
+import ru.croc.vtb.wso2.api.tests.impl.WSORequestServiceImpl;
+import ru.croc.vtb.wso2.api.tests.services.WsoRequestService;
 
 import java.util.List;
 import java.util.Map;
 
 import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
 
-public class GrantTypeStepdefs {
-    RequestService requestService = new RequestServiceImpl();
+public class WSOStepdefs {
+    WsoRequestService acRequestService = new WSORequestServiceImpl();
     @Autowired
     @Getter
     private TestsProperties testsProperties;
@@ -26,18 +26,18 @@ public class GrantTypeStepdefs {
 
     @Then("Send Second Factor login request")
     public void sendSecondFactorLoginRequest() {
-        requestService.sendSecondFactorRequest(testsProperties);
+        acRequestService.sendSecondFactorRequest(testsProperties);
     }
 
     @Then("Send Second Factor login by Grant type request")
     public void sendSecondFactorLoginMBRequest() {
-        requestService.getSecondFactorGrandTypeRequest(testsProperties);
+        acRequestService.getSecondFactorGrandTypeRequest(testsProperties);
     }
 
     @Then("Send login by Grant type Request")
     public void sendLoginByGrantTypeRequest(DataTable dataTable) {
         List<Map<Object, Object>> par = dataTable.asMaps(String.class, String.class);
         RUN_CONTEXT.put("par", par.get(0));
-        requestService.sendGetTokenDTORequest(par.get(0), testsProperties);
+        acRequestService.sendGetTokenDTORequest(par.get(0), testsProperties);
     }
 }
