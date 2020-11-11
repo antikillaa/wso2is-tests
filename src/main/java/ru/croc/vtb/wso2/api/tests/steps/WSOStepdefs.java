@@ -5,8 +5,8 @@ import io.cucumber.java.en.Then;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
-import ru.croc.vtb.wso2.api.tests.impl.WSORequestServiceImpl;
-import ru.croc.vtb.wso2.api.tests.services.WsoRequestService;
+import ru.croc.vtb.wso2.api.tests.impl.request.WSORequestServiceImpl;
+import ru.croc.vtb.wso2.api.tests.services.request.WsoRequestService;
 
 import java.util.List;
 import java.util.Map;

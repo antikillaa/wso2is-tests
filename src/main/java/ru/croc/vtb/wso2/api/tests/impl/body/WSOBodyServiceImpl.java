@@ -1,33 +1,16 @@
-package ru.croc.vtb.wso2.api.tests.impl;
+package ru.croc.vtb.wso2.api.tests.impl.body;
 
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
-import ru.croc.vtb.wso2.api.tests.model.rest.ac.RestorePasswordDTO;
-import ru.croc.vtb.wso2.api.tests.services.BodyService;
+import ru.croc.vtb.wso2.api.tests.services.body.WSOBodyService;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
 
-public class BodyServiceImpl implements BodyService {
+public class WSOBodyServiceImpl implements WSOBodyService {
 
-    public RestorePasswordDTO getRestorePasswordBody(TestsProperties testsProperties, String id) {
-        return RestorePasswordDTO.builder()
-                .id(id)
-                .domain(testsProperties.getDomain())
-                .systemId("98000")
-                .mobilePhone(testsProperties.getPhone())
-                .build();
-    }
-
-    public Map<String, Object> getStaticPasswordBody(String id, TestsProperties testsProperties) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("id", id);
-        body.put("domain", "master");
-        body.put("password", testsProperties.getUserPassword());
-        return body;
-    }
-
+    @Override
     public Map<String, Object> getLoginByGrandTypeRequestBody(String grandType, String id, String id_type) {
 
         Map<String, Object> body = new HashMap<>();
@@ -64,27 +47,7 @@ public class BodyServiceImpl implements BodyService {
         return body;
     }
 
-    public Map<String, Object> getGetSmsOtpRequestBody(String id) {
-        Map<String, Object> body = new HashMap();
-        body.put("id", id);
-        body.put("domain", "master");
-        body.put("systemId", "98000");
-        body.put("transactionType", "1");
-        body.put("reuseIfActive", "true");
-        return body;
-    }
-
-    public Map<String, Object> getSmsOtpRequestBody(String id) {
-        Map<String, Object> body = new HashMap();
-        body.put("id", id);
-        body.put("domain", "master");
-        body.put("systemId", "98000");
-        body.put("secureCode", "285175");
-        body.put("transactionId", "810981548596861820");
-        body.put("transactionType", "1");
-        return body;
-    }
-
+    @Override
     public Map<String, Object> getSecondFactorDeviceTokenRequestBody(String id, String sessionDataKey) {
         Map<String, Object> body = new HashMap<>();
         body.put("deviceTokenID", id);
@@ -95,19 +58,5 @@ public class BodyServiceImpl implements BodyService {
         body.put("otp", "123");
         body.put("sessionDataKey", sessionDataKey);
         return body;
-    }
-
-    public Map<String, Object> getUcnByAliasAndPhoneAndDomainRequestBody(String alias, String phone) {
-        Map<String, Object> ucn = new HashMap<>();
-        ucn.put("phone", phone);
-        ucn.put("alias", alias);
-        return ucn;
-    }
-
-    public Map<String, Object> getAuthenticateByClientIdRequestBody(String id) {
-        Map<String, Object> ucn = new HashMap<>();
-        ucn.put("id", id);
-        ucn.put("domain", "master");
-        return ucn;
     }
 }

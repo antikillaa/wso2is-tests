@@ -1,4 +1,4 @@
-package ru.croc.vtb.wso2.api.tests.services;
+package ru.croc.vtb.wso2.api.tests.services.request;
 
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
 

@@ -6,8 +6,8 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
-import ru.croc.vtb.wso2.api.tests.impl.AcRequestServiceImpl;
-import ru.croc.vtb.wso2.api.tests.services.AcRequestService;
+import ru.croc.vtb.wso2.api.tests.impl.request.AcRequestServiceImpl;
+import ru.croc.vtb.wso2.api.tests.services.request.AcRequestService;
 
 @CucumberContextConfiguration
 @EnableConfigurationProperties(value = TestsProperties.class)

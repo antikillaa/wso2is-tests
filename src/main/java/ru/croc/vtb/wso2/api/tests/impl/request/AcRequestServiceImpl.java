@@ -1,14 +1,15 @@
-package ru.croc.vtb.wso2.api.tests.impl;
+package ru.croc.vtb.wso2.api.tests.impl.request;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
+import ru.croc.vtb.wso2.api.tests.impl.body.AcBodyServiceImpl;
 import ru.croc.vtb.wso2.api.tests.model.rest.ac.ChangePasswordDTO;
 import ru.croc.vtb.wso2.api.tests.model.rest.ac.RestorePasswordDTO;
-import ru.croc.vtb.wso2.api.tests.services.AcRequestService;
-import ru.croc.vtb.wso2.api.tests.services.BodyService;
+import ru.croc.vtb.wso2.api.tests.services.body.AcBodyService;
+import ru.croc.vtb.wso2.api.tests.services.request.AcRequestService;
 
 import java.util.Map;
 
@@ -19,13 +20,13 @@ public class AcRequestServiceImpl implements AcRequestService {
     private static final Logger LOGGER = LoggerFactory.getLogger(AcRequestServiceImpl.class);
 
 
-    BodyService bodyService = new BodyServiceImpl();
+    AcBodyService acBodyService = new AcBodyServiceImpl();
 
     public void sendRestorePasswordRequest(TestsProperties testsProperties, String env, String id) {
         String requestPath = "/authentication/restorePassword";
         String URL = getAcRequestUrl(requestPath, env, testsProperties);
 
-        RestorePasswordDTO restorePasswordDTO = bodyService.getRestorePasswordBody(testsProperties, id);
+        RestorePasswordDTO restorePasswordDTO = acBodyService.getRestorePasswordBody(testsProperties, id);
 
         ValidatableResponse r = getRestorePasswordResponse(restorePasswordDTO, URL);
         RUN_CONTEXT.put("responseBody", r);
@@ -33,7 +34,7 @@ public class AcRequestServiceImpl implements AcRequestService {
 
     public ValidatableResponse getStaticPasswordResponse(String id, String URL, TestsProperties testsProperties) {
         return given().log().everything(true)
-                .body(bodyService.getStaticPasswordBody(id, testsProperties))
+                .body(acBodyService.getStaticPasswordBody(id, testsProperties))
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .post(URL).then().log().all(true);
@@ -84,7 +85,7 @@ public class AcRequestServiceImpl implements AcRequestService {
 
     @Override
     public void sendSmsOtpRequest(String id, TestsProperties testsProperties) {
-        Map<String, Object> body = bodyService.getSmsOtpRequestBody(id);
+        Map<String, Object> body = acBodyService.getSmsOtpRequestBody(id);
 
         ValidatableResponse r = given().log().everything(true)
                 .body(body)
@@ -98,7 +99,7 @@ public class AcRequestServiceImpl implements AcRequestService {
     @Override
     public void GetUcnByAliasAndPhoneAndDomainRequest(String alias, String phone, String env, TestsProperties testsProperties) {
         String requestPath = "/authentication/getUcnByAliasOrPhone";
-        Map<String, Object> body = bodyService.getUcnByAliasAndPhoneAndDomainRequestBody(alias, phone);
+        Map<String, Object> body = acBodyService.getUcnByAliasAndPhoneAndDomainRequestBody(alias, phone);
         String URL = getAcRequestUrl(requestPath, env, testsProperties);
         ValidatableResponse r = given().log().everything(true)
                 .params(body)
@@ -114,7 +115,7 @@ public class AcRequestServiceImpl implements AcRequestService {
         String requestPath = "/authentication/authenticateByClientId";
         String URL = getAcRequestUrl(requestPath, env, testsProperties);
 
-        Map<String, Object> body = bodyService.getAuthenticateByClientIdRequestBody(id);
+        Map<String, Object> body = acBodyService.getAuthenticateByClientIdRequestBody(id);
 
         ValidatableResponse r = given().log().everything(true)
                 .body(body)

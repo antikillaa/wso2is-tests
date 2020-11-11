@@ -1,12 +1,13 @@
-package ru.croc.vtb.wso2.api.tests.impl;
+package ru.croc.vtb.wso2.api.tests.impl.request;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
-import ru.croc.vtb.wso2.api.tests.services.BodyService;
-import ru.croc.vtb.wso2.api.tests.services.WsoRequestService;
+import ru.croc.vtb.wso2.api.tests.impl.body.WSOBodyServiceImpl;
+import ru.croc.vtb.wso2.api.tests.services.body.WSOBodyService;
+import ru.croc.vtb.wso2.api.tests.services.request.WsoRequestService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +18,7 @@ import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
 public class WSORequestServiceImpl implements WsoRequestService {
     private static final Logger LOGGER = LoggerFactory.getLogger(WSORequestServiceImpl.class);
 
-    BodyService bodyService = new BodyServiceImpl();
+    WSOBodyService WSOBodyService = new WSOBodyServiceImpl();
 
     @Override
     public void getSecondFactorGrandTypeRequest(TestsProperties testsProperties) {
@@ -49,7 +50,7 @@ public class WSORequestServiceImpl implements WsoRequestService {
         Map bodyResponse = firstFactor.extract().as(Map.class);
         Map property = (Map) bodyResponse.get("additional_properties");
 
-        Map<String, Object> body = bodyService.getSecondFactorDeviceTokenRequestBody(id, (String) property.get("sessionDataKey"));
+        Map<String, Object> body = WSOBodyService.getSecondFactorDeviceTokenRequestBody(id, (String) property.get("sessionDataKey"));
 
         ValidatableResponse r = given().log().everything(true)
                 .headers(getLoginHeaderWithFinger(RUN_CONTEXT.get("par", Map.class), testsProperties))
@@ -69,7 +70,7 @@ public class WSORequestServiceImpl implements WsoRequestService {
         RUN_CONTEXT.put("id_type", par.get("id_type"));
         RUN_CONTEXT.put("scope", par.get("scope"));
 
-        Map<String, Object> body = bodyService.getLoginByGrandTypeRequestBody(par, testsProperties);
+        Map<String, Object> body = WSOBodyService.getLoginByGrandTypeRequestBody(par, testsProperties);
         RUN_CONTEXT.put("body", body);
 
         Map<String, Object> header = getLoginHeaderWithFinger(par, testsProperties);

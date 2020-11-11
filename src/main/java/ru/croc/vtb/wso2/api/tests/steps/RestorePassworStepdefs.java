@@ -4,8 +4,8 @@ import io.cucumber.java.en.Then;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
-import ru.croc.vtb.wso2.api.tests.impl.RestorePasswordRequestServiceImpl;
-import ru.croc.vtb.wso2.api.tests.services.RestorePasswordRequestService;
+import ru.croc.vtb.wso2.api.tests.impl.request.RestorePasswordRequestServiceImpl;
+import ru.croc.vtb.wso2.api.tests.services.request.RestorePasswordRequestService;
 
 public class RestorePassworStepdefs {
     RestorePasswordRequestService restorePasswordRequestService = new RestorePasswordRequestServiceImpl();

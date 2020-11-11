@@ -1,12 +1,13 @@
-package ru.croc.vtb.wso2.api.tests.impl;
+package ru.croc.vtb.wso2.api.tests.impl.request;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
-import ru.croc.vtb.wso2.api.tests.services.BodyService;
-import ru.croc.vtb.wso2.api.tests.services.RestorePasswordRequestService;
+import ru.croc.vtb.wso2.api.tests.impl.body.AcBodyServiceImpl;
+import ru.croc.vtb.wso2.api.tests.services.body.AcBodyService;
+import ru.croc.vtb.wso2.api.tests.services.request.RestorePasswordRequestService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +18,7 @@ import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
 public class RestorePasswordRequestServiceImpl implements RestorePasswordRequestService {
     private static final Logger LOGGER = LoggerFactory.getLogger(RestorePasswordRequestServiceImpl.class);
 
-    BodyService bodyService = new BodyServiceImpl();
+    AcBodyService acBodyService = new AcBodyServiceImpl();
 
     @Override
     public void sendOtpRestorePasswordRequest(String arg0, String arg1, String env, TestsProperties testsProperties) {
