@@ -1,0 +1,73 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "POST",
+        "url": "/integration-auth/set-activated",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.ucn == '11122')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 204,
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/integration-auth/set-activated",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.ucn == '111222')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 404,
+        "jsonBody": {
+          "type": "user_not_found",
+          "message": "Обратитесь в техподдержку Банка",
+          "errors": [
+            "404"
+          ],
+          "message_title": "Возникла непредвиденная ошибка",
+          "additional_properties": null
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/integration-auth/set-activated",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.ucn == '222333')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 500,
+        "jsonBody": {
+          "type": "generic_error",
+          "message": "Пожалуйста, зайдите в приложение ВТБ Онлайн позднее",
+          "errors": [
+            " [404]"
+          ],
+          "message_title": "Система временно недоступна",
+          "additional_properties": null
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    }
+  ]
+}

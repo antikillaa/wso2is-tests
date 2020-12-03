@@ -1,0 +1,178 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "url": "/auth-service/user/activated/9876543210"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": [
+          {
+            "ucn": "11120",
+            "domain": "guest",
+            "lastPhoneVerification": 1602844845000
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/auth-service/user/activated/9876543211"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": [
+          {
+            "ucn": "11121",
+            "domain": "guest",
+            "lastPhoneVerification": 1602844845000
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/auth-service/user/activated/9876543212"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": [
+          {
+            "ucn": "11122",
+            "domain": "guest",
+            "lastPhoneVerification": 1571222445000
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/auth-service/user/activated/9876543213"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": [],
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/auth-service/user/activated/9876543214"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": [],
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/auth-service/user/activated/9876543215"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": [
+          {
+            "ucn": "111222",
+            "domain": "master",
+            "lastPhoneVerification": 1602844845000
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/auth-service/user/activated/9876543216"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": [
+          {
+            "ucn": "222333",
+            "domain": "guest",
+            "lastPhoneVerification": 1602844845000
+          },
+          {
+            "ucn": "222333",
+            "domain": "master",
+            "lastPhoneVerification": 1602844845000
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/auth-service/user/activated/9876543217"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": [
+          {
+            "ucn": "11123",
+            "domain": "guest",
+            "lastPhoneVerification": 1602844845000
+          },
+          {
+            "ucn": "11123",
+            "domain": "guest",
+            "lastPhoneVerification": 1602844845000
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/auth-service/user/activated/9876543218"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": [
+          {
+            "ucn": "333444",
+            "domain": "master",
+            "lastPhoneVerification": 1602844845000
+          },
+          {
+            "ucn": "333444",
+            "domain": "master",
+            "lastPhoneVerification": 1602844845000
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    }
+  ]
+}
