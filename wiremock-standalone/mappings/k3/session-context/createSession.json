@@ -27,6 +27,31 @@
                     "Content-Type": "application/json"
                 }
             }
+        },
+        {
+            "request": {
+                "method": "POST",
+                "url": "/session-context/sessions/guest"
+            },
+            "response": {
+                "status": 201,
+                "jsonBody": {
+                    "branchBicForSPMSharding": "1076844185",
+                    "crossReferences": [
+                        {
+                            "partyUId": "1076844185",
+                            "systemNumber": "cm.SystemInstance.SPM",
+                            "externalId": "20007030",
+                            "endDate": null
+                        }
+                    ],
+                    "msaSessionId": "6ffd72de-5da1-4cdc-abfe-e46486c2df54",
+                    "payload": "ewogICAgICAiWC1Vc2VyLVNlc3Npb24tSUQiOiI2ZmZkNzJkZS01ZGExLTRjZGMtYWJmZS1lNDY0ODZjMmRmNTQiLAogICAgICAicm91dGVOYW1lIjoiZGVmYXVsdCIsCiAgICAgICJzaGFyZE5hbWUiOiJzZWNvbmQiCn0="
+                },
+                "headers": {
+                    "Content-Type": "application/json"
+                }
+            }
         }
     ]
 }

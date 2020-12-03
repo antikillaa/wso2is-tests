@@ -1,0 +1,60 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/user/activateOrDeactivate",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.ucn == '11120' || @.ucn == '11121' || @.ucn == '11122')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 204
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/user/activateOrDeactivate",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.ucn == '111222')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 404,
+        "jsonBody": {
+          "exception": "UserNotFoundException",
+          "message": "User not found"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/user/activateOrDeactivate",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.[?(@.ucn == '222333')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 500,
+        "jsonBody": {
+          "exception": "Exception",
+          "message": "Unexpected Exception"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    }
+  ]
+}

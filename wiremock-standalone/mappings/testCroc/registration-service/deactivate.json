@@ -1,0 +1,31 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "DELETE",
+        "url": "/registration-service/internal/11120"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "request": {
+        "method": "DELETE",
+        "url": "/registration-service/internal/11121"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "request": {
+        "method": "DELETE",
+        "url": "/registration-service/internal/11122"
+      },
+      "response": {
+        "status": 200
+      }
+    }
+  ]
+}

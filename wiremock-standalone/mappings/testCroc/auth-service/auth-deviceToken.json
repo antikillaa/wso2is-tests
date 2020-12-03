@@ -90,6 +90,34 @@
         "url": "/auth-service/authentication/deviceToken",
         "bodyPatterns": [
           {
+            "matchesJsonPath": "$.[?(@.deviceTokenId == '0000900100000000223600')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "id": "11120",
+          "domain": "guest",
+          "username": "guester",
+          "email": "guester@mail.ru",
+          "homePhone": "9876543210",
+          "mobile": "9876543210",
+          "accountLock": false,
+          "passwordTemporary": false,
+          "disable_smsotp": false
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/auth-service/authentication/deviceToken",
+        "bodyPatterns": [
+          {
             "matchesJsonPath": "$.[?(@.deviceTokenId == '0000900100000000223402')]"
           }
         ]
