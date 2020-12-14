@@ -6,7 +6,7 @@
         "url": "/auth-service/user/guest/add",
         "bodyPatterns": [
           {
-            "matchesJsonPath": "$.[?(@.mobilePhone == '9876543212' || @.mobilePhone == '9876543213')]"
+            "matchesJsonPath": "$.[?(@.mobilePhone == '9876543212' || @.mobilePhone == '9876543213' || @.mobilePhone == '9876543215')]"
           }
         ]
       },
