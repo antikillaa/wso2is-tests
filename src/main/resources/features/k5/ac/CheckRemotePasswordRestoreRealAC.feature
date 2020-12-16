@@ -8,7 +8,7 @@ Feature: Check Remote Password Restore k5
 
   @k5
   Scenario: CheckRemotePasswordRestore: Restore Forbidden
-    Then "k5" Send CheckRemotePasswordRestore Request id: "30005986"
+    Then "k5" Send CheckRemotePasswordRestore Request id: "30001380"
     And Status code response is: "403"
 
   @k5

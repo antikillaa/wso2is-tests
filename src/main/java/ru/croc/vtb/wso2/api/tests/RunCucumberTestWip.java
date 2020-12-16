@@ -6,8 +6,9 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/main/resources/features",
-        plugin = {"pretty", "html:target/cucumber-reports.html"},
+        publish = true,
+        features = "classpath:features",
+        plugin = {"pretty", "html:test-report/cucumber-report.html"},
         tags = "@wip"
 )
 public class RunCucumberTestWip {

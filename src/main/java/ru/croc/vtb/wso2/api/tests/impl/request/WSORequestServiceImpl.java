@@ -41,6 +41,7 @@ public class WSORequestServiceImpl implements WsoRequestService {
                 .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put("login", r);
     }
 
     @Override
@@ -85,32 +86,32 @@ public class WSORequestServiceImpl implements WsoRequestService {
     }
 
     private Map<String, Object> getLoginHeaderWithFinger(Map par, TestsProperties testsProperties) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("Content-Type", "application/x-www-form-urlencoded");
+        Map<String, Object> header = new HashMap<>();
+        header.put("Content-Type", "application/x-www-form-urlencoded");
 
         if (par.get("Authorization") == null) {
-            body.put("Authorization", testsProperties.getAuthorization());
+            header.put("Authorization", testsProperties.getAuthorization());
         } else if (par.get("Authorization").equals("k3")) {
-            body.put("Authorization", testsProperties.getAuthorizationK3());
+            header.put("Authorization", testsProperties.getAuthorizationK3());
         } else if (par.get("Authorization").toString().contains("Basic")) {
-            body.put("Authorization", par.get("Authorization"));
+            header.put("Authorization", par.get("Authorization"));
         } else
             LOGGER.error("Authorization is missing");
 
         try {
             if (par.get("finger_print").equals("true") || !par.get("finger_print").equals("false")) {
                 if (par.get("finger_print").equals("true")) {
-                    body.put("X-Device-FingerPrint", testsProperties.getMobileFingerPrint());
+                    header.put("X-Device-FingerPrint", testsProperties.getMobileFingerPrint());
                 }
                 if (par.get("finger_print").equals("k3")) {
-                    body.put("X-Device-FingerPrint", testsProperties.getMobileFingerprintK3());
+                    header.put("X-Device-FingerPrint", testsProperties.getMobileFingerprintK3());
                 }
             }
         } catch (NullPointerException e) {
             LOGGER.error("finger_print is missing");
         }
 
-        return body;
+        return header;
     }
 
     private String getLoginURL(Map par, TestsProperties testsProperties) {

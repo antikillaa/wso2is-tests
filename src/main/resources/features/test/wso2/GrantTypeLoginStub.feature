@@ -5,8 +5,6 @@ Feature: Grant type Login Stub
     Then Send login by Grant type Request
       | grandType | id_type | id    | finger_print | scope | env  |
       | login     | login   | 11122 | true         | true  | test |
-    And Status code response is: "401"
-    Then Send Second Factor login by Grant type request
     And Status code response is: "200"
     And Response Body contains key: "access_token"
     And Response Body contains key: "id_token"

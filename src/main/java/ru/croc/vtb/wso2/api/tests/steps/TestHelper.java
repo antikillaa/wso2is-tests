@@ -1,4 +1,4 @@
-package ru.croc.vtb.wso2.api.tests;
+package ru.croc.vtb.wso2.api.tests.steps;
 
 import io.cucumber.java.en.And;
 import io.restassured.response.ValidatableResponse;

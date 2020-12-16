@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Setter
 @Configuration
 @ConfigurationProperties(prefix = "test")
-@PropertySource("classpath:/applicationK3.properties")
+@PropertySource("classpath:/application.properties")
 @Component
 public class TestsProperties {
 
@@ -41,6 +41,28 @@ public class TestsProperties {
 
     @Value("${test.restorePasswordServiceUrlK5}")
     private String restorePasswordServiceUrlK5;
+
+
+    @Value("${test.qrServicePrivateUrlK3}")
+    private String qrServicePrivateUrlK3;
+
+    @Value("${test.qrServicePrivateUrlK4}")
+    private String qrServicePrivateUrlK4;
+
+    @Value("${test.qrServicePrivateUrlK3}")
+    private String qrServicePrivateUrlK5;
+
+    @Value("${test.qrServiceUrlTest}")
+    private String qrServiceUrlTest;
+
+    @Value("${test.qrServiceUrlK3}")
+    private String qrServiceUrlK3;
+
+    @Value("${test.qrServiceUrlK4}")
+    private String qrServiceUrlK4;
+
+    @Value("${test.qrServiceUrlK5}")
+    private String qrServiceUrlK5;
 
     @Value("${test.client-id}")
     private String clientId;
@@ -116,4 +138,6 @@ public class TestsProperties {
 
     @Value("${test.userPassword}")
     private String userPassword;
+
+
 }

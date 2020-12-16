@@ -168,10 +168,6 @@ public class AcRequestServiceImpl implements AcRequestService {
         RUN_CONTEXT.put("responseBody", r);
     }
 
-
-
-
-
     private String getAcRequestUrl(String requestPath, String env, TestsProperties testsProperties) {
         String url = null;
         switch (env) {

@@ -6,7 +6,6 @@ Feature: AuthenticateByClientId k4
     And Status code response is: "200"
     And Response Body contains "id" equals "18005101"
     And Response Body contains "domain" equals "master"
-    And Response Body contains "mobile" equals "9125364152"
 
   @k4
   Scenario: AuthenticateByClientId: Учетная запись не найдена

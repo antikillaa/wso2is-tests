@@ -7,7 +7,7 @@ Feature: Check Remote Password Restore k4
 
   @k4
   Scenario: CheckRemotePasswordRestore: Удаленное восстановление пароля запрещено
-    Then "k4" Send CheckRemotePasswordRestore Request id: "18004626"
+    Then "k4" Send CheckRemotePasswordRestore Request id: "18002000"
     And Status code response is: "403"
     And Response Body contains "exception" equals "RemotePasswordRestoreForbiddenException"
     And Response Body contains "message" equals "Удаленное восстановление пароля запрещено"

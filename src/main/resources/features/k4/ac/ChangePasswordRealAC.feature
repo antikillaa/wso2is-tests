@@ -2,7 +2,7 @@ Feature: Change password k4
 
   @skip
   Scenario: Change Password Success
-    Then "k4" Send Change Password Success Request, id: "18005101" password: "Qa!123321"
+    Then "k4" Send Change Password Success Request, id: "18020416" password: "123123Qw!"
     And Status code response is: "204"
 
   @skip

@@ -1,4 +1,4 @@
-Feature: AuthenticateByClientId k4
+Feature: AuthenticateByClientId k5
 
   @k5
   Scenario: AuthenticateByClientId: Success
@@ -6,7 +6,7 @@ Feature: AuthenticateByClientId k4
     And Status code response is: "200"
     And Response Body contains "id" equals "30000377"
     And Response Body contains "domain" equals "master"
-    And Response Body contains "mobile" equals "4951111103"
+    And Response Body contains key: "mobile"
 
   @k5
   Scenario: AuthenticateByClientId: Учетная запись не найдена
