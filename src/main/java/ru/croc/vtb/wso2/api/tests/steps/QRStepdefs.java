@@ -22,4 +22,9 @@ public class QRStepdefs {
     public void sendVerifyQRRequest(String env) {
         qrRequestService.verifyQR(env, testsProperties);
     }
+
+    @Then("{string} Send approve QR Request")
+    public void sendApproveQRRequest(String env) {
+        qrRequestService.approveQR(env, testsProperties);
+    }
 }

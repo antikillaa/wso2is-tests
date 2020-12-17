@@ -41,7 +41,7 @@ public class WSORequestServiceImpl implements WsoRequestService {
                 .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
-        RUN_CONTEXT.put("login", r);
+        RUN_CONTEXT.put("login", r.extract().as(Map.class));
     }
 
     @Override
@@ -83,6 +83,8 @@ public class WSORequestServiceImpl implements WsoRequestService {
                 .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put("login", r.extract().as(Map.class));
+
     }
 
     private Map<String, Object> getLoginHeaderWithFinger(Map par, TestsProperties testsProperties) {

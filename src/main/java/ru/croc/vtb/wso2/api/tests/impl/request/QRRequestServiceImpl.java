@@ -42,22 +42,22 @@ public class QRRequestServiceImpl implements QRRequestService {
         String requestPath = "/verify-qr";
         String URL = getQRRequestUrlPrivate(requestPath, env, testsProperties);
 
-        ValidatableResponse qr = RUN_CONTEXT.get("qr", ValidatableResponse.class);
-        Map qrResponse = qr.extract().as(Map.class);
+        Map qrResponse = RUN_CONTEXT.get("qr", ValidatableResponse.class).extract().as(Map.class);
         LOGGER.info(qrResponse.toString());
 
-        ValidatableResponse login = RUN_CONTEXT.get("login", ValidatableResponse.class);
-        Map loginResponse = login.extract().as(Map.class);
+        Map loginResponse = RUN_CONTEXT.get("login", Map.class);
         LOGGER.info(loginResponse.toString());
-
 
         Map<String, Object> header = new HashMap<>();
         header.put("Authorization", "Bearer " + loginResponse.get("id_token"));
 
+        Map<String, Object> body = new HashMap<>();
+        body.put("id", qrResponse.get("id"));
+
         ValidatableResponse r = given().log().everything(true)
                 .contentType(ContentType.JSON)
                 .headers(header)
-                .param(String.valueOf(qrResponse.get("id")), ("id"))
+                .body(body)
                 .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
@@ -65,6 +65,35 @@ public class QRRequestServiceImpl implements QRRequestService {
         return r;
     }
 
+    @Override
+    public ValidatableResponse approveQR(String env, TestsProperties testsProperties) {
+        String requestPath = "/approve-consent";
+        String URL = getQRRequestUrlPrivate(requestPath, env, testsProperties);
+
+        Map qrResponse = RUN_CONTEXT.get("qr", ValidatableResponse.class).extract().as(Map.class);
+        LOGGER.info(qrResponse.toString());
+
+        Map loginResponse = RUN_CONTEXT.get("login", Map.class);
+        LOGGER.info(loginResponse.toString());
+
+        Map<String, Object> header = new HashMap<>();
+        header.put("Authorization", "Bearer " + loginResponse.get("id_token"));
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("id", qrResponse.get("id"));
+        body.put("mobileJwt", loginResponse.get("id_token"));
+        body.put("approved", Boolean.TRUE);
+
+        ValidatableResponse r = given().log().everything(true)
+                .contentType(ContentType.JSON)
+                .headers(header)
+                .body(body)
+                .post(URL)
+                .then().log().all(true);
+        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put("qr", r);
+        return r;
+    }
 
     private String getQRRequestUrl(String requestPath, String env, TestsProperties testsProperties) {
         String url = null;
@@ -77,6 +106,9 @@ public class QRRequestServiceImpl implements QRRequestService {
                 break;
             case "k5":
                 url = testsProperties.getQrServiceUrlK5();
+                break;
+            case "test":
+                url = testsProperties.getQrServiceUrlTest();
                 break;
         }
         return url + requestPath;
@@ -93,6 +125,9 @@ public class QRRequestServiceImpl implements QRRequestService {
                 break;
             case "k5":
                 url = testsProperties.getQrServicePrivateUrlK5();
+                break;
+            case "test":
+                url = testsProperties.getQrServiceUrlTest();
                 break;
         }
         return url + requestPath;

@@ -8,4 +8,6 @@ public interface QRRequestService {
     ValidatableResponse generateQR(String env, TestsProperties testsProperties);
 
     ValidatableResponse verifyQR(String env, TestsProperties testsProperties);
+
+    ValidatableResponse approveQR(String env, TestsProperties testsProperties);
 }
