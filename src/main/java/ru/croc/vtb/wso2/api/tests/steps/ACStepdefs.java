@@ -1,5 +1,6 @@
 package ru.croc.vtb.wso2.api.tests.steps;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.spring.CucumberContextConfiguration;
 import lombok.Getter;
@@ -8,6 +9,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
 import ru.croc.vtb.wso2.api.tests.impl.request.AcRequestServiceImpl;
 import ru.croc.vtb.wso2.api.tests.services.request.AcRequestService;
+
+import java.util.Map;
 
 @CucumberContextConfiguration
 @EnableConfigurationProperties(value = TestsProperties.class)
@@ -69,5 +72,16 @@ public class ACStepdefs {
     @Then("{string} Send CheckRemotePasswordRestore Request id: {string}")
     public void sendCheckRemotePasswordRestoreRequestId(String env, String arg0) {
         acRequestService.getCheckRemotePasswordRestoreRequest(arg0, env, testsProperties);
+    }
+
+    @Then("{string} Send Add Guest Request")
+    public void sendAddGuestRequest(String env) {
+        acRequestService.sendAddGuestRequest(env, testsProperties);
+    }
+
+    @Then("Send User activateOrDeactivate request")
+    public void sendUserActivateOrDeactivateRequest(DataTable par) {
+        Map<String, String> param = par.asMaps().get(0);
+        acRequestService.sendUserActivateOrDeactivateRequest(param, testsProperties);
     }
 }

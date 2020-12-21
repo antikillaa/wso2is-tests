@@ -3,6 +3,8 @@ package ru.croc.vtb.wso2.api.tests.services.request;
 import io.restassured.response.ValidatableResponse;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
 
+import java.util.Map;
+
 public interface AcRequestService {
 
     void sendRestorePasswordRequest(TestsProperties testsProperties, String env, String id);
@@ -25,5 +27,7 @@ public interface AcRequestService {
 
     void getCheckRemotePasswordRestoreRequest(String arg0, String env, TestsProperties testsProperties);
 
+    void sendAddGuestRequest(String env, TestsProperties testsProperties);
 
+    void sendUserActivateOrDeactivateRequest(Map<String, String> param, TestsProperties testsProperties);
 }

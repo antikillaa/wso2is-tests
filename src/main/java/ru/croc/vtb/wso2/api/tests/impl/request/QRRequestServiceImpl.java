@@ -26,6 +26,7 @@ public class QRRequestServiceImpl implements QRRequestService {
         String requestPath = "/generate-qr";
         String URL = getQRRequestUrl(requestPath, env, testsProperties);
         Map<String, Object> header = getQRHeaderWithFinger(testsProperties);
+        header.put("Referer", URL);
 
         ValidatableResponse r = given().log().everything(true)
                 .contentType(ContentType.JSON)
@@ -45,11 +46,12 @@ public class QRRequestServiceImpl implements QRRequestService {
         Map qrResponse = RUN_CONTEXT.get("qr", ValidatableResponse.class).extract().as(Map.class);
         LOGGER.info(qrResponse.toString());
 
-        Map loginResponse = RUN_CONTEXT.get("login", Map.class);
+        Map loginResponse = RUN_CONTEXT.get("login", ValidatableResponse.class).extract().as(Map.class);
         LOGGER.info(loginResponse.toString());
 
         Map<String, Object> header = new HashMap<>();
         header.put("Authorization", "Bearer " + loginResponse.get("id_token"));
+        header.put("Referer", URL);
 
         Map<String, Object> body = new HashMap<>();
         body.put("id", qrResponse.get("id"));
@@ -58,6 +60,7 @@ public class QRRequestServiceImpl implements QRRequestService {
                 .contentType(ContentType.JSON)
                 .headers(header)
                 .body(body)
+                .cookies(RUN_CONTEXT.get("login", ValidatableResponse.class).extract().cookies())
                 .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
@@ -73,11 +76,12 @@ public class QRRequestServiceImpl implements QRRequestService {
         Map qrResponse = RUN_CONTEXT.get("qr", ValidatableResponse.class).extract().as(Map.class);
         LOGGER.info(qrResponse.toString());
 
-        Map loginResponse = RUN_CONTEXT.get("login", Map.class);
+        Map loginResponse = RUN_CONTEXT.get("login", ValidatableResponse.class).extract().as(Map.class);
         LOGGER.info(loginResponse.toString());
 
         Map<String, Object> header = new HashMap<>();
         header.put("Authorization", "Bearer " + loginResponse.get("id_token"));
+        header.put("Referer", URL);
 
         Map<String, Object> body = new HashMap<>();
         body.put("id", qrResponse.get("id"));
@@ -86,6 +90,8 @@ public class QRRequestServiceImpl implements QRRequestService {
 
         ValidatableResponse r = given().log().everything(true)
                 .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .cookies(RUN_CONTEXT.get("login", ValidatableResponse.class).extract().cookies())
                 .headers(header)
                 .body(body)
                 .post(URL)

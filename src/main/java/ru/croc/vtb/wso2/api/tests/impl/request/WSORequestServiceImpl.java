@@ -41,7 +41,7 @@ public class WSORequestServiceImpl implements WsoRequestService {
                 .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
-        RUN_CONTEXT.put("login", r.extract().as(Map.class));
+        RUN_CONTEXT.put("login", r);
     }
 
     @Override
@@ -60,6 +60,7 @@ public class WSORequestServiceImpl implements WsoRequestService {
                 .post(testsProperties.getUrlToProxyK3() + "/oauth2/token")
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put("login", r);
     }
 
     @Override
@@ -83,7 +84,7 @@ public class WSORequestServiceImpl implements WsoRequestService {
                 .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
-        RUN_CONTEXT.put("login", r.extract().as(Map.class));
+        RUN_CONTEXT.put("login", r);
 
     }
 

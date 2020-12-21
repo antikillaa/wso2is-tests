@@ -2,6 +2,7 @@ package ru.croc.vtb.wso2.api.tests.impl.request;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
@@ -11,6 +12,7 @@ import ru.croc.vtb.wso2.api.tests.model.rest.ac.RestorePasswordDTO;
 import ru.croc.vtb.wso2.api.tests.services.body.AcBodyService;
 import ru.croc.vtb.wso2.api.tests.services.request.AcRequestService;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
@@ -164,6 +166,45 @@ public class AcRequestServiceImpl implements AcRequestService {
                 .param("id", id)
                 .param("domain", "master")
                 .get(URL)
+                .then().log().all(true);
+        RUN_CONTEXT.put("responseBody", r);
+    }
+
+    @Override
+    public void sendAddGuestRequest(String env, TestsProperties testsProperties) {
+        String requestPath = "/user/guest/add";
+        String URL = getAcRequestUrl(requestPath, env, testsProperties);
+        String phone = "7" + RandomStringUtils.randomNumeric(9);
+
+        Map<String, String> body = new HashMap<>();
+        body.put("mobilePhone", phone);
+
+        ValidatableResponse r = given().log().everything(true)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body(body)
+                .post(URL)
+                .then().log().all(true);
+        RUN_CONTEXT.put("responseBody", r);
+    }
+
+    @Override
+    public void sendUserActivateOrDeactivateRequest(Map<String, String> param, TestsProperties testsProperties) {
+        String requestPath = "/user/activateOrDeactivate";
+        String URL = getAcRequestUrl(requestPath, param.get("env"), testsProperties);
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("ucn", param.get("ucn") == null ?
+                RUN_CONTEXT.get("responseBody", ValidatableResponse.class).extract().as(Map.class).get("ucn")
+                : param.get("ucn"));
+        body.put("domain", "guest");
+        body.put("activated", param.get("activateOrDeactivate"));
+
+        ValidatableResponse r = given().log().everything(true)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body(body)
+                .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
     }
