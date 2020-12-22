@@ -30,4 +30,6 @@ public interface AcRequestService {
     void sendAddGuestRequest(String env, TestsProperties testsProperties);
 
     void sendUserActivateOrDeactivateRequest(Map<String, String> param, TestsProperties testsProperties);
+
+    void sendActivatedRequest(String env, TestsProperties testsProperties);
 }

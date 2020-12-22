@@ -84,4 +84,9 @@ public class ACStepdefs {
         Map<String, String> param = par.asMaps().get(0);
         acRequestService.sendUserActivateOrDeactivateRequest(param, testsProperties);
     }
+
+    @Then("{string} Send Activated Request")
+    public void sendActivatedRequest(String env) {
+        acRequestService.sendActivatedRequest(env, testsProperties);
+    }
 }

@@ -37,4 +37,10 @@ public class TestHelper {
         ValidatableResponse r = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
         r.body(arg0, notNullValue());
     }
+
+    @And("Response Body don't contains key: {string}")
+    public void bodyNotContainsKey(String arg0) {
+        ValidatableResponse r = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
+        r.body(arg0, not("ucn"));
+    }
 }
