@@ -1,6 +1,5 @@
 package ru.croc.vtb.wso2.api.tests.services.request;
 
-import io.restassured.response.ValidatableResponse;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
 
 import java.util.Map;
@@ -8,12 +7,6 @@ import java.util.Map;
 public interface AcRequestService {
 
     void sendRestorePasswordRequest(TestsProperties testsProperties, String env, String id);
-
-    ValidatableResponse getStaticPasswordResponse(String id, String URL, TestsProperties testsProperties);
-
-    ValidatableResponse getStaticPasswordUserByIdResponse(String id, TestsProperties testsProperties);
-
-    void sendSmsOtpRequest(String arg0, TestsProperties testsProperties);
 
     void changePasswordRequest(String env, String id, String password, TestsProperties testsProperties);
 
@@ -34,4 +27,10 @@ public interface AcRequestService {
     void sendActivatedRequest(String env, TestsProperties testsProperties);
 
     void sendGetUserRequest(Map<String, String> param, TestsProperties testsProperties);
+
+    void sendGetSmsOtpRequest(Map<String, String> param, TestsProperties testsProperties);
+
+    void sendSmsOtpRequest(Map<String, String> arg0, TestsProperties testsProperties);
+
+    void sendStaticPasswordRequest(Map<String, String> param, TestsProperties testsProperties);
 }

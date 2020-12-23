@@ -12,8 +12,6 @@ public interface AcBodyService {
 
     Map<String, Object> getGetSmsOtpRequestBody(String id);
 
-    Map<String, Object> getSmsOtpRequestBody(String id);
-
     Map<String, Object> getUcnByAliasAndPhoneAndDomainRequestBody(String alias, String phone);
 
     Map<String, Object> getAuthenticateByClientIdRequestBody(String id);

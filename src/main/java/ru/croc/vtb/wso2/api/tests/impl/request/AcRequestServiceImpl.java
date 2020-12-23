@@ -34,23 +34,6 @@ public class AcRequestServiceImpl implements AcRequestService {
         RUN_CONTEXT.put("responseBody", r);
     }
 
-    public ValidatableResponse getStaticPasswordResponse(String id, String URL, TestsProperties testsProperties) {
-        return given().log().everything(true)
-                .body(acBodyService.getStaticPasswordBody(id, testsProperties))
-                .contentType(ContentType.JSON)
-                .accept(ContentType.JSON)
-                .post(URL).then().log().all(true);
-    }
-
-    public ValidatableResponse getStaticPasswordUserByIdResponse(String id, TestsProperties testsProperties) {
-        String URL = "http://" + testsProperties.getAc_host() +
-                testsProperties.getAcPortMock() + "/authentication/staticPassword";
-
-        ValidatableResponse r = getStaticPasswordResponse(id, URL, testsProperties);
-        RUN_CONTEXT.put("responseBody", r);
-        return r;
-    }
-
     private ValidatableResponse getRestorePasswordResponse(RestorePasswordDTO restorePasswordDTO, String URL) {
         return given().log().everything(true)
                 .body(restorePasswordDTO)
@@ -83,19 +66,6 @@ public class AcRequestServiceImpl implements AcRequestService {
                     .then().log().all(true);
             RUN_CONTEXT.put("responseBody", r);
         }
-    }
-
-    @Override
-    public void sendSmsOtpRequest(String id, TestsProperties testsProperties) {
-        Map<String, Object> body = acBodyService.getSmsOtpRequestBody(id);
-
-        ValidatableResponse r = given().log().everything(true)
-                .body(body)
-                .contentType(ContentType.JSON)
-                .accept(ContentType.JSON)
-                .post("http://" + testsProperties.getAc_host() + testsProperties.getAcPortMock() + "/authentication/smsOtp")
-                .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
     }
 
     @Override
@@ -248,6 +218,73 @@ public class AcRequestServiceImpl implements AcRequestService {
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .get(URL)
+                .then().log().all(true);
+        RUN_CONTEXT.put("responseBody", r);
+    }
+
+    @Override
+    public void sendGetSmsOtpRequest(Map<String, String> param, TestsProperties testsProperties) {
+        String requestPath = "/authentication/getSmsOtp";
+        String URL = getAcRequestUrl(requestPath, param.get("env"), testsProperties);
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("id", param.get("ucn"));
+        body.put("domain", param.get("domain"));
+        body.put("systemId", "98000");
+        body.put("transactionType", 1);
+        body.put("reuseIfActive", Boolean.TRUE);
+
+        ValidatableResponse r = given().log().everything(true)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body(body)
+                .post(URL)
+                .then().log().all(true);
+        RUN_CONTEXT.put("responseBody", r);
+    }
+
+    @Override
+    public void sendSmsOtpRequest(Map<String, String> param, TestsProperties testsProperties) {
+        String requestPath = "/authentication/smsOtp";
+        String URL = getAcRequestUrl(requestPath, param.get("env"), testsProperties);
+
+        Map getSmsOtp = RUN_CONTEXT.get("getSmsOtp", Map.class);
+        String transactionId =
+                RUN_CONTEXT.get("responseBody", ValidatableResponse.class)
+                        .extract().body().as(Map.class).get("transactionId").toString();
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("id", getSmsOtp.get("ucn"));
+        body.put("domain", getSmsOtp.get("domain"));
+        body.put("secureCode", "000000");
+        body.put("systemId", "98000");
+        body.put("transactionId", transactionId);
+        body.put("transactionType", 1);
+
+        ValidatableResponse r = given().log().everything(true)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body(body)
+                .post(URL)
+                .then().log().all(true);
+        RUN_CONTEXT.put("responseBody", r);
+    }
+
+    @Override
+    public void sendStaticPasswordRequest(Map<String, String> param, TestsProperties testsProperties) {
+        String requestPath = "/authentication/staticPassword";
+        String URL = getAcRequestUrl(requestPath, param.get("env"), testsProperties);
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("id", param.get("ucn"));
+        body.put("domain", param.get("domain"));
+        body.put("password", testsProperties.getUserPassword());
+
+        ValidatableResponse r = given().log().everything(true)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body(body)
+                .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
     }

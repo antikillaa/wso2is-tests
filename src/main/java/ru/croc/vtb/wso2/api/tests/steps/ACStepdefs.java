@@ -12,6 +12,8 @@ import ru.croc.vtb.wso2.api.tests.services.request.AcRequestService;
 
 import java.util.Map;
 
+import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
+
 @CucumberContextConfiguration
 @EnableConfigurationProperties(value = TestsProperties.class)
 public class ACStepdefs {
@@ -21,20 +23,9 @@ public class ACStepdefs {
     @Getter
     private TestsProperties testsProperties;
 
-    @Then("Send Static password request with id: {string}")
-    public void sendStaticPasswordRequestWithId(String arg0) {
-        acRequestService.getStaticPasswordUserByIdResponse(arg0, testsProperties);
-    }
-
     @Then("{string} Send Restore Password Request id: {string}")
     public void sendRestorePasswordSuccess(String env, String arg0) {
         acRequestService.sendRestorePasswordRequest(testsProperties, env, arg0);
-    }
-
-
-    @Then("Send SmsOtp Request id: {string}")
-    public void sendSmsOtpRequestId(String arg0) {
-        acRequestService.sendSmsOtpRequest(arg0, testsProperties);
     }
 
     @Then("{string} Send Change Password Success Request, id: {string} password: {string}")
@@ -94,5 +85,24 @@ public class ACStepdefs {
     public void sendGetUserRequest(DataTable par) {
         Map<String, String> param = par.asMaps().get(0);
         acRequestService.sendGetUserRequest(param, testsProperties);
+    }
+
+    @Then("Send Get Sms Otp Request")
+    public void sendGetSmsOtpRequest(DataTable par) {
+        Map<String, String> param = par.asMaps().get(0);
+        RUN_CONTEXT.put("getSmsOtp", param);
+        acRequestService.sendGetSmsOtpRequest(param, testsProperties);
+    }
+
+    @Then("Send SmsOtp Request")
+    public void sendSmsOtpRequest(DataTable par) {
+        Map<String, String> param = par.asMaps().get(0);
+        acRequestService.sendSmsOtpRequest(param, testsProperties);
+    }
+
+    @Then("Send Static Password Request")
+    public void sendStaticPasswordRequest(DataTable par) {
+        Map<String, String> param = par.asMaps().get(0);
+        acRequestService.sendStaticPasswordRequest(param, testsProperties);
     }
 }

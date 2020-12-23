@@ -36,18 +36,6 @@ public class AcBodyServiceImpl implements AcBodyService {
         return body;
     }
 
-    public Map<String, Object> getSmsOtpRequestBody(String id) {
-        Map<String, Object> body = new HashMap();
-        body.put("id", id);
-        body.put("domain", "master");
-        body.put("systemId", "98000");
-        body.put("secureCode", "285175");
-        body.put("transactionId", "810981548596861820");
-        body.put("transactionType", "1");
-        return body;
-    }
-
-
     public Map<String, Object> getUcnByAliasAndPhoneAndDomainRequestBody(String alias, String phone) {
         Map<String, Object> ucn = new HashMap<>();
         ucn.put("phone", phone);
