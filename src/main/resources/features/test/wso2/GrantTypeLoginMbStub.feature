@@ -36,3 +36,18 @@ Feature: Grant type Login_Mb Stub
     And Response Body contains "id_token" equals "null"
     And Response Body contains key: "refresh_token"
     And Response Body contains "scope" equals "null"
+
+
+  @test
+  Scenario: Grant type Login_Mb Refresh token
+    Then Send login by Grant type Request
+      | grandType | id_type | id       | finger_print | scope | password | env  |
+      | login_mb  | login   | 11000035 | true         | true  | true     | test |
+    And Status code response is: "200"
+
+    Then "test" Send Refresh token Request
+    And Status code response is: "200"
+    And Response Body contains key: "access_token"
+    And Response Body contains key: "id_token"
+    And Response Body contains key: "refresh_token"
+    And Response Body contains key: "scope"

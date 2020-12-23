@@ -232,6 +232,26 @@ public class AcRequestServiceImpl implements AcRequestService {
         RUN_CONTEXT.put("responseBody", r);
     }
 
+    @Override
+    public void sendGetUserRequest(Map<String, String> param, TestsProperties testsProperties) {
+        String requestPath = "/user";
+        String URL = getAcRequestUrl(requestPath, param.get("env"), testsProperties);
+        String UCN = param.get("ucn").equals("guest") ?
+                (String) RUN_CONTEXT.get("guestLogin", ValidatableResponse.class)
+                        .extract().body().as(Map.class).get("ucn") :
+                param.get("ucn");
+        URL = URL
+                + "/" + param.get("domain")
+                + "/" + UCN;
+
+        ValidatableResponse r = given().log().everything(true)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .get(URL)
+                .then().log().all(true);
+        RUN_CONTEXT.put("responseBody", r);
+    }
+
     private String getAcRequestUrl(String requestPath, String env, TestsProperties testsProperties) {
         String url = null;
         switch (env) {

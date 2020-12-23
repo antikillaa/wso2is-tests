@@ -85,7 +85,27 @@ public class WSORequestServiceImpl implements WsoRequestService {
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
         RUN_CONTEXT.put("login", r);
+    }
 
+    @Override
+    public void sendRefreshTokenRequest(Map env, TestsProperties testsProperties) {
+        String URL = getLoginURL(env, testsProperties);
+
+        Map property = RUN_CONTEXT.get("login", ValidatableResponse.class)
+                .extract().as(Map.class);
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("grant_type", "refresh_token");
+        body.put("scope", "openid");
+        body.put("refresh_token", property.get("refresh_token"));
+
+        ValidatableResponse r = given().log().everything(true)
+                .headers(getLoginHeaderWithFinger(RUN_CONTEXT.get("par", Map.class), testsProperties))
+                .params(body)
+                .contentType(ContentType.URLENC)
+                .post(URL)
+                .then().log().all(true);
+        RUN_CONTEXT.put("responseBody", r);
     }
 
     private Map<String, Object> getLoginHeaderWithFinger(Map par, TestsProperties testsProperties) {

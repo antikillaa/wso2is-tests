@@ -12,5 +12,5 @@ public interface WsoRequestService {
 
     void sendGetTokenDTORequest(Map dataTable, TestsProperties testsProperties);
 
-
+    void sendRefreshTokenRequest(Map env, TestsProperties testsProperties);
 }

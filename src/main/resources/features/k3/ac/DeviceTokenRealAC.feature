@@ -1,12 +1,12 @@
 Feature: DeviceToken k3
 
-  @skip
+  @k3
   Scenario: deviceToken: Success 1
-    Then "k3" Send DeviceToken Request id: "8888000000065345"
+    Then "k3" Send DeviceToken Request id: "8888000000076094"
     And Status code response is: "200"
-    And Response Body contains "userId" equals "20002034"
+    And Response Body contains "userId" equals "20041320"
     And Response Body contains "domain" equals "master"
-    And Response Body contains "deviceTokenId" equals "8888000000065345"
+    And Response Body contains "deviceTokenId" equals "8888000000076094"
 
   @k3
   Scenario: GetSmsOtp: Устройство двухфакторной аутентификации не найдено

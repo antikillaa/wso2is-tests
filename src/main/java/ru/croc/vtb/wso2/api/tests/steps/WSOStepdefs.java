@@ -8,6 +8,7 @@ import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
 import ru.croc.vtb.wso2.api.tests.impl.request.WSORequestServiceImpl;
 import ru.croc.vtb.wso2.api.tests.services.request.WsoRequestService;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,5 +40,12 @@ public class WSOStepdefs {
         List<Map<Object, Object>> par = dataTable.asMaps(String.class, String.class);
         RUN_CONTEXT.put("par", par.get(0));
         acRequestService.sendGetTokenDTORequest(par.get(0), testsProperties);
+    }
+
+    @Then("{string} Send Refresh token Request")
+    public void sendRefreshTokenRequest(String env) {
+        Map par = new HashMap();
+        par.put("env", env);
+        acRequestService.sendRefreshTokenRequest(par, testsProperties);
     }
 }

@@ -89,4 +89,10 @@ public class ACStepdefs {
     public void sendActivatedRequest(String env) {
         acRequestService.sendActivatedRequest(env, testsProperties);
     }
+
+    @Then("Send Get user Request")
+    public void sendGetUserRequest(DataTable par) {
+        Map<String, String> param = par.asMaps().get(0);
+        acRequestService.sendGetUserRequest(param, testsProperties);
+    }
 }
