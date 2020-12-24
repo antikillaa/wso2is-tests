@@ -55,4 +55,11 @@ public class WSOStepdefs {
         par.put("env", env);
         acRequestService.sendLogoutRequest(par, testsProperties);
     }
+
+    @Then("{string} Send login by Grant type QR Auth Request")
+    public void sendLoginByGrantTypeQRAuthRequest(String env) {
+        Map par = new HashMap();
+        par.put("env", env);
+        acRequestService.sendLoginByGrantTypeQRAuthRequest(par, testsProperties);
+    }
 }

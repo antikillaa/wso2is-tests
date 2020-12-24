@@ -124,9 +124,32 @@ public class WSORequestServiceImpl implements WsoRequestService {
         ValidatableResponse r = given().log().everything(true)
                 .headers(getLoginHeaderWithFinger(RUN_CONTEXT.get("par", Map.class), testsProperties))
                 .params(body)
-//                .cookies(RUN_CONTEXT.get("login", ValidatableResponse.class).extract().cookies())
                 .contentType(ContentType.URLENC)
                 .get(URL)
+                .then().log().all(true);
+        RUN_CONTEXT.put("responseBody", r);
+    }
+
+    @Override
+    public void sendLoginByGrantTypeQRAuthRequest(Map env, TestsProperties testsProperties) {
+        String URL = getLoginURL(env, testsProperties);
+
+        Map property = RUN_CONTEXT.get("login", ValidatableResponse.class)
+                .extract().as(Map.class);
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("grant_type", "qr_auth");
+        body.put("jwt", property.get("id_token"));
+        body.put("scope", "openid");
+        body.put("User-Agent", "test");
+        body.put("x-finger-print", "123123");
+
+        ValidatableResponse r = given().log().everything(true)
+                .headers(getLoginHeaderWithFinger(RUN_CONTEXT.get("par", Map.class), testsProperties))
+                .params(body)
+                .cookies(RUN_CONTEXT.get("login", ValidatableResponse.class).extract().cookies())
+                .contentType(ContentType.URLENC)
+                .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
     }

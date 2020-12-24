@@ -3,7 +3,7 @@ Feature: Grant type Login Stub
   @k3
   Scenario: Grant type Login Success
     Then Send login by Grant type Request
-      | grandType| id_type | id    | scope | finger_print |
+      | grandType | id_type | id       | scope | finger_print |
       | login     | login   | 20002571 | true  | k3           |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
