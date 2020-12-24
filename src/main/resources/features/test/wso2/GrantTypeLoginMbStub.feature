@@ -51,3 +51,13 @@ Feature: Grant type Login_Mb Stub
     And Response Body contains key: "id_token"
     And Response Body contains key: "refresh_token"
     And Response Body contains key: "scope"
+
+  @test
+  Scenario: Grant type Login_Mb Logout
+    Then Send login by Grant type Request
+      | grandType | id_type | id       | finger_print | scope | password | env  |
+      | login_mb  | login   | 11000035 | true         | true  | true     | test |
+    And Status code response is: "200"
+
+    Then "test" Send Logout Request
+    And Status code response is: "200"

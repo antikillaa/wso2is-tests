@@ -2,6 +2,7 @@ package ru.croc.vtb.wso2.api.tests.impl.request;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
@@ -102,8 +103,30 @@ public class WSORequestServiceImpl implements WsoRequestService {
         ValidatableResponse r = given().log().everything(true)
                 .headers(getLoginHeaderWithFinger(RUN_CONTEXT.get("par", Map.class), testsProperties))
                 .params(body)
+                .cookies(RUN_CONTEXT.get("login", ValidatableResponse.class).extract().cookies())
                 .contentType(ContentType.URLENC)
                 .post(URL)
+                .then().log().all(true);
+        RUN_CONTEXT.put("responseBody", r);
+    }
+
+    @Override
+    public void sendLogoutRequest(Map env, TestsProperties testsProperties) {
+        String URLtemp = getLoginURL(env, testsProperties);
+        String URL = StringUtils.remove(URLtemp, "oauth2/token") + "oidc/logout";
+
+        Map property = RUN_CONTEXT.get("login", ValidatableResponse.class)
+                .extract().as(Map.class);
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("id_token_hint", property.get("id_token"));
+
+        ValidatableResponse r = given().log().everything(true)
+                .headers(getLoginHeaderWithFinger(RUN_CONTEXT.get("par", Map.class), testsProperties))
+                .params(body)
+//                .cookies(RUN_CONTEXT.get("login", ValidatableResponse.class).extract().cookies())
+                .contentType(ContentType.URLENC)
+                .get(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
     }

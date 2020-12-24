@@ -48,4 +48,11 @@ public class WSOStepdefs {
         par.put("env", env);
         acRequestService.sendRefreshTokenRequest(par, testsProperties);
     }
+
+    @Then("{string} Send Logout Request")
+    public void sendLogoutRequest(String env) {
+        Map par = new HashMap();
+        par.put("env", env);
+        acRequestService.sendLogoutRequest(par, testsProperties);
+    }
 }
