@@ -152,6 +152,7 @@ public class WSORequestServiceImpl implements WsoRequestService {
                 .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put("login", r);
     }
 
     private Map<String, Object> getLoginHeaderWithFinger(Map par, TestsProperties testsProperties) {

@@ -6,6 +6,7 @@ Feature: Grant type Login Stub K4
       | grandType | id_type | id       | scope | finger_print | env |
       | login     | login   | 18005101 | true  | k3           | k4  |
     And Status code response is: "401"
+
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"
     And Response Body contains key: "access_token"
@@ -18,6 +19,9 @@ Feature: Grant type Login Stub K4
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
       | login_mb  | login   | 18005101 | true  | k3           | k4  |
+    And Status code response is: "401"
+
+    Then Send Second Factor login by Grant type request
     And Status code response is: "200"
     And Response Body contains key: "access_token"
     And Response Body contains key: "id_token"
