@@ -61,3 +61,17 @@ Feature: Grant type Login_Mb Stub
 
     Then "test" Send Logout Request
     And Status code response is: "200"
+
+  @test
+  Scenario: Grant type Login_Mb Token Exchange
+    Then Send login by Grant type Request
+      | grandType | id_type | id       | finger_print | scope | password | env  |
+      | login_mb  | login   | 11000035 | true         | true  | true     | test |
+    And Status code response is: "200"
+
+    Then "test" Send Token Exchange Request
+    And Status code response is: "200"
+    And Response Body contains key: "access_token"
+    And Response Body contains key: "id_token"
+    And Response Body contains key: "refresh_token"
+    And Response Body contains key: "scope"

@@ -62,4 +62,11 @@ public class WSOStepdefs {
         par.put("env", env);
         acRequestService.sendLoginByGrantTypeQRAuthRequest(par, testsProperties);
     }
+
+    @Then("{string} Send Token Exchange Request")
+    public void sendTokenExchangeRequest(String env) {
+        Map par = new HashMap();
+        par.put("env", env);
+        acRequestService.sendTokenExchangeRequest(par, testsProperties);
+    }
 }

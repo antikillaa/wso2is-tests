@@ -17,4 +17,6 @@ public interface WsoRequestService {
     void sendLogoutRequest(Map env, TestsProperties testsProperties);
 
     void sendLoginByGrantTypeQRAuthRequest(Map par, TestsProperties testsProperties);
+
+    void sendTokenExchangeRequest(Map par, TestsProperties testsProperties);
 }

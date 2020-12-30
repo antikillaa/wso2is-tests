@@ -111,6 +111,28 @@ public class WSORequestServiceImpl implements WsoRequestService {
     }
 
     @Override
+    public void sendTokenExchangeRequest(Map env, TestsProperties testsProperties) {
+        String URL = getLoginURL(env, testsProperties);
+
+        Map property = RUN_CONTEXT.get("login", ValidatableResponse.class)
+                .extract().as(Map.class);
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("grant_type", "token_exchange");
+        body.put("scope", "openid");
+        body.put("jwt", property.get("id_token"));
+
+        ValidatableResponse r = given().log().everything(true)
+                .headers(getLoginHeaderWithFinger(RUN_CONTEXT.get("par", Map.class), testsProperties))
+                .params(body)
+                .cookies(RUN_CONTEXT.get("login", ValidatableResponse.class).extract().cookies())
+                .contentType(ContentType.URLENC)
+                .post(URL)
+                .then().log().all(true);
+        RUN_CONTEXT.put("responseBody", r);
+    }
+
+    @Override
     public void sendLogoutRequest(Map env, TestsProperties testsProperties) {
         String URLtemp = getLoginURL(env, testsProperties);
         String URL = StringUtils.remove(URLtemp, "oauth2/token") + "oidc/logout";
