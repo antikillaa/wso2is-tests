@@ -3,8 +3,8 @@ Feature: Grant type Card Number K3
   @k3
   Scenario: Grant type Card Number: Success
     Then Send login by Grant type Request
-      | grandType   | id_type    | id               | scope | finger_print |
-      | card_number | cardNumber | 4714870091976451 | true  | k3           |
+      | grandType   | id_type    | id               | scope | finger_print | env |
+      | card_number | cardNumber | 4714870078440778 | true  | k3           | k3  |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"
@@ -16,8 +16,8 @@ Feature: Grant type Card Number K3
   @k3
   Scenario: Grant type Card Number Mb: Success
     Then Send login by Grant type Request
-      | grandType      | id_type    | id               | scope | finger_print |
-      | card_number_mb | cardNumber | 4714870091976451 | true  | k3           |
+      | grandType      | id_type    | id               | scope | finger_print | env |
+      | card_number_mb | cardNumber | 4714870078440778 | true  | k3           | k3  |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"
@@ -29,8 +29,8 @@ Feature: Grant type Card Number K3
   @k3
   Scenario: Grant type Card Number Mb: Refresh token
     Then Send login by Grant type Request
-      | grandType   | id_type    | id               | scope | finger_print |
-      | card_number | cardNumber | 4714870091976451 | true  | k3           |
+      | grandType   | id_type    | id               | scope | finger_print | env |
+      | card_number | cardNumber | 4714870078440778 | true  | k3           | k3  |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"
@@ -45,8 +45,8 @@ Feature: Grant type Card Number K3
   @k3
   Scenario: Grant type Card Number Mb: Refresh token
     Then Send login by Grant type Request
-      | grandType      | id_type    | id               | scope | finger_print |
-      | card_number_mb | cardNumber | 4714870091976451 | true  | k3           |
+      | grandType      | id_type    | id               | scope | finger_print | env |
+      | card_number_mb | cardNumber | 4714870078440778 | true  | k3           | k3  |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"
@@ -61,8 +61,8 @@ Feature: Grant type Card Number K3
   @k3
   Scenario: Grant type Card Number Mb: Token Exchange
     Then Send login by Grant type Request
-      | grandType      | id_type    | id               | scope | finger_print |
-      | card_number_mb | cardNumber | 4714870091976451 | true  | k3           |
+      | grandType      | id_type    | id               | scope | finger_print | env |
+      | card_number_mb | cardNumber | 4714870078440778 | true  | k3           | k3  |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"
@@ -77,8 +77,8 @@ Feature: Grant type Card Number K3
   @k3
   Scenario: Grant type card_number_mb Logout
     Then Send login by Grant type Request
-      | grandType      | id_type    | id               | scope | finger_print |
-      | card_number_mb | cardNumber | 4714870091976451 | true  | k3           |
+      | grandType      | id_type    | id               | scope | finger_print | env |
+      | card_number_mb | cardNumber | 4714870078440778 | true  | k3           | k3  |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"
@@ -89,8 +89,8 @@ Feature: Grant type Card Number K3
   @k3
   Scenario: Grant type card_number Logout
     Then Send login by Grant type Request
-      | grandType   | id_type    | id               | scope | finger_print |
-      | card_number | cardNumber | 4714870091976451 | true  | k3           |
+      | grandType   | id_type    | id               | scope | finger_print | env |
+      | card_number | cardNumber | 4714870078440778 | true  | k3           | k3  |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"

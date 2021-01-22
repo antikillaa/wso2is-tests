@@ -2,9 +2,9 @@ Feature: Restore Password K5
 
   @k5
   Scenario: otp alias: Success
-    Then "k5" Send otpRestorePasswordRequest: cred: "30000377", type: "login"
+    Then "k5" Send otpRestorePasswordRequest: cred: "30006300", type: "login"
     And Status code response is: "200"
-    And Response Body contains "ucn" equals "30000377"
+    And Response Body contains "ucn" equals "30006300"
     And Response Body contains key: "transactionId"
 
   @k5
@@ -15,18 +15,18 @@ Feature: Restore Password K5
 
   @k5
   Scenario: pwd: Success
-    Then "k5" Send otpRestorePasswordRequest: cred: "30000377", type: "login"
+    Then "k5" Send otpRestorePasswordRequest: cred: "30006300", type: "login"
     And Status code response is: "200"
-    And Response Body contains "ucn" equals "30000377"
+    And Response Body contains "ucn" equals "30006300"
     And Response Body contains key: "transactionId"
     Then "k5" Send pwdRestorePasswordRequest
     And Status code response is: "200"
 
   @k5
   Scenario: pwd: Resend otp
-    Then "k5" Send otpRestorePasswordRequest: cred: "30000377", type: "login"
+    Then "k5" Send otpRestorePasswordRequest: cred: "30006300", type: "login"
     And Status code response is: "200"
-    And Response Body contains "ucn" equals "30000377"
+    And Response Body contains "ucn" equals "30006300"
     And Response Body contains key: "transactionId"
     Then "k5" Send pwdRestorePasswordRequest
     And Status code response is: "200"

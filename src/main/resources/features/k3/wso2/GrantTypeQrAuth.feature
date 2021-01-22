@@ -19,8 +19,8 @@ Feature: Grant type QR Auth
   @k3
   Scenario: Grant type QR Auth Refresh Token
     Then Send login by Grant type Request
-      | grandType | id_type | id       | scope | finger_print |
-      | login     | login   | 20002571 | true  | k3           |
+      | grandType | id_type | id       | scope | finger_print | env |
+      | login     | login   | 20002571 | true  | k3           | k3  |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"
@@ -38,8 +38,8 @@ Feature: Grant type QR Auth
   @k3
   Scenario: Grant type QR Auth Token Exchange
     Then Send login by Grant type Request
-      | grandType | id_type | id       | scope | finger_print |
-      | login     | login   | 20002571 | true  | k3           |
+      | grandType | id_type | id       | scope | finger_print | env |
+      | login     | login   | 20002571 | true  | k3           | k3  |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"

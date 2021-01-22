@@ -20,13 +20,18 @@ public class QRRequestServiceImpl implements QRRequestService {
     private static final Logger LOGGER = LoggerFactory.getLogger(QRRequestServiceImpl.class);
 
     QRBodyService acBodyService = new QRBodyServiceImpl();
+    private final String privateURLQr = "/mobilebanking/api-gw/private/integration/integration-auth-qrcode";
+//    private String privateURLQr = "/msa/api-gw/private/integration/integration-auth-qrcode";
+
+    private final String URLQr = "/msa/api-gw/integration/integration-auth-qrcode";
+
 
     @Override
     public ValidatableResponse generateQR(String env, TestsProperties testsProperties) {
         String requestPath = "/generate-qr";
-        String URL = getQRRequestUrl(requestPath, env, testsProperties);
+        String URL = getQRRequestUrl(env, testsProperties) + URLQr + requestPath;
         Map<String, Object> header = getQRHeaderWithFinger(testsProperties);
-        header.put("Referer", URL);
+        header.put("Referer", getQRRequestUrl(env, testsProperties) + "/login");
 
         ValidatableResponse r = given().log().everything(true)
                 .contentType(ContentType.JSON)
@@ -41,7 +46,7 @@ public class QRRequestServiceImpl implements QRRequestService {
     @Override
     public ValidatableResponse verifyQR(String env, TestsProperties testsProperties) {
         String requestPath = "/verify-qr";
-        String URL = getQRRequestUrlPrivate(requestPath, env, testsProperties);
+        String URL = getQRRequestUrlPrivate(env, testsProperties) + privateURLQr + requestPath;
 
         Map qrResponse = RUN_CONTEXT.get("qr", ValidatableResponse.class).extract().as(Map.class);
         LOGGER.info(qrResponse.toString());
@@ -51,13 +56,14 @@ public class QRRequestServiceImpl implements QRRequestService {
 
         Map<String, Object> header = new HashMap<>();
         header.put("Authorization", "Bearer " + loginResponse.get("id_token"));
-        header.put("Referer", URL);
+        header.put("Referer", getQRRequestUrlPrivate(env, testsProperties) + "/login");
 
         Map<String, Object> body = new HashMap<>();
         body.put("id", qrResponse.get("id"));
 
         ValidatableResponse r = given().log().everything(true)
                 .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
                 .headers(header)
                 .body(body)
                 .cookies(RUN_CONTEXT.get("login", ValidatableResponse.class).extract().cookies())
@@ -71,7 +77,7 @@ public class QRRequestServiceImpl implements QRRequestService {
     @Override
     public ValidatableResponse approveQR(String env, TestsProperties testsProperties) {
         String requestPath = "/approve-consent";
-        String URL = getQRRequestUrlPrivate(requestPath, env, testsProperties);
+        String URL = getQRRequestUrlPrivate(env, testsProperties) + privateURLQr + requestPath;
 
         Map qrResponse = RUN_CONTEXT.get("qr", ValidatableResponse.class).extract().as(Map.class);
         LOGGER.info(qrResponse.toString());
@@ -101,7 +107,7 @@ public class QRRequestServiceImpl implements QRRequestService {
         return r;
     }
 
-    private String getQRRequestUrl(String requestPath, String env, TestsProperties testsProperties) {
+    private String getQRRequestUrl(String env, TestsProperties testsProperties) {
         String url = null;
         switch (env) {
             case "k3":
@@ -117,10 +123,10 @@ public class QRRequestServiceImpl implements QRRequestService {
                 url = testsProperties.getQrServiceUrlTest();
                 break;
         }
-        return url + requestPath;
+        return url;
     }
 
-    private String getQRRequestUrlPrivate(String requestPath, String env, TestsProperties testsProperties) {
+    private String getQRRequestUrlPrivate(String env, TestsProperties testsProperties) {
         String url = null;
         switch (env) {
             case "k3":
@@ -136,7 +142,7 @@ public class QRRequestServiceImpl implements QRRequestService {
                 url = testsProperties.getQrServiceUrlTest();
                 break;
         }
-        return url + requestPath;
+        return url;
     }
 
     private Map<String, Object> getQRHeaderWithFinger(TestsProperties testsProperties) {

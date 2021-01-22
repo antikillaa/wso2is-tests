@@ -3,8 +3,8 @@ Feature: Grant type Device Token Stub
   @skip
   Scenario: Grant type DeviceToken: Two Factor Success
     Then Send login by Grant type Request
-      | grandType    | id_type       | id               | finger_print | scope | Authorization |
-      | device_token | deviceTokenID | 8888000000056316 | true         | true  | Basic Uzh3dWRkMmY2bHdIVEVra214NHB5VGxsbU1ZYTo5aXhXaGhhcHRmem1kMWlLMXd0UTVPU3FYTU1h |
+      | grandType    | id_type       | id               | finger_print | scope | env | Authorization                                                                      |
+      | device_token | deviceTokenID | 8888000000056316 | true         | true  | k3  | Basic Uzh3dWRkMmY2bHdIVEVra214NHB5VGxsbU1ZYTo5aXhXaGhhcHRmem1kMWlLMXd0UTVPU3FYTU1h |
     And Status code response is: "401"
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"

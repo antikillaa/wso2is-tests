@@ -40,6 +40,7 @@ public class WSOBodyServiceImpl implements WSOBodyService {
         if (par.get("password") == null || par.get("password").equals("true")) {
             body.put("password", testsProperties.getUserPassword());
         }
+
         body.put("grant_type", par.get("grandType"));
         if (par.get("scope").equals("true")) {
             body.put("scope", "openid");

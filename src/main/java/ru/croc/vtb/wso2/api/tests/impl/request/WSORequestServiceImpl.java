@@ -114,6 +114,8 @@ public class WSORequestServiceImpl implements WsoRequestService {
     public void sendTokenExchangeRequest(Map env, TestsProperties testsProperties) {
         String URL = getLoginURL(env, testsProperties);
 
+        Map par = RUN_CONTEXT.get("par", Map.class);
+
         Map property = RUN_CONTEXT.get("login", ValidatableResponse.class)
                 .extract().as(Map.class);
 
@@ -122,8 +124,12 @@ public class WSORequestServiceImpl implements WsoRequestService {
         body.put("scope", "openid");
         body.put("jwt", property.get("id_token"));
 
+        if (par.get("grandType").equals("guest_auth")) {
+            body.put("grant_type", "token_exchange_guest");
+        }
+
         ValidatableResponse r = given().log().everything(true)
-                .headers(getLoginHeaderWithFinger(RUN_CONTEXT.get("par", Map.class), testsProperties))
+                .headers(getLoginHeaderWithFinger(par, testsProperties))
                 .params(body)
                 .cookies(RUN_CONTEXT.get("login", ValidatableResponse.class).extract().cookies())
                 .contentType(ContentType.URLENC)
@@ -207,17 +213,24 @@ public class WSORequestServiceImpl implements WsoRequestService {
     }
 
     private String getLoginURL(Map par, TestsProperties testsProperties) {
+        String URL = null;
         if (par.get("env") != null) {
             switch (par.get("env").toString()) {
+                case "k3":
+                    URL = testsProperties.getUrlToProxyK3();
+                    break;
                 case "k4":
-                    return testsProperties.getUrlToProxyK4();
+                    URL = testsProperties.getUrlToProxyK4();
+                    break;
                 case "k5":
-                    return testsProperties.getUrlToProxyK5();
+                    URL = testsProperties.getUrlToProxyK5();
+                    break;
                 case "test":
-                    return testsProperties.getUrlToProxyTest();
+                    URL = testsProperties.getUrlToProxyTest();
+                    break;
             }
         }
-        return testsProperties.getUrlToProxyK3();
+        return URL + ":8989/oauth2/token";
     }
 
 }

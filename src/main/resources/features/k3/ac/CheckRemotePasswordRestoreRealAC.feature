@@ -2,7 +2,7 @@ Feature: Check Remote Password Restore k3
 
   @k3
   Scenario: CheckRemotePasswordRestore: Success
-    Then "k3" Send CheckRemotePasswordRestore Request id: "20002554"
+    Then "k3" Send CheckRemotePasswordRestore Request id: "18001042"
     And Status code response is: "200"
 
   @k3
