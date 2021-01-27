@@ -33,6 +33,8 @@ Feature: Grant type Guest Auth k3
 
   @skip
   Scenario: Grant type Guest Auth k3 Token Exchange
+    Then "k3" Send Token Exchange Guest Request
+
     Then Send login by Grant type Request
       | grandType  | id_type      | id         | scope | finger_print | env | Authorization                                                                      |
       | guest_auth | phone_number | 9809935444 | true  | k3           | k3  | Basic MjcxSVNzWGZ5Y1U2VnRTZkw0Z2dfTURYUWxVYTpKRzByRWZkRmZidDM4UTB4UkV0UlNmWTFWdndh |
@@ -41,7 +43,7 @@ Feature: Grant type Guest Auth k3
     Then Send Second Factor login by Grant type request
     And Status code response is: "200"
 
-    Then "k3" Send Token Exchange Request
+    Then "k3" Send Token Exchange Guest Request
     And Status code response is: "200"
     And Response Body contains key: "access_token"
     And Response Body contains key: "id_token"

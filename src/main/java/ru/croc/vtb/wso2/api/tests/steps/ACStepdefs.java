@@ -10,6 +10,7 @@ import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
 import ru.croc.vtb.wso2.api.tests.impl.request.AcRequestServiceImpl;
 import ru.croc.vtb.wso2.api.tests.services.request.AcRequestService;
 
+import java.util.List;
 import java.util.Map;
 
 import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
@@ -50,9 +51,11 @@ public class ACStepdefs {
         acRequestService.deviceTokenRequest(arg0, env, testsProperties);
     }
 
-    @Then("{string} Send authenticateByClientId Request id: {string}")
-    public void sendAuthenticateByClientIdRequestId(String env, String arg0) {
-        acRequestService.authenticateByClientIdRequest(arg0, env, testsProperties);
+    @Then("Send authenticateByClientId Request")
+    public void sendAuthenticateByClientIdRequestId(DataTable dataTable) {
+        List<Map<Object, Object>> par = dataTable.asMaps(String.class, String.class);
+        RUN_CONTEXT.put("par", par.get(0));
+        acRequestService.authenticateByClientIdRequest(par.get(0), testsProperties);
     }
 
     @Then("{string} Send GetUserDiscredited Request id: {string}")

@@ -67,6 +67,15 @@ public class WSOStepdefs {
     public void sendTokenExchangeRequest(String env) {
         Map par = new HashMap();
         par.put("env", env);
+        par.put("exchangeGuest", false);
+        acRequestService.sendTokenExchangeRequest(par, testsProperties);
+    }
+
+    @Then("{string} Send Token Exchange Guest Request")
+    public void sendTokenExchangeGuestRequest(String env) {
+        Map par = new HashMap();
+        par.put("env", env);
+        par.put("exchangeGuest", true);
         acRequestService.sendTokenExchangeRequest(par, testsProperties);
     }
 }

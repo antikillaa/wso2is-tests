@@ -39,6 +39,7 @@ public class Application {
     public static void main(String[] args) throws InitializationError {
         SpringApplication.run(Application.class, args);
         RestAssured.useRelaxedHTTPSValidation();
+        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
         Cucumber test = new Cucumber(RunCucumberTestK3.class);
         new JUnitCore().run(test);
         exit(200);

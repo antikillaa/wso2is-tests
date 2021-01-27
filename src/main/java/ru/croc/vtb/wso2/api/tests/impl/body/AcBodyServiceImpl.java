@@ -43,10 +43,10 @@ public class AcBodyServiceImpl implements AcBodyService {
         return ucn;
     }
 
-    public Map<String, Object> getAuthenticateByClientIdRequestBody(String id) {
+    public Map<String, Object> getAuthenticateByClientIdRequestBody(Map par) {
         Map<String, Object> ucn = new HashMap<>();
-        ucn.put("id", id);
-        ucn.put("domain", "master");
+        ucn.put("id", par.get("id"));
+        ucn.put("domain", par.get("domain"));
         return ucn;
     }
 }

@@ -14,7 +14,7 @@ public interface AcRequestService {
 
     void deviceTokenRequest(String arg0, String env, TestsProperties testsProperties);
 
-    void authenticateByClientIdRequest(String arg0, String env, TestsProperties testsProperties);
+    void authenticateByClientIdRequest(Map par, TestsProperties testsProperties);
 
     void getUserDiscreditedRequest(String arg0, String env, TestsProperties testsProperties);
 

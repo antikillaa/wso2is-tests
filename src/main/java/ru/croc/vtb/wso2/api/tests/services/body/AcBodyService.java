@@ -14,6 +14,6 @@ public interface AcBodyService {
 
     Map<String, Object> getUcnByAliasAndPhoneAndDomainRequestBody(String alias, String phone);
 
-    Map<String, Object> getAuthenticateByClientIdRequestBody(String id);
+    Map<String, Object> getAuthenticateByClientIdRequestBody(Map par);
 
 }

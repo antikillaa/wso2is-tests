@@ -120,7 +120,13 @@ public class WSORequestServiceImpl implements WsoRequestService {
                 .extract().as(Map.class);
 
         Map<String, Object> body = new HashMap<>();
-        body.put("grant_type", "token_exchange");
+
+        if (env.get("exchangeGuest").equals(true)) {
+            body.put("grant_type", "token_exchange_guest");
+        } else {
+            body.put("grant_type", "token_exchange");
+        }
+
         body.put("scope", "openid");
         body.put("jwt", property.get("id_token"));
 

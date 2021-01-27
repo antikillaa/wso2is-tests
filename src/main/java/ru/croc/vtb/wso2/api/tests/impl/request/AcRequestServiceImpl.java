@@ -83,11 +83,11 @@ public class AcRequestServiceImpl implements AcRequestService {
 
 
     @Override
-    public void authenticateByClientIdRequest(String id, String env, TestsProperties testsProperties) {
+    public void authenticateByClientIdRequest(Map par, TestsProperties testsProperties) {
         String requestPath = "/authentication/authenticateByClientId";
-        String URL = getAcRequestUrl(requestPath, env, testsProperties);
+        String URL = getAcRequestUrl(requestPath, par.get("env").toString(), testsProperties);
 
-        Map<String, Object> body = acBodyService.getAuthenticateByClientIdRequestBody(id);
+        Map<String, Object> body = acBodyService.getAuthenticateByClientIdRequestBody(par);
 
         ValidatableResponse r = given().log().everything(true)
                 .body(body)
