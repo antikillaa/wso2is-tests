@@ -36,13 +36,6 @@ public class AcBodyServiceImpl implements AcBodyService {
         return body;
     }
 
-    public Map<String, Object> getUcnByAliasAndPhoneAndDomainRequestBody(String alias, String phone) {
-        Map<String, Object> ucn = new HashMap<>();
-        ucn.put("phone", phone);
-        ucn.put("alias", alias);
-        return ucn;
-    }
-
     public Map<String, Object> getAuthenticateByClientIdRequestBody(Map par) {
         Map<String, Object> ucn = new HashMap<>();
         ucn.put("id", par.get("id"));

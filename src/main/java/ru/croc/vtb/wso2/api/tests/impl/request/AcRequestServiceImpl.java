@@ -69,18 +69,24 @@ public class AcRequestServiceImpl implements AcRequestService {
     }
 
     @Override
-    public void GetUcnByAliasAndPhoneAndDomainRequest(String alias, String phone, String env, TestsProperties testsProperties) {
+    public void GetUcnByAliasAndPhoneAndDomainRequest(Map<String, String> par, TestsProperties testsProperties) {
         String requestPath = "/authentication/getUcnByAliasOrPhone";
-        Map<String, Object> body = acBodyService.getUcnByAliasAndPhoneAndDomainRequestBody(alias, phone);
-        String URL = getAcRequestUrl(requestPath, env, testsProperties);
+        Map<String, Object> body = new HashMap<>();
+        if (!(par.get("phone") == null)) {
+            body.put("phone", (par.get("phone")));
+        }
+        if (!(par.get("alias") == null)) {
+            body.put("alias", (par.get("alias")));
+        }
+        body.put("domain", (par.get("domain")));
+
+        String URL = getAcRequestUrl(requestPath, par.get("env"), testsProperties);
         ValidatableResponse r = given().log().everything(true)
                 .params(body)
                 .get(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
     }
-
-
 
     @Override
     public void authenticateByClientIdRequest(Map par, TestsProperties testsProperties) {

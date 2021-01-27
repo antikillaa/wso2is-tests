@@ -10,7 +10,7 @@ public interface AcRequestService {
 
     void changePasswordRequest(String env, String id, String password, TestsProperties testsProperties);
 
-    void GetUcnByAliasAndPhoneAndDomainRequest(String arg0, String arg1, String env, TestsProperties testsProperties);
+    void GetUcnByAliasAndPhoneAndDomainRequest(Map<String, String> par, TestsProperties testsProperties);
 
     void deviceTokenRequest(String arg0, String env, TestsProperties testsProperties);
 

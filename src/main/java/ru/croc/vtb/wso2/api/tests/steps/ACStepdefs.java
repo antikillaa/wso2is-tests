@@ -35,15 +35,11 @@ public class ACStepdefs {
         acRequestService.changePasswordRequest(env, id, password, testsProperties);
     }
 
-    @Then("{string} Send GetUcnByAliasAndPhoneAndDomain Request Alias: {string}, Phone: {string}")
-    public void sendGetUcnByAliasAndPhoneAndDomainRequestAliasPhone(String env, String arg0, String arg1) {
-        if (arg0.equals("null")) {
-            arg0 = null;
-        }
-        if (arg1.equals("null")) {
-            arg1 = null;
-        }
-        acRequestService.GetUcnByAliasAndPhoneAndDomainRequest(arg0, arg1, env, testsProperties);
+    @Then("Send GetUcnByAliasAndPhoneAndDomain Request")
+    public void sendGetUcnByAliasAndPhoneAndDomainRequestAliasPhone(DataTable dataTable) {
+        Map<String, String> param = dataTable.asMaps().get(0);
+        RUN_CONTEXT.put("par", param);
+        acRequestService.GetUcnByAliasAndPhoneAndDomainRequest(param, testsProperties);
     }
 
     @Then("{string} Send DeviceToken Request id: {string}")
