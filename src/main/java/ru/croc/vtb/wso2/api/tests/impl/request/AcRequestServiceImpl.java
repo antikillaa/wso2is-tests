@@ -98,15 +98,15 @@ public class AcRequestServiceImpl implements AcRequestService {
         RUN_CONTEXT.put("responseBody", r);
     }
 
-    public void getUserDiscreditedRequest(String id, String env, TestsProperties testsProperties) {
+    public void getUserDiscreditedRequest(Map<String, String> param, TestsProperties testsProperties) {
         String requestPath = "/authentication/getUserDiscredited";
-        String URL = getAcRequestUrl(requestPath, env, testsProperties);
+        String URL = getAcRequestUrl(requestPath, param.get("env"), testsProperties);
 
         ValidatableResponse r = given().log().everything(true)
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .param("id", id)
-                .param("domain", "master")
+                .param("id", param.get("id"))
+                .param("domain", param.get("domain"))
                 .get(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
@@ -124,17 +124,16 @@ public class AcRequestServiceImpl implements AcRequestService {
         RUN_CONTEXT.put("responseBody", r);
     }
 
-
     @Override
-    public void getCheckRemotePasswordRestoreRequest(String id, String env, TestsProperties testsProperties) {
+    public void getCheckRemotePasswordRestoreRequest(Map<String, String> param, TestsProperties testsProperties) {
         String requestPath = "/authentication/checkRemotePasswordRestore";
-        String URL = getAcRequestUrl(requestPath, env, testsProperties);
+        String URL = getAcRequestUrl(requestPath, param.get("env"), testsProperties);
 
         ValidatableResponse r = given().log().everything(true)
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .param("id", id)
-                .param("domain", "master")
+                .param("id", param.get("id"))
+                .param("domain", param.get("domain"))
                 .get(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);

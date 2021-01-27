@@ -16,9 +16,9 @@ public interface AcRequestService {
 
     void authenticateByClientIdRequest(Map par, TestsProperties testsProperties);
 
-    void getUserDiscreditedRequest(String arg0, String env, TestsProperties testsProperties);
+    void getUserDiscreditedRequest(Map<String, String> param, TestsProperties testsProperties);
 
-    void getCheckRemotePasswordRestoreRequest(String arg0, String env, TestsProperties testsProperties);
+    void getCheckRemotePasswordRestoreRequest(Map<String, String> param, TestsProperties testsProperties);
 
     void sendAddGuestRequest(String env, TestsProperties testsProperties);
 

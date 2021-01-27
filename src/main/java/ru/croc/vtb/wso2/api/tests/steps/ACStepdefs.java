@@ -58,15 +58,18 @@ public class ACStepdefs {
         acRequestService.authenticateByClientIdRequest(par.get(0), testsProperties);
     }
 
-    @Then("{string} Send GetUserDiscredited Request id: {string}")
-    public void sendGetUserDiscreditedRequestId(String env, String arg0) {
-        acRequestService.getUserDiscreditedRequest(arg0, env, testsProperties);
+    @Then("Send GetUserDiscredited Request")
+    public void sendGetUserDiscreditedRequestId(DataTable par) {
+        Map<String, String> param = par.asMaps().get(0);
+        acRequestService.getUserDiscreditedRequest(param, testsProperties);
     }
 
-    @Then("{string} Send CheckRemotePasswordRestore Request id: {string}")
-    public void sendCheckRemotePasswordRestoreRequestId(String env, String arg0) {
-        acRequestService.getCheckRemotePasswordRestoreRequest(arg0, env, testsProperties);
+    @Then("Send CheckRemotePasswordRestore Request")
+    public void sendCheckRemotePasswordRestoreRequestId(DataTable par) {
+        Map<String, String> param = par.asMaps().get(0);
+        acRequestService.getCheckRemotePasswordRestoreRequest(param, testsProperties);
     }
+
 
     @Then("{string} Send Add Guest Request")
     public void sendAddGuestRequest(String env) {
