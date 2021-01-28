@@ -17,9 +17,9 @@ public class IntegrationAuthRequestServiceImpl implements IntegrationAuthRequest
     private static final Logger LOGGER = LoggerFactory.getLogger(IntegrationAuthRequestServiceImpl.class);
 
     @Override
-    public void sendGetUserIntegrationAuthRequest(Map<Object, Object> par, TestsProperties testsProperties) {
+    public void sendGetUserIntegrationAuthRequest(Map<String, String> par, TestsProperties testsProperties) {
         String requestPath = "/user";
-        String URL = getIntegrationAuthRequestUrl(requestPath, par.get("env").toString(), testsProperties);
+        String URL = getIntegrationAuthRequestUrl(requestPath, par.get("env"), testsProperties);
 
         Map<String, Object> body = new HashMap<>();
         body.put("ucn", par.get("ucn"));
@@ -31,6 +31,23 @@ public class IntegrationAuthRequestServiceImpl implements IntegrationAuthRequest
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .get(URL)
+                .then().log().all(true);
+        RUN_CONTEXT.put("responseBody", r);
+    }
+
+    @Override
+    public void sendGetOtpIntegrationAuthRequest(Map<String, String> par, TestsProperties testsProperties) {
+        String requestPath = "/authentication/getOtp";
+        String URL = getIntegrationAuthRequestUrl(requestPath, par.get("env"), testsProperties);
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("id", par.get("id"));
+
+        ValidatableResponse r = given().log().everything(true)
+                .body(body)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
     }

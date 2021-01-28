@@ -6,5 +6,7 @@ import java.util.Map;
 
 public interface IntegrationAuthRequestService {
 
-    void sendGetUserIntegrationAuthRequest(Map<Object, Object> par, TestsProperties testsProperties);
+    void sendGetUserIntegrationAuthRequest(Map<String, String> par, TestsProperties testsProperties);
+
+    void sendGetOtpIntegrationAuthRequest(Map<String, String> param, TestsProperties testsProperties);
 }
