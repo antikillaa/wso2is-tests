@@ -10,8 +10,6 @@ import ru.croc.vtb.wso2.api.tests.services.request.IntegrationAuthRequestService
 
 import java.util.Map;
 
-import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
-
 public class IntegrationAuthStepdefs {
 
     IntegrationAuthRequestService integrationAuthRequestService = new IntegrationAuthRequestServiceImpl();
@@ -22,14 +20,18 @@ public class IntegrationAuthStepdefs {
     @Then("Send Get user Integration-auth Request")
     public void sendGetUserIntegrationAuthRequest(DataTable par) {
         Map<String, String> param = par.asMaps().get(0);
-        RUN_CONTEXT.put("getSmsOtp", param);
         integrationAuthRequestService.sendGetUserIntegrationAuthRequest(param, testsProperties);
     }
 
     @Then("Send Get Otp Integration-auth Request")
     public void sendGetOtpIntegrationAuthRequest(DataTable par) {
         Map<String, String> param = par.asMaps().get(0);
-        RUN_CONTEXT.put("getSmsOtp", param);
         integrationAuthRequestService.sendGetOtpIntegrationAuthRequest(param, testsProperties);
+    }
+
+    @Then("Send Get Entry Integration-auth Request")
+    public void sendGetEntryIntegrationAuthRequest(DataTable par) {
+        Map<String, String> param = par.asMaps().get(0);
+        integrationAuthRequestService.sendGetEntryIntegrationAuthRequest(param, testsProperties);
     }
 }

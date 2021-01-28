@@ -9,4 +9,6 @@ public interface IntegrationAuthRequestService {
     void sendGetUserIntegrationAuthRequest(Map<String, String> par, TestsProperties testsProperties);
 
     void sendGetOtpIntegrationAuthRequest(Map<String, String> param, TestsProperties testsProperties);
+
+    void sendGetEntryIntegrationAuthRequest(Map<String, String> param, TestsProperties testsProperties);
 }

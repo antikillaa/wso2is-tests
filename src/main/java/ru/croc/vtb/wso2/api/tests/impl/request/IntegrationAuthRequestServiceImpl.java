@@ -37,11 +37,31 @@ public class IntegrationAuthRequestServiceImpl implements IntegrationAuthRequest
 
     @Override
     public void sendGetOtpIntegrationAuthRequest(Map<String, String> par, TestsProperties testsProperties) {
-        String requestPath = "/authentication/getOtp";
+        String requestPath = "/authentication/" + par.get("url");
         String URL = getIntegrationAuthRequestUrl(requestPath, par.get("env"), testsProperties);
 
         Map<String, Object> body = new HashMap<>();
         body.put("id", par.get("id"));
+
+        ValidatableResponse r = given().log().everything(true)
+                .body(body)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .post(URL)
+                .then().log().all(true);
+        RUN_CONTEXT.put("responseBody", r);
+    }
+
+    @Override
+    public void sendGetEntryIntegrationAuthRequest(Map<String, String> par, TestsProperties testsProperties) {
+        String requestPath = "/get-entry";
+        String URL = getIntegrationAuthRequestUrl(requestPath, par.get("env"), testsProperties);
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("ucn", par.get("ucn"));
+        body.put("domain", par.get("domain"));
+        body.put("system", par.get("system"));
+        body.put("type", 1);
 
         ValidatableResponse r = given().log().everything(true)
                 .body(body)
