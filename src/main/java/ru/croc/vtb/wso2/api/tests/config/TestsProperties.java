@@ -124,6 +124,18 @@ public class TestsProperties {
     @Value("${test.acTestHostK5}")
     private String acTestHostK5;
 
+    @Value("${test.iacTestHostK3}")
+    private String iacTestHostK3;
+
+    @Value("${test.iacTestHostK4}")
+    private String iacTestHostK4;
+
+    @Value("${test.iacTestHostK5}")
+    private String iacTestHostK5;
+
+    @Value("${test.iacTestHostTest}")
+    private String iacTestHostTest;
+
     @Value("${test.ac.portMock}")
     private String acPortMock;
 
