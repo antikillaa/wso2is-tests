@@ -34,4 +34,10 @@ public class IntegrationAuthStepdefs {
         Map<String, String> param = par.asMaps().get(0);
         integrationAuthRequestService.sendGetEntryIntegrationAuthRequest(param, testsProperties);
     }
+
+    @Then("Send Get Devices Integration-auth Request")
+    public void sendGetDevicesIntegrationAuthRequest(DataTable par) {
+        Map<String, String> param = par.asMaps().get(0);
+        integrationAuthRequestService.sendGetDevicesIntegrationAuthRequest(param, testsProperties);
+    }
 }

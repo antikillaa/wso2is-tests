@@ -72,6 +72,19 @@ public class IntegrationAuthRequestServiceImpl implements IntegrationAuthRequest
         RUN_CONTEXT.put("responseBody", r);
     }
 
+    @Override
+    public void sendGetDevicesIntegrationAuthRequest(Map<String, String> par, TestsProperties testsProperties) {
+        String requestPath = "/devices/";
+        String URL = getIntegrationAuthRequestUrl(requestPath, par.get("env"), testsProperties);
+
+        ValidatableResponse r = given().log().everything(true)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .get(URL+par.get("device"))
+                .then().log().all(true);
+        RUN_CONTEXT.put("responseBody", r);
+    }
+
     private String getIntegrationAuthRequestUrl(String requestPath, String env, TestsProperties testsProperties) {
         String url = null;
         switch (env) {
