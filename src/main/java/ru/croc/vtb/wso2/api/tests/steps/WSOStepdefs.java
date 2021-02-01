@@ -19,7 +19,6 @@ public class WSOStepdefs {
     @Getter
     private TestsProperties testsProperties;
 
-/*    @Then("Send Second Factor login by Grant type request")*/
 private void sendSecondFactorLoginMBRequest() {
     acRequestService.getSecondFactorGrandTypeRequest(testsProperties);
 }
@@ -29,9 +28,10 @@ private void sendSecondFactorLoginMBRequest() {
         Map<String, String> param = par.asMaps().get(0);
         RUN_CONTEXT.put("par", param);
         acRequestService.sendGetTokenDTORequest(param, testsProperties);
-        if (param.get("env").equals("k3") || param.get("env").equals("k4")) {
-            sendSecondFactorLoginMBRequest();
-        }
+        /**
+         Send second factor request
+         */
+        sendSecondFactorLoginMBRequest();
     }
 
     @Then("{string} Send Refresh token Request")
