@@ -6,9 +6,6 @@ Feature: Grant type Guest Auth k3
       | grandType  | id_type      | id         | scope | finger_print | env | Authorization                                                                      |
       | guest_auth | phone_number | 9809935444 | true  | k3           | k3  | Basic MjcxSVNzWGZ5Y1U2VnRTZkw0Z2dfTURYUWxVYTpKRzByRWZkRmZidDM4UTB4UkV0UlNmWTFWdndh |
 
-    And Status code response is: "401"
-    Then Send Second Factor login by Grant type request
-
     And Status code response is: "200"
     And Response Body contains key: "access_token"
     And Response Body contains key: "id_token"
@@ -20,8 +17,6 @@ Feature: Grant type Guest Auth k3
     Then Send login by Grant type Request
       | grandType  | id_type      | id         | scope | finger_print | env | Authorization                                                                      |
       | guest_auth | phone_number | 9809935444 | true  | k3           | k3  | Basic MjcxSVNzWGZ5Y1U2VnRTZkw0Z2dfTURYUWxVYTpKRzByRWZkRmZidDM4UTB4UkV0UlNmWTFWdndh |
-    And Status code response is: "401"
-    Then Send Second Factor login by Grant type request
     And Status code response is: "200"
 
     Then "k3" Send Refresh token Request
@@ -38,9 +33,6 @@ Feature: Grant type Guest Auth k3
     Then Send login by Grant type Request
       | grandType  | id_type      | id         | scope | finger_print | env | Authorization                                                                      |
       | guest_auth | phone_number | 9809935444 | true  | k3           | k3  | Basic MjcxSVNzWGZ5Y1U2VnRTZkw0Z2dfTURYUWxVYTpKRzByRWZkRmZidDM4UTB4UkV0UlNmWTFWdndh |
-
-    And Status code response is: "401"
-    Then Send Second Factor login by Grant type request
     And Status code response is: "200"
 
     Then "k3" Send Token Exchange Guest Request
@@ -55,9 +47,6 @@ Feature: Grant type Guest Auth k3
     Then Send login by Grant type Request
       | grandType  | id_type      | id         | scope | finger_print | env | Authorization                                                                      |
       | guest_auth | phone_number | 9809935444 | true  | k3           | k3  | Basic MjcxSVNzWGZ5Y1U2VnRTZkw0Z2dfTURYUWxVYTpKRzByRWZkRmZidDM4UTB4UkV0UlNmWTFWdndh |
-
-    And Status code response is: "401"
-    Then Send Second Factor login by Grant type request
 
     Then "k3" Send Logout Request
     And Status code response is: "200"

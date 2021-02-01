@@ -199,8 +199,6 @@
                 </executions>
             </plugin>
         </plugins>
-        <testSourceDirectory>src/main/java</testSourceDirectory>
-
     </build>
 
 </project>

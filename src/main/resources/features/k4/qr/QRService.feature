@@ -10,6 +10,7 @@ Feature: QR k4
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
       | login_mb  | login   | 18005101 | true  | k3           | k4  |
+
     And Status code response is: "200"
 
     Then "k4" Send generate QR Request

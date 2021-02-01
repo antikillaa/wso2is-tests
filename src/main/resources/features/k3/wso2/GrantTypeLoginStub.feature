@@ -5,8 +5,7 @@ Feature: Grant type Login Stub
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
       | login     | login   | 20002571 | true  | k3           | k3  |
-    And Status code response is: "401"
-    Then Send Second Factor login by Grant type request
+
     And Status code response is: "200"
     And Response Body contains key: "access_token"
     And Response Body contains key: "id_token"
@@ -18,8 +17,7 @@ Feature: Grant type Login Stub
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
       | login_mb  | login   | 20002571 | true  | k3           | k3  |
-    And Status code response is: "401"
-    Then Send Second Factor login by Grant type request
+
     And Status code response is: "200"
     And Response Body contains key: "access_token"
     And Response Body contains key: "id_token"
@@ -31,8 +29,6 @@ Feature: Grant type Login Stub
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
       | login     | login   | 20002571 | true  | k3           | k3  |
-    And Status code response is: "401"
-    Then Send Second Factor login by Grant type request
     And Status code response is: "200"
 
     Then "k3" Send Refresh token Request
@@ -47,8 +43,6 @@ Feature: Grant type Login Stub
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
       | login_mb  | login   | 20002571 | true  | k3           | k3  |
-    And Status code response is: "401"
-    Then Send Second Factor login by Grant type request
     And Status code response is: "200"
 
     Then "k3" Send Refresh token Request
@@ -63,8 +57,6 @@ Feature: Grant type Login Stub
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
       | login     | login   | 20002571 | true  | k3           | k3  |
-    And Status code response is: "401"
-    Then Send Second Factor login by Grant type request
     And Status code response is: "200"
 
     Then "k3" Send Token Exchange Request
@@ -79,8 +71,6 @@ Feature: Grant type Login Stub
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
       | login_mb  | login   | 20002571 | true  | k3           | k3  |
-    And Status code response is: "401"
-    Then Send Second Factor login by Grant type request
     And Status code response is: "200"
 
     Then "k3" Send Token Exchange Request
@@ -95,8 +85,6 @@ Feature: Grant type Login Stub
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
       | login_mb  | login   | 20002571 | true  | k3           | k3  |
-    And Status code response is: "401"
-    Then Send Second Factor login by Grant type request
     And Status code response is: "200"
 
     Then "k3" Send Logout Request
@@ -107,8 +95,6 @@ Feature: Grant type Login Stub
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
       | login     | login   | 20002571 | true  | k3           | k3  |
-    And Status code response is: "401"
-    Then Send Second Factor login by Grant type request
     And Status code response is: "200"
 
     Then "k3" Send Logout Request
