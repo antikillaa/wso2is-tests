@@ -17,7 +17,7 @@ import static io.restassured.RestAssured.given;
 import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
 
 public class WSORequestServiceImpl implements WsoRequestService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(WSORequestServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(WSORequestServiceImpl.class);
 
     WSOBodyService WSOBodyService = new WSOBodyServiceImpl();
 
@@ -60,15 +60,17 @@ public class WSORequestServiceImpl implements WsoRequestService {
                 .contentType(ContentType.URLENC)
                 .post(testsProperties.getUrlToProxyK3() + "/oauth2/token")
                 .then().log().all(true);
+        log.info("Send second factor request: " + r.extract().body().asString());
         RUN_CONTEXT.put("responseBody", r);
         RUN_CONTEXT.put("login", r);
+        RUN_CONTEXT.put("secondFactor", r);
     }
 
     @Override
     public void sendGetTokenDTORequest(Map par, TestsProperties testsProperties) {
         String URL = getLoginURL(par, testsProperties);
 
-        RUN_CONTEXT.put("id", par.get("id"));
+
         RUN_CONTEXT.put("grandType", par.get("grandType"));
         RUN_CONTEXT.put("id_type", par.get("id_type"));
         RUN_CONTEXT.put("scope", par.get("scope"));
@@ -84,8 +86,10 @@ public class WSORequestServiceImpl implements WsoRequestService {
                 .contentType(ContentType.URLENC)
                 .post(URL)
                 .then().log().all(true);
+        log.info("Send first factor request: " + r.extract().body().asString());
         RUN_CONTEXT.put("responseBody", r);
         RUN_CONTEXT.put("login", r);
+        RUN_CONTEXT.put("firstFactor", r);
     }
 
     @Override
@@ -201,7 +205,7 @@ public class WSORequestServiceImpl implements WsoRequestService {
         } else if (par.get("Authorization").toString().contains("Basic")) {
             header.put("Authorization", par.get("Authorization"));
         } else
-            LOGGER.error("Authorization is missing");
+            log.error("Authorization is missing");
 
         try {
             if (par.get("finger_print").equals("true") || !par.get("finger_print").equals("false")) {
@@ -213,7 +217,7 @@ public class WSORequestServiceImpl implements WsoRequestService {
                 }
             }
         } catch (NullPointerException e) {
-            LOGGER.error("finger_print is missing");
+            log.error("finger_print is missing");
         }
 
         return header;

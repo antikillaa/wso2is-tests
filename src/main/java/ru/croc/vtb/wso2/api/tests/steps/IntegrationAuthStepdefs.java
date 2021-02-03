@@ -13,6 +13,7 @@ import java.util.Map;
 public class IntegrationAuthStepdefs {
 
     IntegrationAuthRequestService integrationAuthRequestService = new IntegrationAuthRequestServiceImpl();
+
     @Autowired
     @Getter
     private TestsProperties testsProperties;

@@ -1,5 +1,6 @@
 package ru.croc.vtb.wso2.api.tests.impl.body;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
 import ru.croc.vtb.wso2.api.tests.services.body.WSOBodyService;
 
@@ -35,8 +36,7 @@ public class WSOBodyServiceImpl implements WSOBodyService {
             if (RUN_CONTEXT.get("scope", String.class).equals("true")) {
                 body.put("scope", "openid");
             }
-        } else
-            body.put((String) par.get("id_type"), par.get("id"));
+        }
         if (par.get("password") == null || par.get("password").equals("true")) {
             body.put("password", testsProperties.getUserPassword());
         }
@@ -45,6 +45,14 @@ public class WSOBodyServiceImpl implements WSOBodyService {
         if (par.get("scope").equals("true")) {
             body.put("scope", "openid");
         }
+
+        if (par.get("id") == null) {
+            String phone = "79800" + RandomStringUtils.randomNumeric(6);
+            RUN_CONTEXT.put("guestPhone", phone);
+            RUN_CONTEXT.put("guestId", phone);
+            body.put((String) par.get("id_type"), phone);
+        } else
+            body.put((String) par.get("id_type"), par.get("id"));
         return body;
     }
 

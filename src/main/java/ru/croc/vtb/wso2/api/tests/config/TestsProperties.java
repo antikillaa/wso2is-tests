@@ -136,6 +136,9 @@ public class TestsProperties {
     @Value("${test.iacTestHostTest}")
     private String iacTestHostTest;
 
+    @Value("${test.cpkURLK3}")
+    private String cpkURLK3;
+
     @Value("${test.ac.portMock}")
     private String acPortMock;
 

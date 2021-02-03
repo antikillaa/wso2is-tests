@@ -34,7 +34,10 @@ public class WSOStepdefs {
     @Then("Send login by Grant type Request")
     public void sendLoginByGrantTypeRequest(DataTable par) {
         Map<String, String> param = par.asMaps().get(0);
+
+
         RUN_CONTEXT.put("par", param);
+
         acRequestService.sendGetTokenDTORequest(param, testsProperties);
         /**
          Send second factor request
