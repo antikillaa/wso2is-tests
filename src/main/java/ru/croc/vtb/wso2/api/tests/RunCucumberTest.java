@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         publish = true,
         features = "classpath:features",
         plugin = {"pretty", "html:test-report/cucumber-report.html"},
-        tags = "@wip"
+        tags = "@k3"
 )
 public class RunCucumberTest {
 }

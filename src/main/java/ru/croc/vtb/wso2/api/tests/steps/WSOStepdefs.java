@@ -2,7 +2,10 @@ package ru.croc.vtb.wso2.api.tests.steps;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
+import io.restassured.response.ValidatableResponse;
 import lombok.Getter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
 import ru.croc.vtb.wso2.api.tests.impl.request.WSORequestServiceImpl;
@@ -14,14 +17,19 @@ import java.util.Map;
 import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
 
 public class WSOStepdefs {
-    WsoRequestService acRequestService = new WSORequestServiceImpl();
     @Autowired
     @Getter
     private TestsProperties testsProperties;
 
-private void sendSecondFactorLoginMBRequest() {
-    acRequestService.getSecondFactorGrandTypeRequest(testsProperties);
-}
+    private static final Logger log = LoggerFactory.getLogger(WSOStepdefs.class);
+
+
+    WsoRequestService acRequestService = new WSORequestServiceImpl();
+
+
+    private void sendSecondFactorLoginMBRequest() {
+        acRequestService.getSecondFactorGrandTypeRequest(testsProperties);
+    }
 
     @Then("Send login by Grant type Request")
     public void sendLoginByGrantTypeRequest(DataTable par) {
@@ -31,7 +39,10 @@ private void sendSecondFactorLoginMBRequest() {
         /**
          Send second factor request
          */
-        sendSecondFactorLoginMBRequest();
+        ValidatableResponse r = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
+        if (r.extract().statusCode() == 401) {
+            sendSecondFactorLoginMBRequest();
+        } else log.info("Second factor not required " + r.extract().body().asString());
     }
 
     @Then("{string} Send Refresh token Request")

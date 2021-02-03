@@ -199,22 +199,6 @@
                 </executions>
             </plugin>
         </plugins>
-
-        <testSourceDirectory>src/main/java</testSourceDirectory>
-
     </build>
-
-    <repositories>
-        <repository>
-            <id>nexus</id>
-            <name>nexus</name>
-            <url>http://nexus.corp.dev.vtb/maven/maven-public</url>
-        </repository>
-        <repository>
-            <id>msa</id>
-            <name>msa</name>
-            <url>http://nexus.corp.dev.vtb/repository/maven-msa</url>
-        </repository>
-    </repositories>
 
 </project>
