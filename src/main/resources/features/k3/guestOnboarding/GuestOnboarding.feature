@@ -54,5 +54,7 @@ Feature: Add Guest RealAC
     And Status code response is: "200"
 
     Then Send delete request
+      | env |
+      | k3  |
     And Status code response is: "200"
 
