@@ -10,4 +10,6 @@ public interface GuestOnboardingService {
     void sendActivateNonClientRequest(Map<String, String> par, TestsProperties testsProperties);
 
     void sendIsRegisteredRequest(Map param, TestsProperties testsProperties);
+
+    void sendDeactivateRequest(Map param, TestsProperties testsProperties);
 }

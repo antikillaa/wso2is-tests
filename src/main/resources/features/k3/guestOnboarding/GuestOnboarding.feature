@@ -23,3 +23,14 @@ Feature: Add Guest RealAC
       | env |
       | k3  |
     And Status code response is: "200"
+
+    Then Send deactivate request
+      | env |
+      | k3  |
+    And Status code response is: "200"
+
+    Then Send is-registered request
+      | env |
+      | k3  |
+    And Status code response is: "404"
+
