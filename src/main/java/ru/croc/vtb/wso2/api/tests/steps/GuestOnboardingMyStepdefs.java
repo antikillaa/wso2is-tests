@@ -43,4 +43,10 @@ public class GuestOnboardingMyStepdefs {
         Map param = par.asMaps().get(0);
         guestOnboardingService.sendDeactivateRequest(param, testsProperties);
     }
+
+    @Then("Send delete request")
+    public void sendDeleteRequest(DataTable par) {
+        Map param = par.asMaps().get(0);
+        guestOnboardingService.sendDeleteRequest(param, testsProperties);
+    }
 }

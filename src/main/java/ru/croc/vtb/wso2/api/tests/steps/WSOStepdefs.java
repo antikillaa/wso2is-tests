@@ -27,15 +27,13 @@ public class WSOStepdefs {
     WsoRequestService acRequestService = new WSORequestServiceImpl();
 
 
-    private void sendSecondFactorLoginMBRequest() {
+    private void sendSecondFactorLoginRequest() {
         acRequestService.getSecondFactorGrandTypeRequest(testsProperties);
     }
 
     @Then("Send login by Grant type Request")
     public void sendLoginByGrantTypeRequest(DataTable par) {
         Map<String, String> param = par.asMaps().get(0);
-
-
         RUN_CONTEXT.put("par", param);
 
         acRequestService.sendGetTokenDTORequest(param, testsProperties);
@@ -44,7 +42,7 @@ public class WSOStepdefs {
          */
         ValidatableResponse r = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
         if (r.extract().statusCode() == 401) {
-            sendSecondFactorLoginMBRequest();
+            sendSecondFactorLoginRequest();
         } else log.info("Second factor not required " + r.extract().body().asString());
     }
 

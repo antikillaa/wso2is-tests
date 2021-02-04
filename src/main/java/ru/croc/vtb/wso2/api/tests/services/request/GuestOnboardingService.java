@@ -12,4 +12,6 @@ public interface GuestOnboardingService {
     void sendIsRegisteredRequest(Map param, TestsProperties testsProperties);
 
     void sendDeactivateRequest(Map param, TestsProperties testsProperties);
+
+    void sendDeleteRequest(Map param, TestsProperties testsProperties);
 }

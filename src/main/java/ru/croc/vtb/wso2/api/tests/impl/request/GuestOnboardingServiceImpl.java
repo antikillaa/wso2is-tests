@@ -90,6 +90,27 @@ public class GuestOnboardingServiceImpl implements GuestOnboardingService {
         RUN_CONTEXT.put("responseBody", r);
     }
 
+    @Override
+    public void sendDeleteRequest(Map param, TestsProperties testsProperties) {
+        String ucn = RUN_CONTEXT.get("x-unc", String.class);
+
+        Map secondFactor = RUN_CONTEXT.get("login", ValidatableResponse.class).extract().as(Map.class);
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("token", secondFactor.get("id_token"));
+
+        String URL = getGuestOnboardingURL(param, testsProperties) + "/internal/" + ucn;
+
+        ValidatableResponse r = given().log().everything(true)
+                .contentType(ContentType.JSON)
+                .header("X-UNC", ucn)
+                .body(body)
+                .delete(URL)
+                .then().log().all(true);
+        log.info("sendDeactivateRequest: " + r.extract().body().asString());
+        RUN_CONTEXT.put("responseBody", r);
+    }
+
     private Map<String, Object> getActivateNonClientBody(Map nonClient) {
         Map<String, Object> body = new HashMap<>();
         body.put("guid", nonClient.get("id"));
