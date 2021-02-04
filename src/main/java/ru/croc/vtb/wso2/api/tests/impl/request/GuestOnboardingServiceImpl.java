@@ -19,13 +19,15 @@ public class GuestOnboardingServiceImpl implements GuestOnboardingService {
 
     @Override
     public void sendNonClientCardsRequest(Map<String, String> par, TestsProperties testsProperties) {
-        String URL = getURL(par, testsProperties) + "/user";
+        String URL = getCpkURL(par, testsProperties) + "/user";
 
         Map<String, Object> body = new HashMap<>();
         body.put("phoneNumber", RUN_CONTEXT.get("guestPhone", String.class));
 
         Map property = (Map) RUN_CONTEXT.get("firstFactor", ValidatableResponse.class)
                 .extract().as(Map.class).get("additional_properties");
+        RUN_CONTEXT.put("x-unc", property.get("username"));
+
         log.info("getGuestParam firstFactor: " + property.toString() + property);
 
         ValidatableResponse r = given().log().everything(true)
@@ -37,14 +39,62 @@ public class GuestOnboardingServiceImpl implements GuestOnboardingService {
                 .then().log().all(true);
         log.info("sendNonClientCardsRequest: " + r.extract().body().asString());
         RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put("nonClient", r);
     }
 
-    private String getURL(Map par, TestsProperties testsProperties) {
+    @Override
+    public void sendActivateNonClientRequest(Map<String, String> par, TestsProperties testsProperties) {
+        String URL = getGuestOnboardingURL(par, testsProperties) + "/non-client/activate";
+
+        Map nonClient = RUN_CONTEXT.get("nonClient", ValidatableResponse.class)
+                .extract().as(Map.class);
+        String ucn = RUN_CONTEXT.get("x-unc", String.class);
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("guid", nonClient.get("id"));
+        body.put("phoneNumber", RUN_CONTEXT.get("guestPhone", String.class));
+        body.put("firstName", "AutoUser_firstName");
+        body.put("middleName", "AutoUser_middleName");
+        body.put("lastName", "AutoUser_lastName");
+        body.put("birthday", "2000-03-01");
+        body.put("agree", true);
+
+        ValidatableResponse r = given().log().everything(true)
+                .header("X-UNC", ucn)
+                .body(body)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .post(URL)
+                .then().log().all(true);
+        log.info("sendActivateNonClientRequest: " + r.extract().body().asString());
+        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put("activateNonClient", r);
+    }
+
+    private String getCpkURL(Map par, TestsProperties testsProperties) {
         String URL = null;
         if (par.get("env") != null) {
             switch (par.get("env").toString()) {
                 case "k3":
                     URL = testsProperties.getCpkURLK3();
+                    break;
+                case "k4":
+                    URL = null;
+                    break;
+                case "k5":
+                    URL = null;
+                    break;
+            }
+        }
+        return URL;
+    }
+
+    private String getGuestOnboardingURL(Map par, TestsProperties testsProperties) {
+        String URL = null;
+        if (par.get("env") != null) {
+            switch (par.get("env").toString()) {
+                case "k3":
+                    URL = testsProperties.getGuestOnboardingURLK3();
                     break;
                 case "k4":
                     URL = null;

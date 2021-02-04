@@ -139,6 +139,9 @@ public class TestsProperties {
     @Value("${test.cpkURLK3}")
     private String cpkURLK3;
 
+    @Value("${test.guestOnboardingURLK3}")
+    private String guestOnboardingURLK3;
+
     @Value("${test.ac.portMock}")
     private String acPortMock;
 

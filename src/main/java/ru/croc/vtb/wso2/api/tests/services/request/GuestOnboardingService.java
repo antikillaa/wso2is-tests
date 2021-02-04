@@ -6,4 +6,6 @@ import java.util.Map;
 
 public interface GuestOnboardingService {
     void sendNonClientCardsRequest(Map<String, String> par, TestsProperties testsProperties);
+
+    void sendActivateNonClientRequest(Map<String, String> par, TestsProperties testsProperties);
 }

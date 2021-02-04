@@ -1,6 +1,8 @@
 package ru.croc.vtb.wso2.api.tests.impl.body;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
 import ru.croc.vtb.wso2.api.tests.services.body.WSOBodyService;
 
@@ -10,6 +12,7 @@ import java.util.Map;
 import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
 
 public class WSOBodyServiceImpl implements WSOBodyService {
+    private static final Logger log = LoggerFactory.getLogger(WSOBodyServiceImpl.class);
 
     @Override
     public Map<String, Object> getLoginByGrandTypeRequestBody(String grandType, String id, String id_type) {
@@ -48,6 +51,7 @@ public class WSOBodyServiceImpl implements WSOBodyService {
 
         if (par.get("id") == null) {
             String phone = "79800" + RandomStringUtils.randomNumeric(6);
+            log.info("Guest Phone number: " + phone);
             RUN_CONTEXT.put("guestPhone", phone);
             RUN_CONTEXT.put("guestId", phone);
             body.put((String) par.get("id_type"), phone);

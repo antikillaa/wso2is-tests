@@ -26,4 +26,9 @@ public class GuestOnboardingMyStepdefs {
         guestOnboardingService.sendNonClientCardsRequest(param, testsProperties);
     }
 
+    @Then("Activate Non Client Request")
+    public void activateNonClientRequest(DataTable par) {
+        Map param = par.asMaps().get(0);
+        guestOnboardingService.sendActivateNonClientRequest(param, testsProperties);
+    }
 }
