@@ -1,12 +1,20 @@
 package ru.croc.vtb.wso2.api.tests.steps;
 
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
+import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
 
 import static org.hamcrest.CoreMatchers.*;
 import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
 
 public class TestHelper {
+
+    @Before
+    public void beforeTest() {
+        RestAssured.useRelaxedHTTPSValidation();
+        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
+    }
 
     @And("Status code response is: {string}")
     public void statusCodeResponseIs(String arg0) {
