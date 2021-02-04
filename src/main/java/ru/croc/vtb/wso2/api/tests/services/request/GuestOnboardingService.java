@@ -8,4 +8,6 @@ public interface GuestOnboardingService {
     void sendNonClientCardsRequest(Map<String, String> par, TestsProperties testsProperties);
 
     void sendActivateNonClientRequest(Map<String, String> par, TestsProperties testsProperties);
+
+    void sendIsRegisteredRequest(Map param, TestsProperties testsProperties);
 }

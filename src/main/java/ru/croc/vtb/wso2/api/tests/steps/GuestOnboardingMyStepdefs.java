@@ -31,4 +31,10 @@ public class GuestOnboardingMyStepdefs {
         Map param = par.asMaps().get(0);
         guestOnboardingService.sendActivateNonClientRequest(param, testsProperties);
     }
+
+    @Then("Send is-registered request")
+    public void sendIsRegisteredRequest(DataTable par) {
+        Map param = par.asMaps().get(0);
+        guestOnboardingService.sendIsRegisteredRequest(param, testsProperties);
+    }
 }

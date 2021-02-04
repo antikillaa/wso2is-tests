@@ -50,14 +50,7 @@ public class GuestOnboardingServiceImpl implements GuestOnboardingService {
                 .extract().as(Map.class);
         String ucn = RUN_CONTEXT.get("x-unc", String.class);
 
-        Map<String, Object> body = new HashMap<>();
-        body.put("guid", nonClient.get("id"));
-        body.put("phoneNumber", RUN_CONTEXT.get("guestPhone", String.class));
-        body.put("firstName", "AutoUser_firstName");
-        body.put("middleName", "AutoUser_middleName");
-        body.put("lastName", "AutoUser_lastName");
-        body.put("birthday", "2000-03-01");
-        body.put("agree", true);
+        Map<String, Object> body = getActivateNonClientBody(nonClient);
 
         ValidatableResponse r = given().log().everything(true)
                 .header("X-UNC", ucn)
@@ -70,6 +63,32 @@ public class GuestOnboardingServiceImpl implements GuestOnboardingService {
         RUN_CONTEXT.put("responseBody", r);
         RUN_CONTEXT.put("activateNonClient", r);
     }
+
+    @Override
+    public void sendIsRegisteredRequest(Map par, TestsProperties testsProperties) {
+        String ucn = RUN_CONTEXT.get("x-unc", String.class);
+
+        String URL = getGuestOnboardingURL(par, testsProperties) + "internal/" + ucn + "/is-registered";
+
+        ValidatableResponse r = given().log().everything(true)
+                .get(URL)
+                .then().log().all(true);
+        log.info("sendIsRegisteredRequest: " + r.extract().body().asString());
+        RUN_CONTEXT.put("responseBody", r);
+    }
+
+    private Map<String, Object> getActivateNonClientBody(Map nonClient) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("guid", nonClient.get("id"));
+        body.put("phoneNumber", RUN_CONTEXT.get("guestPhone", String.class));
+        body.put("firstName", "AutoUser_firstName");
+        body.put("middleName", "AutoUser_middleName");
+        body.put("lastName", "AutoUser_lastName");
+        body.put("birthday", "2000-03-01");
+        body.put("agree", true);
+        return body;
+    }
+
 
     private String getCpkURL(Map par, TestsProperties testsProperties) {
         String URL = null;
