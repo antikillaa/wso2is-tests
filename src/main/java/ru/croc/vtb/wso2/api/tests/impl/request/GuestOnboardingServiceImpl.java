@@ -99,7 +99,7 @@ public class GuestOnboardingServiceImpl implements GuestOnboardingService {
         Map<String, Object> body = new HashMap<>();
         body.put("token", secondFactor.get("id_token"));
 
-        String URL = getGuestOnboardingURL(param, testsProperties) + "/internal/" + ucn;
+        String URL = getGuestOnboardingURL(param, testsProperties) + "/non-client";
 
         ValidatableResponse r = given().log().everything(true)
                 .contentType(ContentType.JSON)
@@ -107,7 +107,7 @@ public class GuestOnboardingServiceImpl implements GuestOnboardingService {
                 .body(body)
                 .delete(URL)
                 .then().log().all(true);
-        log.info("sendDeactivateRequest: " + r.extract().body().asString());
+        log.info("sendDeleteRequest: " + r.extract().body().asString());
         RUN_CONTEXT.put("responseBody", r);
     }
 
