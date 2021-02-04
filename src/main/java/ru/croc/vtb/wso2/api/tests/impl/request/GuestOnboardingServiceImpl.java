@@ -68,7 +68,7 @@ public class GuestOnboardingServiceImpl implements GuestOnboardingService {
     public void sendIsRegisteredRequest(Map par, TestsProperties testsProperties) {
         String ucn = RUN_CONTEXT.get("x-unc", String.class);
 
-        String URL = getGuestOnboardingURL(par, testsProperties) + "internal/" + ucn + "/is-registered";
+        String URL = getGuestOnboardingURL(par, testsProperties) + "/internal/" + ucn + "/is-registered";
 
         ValidatableResponse r = given().log().everything(true)
                 .get(URL)
