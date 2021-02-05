@@ -24,14 +24,10 @@ public class GuestOnboardingServiceImpl implements GuestOnboardingService {
         Map<String, Object> body = new HashMap<>();
         body.put("phoneNumber", RUN_CONTEXT.get("guestPhone", String.class));
 
-        Map property = (Map) RUN_CONTEXT.get("firstFactor", ValidatableResponse.class)
-                .extract().as(Map.class).get("additional_properties");
-        RUN_CONTEXT.put("x-unc", property.get("username"));
 
-        log.info("getGuestParam firstFactor: " + property.toString() + property);
 
         ValidatableResponse r = given().log().everything(true)
-                .header("X-UNC", property.get("username"))
+                .header("X-UNC", RUN_CONTEXT.get("x-unc", String.class))
                 .body(body)
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
@@ -48,12 +44,11 @@ public class GuestOnboardingServiceImpl implements GuestOnboardingService {
 
         Map nonClient = RUN_CONTEXT.get("nonClient", ValidatableResponse.class)
                 .extract().as(Map.class);
-        String ucn = RUN_CONTEXT.get("x-unc", String.class);
 
         Map<String, Object> body = getActivateNonClientBody(nonClient);
 
         ValidatableResponse r = given().log().everything(true)
-                .header("X-UNC", ucn)
+                .header("X-UNC", RUN_CONTEXT.get("x-unc", String.class))
                 .body(body)
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)

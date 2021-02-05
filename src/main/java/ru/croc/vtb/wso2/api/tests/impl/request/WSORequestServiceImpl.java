@@ -90,6 +90,10 @@ public class WSORequestServiceImpl implements WsoRequestService {
         RUN_CONTEXT.put("responseBody", r);
         RUN_CONTEXT.put("login", r);
         RUN_CONTEXT.put("firstFactor", r);
+
+        Map property = (Map) RUN_CONTEXT.get("firstFactor", ValidatableResponse.class)
+                .extract().as(Map.class).get("additional_properties");
+        RUN_CONTEXT.put("x-unc", property.get("username"));
     }
 
     @Override
