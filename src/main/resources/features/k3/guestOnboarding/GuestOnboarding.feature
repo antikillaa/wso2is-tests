@@ -34,7 +34,7 @@ Feature: Add Guest RealAC
       | k3  |
     And Status code response is: "404"
 
-  @wip
+  @k3
   Scenario: Delete, activated user not exist in CPK, exist in AC
     Then Send login by Grant type Request
       | grandType  | id_type      | scope | finger_print | env | Authorization                                                                      |
