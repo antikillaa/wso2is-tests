@@ -76,7 +76,7 @@ Feature: Add Guest RealAC
     And Status code response is: "404"
 
   @k3
-  Scenario: Deactivate user Success
+  Scenario: Deactivate active user
     Then Send login by Grant type Request
       | grandType  | id_type      | scope | finger_print | env | Authorization                                                                      |
       | guest_auth | phone_number | true  | k3           | k3  | Basic MjcxSVNzWGZ5Y1U2VnRTZkw0Z2dfTURYUWxVYTpKRzByRWZkRmZidDM4UTB4UkV0UlNmWTFWdndh |
@@ -94,7 +94,14 @@ Feature: Add Guest RealAC
       | k3  |
     And Status code response is: "200"
 
-    Then Send delete request
+  @k3
+  Scenario: Deactivate not active user
+    Then Send login by Grant type Request
+      | grandType  | id_type      | scope | finger_print | env | Authorization                                                                      |
+      | guest_auth | phone_number | true  | k3           | k3  | Basic MjcxSVNzWGZ5Y1U2VnRTZkw0Z2dfTURYUWxVYTpKRzByRWZkRmZidDM4UTB4UkV0UlNmWTFWdndh |
+    And Status code response is: "200"
+
+    Then Send deactivate request
       | env |
       | k3  |
     And Status code response is: "200"
