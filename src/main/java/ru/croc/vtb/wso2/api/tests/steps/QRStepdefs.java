@@ -27,4 +27,9 @@ public class QRStepdefs {
     public void sendApproveQRRequest(String env) {
         qrRequestService.approveQR(env, testsProperties);
     }
+
+    @Then("{string} Send get QR status Request")
+    public void sendGetQRStatusRequest(String env) {
+        qrRequestService.getQRStatusRequest(env, testsProperties);
+    }
 }

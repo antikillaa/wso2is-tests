@@ -5,8 +5,6 @@ import io.restassured.response.ValidatableResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
-import ru.croc.vtb.wso2.api.tests.impl.body.QRBodyServiceImpl;
-import ru.croc.vtb.wso2.api.tests.services.body.QRBodyService;
 import ru.croc.vtb.wso2.api.tests.services.request.QRRequestService;
 
 import java.util.HashMap;
@@ -19,15 +17,13 @@ public class QRRequestServiceImpl implements QRRequestService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(QRRequestServiceImpl.class);
 
-    QRBodyService acBodyService = new QRBodyServiceImpl();
     private final String privateURLQr = "/mobilebanking/api-gw/private/integration/integration-auth-qrcode";
-//    private String privateURLQr = "/msa/api-gw/private/integration/integration-auth-qrcode";
 
     private final String URLQr = "/msa/api-gw/integration/integration-auth-qrcode";
 
 
     @Override
-    public ValidatableResponse generateQR(String env, TestsProperties testsProperties) {
+    public void generateQR(String env, TestsProperties testsProperties) {
         String requestPath = "/generate-qr";
         String URL = getQRRequestUrl(env, testsProperties) + URLQr + requestPath;
         Map<String, Object> header = getQRHeaderWithFinger(testsProperties);
@@ -40,11 +36,10 @@ public class QRRequestServiceImpl implements QRRequestService {
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
         RUN_CONTEXT.put("qr", r);
-        return r;
     }
 
     @Override
-    public ValidatableResponse verifyQR(String env, TestsProperties testsProperties) {
+    public void verifyQR(String env, TestsProperties testsProperties) {
         String requestPath = "/verify-qr";
         String URL = getQRRequestUrlPrivate(env, testsProperties) + privateURLQr + requestPath;
 
@@ -71,11 +66,10 @@ public class QRRequestServiceImpl implements QRRequestService {
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
         RUN_CONTEXT.put("qr", r);
-        return r;
     }
 
     @Override
-    public ValidatableResponse approveQR(String env, TestsProperties testsProperties) {
+    public void approveQR(String env, TestsProperties testsProperties) {
         String requestPath = "/approve-consent";
         String URL = getQRRequestUrlPrivate(env, testsProperties) + privateURLQr + requestPath;
 
@@ -104,7 +98,27 @@ public class QRRequestServiceImpl implements QRRequestService {
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
         RUN_CONTEXT.put("qr", r);
-        return r;
+    }
+
+    @Override
+    public void getQRStatusRequest(String env, TestsProperties testsProperties) {
+        String requestPath = "/get-qr-status";
+        String URL = getQRRequestUrl(env, testsProperties) + privateURLQr + requestPath;
+
+        Map qrResponse = RUN_CONTEXT.get("qr", ValidatableResponse.class).extract().as(Map.class);
+        LOGGER.info(qrResponse.toString());
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("id", qrResponse.get("id"));
+
+        ValidatableResponse r = given().log().everything(true)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body(body)
+                .cookies(RUN_CONTEXT.get("login", ValidatableResponse.class).extract().cookies())
+                .post(URL)
+                .then().log().all(true);
+        RUN_CONTEXT.put("responseBody", r);
     }
 
     private String getQRRequestUrl(String env, TestsProperties testsProperties) {

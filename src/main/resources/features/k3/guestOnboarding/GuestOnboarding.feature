@@ -1,6 +1,6 @@
 Feature: Guest Onboarding Service
 
-  @wip
+  @k3
   Scenario: Activate Non Client: Success
     Then Send login by Grant type Request
       | grandType  | id_type      | scope | finger_print | env | Authorization                                                                      |

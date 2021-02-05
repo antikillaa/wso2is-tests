@@ -1,4 +1,4 @@
-Feature: QR k3
+Feature: QR service
 
   @k3
   Scenario: Generate QR
@@ -20,3 +20,12 @@ Feature: QR k3
 
     Then "k3" Send approve QR Request
     And Status code response is: "200"
+
+  @wip
+  Scenario: Generate QR
+    Then "k3" Send generate QR Request
+    And Status code response is: "200"
+
+    Then "k3" Send get QR status Request
+    And Status code response is: "200"
+
