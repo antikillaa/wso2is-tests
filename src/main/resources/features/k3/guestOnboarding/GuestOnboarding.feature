@@ -1,6 +1,6 @@
-Feature: Add Guest RealAC
+Feature: Guest Onboarding Service
 
-  @k3
+  @wip
   Scenario: Activate Non Client: Success
     Then Send login by Grant type Request
       | grandType  | id_type      | scope | finger_print | env | Authorization                                                                      |
