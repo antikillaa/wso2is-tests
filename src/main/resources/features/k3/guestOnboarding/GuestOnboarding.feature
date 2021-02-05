@@ -24,7 +24,7 @@ Feature: Add Guest RealAC
       | k3  |
     And Status code response is: "200"
 
-    Then Send deactivate request
+    Then Send delete request
       | env |
       | k3  |
     And Status code response is: "200"
@@ -41,7 +41,7 @@ Feature: Add Guest RealAC
       | guest_auth | phone_number | true  | k3           | k3  | Basic MjcxSVNzWGZ5Y1U2VnRTZkw0Z2dfTURYUWxVYTpKRzByRWZkRmZidDM4UTB4UkV0UlNmWTFWdndh |
     And Status code response is: "200"
 
-    Then Send deactivate request
+    Then Send delete request
       | env |
       | k3  |
     And Status code response is: "200"
