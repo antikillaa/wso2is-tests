@@ -5,7 +5,9 @@ import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
 import java.util.Map;
 
 public interface WSOBodyService {
+/*
     Map<String, Object> getLoginByGrandTypeRequestBody(String grandType, String id, String id_type);
+*/
 
     Map<String, Object> getLoginByGrandTypeRequestBody(Map par, TestsProperties testsProperties);
 
