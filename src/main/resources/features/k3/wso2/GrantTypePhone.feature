@@ -51,8 +51,8 @@ Feature: Grant type Phone number k3
     Then "k3" Send Logout Request
     And Status code response is: "200"
 
-  @wip
-  Scenario: Grant type Phone number k3 Success
+  @k3
+  Scenario: Grant type Phone number Wrong authorization
     Then Send login by Grant type Request
       | grandType    | id_type     | id         | scope | finger_print | env | Authorization                                                                      |
       | phone_number | phoneNumber | 9152547896 | true  | k3           | k3  | Basic Uzh3d123MmY2bHdIVEVra214NHB5VGxsbU1ZYTpTOHd1ZGQyZjZsd0hURWtrbXg0cHlUbGxtTVlB |
