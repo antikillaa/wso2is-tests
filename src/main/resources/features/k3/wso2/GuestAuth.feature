@@ -50,3 +50,12 @@ Feature: Grant type Guest Auth k3
 
     Then "k3" Send Logout Request
     And Status code response is: "200"
+
+  @wip
+  Scenario: Grant type Guest Auth Logout
+    Then Send login by Grant type Request
+      | grandType  | id_type      | id         | scope | finger_print | env | Authorization                                                                      |
+      | guest_auth | phone_number | 9809935444 | true  | k3           | k3  | Basic MjcxSVNzWGZ5Y1U232RTZkw0Z2dfTURYUWxVYTpKRzByRWZkRmZidDM4UTB4UkV0UlNmWTFWdndh |
+
+    And Status code response is: "500"
+    And Response Body contains key: "additional_properties.tech_messages"
