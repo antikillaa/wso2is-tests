@@ -14,20 +14,6 @@ import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
 public class WSOBodyServiceImpl implements WSOBodyService {
     private static final Logger log = LoggerFactory.getLogger(WSOBodyServiceImpl.class);
 
-/*    @Override
-    public Map<String, Object> getLoginByGrandTypeRequestBody(String grandType, String id, String id_type) {
-
-        Map<String, Object> body = new HashMap<>();
-        body.put(id_type, id);
-        body.put("password", "99999");
-        body.put("grant_type", grandType);
-        body.put("x-finger-print", "123456");
-        if (RUN_CONTEXT.get("scope", String.class).equals("true")) {
-            body.put("scope", "openid");
-        }
-        return body;
-    }*/
-
     public Map<String, Object> getLoginByGrandTypeRequestBody(Map par, TestsProperties testsProperties) {
         Map<String, Object> body = new HashMap<>();
         setXFingerPrint(body);

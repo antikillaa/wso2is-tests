@@ -135,3 +135,15 @@ Feature: Grant type Card Number K3
     And Response Body contains key: "id_token"
     And Response Body contains key: "refresh_token"
     And Response Body contains "scope" equals "openid"
+
+  @wip
+  Scenario: Login by Card wrong authorization
+    Then Send login by Grant type Request
+      | grandType   | id_type    | id               | scope | finger_print | env | Authorization                                                                      |
+      | card_number | cardNumber | 4893470273518297 | true  | k3           | k3  | Basic Uzh3d123MmY2bHdIVEVra214NHB5VGxsbU1ZYTpTOHd1ZGQyZjZsd0hURWtrbXg0cHlUbGxtTVlB |
+
+  @wip
+  Scenario: Login by Card wrong authorization
+    Then Send login by Grant type Request
+      | grandType   | id_type    | id               | scope | finger_print | env | Authorization                                                                      |
+      | card_number | cardNumber | 4893470273518297 | true  | k3           | k3  | Basic Uzh3d123MmY2bHdIVEVra214NHB5VGxsbU1ZYTpTOHd1ZGQyZjZsd0hURWtrbXg0cHlUbGxtTVlB |
