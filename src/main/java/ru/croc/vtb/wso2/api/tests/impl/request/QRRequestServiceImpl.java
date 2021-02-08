@@ -103,7 +103,7 @@ public class QRRequestServiceImpl implements QRRequestService {
     @Override
     public void getQRStatusRequest(String env, TestsProperties testsProperties) {
         String requestPath = "/get-qr-status";
-        String URL = getQRRequestUrl(env, testsProperties) + privateURLQr + requestPath;
+        String URL = getQRRequestUrl(env, testsProperties) + URLQr + requestPath;
 
         Map qrResponse = RUN_CONTEXT.get("qr", ValidatableResponse.class).extract().as(Map.class);
         LOGGER.info(qrResponse.toString());
@@ -115,7 +115,6 @@ public class QRRequestServiceImpl implements QRRequestService {
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .body(body)
-                .cookies(RUN_CONTEXT.get("login", ValidatableResponse.class).extract().cookies())
                 .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);

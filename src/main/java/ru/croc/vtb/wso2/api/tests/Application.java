@@ -40,7 +40,7 @@ public class Application {
         SpringApplication.run(Application.class, args);
         RestAssured.useRelaxedHTTPSValidation();
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
-        Cucumber test = new Cucumber(RunCucumberTestWip.class);
+        Cucumber test = new Cucumber(RunCucumberTestK3.class);
         new JUnitCore().run(test);
         exit(200);
     }
