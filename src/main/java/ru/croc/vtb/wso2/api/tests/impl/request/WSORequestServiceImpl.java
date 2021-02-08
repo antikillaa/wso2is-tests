@@ -10,6 +10,7 @@ import ru.croc.vtb.wso2.api.tests.impl.body.WSOBodyServiceImpl;
 import ru.croc.vtb.wso2.api.tests.services.body.WSOBodyService;
 import ru.croc.vtb.wso2.api.tests.services.request.WsoRequestService;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -91,9 +92,13 @@ public class WSORequestServiceImpl implements WsoRequestService {
         RUN_CONTEXT.put("login", r);
         RUN_CONTEXT.put("firstFactor", r);
 
-        Map property = (Map) RUN_CONTEXT.get("firstFactor", ValidatableResponse.class)
-                .extract().as(Map.class).get("additional_properties");
-        RUN_CONTEXT.put("x-unc", property.get("username"));
+        try {
+            Map property = (Map) r.extract().as(Map.class).get("additional_properties");
+            RUN_CONTEXT.put("x-unc", property.get("username"));
+        } catch (NullPointerException e) {
+            log.error("Second factor for login not required?" + Arrays.toString(e.getStackTrace()));
+            log.error("Response: " + r.extract().asString());
+        }
     }
 
     @Override
