@@ -216,6 +216,12 @@ public class WSORequestServiceImpl implements WsoRequestService {
         } else
             log.error("Authorization is missing");
 
+        setFingerPrint(par, testsProperties, header);
+
+        return header;
+    }
+
+    private void setFingerPrint(Map par, TestsProperties testsProperties, Map<String, Object> header) {
         try {
             if (par.get("finger_print").equals("true") || !par.get("finger_print").equals("false")) {
                 if (par.get("finger_print").equals("true")) {
@@ -224,12 +230,13 @@ public class WSORequestServiceImpl implements WsoRequestService {
                 if (par.get("finger_print").equals("k3")) {
                     header.put("X-Device-FingerPrint", testsProperties.getMobileFingerprintK3());
                 }
+                if (par.get("finger_print").equals("no")) {
+                    log.info("No X Device Finger Print!");
+                }
             }
         } catch (NullPointerException e) {
             log.error("finger_print is missing");
         }
-
-        return header;
     }
 
     private String getLoginURL(Map par, TestsProperties testsProperties) {
