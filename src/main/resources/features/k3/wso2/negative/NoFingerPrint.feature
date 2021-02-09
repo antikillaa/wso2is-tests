@@ -10,8 +10,8 @@ Feature: Grant type Login Stub
       | login          | login         | 20002571         | true  |  k3  | no           | 401  |               |
       | card_number    | cardNumber    | 4714870078440778 | true  |  k3  | no           | 401  |               |
       | card_number_mb | cardNumber    | 4714870078440778 | true  |  k3  | no           | 500  |               |
-      | device_token   | deviceTokenID | 8888000000056316 | true  |  k3  | no           | 500  | Basic Uzh3dWRkMmY2bHdIVEVra214NHB5VGxsbU1ZYTpTOHd1ZGQyZjZsd0hURWtrbXg0cHlUbGxtTVlB |
-      | phone_number   | phoneNumber   | 9152547896       | true  |  k3  | no           | 500  |                                                                                    |
+      | device_token   | deviceTokenID | 8888000000056316 | true  |  k3  | no           | 500  |Basic Uzh3dWRkMmY2bHdIVEVra214NHB5VGxsbU1ZYTpTOHd1ZGQyZjZsd0hURWtrbXg0cHlUbGxtTVlB |
+      | phone_number   | phoneNumber   | 9152547896       | true  |  k3  | no           | 401  |                                                                                    |
       | guest_auth     | phone_number  | 9809935444       | true  | k3   | no           | 401  |Basic MjcxSVNzWGZ5Y1U2VnRTZkw0Z2dfTURYUWxVYTpKRzByRWZkRmZidDM4UTB4UkV0UlNmWTFWdndh |
 
 
