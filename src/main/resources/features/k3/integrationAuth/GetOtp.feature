@@ -1,3 +1,5 @@
+@iac
+@iack3
 Feature: Get Otp Integration-auth
 
   @k3

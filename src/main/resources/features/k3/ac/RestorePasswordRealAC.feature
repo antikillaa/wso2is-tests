@@ -1,3 +1,5 @@
+@ac
+@ack3
 Feature: Restore password k3
 
   @k3

@@ -1,3 +1,5 @@
+@ac
+@ack3
 Feature: Get Ucn By Alias Phone And Domain k3
 
   @k3

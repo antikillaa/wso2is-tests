@@ -1,3 +1,5 @@
+@ac
+@ack3
 Feature: DeviceToken k3
 
   @k3

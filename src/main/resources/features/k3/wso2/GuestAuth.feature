@@ -1,3 +1,5 @@
+@auth
+@authk3
 Feature: Grant type Guest Auth k3
 
   @k3

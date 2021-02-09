@@ -1,3 +1,5 @@
+@iac
+@iack3
 Feature: Get Entry Integration-auth
 
   @k3

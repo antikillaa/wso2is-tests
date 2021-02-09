@@ -1,3 +1,5 @@
+@auth
+@authk3
 Feature: Grant type Card Number K3
 
   @k3

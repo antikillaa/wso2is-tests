@@ -1,3 +1,5 @@
+@auth
+@authk3
 Feature: Grant type QR Auth
 
   @k3

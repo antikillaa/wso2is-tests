@@ -1,3 +1,5 @@
+@ac
+@ack3
 Feature: Check Remote Password Restore k3
 
   @k3

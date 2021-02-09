@@ -1,3 +1,5 @@
+@ac
+@ack3
 Feature: Get SmsOtp AC
 
   @k3

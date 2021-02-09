@@ -1,3 +1,5 @@
+@qr
+@qrk3
 Feature: QR service
 
   @k3

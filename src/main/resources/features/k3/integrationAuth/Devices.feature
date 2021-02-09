@@ -1,3 +1,5 @@
+@iac
+@iack3
 Feature: Get Devices Integration-auth
 
   @k3

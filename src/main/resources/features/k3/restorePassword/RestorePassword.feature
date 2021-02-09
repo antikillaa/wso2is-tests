@@ -1,3 +1,5 @@
+@restorePassword
+@restorePasswordk3
 Feature: Restore Password K3
 
   @k3
