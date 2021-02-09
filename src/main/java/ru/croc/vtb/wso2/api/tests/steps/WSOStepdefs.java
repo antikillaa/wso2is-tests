@@ -91,6 +91,7 @@ public class WSOStepdefs {
 
         for (Map<String, String> param : params) {
             RUN_CONTEXT.put("par", param);
+            log.info("Test no x device finger print for grant type: " + param.get("grandType"));
             acRequestService.sendGetTokenDTORequest(param, testsProperties);
             ValidatableResponse r = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
             r.statusCode(Integer.parseInt(param.get("code")));
