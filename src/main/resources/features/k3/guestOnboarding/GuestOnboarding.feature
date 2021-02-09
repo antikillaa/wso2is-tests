@@ -1,3 +1,4 @@
+@GuestOnboarding
 Feature: Guest Onboarding Service
 
   @k3
