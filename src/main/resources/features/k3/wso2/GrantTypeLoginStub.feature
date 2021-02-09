@@ -120,13 +120,6 @@ Feature: Grant type Login Stub
     And Status code response is: "500"
     And Response Body contains key: "additional_properties.tech_messages"
 
-  @wip
-  Scenario: Grant type login_mb No Device Finger Print
-    Then Send login by Grant type Request
-      | grandType | id_type | id       | scope |  env | finger_print |
-      | login_mb  | login   | 20002571 | true  |  k3  | no           |
-    And Status code response is: "500"
-
 
 
 

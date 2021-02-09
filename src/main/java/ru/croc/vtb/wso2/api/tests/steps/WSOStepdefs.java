@@ -12,9 +12,11 @@ import ru.croc.vtb.wso2.api.tests.impl.request.WSORequestServiceImpl;
 import ru.croc.vtb.wso2.api.tests.services.request.WsoRequestService;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
+import static ru.croc.vtb.wso2.api.tests.context.RunContext.valueOf;
 
 public class WSOStepdefs {
     @Autowired
@@ -81,5 +83,17 @@ public class WSOStepdefs {
         par.put("env", env);
         par.put("exchangeGuest", true);
         acRequestService.sendTokenExchangeRequest(par, testsProperties);
+    }
+
+    @Then("Send login by Grant type Request no parameter")
+    public void sendLoginByGrantTypeRequestNoParameter(DataTable par) {
+        List<Map<String, String>> params = par.asMaps();
+
+        for (Map<String, String> param : params) {
+            RUN_CONTEXT.put("par", param);
+            acRequestService.sendGetTokenDTORequest(param, testsProperties);
+            ValidatableResponse r = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
+            r.statusCode(Integer.parseInt(param.get("status")));
+        }
     }
 }
