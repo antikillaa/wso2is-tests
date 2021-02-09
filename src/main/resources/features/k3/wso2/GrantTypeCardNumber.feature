@@ -136,7 +136,7 @@ Feature: Grant type Card Number K3
     And Response Body contains key: "refresh_token"
     And Response Body contains "scope" equals "openid"
 
-  @wip
+  @k3
   Scenario: Login by Card wrong authorization
     Then Send login by Grant type Request
       | grandType   | id_type    | id               | scope | finger_print | env | Authorization                                                                      |
@@ -146,7 +146,7 @@ Feature: Grant type Card Number K3
     And Response Body contains key: "additional_properties.tech_messages"
 
 
-  @wip
+  @k3
   Scenario: Login by Card wrong authorization
     Then Send login by Grant type Request
       | grandType   | id_type    | id               | scope | finger_print | env | Authorization                                                                      |

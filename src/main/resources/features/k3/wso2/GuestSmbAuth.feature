@@ -36,7 +36,7 @@ Feature: Grant type Guest Smb Auth k3
     Then "k3" Send Logout Request
     And Status code response is: "200"
 
-  @wip
+  @k3
   Scenario: Grant type Guest Smb Auth Wrong authorization
     Then Send login by Grant type Request
       | grandType      | id_type      | id         | scope | finger_print | env | Authorization                                                                      |
