@@ -28,7 +28,7 @@ Feature: Grant type Guest Auth k3
     And Response Body contains key: "refresh_token"
     And Response Body contains key: "scope"
 
-  @skip
+  @wip
   Scenario: Grant type Guest Auth k3 Token Exchange
     Then "k3" Send Token Exchange Guest Request
 
