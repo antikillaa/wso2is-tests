@@ -93,7 +93,7 @@ public class WSOStepdefs {
             RUN_CONTEXT.put("par", param);
             acRequestService.sendGetTokenDTORequest(param, testsProperties);
             ValidatableResponse r = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
-            r.statusCode(Integer.parseInt(param.get("status")));
+            r.statusCode(Integer.parseInt(param.get("code")));
         }
     }
 }
