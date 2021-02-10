@@ -32,5 +32,3 @@ Feature: Restore Password K3
     And Response Body contains key: "transactionId"
     Then "k3" Send pwdRestorePasswordRequest
     And Status code response is: "200"
-
-
