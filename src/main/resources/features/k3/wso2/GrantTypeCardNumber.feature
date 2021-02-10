@@ -227,3 +227,17 @@ Feature: Grant type Card Number K3
     And Status code response is: "500"
     And Response Body contains "message_title" equals "Приносим извинения за доставленные неудобства. Воспользуйтесь старой версией интернет-банка по ссылке: [url=https://online-old.vtb.ru]https://online-old.vtb.ru[/url]"
 
+  @k3
+  Scenario: Login by Card issued for third person
+    Then Send login by Grant type Request
+      | grandType         | id_type    | id               | scope | finger_print | env | Authorization |
+      | card_number       | cardNumber | 2200650565343666 | true  | k3           | k3  | Basic Uzh3dWRkMmY2bHdIVEVra214NHB5VGxsbU1ZYTpTOHd1ZGQyZjZsd0hURWtrbXg0cHlUbGxtTVlB |
+    And Status code response is: "403"
+
+  @k3
+  Scenario: Login by Card MB issued for third person
+    Then Send login by Grant type Request
+      | grandType         | id_type    | id               | scope | finger_print | env | Authorization |
+      | card_number_mb    | cardNumber | 2200650565343666 | true  | k3           | k3  | Basic Uzh3dWRkMmY2bHdIVEVra214NHB5VGxsbU1ZYTpTOHd1ZGQyZjZsd0hURWtrbXg0cHlUbGxtTVlB |
+    And Status code response is: "403"
+    And Response Body contains "message_title" equals "Что-то пошло не так"
