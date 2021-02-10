@@ -1,5 +1,6 @@
 @auth
 @authk3
+@authLogink3
 Feature: Grant type Login Stub
 
   @k3

@@ -1,5 +1,6 @@
 @auth
 @authk3
+@authGuestSmbk3
 Feature: Grant type Guest Smb Auth k3
 
   @k3

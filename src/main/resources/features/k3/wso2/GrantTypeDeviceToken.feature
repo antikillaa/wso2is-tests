@@ -1,5 +1,6 @@
 @auth
 @authk3
+@authDeviceTokenk3
 Feature: Grant type Device Token Stub
 
   @skip
