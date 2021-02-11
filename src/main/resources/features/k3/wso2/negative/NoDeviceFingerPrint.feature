@@ -17,7 +17,7 @@ Feature: No device finger print
       | guest_smb_auth | phone_number  | 9809935444       | true  |  k3  | no           | 401  |Basic UlAyZ3d0aXl4WldMZ2NZM0l3Wl9hM1QzU0Y4YTpxRWVzOWNXUXJPT0hpd29IaXViOXkwZnVTZ0lh |
 
 
-  @wip
+  @k3
   Scenario: Grant type login_mb No X Finger Print
     Then Send login by Grant type Request no parameter
       | grandType      | id_type       | id               | scope |  env | x_finger_print |finger_print | code | Authorization |
