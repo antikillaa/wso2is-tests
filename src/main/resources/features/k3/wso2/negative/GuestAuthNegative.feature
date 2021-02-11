@@ -1,6 +1,8 @@
 @auth
 @authk3
 @authGuestk3
+@Negative
+@Negativek3
 Feature: Grant type Guest Auth k3
 
   @k3
@@ -12,7 +14,7 @@ Feature: Grant type Guest Auth k3
     And Status code response is: "500"
     And Response Body contains key: "additional_properties.tech_messages"
 
-  @wip
+  @k3
   Scenario: Grant type Phone_number no phoneNumber parameter
     Then Send login by Grant type Request
       | grandType  | id_type      | id         | scope | finger_print | env | Authorization                                                                      |

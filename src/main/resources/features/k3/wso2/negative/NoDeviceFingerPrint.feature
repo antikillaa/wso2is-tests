@@ -1,6 +1,7 @@
 @auth
 @authk3
-@authNegativek3
+@Negative
+@Negativek3
 Feature: No device finger print
 
   @k3

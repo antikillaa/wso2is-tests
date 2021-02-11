@@ -1,6 +1,8 @@
 @auth
 @authk3
 @authPhonek3
+@Negative
+@Negativek3
 Feature: Grant type Phone number k3
 
   @k3

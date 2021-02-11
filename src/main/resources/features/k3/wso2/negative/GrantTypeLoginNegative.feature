@@ -2,6 +2,7 @@
 @authk3
 @authLogink3
 @Negative
+@Negativek3
 Feature: Grant type Login Negative
 
   @k3
