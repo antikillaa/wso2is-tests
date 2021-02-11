@@ -64,7 +64,7 @@ Feature: Grant type Phone number k3
     And Response Body contains key: "additional_properties.tech_messages"
 
   @wip
-  Scenario: Grant type Phone_number no number parameter
+  Scenario: Grant type Phone_number no phoneNumber parameter
     Then Send login by Grant type Request
       | grandType    | id_type     | id         | scope | finger_print | env |
       | phone_number | no          | 9152547896 | true  | k3           | k3  |
