@@ -45,7 +45,11 @@ public class WSOBodyServiceImpl implements WSOBodyService {
 
     private void setGrandType(Map par, Map<String, Object> body) {
         if (par.get("grandType").equals("device_token")) {
-            body.put("deviceTokenID", par.get("id"));
+
+            if (!par.get("grandType").equals("no")) {
+                body.put("grant_type", par.get("grandType"));
+            } else body.put("deviceTokenID", par.get("id"));
+
             body.put("secureCode", "123123");
             body.put("challenge", "123123");
             body.put("grant_type", "device_token");
