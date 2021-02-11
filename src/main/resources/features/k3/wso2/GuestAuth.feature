@@ -31,8 +31,6 @@ Feature: Grant type Guest Auth k3
 
   @wip
   Scenario: Grant type Guest Auth k3 Token Exchange
-    Then "k3" Send Token Exchange Guest Request
-
     Then Send login by Grant type Request
       | grandType  | id_type      | id         | scope | finger_print | env | Authorization                                                                      |
       | guest_auth | phone_number | 9809935444 | true  | k3           | k3  | Basic MjcxSVNzWGZ5Y1U2VnRTZkw0Z2dfTURYUWxVYTpKRzByRWZkRmZidDM4UTB4UkV0UlNmWTFWdndh |
