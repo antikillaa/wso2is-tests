@@ -16,7 +16,9 @@ public class WSOBodyServiceImpl implements WSOBodyService {
 
     public Map<String, Object> getLoginByGrandTypeRequestBody(Map par, TestsProperties testsProperties) {
         Map<String, Object> body = new HashMap<>();
+/*
         setXFingerPrint(body);
+*/
 
         setPassword(par, testsProperties, body);
         setGrandType(par, body);
@@ -38,9 +40,9 @@ public class WSOBodyServiceImpl implements WSOBodyService {
         return body;
     }
 
-    private void setXFingerPrint(Map<String, Object> body) {
+/*    private void setXFingerPrint(Map<String, Object> body) {
         body.put("x-finger-print", "123456");
-    }
+    }*/
 
     private void setPassword(Map par, TestsProperties testsProperties, Map<String, Object> body) {
         if (par.get("password") == null || par.get("password").equals("true")) {

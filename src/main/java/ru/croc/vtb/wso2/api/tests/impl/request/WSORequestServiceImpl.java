@@ -190,7 +190,6 @@ public class WSORequestServiceImpl implements WsoRequestService {
         body.put("jwt", property.get("id_token"));
         body.put("scope", "openid");
         body.put("User-Agent", "test");
-        body.put("x-finger-print", "123123");
 
         ValidatableResponse r = given().log().everything(true)
                 .headers(getLoginHeaderWithFinger(RUN_CONTEXT.get("par", Map.class), testsProperties))
@@ -236,6 +235,10 @@ public class WSORequestServiceImpl implements WsoRequestService {
             }
         } catch (NullPointerException e) {
             log.error("finger_print is missing");
+        }
+
+        if ((par.get("x_finger_print") == null)) {
+            header.put("x-finger-print", "123123");
         }
     }
 
