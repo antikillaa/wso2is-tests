@@ -22,3 +22,12 @@ Feature: Grant type Card Number Negative
 
     And Status code response is: "500"
     And Response Body contains key: "additional_properties.tech_messages"
+
+  @wip
+  Scenario: Grant type Card Number: No cardNumber parameter
+    Then Send login by Grant type Request
+      | grandType   | id_type    | id               | scope | finger_print | env |
+      | card_number | no | 4714870078440778 | true  | k3           | k3  |
+
+    And Status code response is: "500"
+    And Response Body contains "additional_properties.technical_message" equals "[ExceptionName:IllegalArgumentException; Message:The parameter 'cardNumber' is missing] "
