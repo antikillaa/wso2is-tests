@@ -45,7 +45,7 @@ public class WSOStepdefs {
         ValidatableResponse r = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
         if (r.extract().statusCode() == 401) {
             sendSecondFactorLoginRequest();
-        } else log.info("Second factor not required " + r.extract().body().asString());
+        } else log.info("Second factor not required: " + r.extract().body().asString());
     }
 
     @Then("{string} Send Refresh token Request")

@@ -16,9 +16,6 @@ public class WSOBodyServiceImpl implements WSOBodyService {
 
     public Map<String, Object> getLoginByGrandTypeRequestBody(Map par, TestsProperties testsProperties) {
         Map<String, Object> body = new HashMap<>();
-/*
-        setXFingerPrint(body);
-*/
 
         setPassword(par, testsProperties, body);
         setGrandType(par, body);
@@ -40,10 +37,6 @@ public class WSOBodyServiceImpl implements WSOBodyService {
         return body;
     }
 
-/*    private void setXFingerPrint(Map<String, Object> body) {
-        body.put("x-finger-print", "123456");
-    }*/
-
     private void setPassword(Map par, TestsProperties testsProperties, Map<String, Object> body) {
         if (par.get("password") == null || par.get("password").equals("true")) {
             body.put("password", testsProperties.getUserPassword());
@@ -61,7 +54,10 @@ public class WSOBodyServiceImpl implements WSOBodyService {
             }
         }
 
-        body.put("grant_type", par.get("grandType"));
+        if (!par.get("grandType").equals("no")) {
+            body.put("grant_type", par.get("grandType"));
+        }
+
         if (par.get("scope").equals("true")) {
             body.put("scope", "openid");
         }
@@ -74,6 +70,8 @@ public class WSOBodyServiceImpl implements WSOBodyService {
             RUN_CONTEXT.put("guestPhone", phone);
             RUN_CONTEXT.put("guestId", phone);
             body.put((String) par.get("id_type"), phone);
+        } else if (par.get("id_type").equals("no")) {
+
         } else
             body.put((String) par.get("id_type"), par.get("id"));
     }
