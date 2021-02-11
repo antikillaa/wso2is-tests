@@ -3,7 +3,7 @@
 @authLogink3
 Feature: Grant type Login Stub
 
-  @k3
+  @wip
   Scenario: Grant type Login Success
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
