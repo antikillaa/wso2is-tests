@@ -232,6 +232,9 @@ public class WSORequestServiceImpl implements WsoRequestService {
                 if (par.get("finger_print").equals("no")) {
                     log.info("No X Device Finger Print!");
                 }
+                if (par.get("finger_print").equals("null")) {
+                    header.put("X-Device-FingerPrint", null);
+                }
             }
         } catch (NullPointerException e) {
             log.error("finger_print is missing");
