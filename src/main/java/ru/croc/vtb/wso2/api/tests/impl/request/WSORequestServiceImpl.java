@@ -47,27 +47,6 @@ public class WSORequestServiceImpl implements WsoRequestService {
     }
 
     @Override
-    public void sendSecondFactorRequest(TestsProperties testsProperties) {
-        String id = RUN_CONTEXT.get("id", String.class);
-        ValidatableResponse firstFactor = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
-        Map bodyResponse = firstFactor.extract().as(Map.class);
-        Map property = (Map) bodyResponse.get("additional_properties");
-
-        Map<String, Object> body = WSOBodyService.getSecondFactorDeviceTokenRequestBody(id, (String) property.get("sessionDataKey"));
-
-        ValidatableResponse r = given().log().everything(true)
-                .headers(getLoginHeaderWithFinger(RUN_CONTEXT.get("par", Map.class), testsProperties))
-                .params(body)
-                .contentType(ContentType.URLENC)
-                .post(testsProperties.getUrlToProxyK3() + "/oauth2/token")
-                .then().log().all(true);
-        log.info("Send second factor request: " + r.extract().body().asString());
-        RUN_CONTEXT.put("responseBody", r);
-        RUN_CONTEXT.put("login", r);
-        RUN_CONTEXT.put("secondFactor", r);
-    }
-
-    @Override
     public void sendGetTokenDTORequest(Map par, TestsProperties testsProperties) {
         String URL = getLoginURL(par, testsProperties);
 

@@ -8,8 +8,6 @@ public interface WsoRequestService {
 
     void getSecondFactorGrandTypeRequest(TestsProperties testsProperties);
 
-    void sendSecondFactorRequest(TestsProperties testsProperties);
-
     void sendGetTokenDTORequest(Map dataTable, TestsProperties testsProperties);
 
     void sendRefreshTokenRequest(Map env, TestsProperties testsProperties);
