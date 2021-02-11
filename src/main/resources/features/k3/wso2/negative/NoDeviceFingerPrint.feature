@@ -30,7 +30,7 @@ Feature: No device finger print
       | guest_auth     | phone_number  | 9809935444       | true  |  k3  | no             | k3          | 401  |Basic MjcxSVNzWGZ5Y1U2VnRTZkw0Z2dfTURYUWxVYTpKRzByRWZkRmZidDM4UTB4UkV0UlNmWTFWdndh |
       | guest_smb_auth | phone_number  | 9809935444       | true  |  k3  | no             | k3          | 500  |Basic UlAyZ3d0aXl4WldMZ2NZM0l3Wl9hM1QzU0Y4YTpxRWVzOWNXUXJPT0hpd29IaXViOXkwZnVTZ0lh |
 
-  @wip
+  @skip
   Scenario: Grant type login_mb Null Device Finger Print
     Then Send login by Grant type Request no parameter
       | grandType      | id_type       | id               | scope |  env | finger_print   | code | Authorization |
