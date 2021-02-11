@@ -16,7 +16,7 @@ Feature: Grant type Guest Auth k3
   Scenario: Grant type Phone_number no phoneNumber parameter
     Then Send login by Grant type Request
       | grandType  | id_type      | id         | scope | finger_print | env | Authorization                                                                      |
-      | guest_auth | no | 9809935444 | true  | k3           | k3  | Basic MjcxSVNzWGZ5Y1U232RTZkw0Z2dfTURYUWxVYTpKRzByRWZkRmZidDM4UTB4UkV0UlNmWTFWdndh |
+      | guest_auth | no           | 9809935444 | true  | k3           | k3  | Basic MjcxSVNzWGZ5Y1U232RTZkw0Z2dfTURYUWxVYTpKRzByRWZkRmZidDM4UTB4UkV0UlNmWTFWdndh |
 
 
     And Status code response is: "500"

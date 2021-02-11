@@ -23,7 +23,7 @@ Feature: Grant type Card Number Negative
     And Status code response is: "500"
     And Response Body contains key: "additional_properties.tech_messages"
 
-  @wip
+  @k3
   Scenario: Grant type Card Number: No cardNumber parameter
     Then Send login by Grant type Request
       | grandType   | id_type    | id               | scope | finger_print | env |

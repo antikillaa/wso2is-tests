@@ -3,7 +3,7 @@
 @authDeviceTokenk3
 Feature: Grant type Device Token Stub
 
-  @wip
+  @k3
   Scenario: Grant type DeviceToken: No deviceTokenID parameter
     Then Send login by Grant type Request
       | grandType    | id_type       | id               | finger_print | scope | env | Authorization                                                                      |

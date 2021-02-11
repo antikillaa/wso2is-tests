@@ -4,7 +4,7 @@
 @Negative
 Feature: Grant type Login Negative
 
-  @wip
+  @k3
   Scenario: Grant type Login no login parameter
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
@@ -14,7 +14,7 @@ Feature: Grant type Login Negative
 
 
 
-  @wip
+  @k3
   Scenario: Grant type Login Mb no login mb parameter
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
