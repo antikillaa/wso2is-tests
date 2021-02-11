@@ -33,7 +33,6 @@ public class WSORequestServiceImpl implements WsoRequestService {
         Map<String, Object> body = RUN_CONTEXT.get("body", Map.class);
         body.put("sessionDataKey", property.get("sessionDataKey"));
         body.put("transactionId", property.get("transactionId"));
-        body.put("x-finger-print", "123456");
         body.put("otp", "000000");
 
         ValidatableResponse r = given().log().everything(true)
