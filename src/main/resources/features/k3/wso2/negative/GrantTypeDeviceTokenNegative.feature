@@ -17,7 +17,7 @@ Feature: Grant type Device Token Stub
   @wip
   Scenario: Grant type DeviceToken: No ID
     Then Send login by Grant type Request
-      | grandType    | id_type       | id  | finger_print | scope | env | Authorization                                                                      |
-      | device_token | deviceTokenID |     | true         | true  | k3  | Basic Uzh3dWRkMmY2bHdIVEVra214NHB5VGxsbU1ZYTpTOHd1ZGQyZjZsd0hURWtrbXg0cHlUbGxtTVlB |
+      | grandType    | id_type       | id  | finger_print | scope | env |
+      | device_token | deviceTokenID |     | true         | true  | k3  |
 
-    And Status code response is: "401"
+    And Status code response is: "500"
