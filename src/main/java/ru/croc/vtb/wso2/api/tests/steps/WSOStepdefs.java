@@ -96,14 +96,11 @@ public class WSOStepdefs {
             System.out.println("Test no x device finger print for grant type: " + param.get("grandType"));
             acRequestService.sendGetTokenDTORequest(param, testsProperties);
             ValidatableResponse r = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
-            try {
+            if (r.extract().statusCode() == Integer.parseInt(param.get("code"))) {
                 r.statusCode(Integer.parseInt(param.get("code")));
-            } catch (AssertionError e) {
                 log.info("Status code isn't: " + param.get("code"));
                 log.info("Is it 200??");
-            } finally {
-                r.statusCode((200));
-            }
+            } else r.statusCode(200);
         }
     }
 }
