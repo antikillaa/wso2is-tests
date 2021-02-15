@@ -34,7 +34,7 @@ Feature: Grant type Card Number Negative
     And Response Body contains "additional_properties.technical_message" equals "[ExceptionName:IllegalArgumentException; Message:The parameter 'cardNumber' is missing] "
 
 
-  @wip
+  @k3
   Scenario: Login by Card empty ID
     Then Send login by Grant type Request
       | grandType   | id_type    | id | scope | finger_print | env |
@@ -42,7 +42,15 @@ Feature: Grant type Card Number Negative
 
     And Status code response is: "404"
 
-  @wip
+  @k3
+  Scenario: Login by Card MB empty ID
+    Then Send login by Grant type Request
+      | grandType   | id_type    | id  | scope | finger_print | env |
+      | card_number | cardNumber |     | true  | k3           | k3  |
+
+    And Status code response is: "404"
+
+  @k3
   Scenario: Login by Card MB empty ID
     Then Send login by Grant type Request
       | grandType   | id_type    | id  | scope | finger_print | env |
