@@ -1,8 +1,8 @@
 @auth
 @authk3
 @authCardk3
-@Negative
-@Negativek3
+@negative
+@negativek3
 Feature: Grant type Card Number Negative
 
   @k3

@@ -1,8 +1,8 @@
 @auth
 @authk3
 @authDeviceTokenk3
-@Negative
-@Negativek3
+@negative
+@negativek3
 Feature: Grant type Device Token Stub
 
   @k3

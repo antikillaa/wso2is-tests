@@ -1,8 +1,8 @@
 @auth
 @authk3
 @authGuestk3
-@Negative
-@Negativek3
+@negative
+@negativek3
 Feature: Grant type Guest Auth k3
 
   @k3
