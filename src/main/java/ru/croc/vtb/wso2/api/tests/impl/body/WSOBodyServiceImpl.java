@@ -74,7 +74,7 @@ public class WSOBodyServiceImpl implements WSOBodyService {
             RUN_CONTEXT.put("guestPhone", phone);
             RUN_CONTEXT.put("guestId", phone);
             body.put((String) par.get("id_type"), phone);
-        } else if (par.get("id_type").equals("no")) {
+        } else if (par.get("id_type").equals("no") || par.get("id").equals("no")) {
 
         } else
             body.put((String) par.get("id_type"), par.get("id"));
