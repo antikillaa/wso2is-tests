@@ -14,7 +14,7 @@ Feature: Grant type Device Token Stub
     And Status code response is: "500"
     And Response Body contains "additional_properties.technical_message" equals "[ExceptionName:IllegalArgumentException; Message:The parameter 'deviceTokenID' is missing] "
 
-  @wip
+  @k3
   Scenario: Grant type DeviceToken: No ID
     Then Send login by Grant type Request
       | grandType    | id_type       | id  | finger_print | scope | env |
