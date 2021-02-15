@@ -23,3 +23,10 @@ Feature: Grant type Phone number k3
     And Status code response is: "500"
     And Response Body contains "additional_properties.technical_message" equals "[ExceptionName:IllegalArgumentException; Message:The parameter 'phoneNumber' is missing] "
 
+  @wip
+  Scenario: Grant type Phone number No Phone
+    Then Send login by Grant type Request
+      | grandType    | id_type     | id | scope | finger_print | env |
+      | phone_number | phoneNumber | no | true  | k3           | k3  |
+    And Status code response is: "401"
+    And Response Body contains "type" equals "authentication_failed"
