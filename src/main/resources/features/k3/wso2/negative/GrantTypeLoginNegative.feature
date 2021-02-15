@@ -27,7 +27,7 @@ Feature: Grant type Login Negative
   Scenario: Grant type Login Mb No ID
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
-      | login_mb  | no      | 20002571 | true  | k3           | k3  |
+      | login_mb  | login      | no | true  | k3           | k3  |
     And Status code response is: "401"
     And Response Body contains "type" equals "authentication_failed"
 
@@ -35,7 +35,7 @@ Feature: Grant type Login Negative
   Scenario: Grant type Login No ID
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
-      | login     | no      | 20002571 | true  | k3           | k3  |
+      | login     | login      | no | true  | k3           | k3  |
     And Status code response is: "401"
     And Response Body contains "type" equals "authentication_failed"
 
