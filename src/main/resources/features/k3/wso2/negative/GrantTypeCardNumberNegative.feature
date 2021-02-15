@@ -40,7 +40,7 @@ Feature: Grant type Card Number Negative
       | grandType   | id_type    | id | scope | finger_print | env |
       | card_number | cardNumber |    | true  | k3           | k3  |
 
-    And Status code response is: "401"
+    And Status code response is: "404"
 
   @wip
   Scenario: Login by Card MB empty ID
