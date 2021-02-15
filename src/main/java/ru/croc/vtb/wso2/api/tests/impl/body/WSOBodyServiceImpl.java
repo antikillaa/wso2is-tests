@@ -68,7 +68,7 @@ public class WSOBodyServiceImpl implements WSOBodyService {
     }
 
     private void setId(Map par, Map<String, Object> body) {
-        if (par.get("id") == null) {
+        if (par.get("id") == null && par.get("grandType").equals("guest_auth")) {
             String phone = "79800" + RandomStringUtils.randomNumeric(6);
             log.info("Guest Phone number: " + phone);
             RUN_CONTEXT.put("guestPhone", phone);
