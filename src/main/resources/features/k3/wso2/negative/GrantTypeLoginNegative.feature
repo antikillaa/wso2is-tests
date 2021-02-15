@@ -23,19 +23,19 @@ Feature: Grant type Login Negative
     And Status code response is: "500"
     And Response Body contains "additional_properties.technical_message" equals "[ExceptionName:IllegalArgumentException; Message:The parameter 'login' is missing] "
 
-  @wip
+  @k3
   Scenario: Grant type Login Mb No ID
     Then Send login by Grant type Request
-      | grandType | id_type | id       | scope | finger_print | env |
-      | login_mb  | login      | no | true  | k3           | k3  |
+      | grandType | id_type | id | scope | finger_print | env |
+      | login_mb  | login   | no | true  | k3           | k3  |
     And Status code response is: "401"
     And Response Body contains "type" equals "authentication_failed"
 
-  @wip
+  @k3
   Scenario: Grant type Login No ID
     Then Send login by Grant type Request
-      | grandType | id_type | id       | scope | finger_print | env |
-      | login     | login      | no | true  | k3           | k3  |
+      | grandType | id_type | id | scope | finger_print | env |
+      | login     | login   | no | true  | k3           | k3  |
     And Status code response is: "401"
     And Response Body contains "type" equals "authentication_failed"
 
