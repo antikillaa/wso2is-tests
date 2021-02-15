@@ -28,5 +28,5 @@ Feature: Grant type Phone number k3
     Then Send login by Grant type Request
       | grandType    | id_type     | id | scope | finger_print | env |
       | phone_number | phoneNumber | no | true  | k3           | k3  |
-    And Status code response is: "401"
-    And Response Body contains "type" equals "authentication_failed"
+    And Status code response is: "500"
+    And Response Body contains "type" equals "generic_error"
