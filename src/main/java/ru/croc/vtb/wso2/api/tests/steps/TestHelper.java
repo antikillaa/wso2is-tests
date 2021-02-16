@@ -7,6 +7,7 @@ import io.restassured.response.ValidatableResponse;
 
 import static org.hamcrest.CoreMatchers.*;
 import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
+import static ru.croc.vtb.wso2.api.tests.impl.request.WSORequestServiceImpl.RESPONSE_BODY;
 
 public class TestHelper {
 
@@ -18,13 +19,13 @@ public class TestHelper {
 
     @And("Status code response is: {string}")
     public void statusCodeResponseIs(String arg0) {
-        ValidatableResponse r = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
+        ValidatableResponse r = RUN_CONTEXT.get(RESPONSE_BODY, ValidatableResponse.class);
         r.statusCode(Integer.parseInt(arg0));
     }
 
     @And("Response Body contains {string} equals {string}")
     public void bodyContainsEquals(String arg0, String arg1) {
-        ValidatableResponse r = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
+        ValidatableResponse r = RUN_CONTEXT.get(RESPONSE_BODY, ValidatableResponse.class);
 
         if (arg1.equals("true") || arg1.equals("false")) {
             Boolean arg2 = Boolean.valueOf(arg1);
@@ -36,19 +37,19 @@ public class TestHelper {
 
     @And("Response Body contains {string} not equals {string}")
     public void bodyNotContainsEquals(String arg0, String arg1) {
-        ValidatableResponse r = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
+        ValidatableResponse r = RUN_CONTEXT.get(RESPONSE_BODY, ValidatableResponse.class);
         r.body(arg0, not(arg1));
     }
 
     @And("Response Body contains key: {string}")
     public void bodyContainsKey(String arg0) {
-        ValidatableResponse r = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
+        ValidatableResponse r = RUN_CONTEXT.get(RESPONSE_BODY, ValidatableResponse.class);
         r.body(arg0, notNullValue());
     }
 
     @And("Response Body don't contains key: {string}")
     public void bodyNotContainsKey(String arg0) {
-        ValidatableResponse r = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
+        ValidatableResponse r = RUN_CONTEXT.get(RESPONSE_BODY, ValidatableResponse.class);
         r.body(arg0, not("ucn"));
     }
 }

@@ -14,6 +14,7 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
+import static ru.croc.vtb.wso2.api.tests.impl.request.WSORequestServiceImpl.RESPONSE_BODY;
 
 public class RestorePasswordRequestServiceImpl implements RestorePasswordRequestService {
     private static final Logger LOGGER = LoggerFactory.getLogger(RestorePasswordRequestServiceImpl.class);
@@ -40,7 +41,7 @@ public class RestorePasswordRequestServiceImpl implements RestorePasswordRequest
                 .body(body)
                 .post(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
     @Override
@@ -48,7 +49,7 @@ public class RestorePasswordRequestServiceImpl implements RestorePasswordRequest
         String requestPath = "/pwd";
         String URL = getRestorePasswordUrlURL(env, requestPath, testsProperties);
 
-        ValidatableResponse otpResponse = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
+        ValidatableResponse otpResponse = RUN_CONTEXT.get(RESPONSE_BODY, ValidatableResponse.class);
         Map responseBody = otpResponse.extract().as(Map.class);
 
         Map<String, Object> body = new HashMap<>();
@@ -62,7 +63,7 @@ public class RestorePasswordRequestServiceImpl implements RestorePasswordRequest
                 .body(body)
                 .post(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
 

@@ -12,6 +12,7 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
+import static ru.croc.vtb.wso2.api.tests.impl.request.WSORequestServiceImpl.RESPONSE_BODY;
 
 public class TestGetLogFile {
 
@@ -42,6 +43,6 @@ public class TestGetLogFile {
                 .post("http://test_ac:8080/services/AuthenticationServiceSoap")
                 .then().log().all(true);
         XmlPath xmlPath = new XmlPath(r.extract().asString());
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 }

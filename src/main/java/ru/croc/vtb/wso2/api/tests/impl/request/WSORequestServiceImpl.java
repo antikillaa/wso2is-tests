@@ -19,12 +19,14 @@ import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
 
 public class WSORequestServiceImpl implements WsoRequestService {
     private static final Logger log = LoggerFactory.getLogger(WSORequestServiceImpl.class);
+    public static final String LOGIN = "login";
+    public static final String RESPONSE_BODY = "responseBody";
 
     WSOBodyService WSOBodyService = new WSOBodyServiceImpl();
 
     @Override
     public void getSecondFactorGrandTypeRequest(TestsProperties testsProperties) {
-        ValidatableResponse firstFactor = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
+        ValidatableResponse firstFactor = RUN_CONTEXT.get(RESPONSE_BODY, ValidatableResponse.class);
         Map bodyResponse = firstFactor.extract().as(Map.class);
         Map property = (Map) bodyResponse.get("additional_properties");
 
@@ -41,8 +43,8 @@ public class WSORequestServiceImpl implements WsoRequestService {
                 .contentType(ContentType.URLENC)
                 .post(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
-        RUN_CONTEXT.put("login", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
+        RUN_CONTEXT.put(LOGIN, r);
     }
 
     @Override
@@ -66,8 +68,8 @@ public class WSORequestServiceImpl implements WsoRequestService {
                 .post(URL)
                 .then().log().all(true);
         log.info("Send first factor request: " + r.extract().body().asString());
-        RUN_CONTEXT.put("responseBody", r);
-        RUN_CONTEXT.put("login", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
+        RUN_CONTEXT.put(LOGIN, r);
         RUN_CONTEXT.put("firstFactor", r);
 
         try {
@@ -83,7 +85,7 @@ public class WSORequestServiceImpl implements WsoRequestService {
     public void sendRefreshTokenRequest(Map env, TestsProperties testsProperties) {
         String URL = getLoginURL(env, testsProperties);
 
-        Map property = RUN_CONTEXT.get("login", ValidatableResponse.class)
+        Map property = RUN_CONTEXT.get(LOGIN, ValidatableResponse.class)
                 .extract().as(Map.class);
 
         Map<String, Object> body = new HashMap<>();
@@ -94,11 +96,11 @@ public class WSORequestServiceImpl implements WsoRequestService {
         ValidatableResponse r = given().log().everything(true)
                 .headers(getLoginHeaderWithFinger(RUN_CONTEXT.get("par", Map.class), testsProperties))
                 .params(body)
-                .cookies(RUN_CONTEXT.get("login", ValidatableResponse.class).extract().cookies())
+                .cookies(RUN_CONTEXT.get(LOGIN, ValidatableResponse.class).extract().cookies())
                 .contentType(ContentType.URLENC)
                 .post(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
     @Override
@@ -107,7 +109,7 @@ public class WSORequestServiceImpl implements WsoRequestService {
 
         Map par = RUN_CONTEXT.get("par", Map.class);
 
-        Map property = RUN_CONTEXT.get("login", ValidatableResponse.class)
+        Map property = RUN_CONTEXT.get(LOGIN, ValidatableResponse.class)
                 .extract().as(Map.class);
 
         Map<String, Object> body = new HashMap<>();
@@ -120,7 +122,7 @@ public class WSORequestServiceImpl implements WsoRequestService {
 
         body.put("scope", "openid");
         body.put("jwt", property.get("id_token"));
-        body.put("redirectUri", "/");
+        body.put("redirectUri", "vtbinvest://PortfelHome");
 
         if (par.get("grandType").equals("guest_auth")) {
             body.put("grant_type", "token_exchange_guest");
@@ -129,11 +131,11 @@ public class WSORequestServiceImpl implements WsoRequestService {
         ValidatableResponse r = given().log().everything(true)
                 .headers(getLoginHeaderWithFinger(par, testsProperties))
                 .params(body)
-                .cookies(RUN_CONTEXT.get("login", ValidatableResponse.class).extract().cookies())
+                .cookies(RUN_CONTEXT.get(LOGIN, ValidatableResponse.class).extract().cookies())
                 .contentType(ContentType.URLENC)
                 .post(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
     @Override
@@ -141,7 +143,7 @@ public class WSORequestServiceImpl implements WsoRequestService {
         String URLtemp = getLoginURL(env, testsProperties);
         String URL = StringUtils.remove(URLtemp, "oauth2/token") + "oidc/logout";
 
-        Map property = RUN_CONTEXT.get("login", ValidatableResponse.class)
+        Map property = RUN_CONTEXT.get(LOGIN, ValidatableResponse.class)
                 .extract().as(Map.class);
 
         Map<String, Object> body = new HashMap<>();
@@ -153,14 +155,14 @@ public class WSORequestServiceImpl implements WsoRequestService {
                 .contentType(ContentType.URLENC)
                 .get(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
     @Override
     public void sendLoginByGrantTypeQRAuthRequest(Map env, TestsProperties testsProperties) {
         String URL = getLoginURL(env, testsProperties);
 
-        Map property = RUN_CONTEXT.get("login", ValidatableResponse.class)
+        Map property = RUN_CONTEXT.get(LOGIN, ValidatableResponse.class)
                 .extract().as(Map.class);
 
         Map<String, Object> body = new HashMap<>();
@@ -172,12 +174,12 @@ public class WSORequestServiceImpl implements WsoRequestService {
         ValidatableResponse r = given().log().everything(true)
                 .headers(getLoginHeaderWithFinger(RUN_CONTEXT.get("par", Map.class), testsProperties))
                 .params(body)
-                .cookies(RUN_CONTEXT.get("login", ValidatableResponse.class).extract().cookies())
+                .cookies(RUN_CONTEXT.get(LOGIN, ValidatableResponse.class).extract().cookies())
                 .contentType(ContentType.URLENC)
                 .post(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
-        RUN_CONTEXT.put("login", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
+        RUN_CONTEXT.put(LOGIN, r);
     }
 
     private Map<String, Object> getLoginHeaderWithFinger(Map par, TestsProperties testsProperties) {

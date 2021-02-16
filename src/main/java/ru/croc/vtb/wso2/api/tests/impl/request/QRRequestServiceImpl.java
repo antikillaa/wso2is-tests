@@ -12,6 +12,7 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
+import static ru.croc.vtb.wso2.api.tests.impl.request.WSORequestServiceImpl.RESPONSE_BODY;
 
 public class QRRequestServiceImpl implements QRRequestService {
 
@@ -34,7 +35,7 @@ public class QRRequestServiceImpl implements QRRequestService {
                 .headers(header)
                 .get(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
         RUN_CONTEXT.put("qr", r);
     }
 
@@ -64,7 +65,7 @@ public class QRRequestServiceImpl implements QRRequestService {
                 .cookies(RUN_CONTEXT.get("login", ValidatableResponse.class).extract().cookies())
                 .post(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
         RUN_CONTEXT.put("qr", r);
     }
 
@@ -96,7 +97,7 @@ public class QRRequestServiceImpl implements QRRequestService {
                 .body(body)
                 .post(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
         RUN_CONTEXT.put("qr", r);
     }
 
@@ -117,7 +118,7 @@ public class QRRequestServiceImpl implements QRRequestService {
                 .body(body)
                 .post(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
     private String getQRRequestUrl(String env, TestsProperties testsProperties) {

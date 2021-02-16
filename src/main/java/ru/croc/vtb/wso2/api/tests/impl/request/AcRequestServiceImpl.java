@@ -17,6 +17,7 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
+import static ru.croc.vtb.wso2.api.tests.impl.request.WSORequestServiceImpl.RESPONSE_BODY;
 
 public class AcRequestServiceImpl implements AcRequestService {
     private static final Logger LOGGER = LoggerFactory.getLogger(AcRequestServiceImpl.class);
@@ -31,7 +32,7 @@ public class AcRequestServiceImpl implements AcRequestService {
         RestorePasswordDTO restorePasswordDTO = acBodyService.getRestorePasswordBody(testsProperties, id);
 
         ValidatableResponse r = getRestorePasswordResponse(restorePasswordDTO, URL);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
     private ValidatableResponse getRestorePasswordResponse(RestorePasswordDTO restorePasswordDTO, String URL) {
@@ -64,7 +65,7 @@ public class AcRequestServiceImpl implements AcRequestService {
                     .accept(ContentType.JSON)
                     .post(URL)
                     .then().log().all(true);
-            RUN_CONTEXT.put("responseBody", r);
+            RUN_CONTEXT.put(RESPONSE_BODY, r);
         }
     }
 
@@ -85,7 +86,7 @@ public class AcRequestServiceImpl implements AcRequestService {
                 .params(body)
                 .get(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
     @Override
@@ -101,7 +102,7 @@ public class AcRequestServiceImpl implements AcRequestService {
                 .accept(ContentType.JSON)
                 .post(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
     public void getUserDiscreditedRequest(Map<String, String> param, TestsProperties testsProperties) {
@@ -115,7 +116,7 @@ public class AcRequestServiceImpl implements AcRequestService {
                 .param("domain", param.get("domain"))
                 .get(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
     @Override
@@ -127,7 +128,7 @@ public class AcRequestServiceImpl implements AcRequestService {
                 .accept(ContentType.JSON)
                 .get(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
     @Override
@@ -142,7 +143,7 @@ public class AcRequestServiceImpl implements AcRequestService {
                 .param("domain", param.get("domain"))
                 .get(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
     @Override
@@ -161,7 +162,7 @@ public class AcRequestServiceImpl implements AcRequestService {
                 .body(body)
                 .post(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
         RUN_CONTEXT.put("guestLogin", r);
     }
 
@@ -172,7 +173,7 @@ public class AcRequestServiceImpl implements AcRequestService {
         String ucn;
 
         if (param.get("ucn") == null) {
-            ucn = (String) RUN_CONTEXT.get("responseBody", ValidatableResponse.class).extract().as(Map.class).get("ucn");
+            ucn = (String) RUN_CONTEXT.get(RESPONSE_BODY, ValidatableResponse.class).extract().as(Map.class).get("ucn");
         } else if (param.get("ucn").equals("guest")) {
             ucn = (String) RUN_CONTEXT.get("guestLogin", ValidatableResponse.class).extract().as(Map.class).get("ucn");
         } else {
@@ -190,7 +191,7 @@ public class AcRequestServiceImpl implements AcRequestService {
                 .body(body)
                 .post(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
     @Override
@@ -204,7 +205,7 @@ public class AcRequestServiceImpl implements AcRequestService {
                 .get(URL + "/"
                         + RUN_CONTEXT.get("guestPhone", String.class))
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
     @Override
@@ -224,7 +225,7 @@ public class AcRequestServiceImpl implements AcRequestService {
                 .accept(ContentType.JSON)
                 .get(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
     @Override
@@ -245,7 +246,7 @@ public class AcRequestServiceImpl implements AcRequestService {
                 .body(body)
                 .post(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
     @Override
@@ -255,7 +256,7 @@ public class AcRequestServiceImpl implements AcRequestService {
 
         Map getSmsOtp = RUN_CONTEXT.get("getSmsOtp", Map.class);
         String transactionId =
-                RUN_CONTEXT.get("responseBody", ValidatableResponse.class)
+                RUN_CONTEXT.get(RESPONSE_BODY, ValidatableResponse.class)
                         .extract().body().as(Map.class).get("transactionId").toString();
 
         Map<String, Object> body = new HashMap<>();
@@ -272,7 +273,7 @@ public class AcRequestServiceImpl implements AcRequestService {
                 .body(body)
                 .post(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
     @Override
@@ -291,7 +292,7 @@ public class AcRequestServiceImpl implements AcRequestService {
                 .body(body)
                 .post(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
     private String getAcRequestUrl(String requestPath, String env, TestsProperties testsProperties) {

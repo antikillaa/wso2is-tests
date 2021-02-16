@@ -12,6 +12,7 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
+import static ru.croc.vtb.wso2.api.tests.impl.request.WSORequestServiceImpl.RESPONSE_BODY;
 
 public class IntegrationAuthRequestServiceImpl implements IntegrationAuthRequestService {
     private static final Logger LOGGER = LoggerFactory.getLogger(IntegrationAuthRequestServiceImpl.class);
@@ -32,7 +33,7 @@ public class IntegrationAuthRequestServiceImpl implements IntegrationAuthRequest
                 .accept(ContentType.JSON)
                 .get(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
     @Override
@@ -49,7 +50,7 @@ public class IntegrationAuthRequestServiceImpl implements IntegrationAuthRequest
                 .accept(ContentType.JSON)
                 .post(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
     @Override
@@ -69,7 +70,7 @@ public class IntegrationAuthRequestServiceImpl implements IntegrationAuthRequest
                 .accept(ContentType.JSON)
                 .post(URL)
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
     @Override
@@ -82,7 +83,7 @@ public class IntegrationAuthRequestServiceImpl implements IntegrationAuthRequest
                 .accept(ContentType.JSON)
                 .get(URL+par.get("device"))
                 .then().log().all(true);
-        RUN_CONTEXT.put("responseBody", r);
+        RUN_CONTEXT.put(RESPONSE_BODY, r);
     }
 
     private String getIntegrationAuthRequestUrl(String requestPath, String env, TestsProperties testsProperties) {
