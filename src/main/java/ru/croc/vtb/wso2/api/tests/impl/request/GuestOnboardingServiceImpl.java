@@ -12,7 +12,6 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
-import static ru.croc.vtb.wso2.api.tests.impl.request.WSORequestServiceImpl.RESPONSE_BODY;
 
 public class GuestOnboardingServiceImpl implements GuestOnboardingService {
     private static final Logger log = LoggerFactory.getLogger(GuestOnboardingServiceImpl.class);
@@ -35,7 +34,7 @@ public class GuestOnboardingServiceImpl implements GuestOnboardingService {
                 .post(URL)
                 .then().log().all(true);
         log.info("sendNonClientCardsRequest: " + r.extract().body().asString());
-        RUN_CONTEXT.put(RESPONSE_BODY, r);
+        RUN_CONTEXT.put("responseBody", r);
         RUN_CONTEXT.put("nonClient", r);
     }
 
@@ -56,7 +55,7 @@ public class GuestOnboardingServiceImpl implements GuestOnboardingService {
                 .post(URL)
                 .then().log().all(true);
         log.info("sendActivateNonClientRequest: " + r.extract().body().asString());
-        RUN_CONTEXT.put(RESPONSE_BODY, r);
+        RUN_CONTEXT.put("responseBody", r);
         RUN_CONTEXT.put("activateNonClient", r);
     }
 
@@ -70,7 +69,7 @@ public class GuestOnboardingServiceImpl implements GuestOnboardingService {
                 .get(URL)
                 .then().log().all(true);
         log.info("sendIsRegisteredRequest: " + r.extract().body().asString());
-        RUN_CONTEXT.put(RESPONSE_BODY, r);
+        RUN_CONTEXT.put("responseBody", r);
     }
 
     @Override
@@ -83,7 +82,7 @@ public class GuestOnboardingServiceImpl implements GuestOnboardingService {
                 .delete(URL)
                 .then().log().all(true);
         log.info("sendDeactivateRequest: " + r.extract().body().asString());
-        RUN_CONTEXT.put(RESPONSE_BODY, r);
+        RUN_CONTEXT.put("responseBody", r);
     }
 
     @Override
@@ -104,7 +103,7 @@ public class GuestOnboardingServiceImpl implements GuestOnboardingService {
                 .delete(URL)
                 .then().log().all(true);
         log.info("sendDeleteRequest: " + r.extract().body().asString());
-        RUN_CONTEXT.put(RESPONSE_BODY, r);
+        RUN_CONTEXT.put("responseBody", r);
     }
 
     private Map<String, Object> getActivateNonClientBody(Map nonClient) {

@@ -18,7 +18,6 @@ import java.util.Map;
 
 import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
 import static ru.croc.vtb.wso2.api.tests.context.RunContext.valueOf;
-import static ru.croc.vtb.wso2.api.tests.impl.request.WSORequestServiceImpl.RESPONSE_BODY;
 
 public class WSOStepdefs {
     @Autowired
@@ -44,7 +43,7 @@ public class WSOStepdefs {
         /**
          Send second factor request
          */
-        ValidatableResponse r = RUN_CONTEXT.get(RESPONSE_BODY, ValidatableResponse.class);
+        ValidatableResponse r = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
         if (r.extract().statusCode() == 401) {
             sendSecondFactorLoginRequest();
         } else log.info("Second factor not required: " + r.extract().body().asString());
@@ -96,7 +95,7 @@ public class WSOStepdefs {
             log.info("Test no x device finger print for grant type: " + param.get("grandType"));
             System.err.println("Test no x device finger print for grant type: " + param.get("grandType"));
             acRequestService.sendGetTokenDTORequest(param, testsProperties);
-            ValidatableResponse r = RUN_CONTEXT.get(RESPONSE_BODY, ValidatableResponse.class);
+            ValidatableResponse r = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
             if (r.extract().statusCode() == Integer.parseInt(param.get("code"))) {
                 r.statusCode(Integer.parseInt(param.get("code")));
                 log.info("Status code isn't: " + param.get("code"));
