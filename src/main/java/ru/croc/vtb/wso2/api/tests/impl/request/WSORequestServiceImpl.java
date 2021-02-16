@@ -120,7 +120,7 @@ public class WSORequestServiceImpl implements WsoRequestService {
 
         body.put("scope", "openid");
         body.put("jwt", property.get("id_token"));
-        body.put("redirectUri", "/");
+        body.put("redirectUri", "vtbinvest://PortfelHome");
 
         if (par.get("grandType").equals("guest_auth")) {
             body.put("grant_type", "token_exchange_guest");
