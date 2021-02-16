@@ -18,6 +18,6 @@ Feature: Grant type Device Token Stub
   Scenario: Grant type DeviceToken: No ID
     Then Send login by Grant type Request
       | grandType    | id_type       | id  | finger_print | scope | env |
-      | device_token | deviceTokenID |     | true         | true  | k3  |
+      | device_token | deviceTokenID | no    | true         | true  | k3  |
 
     And Status code response is: "500"

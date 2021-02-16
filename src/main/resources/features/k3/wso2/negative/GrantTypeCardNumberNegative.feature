@@ -38,7 +38,7 @@ Feature: Grant type Card Number Negative
   Scenario: Login by Card empty ID
     Then Send login by Grant type Request
       | grandType   | id_type    | id | scope | finger_print | env |
-      | card_number | cardNumber |    | true  | k3           | k3  |
+      | card_number | cardNumber | no | true  | k3           | k3  |
 
     And Status code response is: "404"
 
@@ -46,7 +46,7 @@ Feature: Grant type Card Number Negative
   Scenario: Login by Card MB empty ID
     Then Send login by Grant type Request
       | grandType   | id_type    | id  | scope | finger_print | env |
-      | card_number | cardNumber |     | true  | k3           | k3  |
+      | card_number | cardNumber |  no   | true  | k3           | k3  |
 
     And Status code response is: "404"
 
@@ -54,6 +54,6 @@ Feature: Grant type Card Number Negative
   Scenario: Login by Card MB empty ID
     Then Send login by Grant type Request
       | grandType   | id_type    | id  | scope | finger_print | env |
-      | card_number | cardNumber |     | true  | k3           | k3  |
+      | card_number | cardNumber | no    | true  | k3           | k3  |
 
     And Status code response is: "404"
