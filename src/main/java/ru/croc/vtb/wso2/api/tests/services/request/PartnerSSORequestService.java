@@ -5,5 +5,7 @@ import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
 import java.util.Map;
 
 public interface PartnerSSORequestService {
-    void sendPartnerSSOInitializationRequest(Map<String, String> param, TestsProperties testsProperties);
+    void sendPartnerSSOAuthenticateRequest(Map<String, String> param, TestsProperties testsProperties);
+
+    void sendPartnerSSOChallengeRequest(Map<String, String> param, TestsProperties testsProperties);
 }

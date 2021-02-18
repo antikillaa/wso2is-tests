@@ -6,9 +6,7 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
 import ru.croc.vtb.wso2.api.tests.impl.request.PartnerSSORequestServiceImpl;
-import ru.croc.vtb.wso2.api.tests.impl.request.QRRequestServiceImpl;
 import ru.croc.vtb.wso2.api.tests.services.request.PartnerSSORequestService;
-import ru.croc.vtb.wso2.api.tests.services.request.QRRequestService;
 
 import java.util.Map;
 
@@ -20,9 +18,15 @@ public class PartnerSSOStepdefs {
 
 
 
-    @Then("Send Partner SSO Initialization Request")
+    @Then("Send Partner SSO AUTHENTICATE Request")
     public void sendPartnerSSOInitializationRequest(DataTable par) {
         Map<String, String> param = par.asMaps().get(0);
-        partnerSSORequestService.sendPartnerSSOInitializationRequest(param, testsProperties);
+        partnerSSORequestService.sendPartnerSSOAuthenticateRequest(param, testsProperties);
+    }
+
+    @Then("Send Partner SSO CHALLENGE Request")
+    public void sendPartnerSSOCHALLENGERequest(DataTable par) {
+        Map<String, String> param = par.asMaps().get(0);
+        partnerSSORequestService.sendPartnerSSOChallengeRequest(param, testsProperties);
     }
 }
