@@ -8,4 +8,6 @@ public interface PartnerSSORequestService {
     void sendPartnerSSOAuthenticateRequest(Map<String, String> param, TestsProperties testsProperties);
 
     void sendPartnerSSOChallengeRequest(Map<String, String> param, TestsProperties testsProperties);
+
+    void sendPartnerSSOInitRequest(Map<String, String> param, TestsProperties testsProperties);
 }

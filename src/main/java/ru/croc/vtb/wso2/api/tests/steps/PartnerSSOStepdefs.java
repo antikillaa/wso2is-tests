@@ -29,4 +29,10 @@ public class PartnerSSOStepdefs {
         Map<String, String> param = par.asMaps().get(0);
         partnerSSORequestService.sendPartnerSSOChallengeRequest(param, testsProperties);
     }
+
+    @Then("Send Partner SSO INIT Request")
+    public void sendPartnerSSOINITRequest(DataTable par) {
+        Map<String, String> param = par.asMaps().get(0);
+        partnerSSORequestService.sendPartnerSSOInitRequest(param, testsProperties);
+    }
 }

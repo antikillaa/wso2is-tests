@@ -45,6 +45,34 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
         RUN_CONTEXT.put("responseBody", r);
     }
 
+    @Override
+    public void sendPartnerSSOInitRequest(Map<String, String> param, TestsProperties testsProperties) {
+        String URL = getLoginURL(param, testsProperties);
+        Map<String, Object> body = getInitBody(param);
+
+        ValidatableResponse r = given().log().everything(true)
+                .body(body)
+                .contentType(ContentType.JSON)
+                .post(URL)
+                .then().log().all(true);
+        RUN_CONTEXT.put("responseBody", r);
+    }
+
+    private Map<String, Object> getInitBody(Map<String, String> param) {
+        Map<String, Object> body = new HashMap();
+        body.put("stage", "INIT");
+
+        Map<String, Object> oidc = new HashMap();
+        oidc.put("clientId", param.get("clientId"));
+        oidc.put("responseType", "code");
+        oidc.put("redirectUri", param.get("redirectUri"));
+        oidc.put("scope", "openid");
+        oidc.put("state", "fnnvjvn");
+        body.put("oidc", oidc);
+
+        return body;
+    }
+
     private Map<String, Object> getChallengeBody(Map<String, String> param) {
         Map<String, Object> body = new HashMap();
         body.put("stage", "CHALLENGE");
