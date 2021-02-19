@@ -29,7 +29,7 @@ Feature: Grant type Guest Auth k3
 
     And Status code response is: "302"
 
-  @wip
+  @k3
   Scenario: Partner SSO INIT
     Then Send Partner SSO INIT Request
       |  env | clientId                     | redirectUri        |
