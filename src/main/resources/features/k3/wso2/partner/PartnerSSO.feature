@@ -36,7 +36,6 @@ Feature: Grant type Guest Auth k3
       |  k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | http://google.com/ |
     And Status code response is: "200"
     And Response Body contains "stage" equals "AUTHENTICATE"
-    And Response Body contains "params.ucn" equals "20002730"
     And Response Body contains key: "params.site"
     And Response Body contains key: "params.icon"
     And Response Body contains "error" equals "null"
