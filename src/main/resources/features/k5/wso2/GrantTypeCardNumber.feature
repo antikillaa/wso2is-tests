@@ -1,7 +1,7 @@
 @auth
 @authk5
 @authCardk5
-Feature: Grant type Card Number K3
+Feature: Grant type Card Number K5
 
   @k5
   Scenario: Grant type Card Number: Success
@@ -32,7 +32,8 @@ Feature: Grant type Card Number K3
       | grandType   | id_type    | id               | scope | finger_print | env |
       | card_number | cardNumber | 5278830191579360 | true  | k3           | k5  |
     And Status code response is: "200"
-    Then "k3" Send Refresh token Request
+
+    Then "k5" Send Refresh token Request
     And Status code response is: "200"
     And Response Body contains key: "access_token"
     And Response Body contains key: "id_token"
@@ -46,7 +47,7 @@ Feature: Grant type Card Number K3
       | card_number_mb | cardNumber | 5278830191579360 | true  | k3           | k5  |
     And Status code response is: "200"
 
-    Then "k3" Send Refresh token Request
+    Then "k5" Send Refresh token Request
     And Status code response is: "200"
     And Response Body contains key: "access_token"
     And Response Body contains key: "id_token"
@@ -60,7 +61,7 @@ Feature: Grant type Card Number K3
       | card_number_mb | cardNumber | 5278830191579360 | true  | k3           | k5  |
     And Status code response is: "200"
 
-    Then "k3" Send Token Exchange Request
+    Then "k5" Send Token Exchange Request
     And Status code response is: "200"
     And Response Body contains key: "access_token"
     And Response Body contains key: "id_token"
@@ -74,7 +75,7 @@ Feature: Grant type Card Number K3
       | card_number    | cardNumber | 5278830191579360 | true  | k3           | k5  |
     And Status code response is: "200"
 
-    Then "k3" Send Token Exchange Request
+    Then "k5" Send Token Exchange Request
     And Status code response is: "200"
     And Response Body contains key: "access_token"
     And Response Body contains key: "id_token"
@@ -88,7 +89,7 @@ Feature: Grant type Card Number K3
       | card_number_mb | cardNumber | 5278830191579360 | true  | k3           | k5  |
     And Status code response is: "200"
 
-    Then "k3" Send Logout Request
+    Then "k5" Send Logout Request
     And Status code response is: "200"
 
   @k5
@@ -98,7 +99,7 @@ Feature: Grant type Card Number K3
       | card_number | cardNumber | 5278830191579360 | true  | k3           | k5  |
     And Status code response is: "200"
 
-    Then "k3" Send Logout Request
+    Then "k5" Send Logout Request
     And Status code response is: "200"
 
   @k5
@@ -165,7 +166,7 @@ Feature: Grant type Card Number K3
   Scenario: Login by by expired card Mb
     Then Send login by Grant type Request
       | grandType      | id_type    | id               | scope | finger_print | env |
-      | card_number_mb | cardNumber | 4714870091976451 | true  | k3           | k3  |
+      | card_number_mb | cardNumber | 4714870091976451 | true  | k3           | k5  |
     And Status code response is: "403"
     And Response Body contains "type" equals "card_not_valid"
 
