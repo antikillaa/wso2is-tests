@@ -117,14 +117,6 @@ Feature: Grant type Card Number K5
     And Status code response is: "500"
 
   @k5
-  Scenario: Login by not active Card status card 240
-    Then Send login by Grant type Request
-      | grandType   | id_type    | id               | scope | finger_print | env |
-      | card_number | cardNumber | 5368291015786478 | true  | k3           | k5  |
-    And Status code response is: "403"
-    And Response Body contains "type" equals "card_not_valid"
-
-  @k5
   Scenario: Login by Card MB Moscow bank with UNK
     Then Send login by Grant type Request
       | grandType         | id_type    | id               | scope | finger_print | env | Authorization |
