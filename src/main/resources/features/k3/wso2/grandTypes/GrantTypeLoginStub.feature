@@ -55,7 +55,7 @@ Feature: Grant type Login Stub
     And Response Body contains key: "refresh_token"
     And Response Body contains key: "scope"
 
-  @k3
+  @wip
   Scenario: Grant type Login Token Exchange
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
