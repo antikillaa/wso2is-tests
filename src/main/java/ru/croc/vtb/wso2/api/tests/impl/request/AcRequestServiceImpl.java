@@ -7,8 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
 import ru.croc.vtb.wso2.api.tests.impl.body.AcBodyServiceImpl;
-import ru.croc.vtb.wso2.api.tests.model.rest.ac.ChangePasswordDTO;
-import ru.croc.vtb.wso2.api.tests.model.rest.ac.RestorePasswordDTO;
+import ru.croc.vtb.wso2.api.tests.model.ChangePasswordDTO;
+import ru.croc.vtb.wso2.api.tests.model.RestorePasswordDTO;
 import ru.croc.vtb.wso2.api.tests.services.body.AcBodyService;
 import ru.croc.vtb.wso2.api.tests.services.request.AcRequestService;
 
