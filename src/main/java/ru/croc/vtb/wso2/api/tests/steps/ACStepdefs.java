@@ -110,13 +110,4 @@ public class ACStepdefs {
         Map<String, String> param = par.asMaps().get(0);
         acRequestService.sendStaticPasswordRequest(param, testsProperties);
     }
-
-    @Then("Get DB connection")
-    public void getDBConnection() {
-        DbHelper conn = new DbHelper();
-        Statement stmt = conn.getConnection(DbProperty.URL_db_k3, DbProperty.USER_k3, DbProperty.PASSWORD_k3);
-        String URL = DbProperty.URL_ac_k3;
-        System.out.println(stmt);
-
-    }
 }

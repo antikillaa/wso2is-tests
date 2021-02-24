@@ -8,7 +8,3 @@ Feature: Add Guest RealAC
     And Status code response is: "200"
     And Response Body contains "domain" equals "guest"
     And Response Body contains key: "ucn"
-
-  @wip
-  Scenario: Get Db connection
-    Then Get DB connection
