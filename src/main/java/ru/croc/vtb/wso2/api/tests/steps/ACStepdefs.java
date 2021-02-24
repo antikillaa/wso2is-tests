@@ -112,7 +112,7 @@ public class ACStepdefs {
     }
 
     @Then("Get DB connection")
-    public void getDBConnection(String arg0) {
+    public void getDBConnection() {
         DbHelper conn = new DbHelper();
         Statement stmt = conn.getConnection(DbProperty.URL_db_k3, DbProperty.USER_k3, DbProperty.PASSWORD_k3);
         String URL = DbProperty.URL_ac_k3;
