@@ -1,6 +1,6 @@
 package ru.croc.vtb.wso2.api.tests.config;
 
-public class DatabaseProperty {
+public class DbProperty {
 
     public static final String URL_db_test = "jdbc:sqlserver://test_db:1433;databaseName=auth;loginTimeout=60;queryTimeout=60";
     public static final String URL_db_k3 = "jdbc:sqlserver://k3-ac-reg-sql.msk.vtb24.ru:1433;databaseName=Auth;loginTimeout=60;queryTimeout=60";

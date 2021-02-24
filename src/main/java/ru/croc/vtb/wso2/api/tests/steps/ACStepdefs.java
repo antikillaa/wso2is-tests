@@ -6,10 +6,13 @@ import io.cucumber.spring.CucumberContextConfiguration;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import ru.croc.vtb.wso2.api.tests.config.DbProperty;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
+import ru.croc.vtb.wso2.api.tests.impl.db.DbHelper;
 import ru.croc.vtb.wso2.api.tests.impl.request.AcRequestServiceImpl;
 import ru.croc.vtb.wso2.api.tests.services.request.AcRequestService;
 
+import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
 
@@ -106,5 +109,14 @@ public class ACStepdefs {
     public void sendStaticPasswordRequest(DataTable par) {
         Map<String, String> param = par.asMaps().get(0);
         acRequestService.sendStaticPasswordRequest(param, testsProperties);
+    }
+
+    @Then("Get DB connection")
+    public void getDBConnection(String arg0) {
+        DbHelper conn = new DbHelper();
+        Statement stmt = conn.getConnection(DbProperty.URL_db_k3, DbProperty.USER_k3, DbProperty.PASSWORD_k3);
+        String URL = DbProperty.URL_ac_k3;
+        System.out.println(stmt);
+
     }
 }

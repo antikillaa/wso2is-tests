@@ -1,10 +1,10 @@
-package ru.croc.vtb.wso2.api.tests.impl.database;
+package ru.croc.vtb.wso2.api.tests.impl.db;
 
 import ru.croc.vtb.wso2.api.tests.services.database.ConnectionDatabaseService;
 
 import java.sql.*;
 
-public class ConnectionDatabaseServiceImpl implements ConnectionDatabaseService {
+public class DbHelper implements ConnectionDatabaseService {
 
     public Statement getConnection(String URL, String user, String pass) {
         Statement stmt = null;
