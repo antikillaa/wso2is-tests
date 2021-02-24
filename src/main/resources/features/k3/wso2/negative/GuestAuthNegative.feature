@@ -9,7 +9,7 @@ Feature: Grant type Guest Auth k3
   Scenario: Grant type Guest Auth Wrong authorization
     Then Send login by Grant type Request
       | grandType  | id_type      | id         | scope | finger_print | env | Authorization                                                                      |
-      | guest_auth | phone_number | 9809935444 | true  | k3           | k3  | Basic ajhiT29aMnkxRmh3RUtQY2FGU1NnWUhGYmZvYTprV3NrV2ZmNzVVUkJnSm9WeWlzalRjTWI4OUlh |
+      | guest_auth | phone_number | 9809935444 | true  | k3           | k3  | Basic ajhiT29aMnk123xRmh3RUtQY2FGU1NnWUhGYmZvYTprV3NrV2ZmNzVVUkJnSm9WeWlzalRjTWI4OUlh |
 
     And Status code response is: "500"
     And Response Body contains key: "additional_properties.tech_messages"
