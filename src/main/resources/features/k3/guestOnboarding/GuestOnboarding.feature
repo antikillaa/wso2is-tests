@@ -6,7 +6,7 @@ Feature: Guest Onboarding Service
   Scenario: Activate Non Client Success
     Then Send login by Grant type Request
       | grandType  | id_type      | scope | finger_print | env | Authorization                                                                      |
-      | guest_auth | phone_number | true  | k3           | k3  | Basic MjcxSVNzWGZ5Y1U2VnRTZkw0Z2dfTURYUWxVYTpKRzByRWZkRmZidDM4UTB4UkV0UlNmWTFWdndh |
+      | guest_auth | phone_number | true  | k3           | k3  | Basic ajhiT29aMnkxRmh3RUtQY2FGU1NnWUhGYmZvYTprV3NrV2ZmNzVVUkJnSm9WeWlzalRjTWI4OUlh |
     And Status code response is: "200"
 
     Then Send non-client-cards Request
@@ -40,7 +40,7 @@ Feature: Guest Onboarding Service
   Scenario: Delete, activated user not exist in CPK, exist in AC
     Then Send login by Grant type Request
       | grandType  | id_type      | scope | finger_print | env | Authorization                                                                      |
-      | guest_auth | phone_number | true  | k3           | k3  | Basic MjcxSVNzWGZ5Y1U2VnRTZkw0Z2dfTURYUWxVYTpKRzByRWZkRmZidDM4UTB4UkV0UlNmWTFWdndh |
+      | guest_auth | phone_number | true  | k3           | k3  | Basic ajhiT29aMnkxRmh3RUtQY2FGU1NnWUhGYmZvYTprV3NrV2ZmNzVVUkJnSm9WeWlzalRjTWI4OUlh |
     And Status code response is: "200"
 
     Then Send delete request
@@ -57,7 +57,7 @@ Feature: Guest Onboarding Service
   Scenario: Delete, not activated user exist in CPK, exist in AC
     Then Send login by Grant type Request
       | grandType  | id_type      | scope | finger_print | env | Authorization                                                                      |
-      | guest_auth | phone_number | true  | k3           | k3  | Basic MjcxSVNzWGZ5Y1U2VnRTZkw0Z2dfTURYUWxVYTpKRzByRWZkRmZidDM4UTB4UkV0UlNmWTFWdndh |
+      | guest_auth | phone_number | true  | k3           | k3  | Basic ajhiT29aMnkxRmh3RUtQY2FGU1NnWUhGYmZvYTprV3NrV2ZmNzVVUkJnSm9WeWlzalRjTWI4OUlh |
     And Status code response is: "200"
 
     Then Send non-client-cards Request
@@ -81,7 +81,7 @@ Feature: Guest Onboarding Service
   Scenario: Deactivate active user
     Then Send login by Grant type Request
       | grandType  | id_type      | scope | finger_print | env | Authorization                                                                      |
-      | guest_auth | phone_number | true  | k3           | k3  | Basic MjcxSVNzWGZ5Y1U2VnRTZkw0Z2dfTURYUWxVYTpKRzByRWZkRmZidDM4UTB4UkV0UlNmWTFWdndh |
+      | guest_auth | phone_number | true  | k3           | k3  | Basic ajhiT29aMnkxRmh3RUtQY2FGU1NnWUhGYmZvYTprV3NrV2ZmNzVVUkJnSm9WeWlzalRjTWI4OUlh |
     And Status code response is: "200"
 
     Then Send non-client-cards Request
@@ -100,7 +100,7 @@ Feature: Guest Onboarding Service
   Scenario: Deactivate not active user
     Then Send login by Grant type Request
       | grandType  | id_type      | scope | finger_print | env | Authorization                                                                      |
-      | guest_auth | phone_number | true  | k3           | k3  | Basic MjcxSVNzWGZ5Y1U2VnRTZkw0Z2dfTURYUWxVYTpKRzByRWZkRmZidDM4UTB4UkV0UlNmWTFWdndh |
+      | guest_auth | phone_number | true  | k3           | k3  | Basic ajhiT29aMnkxRmh3RUtQY2FGU1NnWUhGYmZvYTprV3NrV2ZmNzVVUkJnSm9WeWlzalRjTWI4OUlh |
     And Status code response is: "200"
 
     Then Send deactivate request
