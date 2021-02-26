@@ -5,7 +5,7 @@
 Feature: No device finger print
 
   @k3
-  Scenario Outline: Grant type login_mb No Device Finger Print
+  Scenario Outline: Grant type No Device Finger Print
     Then Send login by Grant type Request no parameter
       | grandType      | id_type       | id               | scope |  env | finger_print | code   | Authorization   |
       | <grandType>    | <id_type>     | <id>             | true   |  k3 | no           | <code> | <Authorization> |
@@ -23,13 +23,12 @@ Feature: No device finger print
 
 
   @wip
-  Scenario Outline: Grant type login_mb No X Finger Print
+  Scenario Outline: Grant types No X Finger Print
     Then Send login by Grant type Request no parameter
       |  grandType     |  id_type    |  id     | scope  | env | x_finger_print | finger_print | code   | Authorization   |
       | <grandType>    | <id_type>   | <id>    | true   | k3  | no             | k3           | <code> | <Authorization> |
 
     Examples:
-      | grandType      | id_type       | id               | code | Authorization |
       | grandType      | id_type       | id               | code | Authorization |
       | login_mb       | login         | 20002571         | 401  |               |
       | login          | login         | 20002571         | 500  |               |
