@@ -42,8 +42,8 @@ Feature: No device finger print
   @wip
   Scenario Outline: Grant type Null Device Finger Print
     Then Send login by Grant type Request no parameter
-      |  grandType     |  id_type    |  id     | scope  | env | finger_print | code   | Authorization   |
-      | <grandType>    | <id_type>   | <id>    | true   | k3  | k3           | <code> | <Authorization> |
+      |  grandType     |  id_type    |  id     | scope  | env | finger_print   | code   | Authorization   |
+      | <grandType>    | <id_type>   | <id>    | true   | k3  | null           | <code> | <Authorization> |
 
     Examples:
       | grandType      | id_type       | id               | code | Authorization |
