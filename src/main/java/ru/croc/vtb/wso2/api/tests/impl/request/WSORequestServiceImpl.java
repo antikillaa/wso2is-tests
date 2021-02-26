@@ -28,12 +28,13 @@ public class WSORequestServiceImpl implements WsoRequestService {
         Map bodyResponse = firstFactor.extract().as(Map.class);
         Map property = (Map) bodyResponse.get("additional_properties");
 
-        String URL = getLoginURL((Map) RUN_CONTEXT.get("par"), testsProperties);
+        Map<String, Object> par = (Map<String, Object>) RUN_CONTEXT.get("par");
+        String URL = getLoginURL(par, testsProperties);
 
         Map<String, Object> body = RUN_CONTEXT.get("body", Map.class);
         body.put("sessionDataKey", property.get("sessionDataKey"));
         body.put("transactionId", property.get("transactionId"));
-        body.put("otp", "000000");
+        body.put("otp", getOtp(par));
 
         ValidatableResponse r = given().log().everything(true)
                 .headers(getLoginHeaderWithFinger(RUN_CONTEXT.get("par", Map.class), testsProperties))
@@ -43,6 +44,13 @@ public class WSORequestServiceImpl implements WsoRequestService {
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
         RUN_CONTEXT.put("login", r);
+    }
+
+    private String getOtp(Map<String, Object> par) {
+        if (par.get("otp") != null) {
+            return "123123";
+        } else
+        return "000000";
     }
 
     @Override
