@@ -88,9 +88,8 @@ public class WSOStepdefs {
 
     @Then("Send login by Grant type Request no parameter")
     public void sendLoginByGrantTypeRequestNoParameter(DataTable par) {
-        List<Map<String, String>> params = par.asMaps();
+        Map<String, String> param = par.asMaps().get(0);
 
-        for (Map<String, String> param : params) {
             RUN_CONTEXT.put("par", param);
             log.info("Test no x device finger print for grant type: " + param.get("grandType"));
             System.err.println("Test no x device finger print for grant type: " + param.get("grandType"));
@@ -101,6 +100,6 @@ public class WSOStepdefs {
                 log.info("Status code isn't: " + param.get("code"));
                 log.info("Is it 200??");
             } else r.statusCode(200);
-        }
+
     }
 }
