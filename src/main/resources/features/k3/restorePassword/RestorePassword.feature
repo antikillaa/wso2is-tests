@@ -17,10 +17,10 @@ Feature: Restore Password K3
 
   @k3
   Scenario: otp access deny
-    Then "k3" Send otpRestorePasswordRequest: cred: "20002554", type: "login"
-    And Status code response is: "200"
-    And Response Body contains "ucn" equals "20002554"
-    And Response Body contains key: "transactionId"
+    Then "k3" Send otpRestorePasswordRequest: cred: "18001042", type: "login"
+    And Status code response is: "403"
+    And Response Body contains "type" equals "spm_access_deny"
+
 
   @k3
   Scenario: pwd: Success
