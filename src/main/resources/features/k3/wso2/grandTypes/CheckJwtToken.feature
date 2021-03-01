@@ -1,13 +1,13 @@
 @auth
 @authk3
 @authLogink3
-Feature: Grant type Login Stub
+Feature: Check JWT Token
 
   @k3
   Scenario Outline: Check JWT Token
     Then Send login by Grant type Request
-      | grandType   | id_type   | id   | scope |  env | finger_print | Authorization    |
-      | <grandType> | <id_type> | <id> | true  |  k3  | k3           | <Authorization>  |
+      | grandType   | id_type   | id   | scope | env | finger_print | Authorization   |
+      | <grandType> | <id_type> | <id> | true  | k3  | k3           | <Authorization> |
     And Status code response is: "200"
 
     Then Check JWT Token

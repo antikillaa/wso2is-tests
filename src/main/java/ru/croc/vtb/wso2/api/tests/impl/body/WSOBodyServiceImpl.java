@@ -33,8 +33,17 @@ public class WSOBodyServiceImpl implements WSOBodyService {
         body.put("grant_type", "device_token");
         body.put("scope", "openid");
         body.put("otp", "123");
-        body.put("sessionDataKey", sessionDataKey);
+        body.put("sessionDataKey", getSessionDataKey(sessionDataKey));
         return body;
+    }
+
+    private String getSessionDataKey(String sessionDataKey) {
+        if (sessionDataKey.equals("wrong")) {
+            return "123123";
+        } else if (sessionDataKey.equals("no")) {
+            return "";
+        }
+        return sessionDataKey;
     }
 
     private void setPassword(Map par, TestsProperties testsProperties, Map<String, Object> body) {
