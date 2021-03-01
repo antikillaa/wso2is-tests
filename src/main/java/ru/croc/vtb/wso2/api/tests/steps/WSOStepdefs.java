@@ -13,6 +13,8 @@ import io.restassured.response.ValidatableResponse;
 import lombok.Getter;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.assertj.core.api.SoftAssertions;
+import org.junit.Assert;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,6 +116,7 @@ public class WSOStepdefs {
 
     }
 
+    @Test
     public void checkJwtToken() {
         String token = "eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6Ik16WXhNbUZrT0dZd01XSTBaV05tTkRjeE5HWXdZbU00WlRBM01XSTJOREF6WkdRek5HTTBaR1JsTmpKa09ERmtaRFJpT1RGa01XRmhNelUyWkdWbE5nX1JTMjU2IiwiYWxnIjoiUlMyNTYifQ.eyJhdF9oYXNoIjoiZ3p5ejhhTnAwd0pQVXUtVzdVQUJjdyIsInN1YiI6IjE4MDAxMDExIiwiYW1yIjpbImxvZ2luIl0sImlzcyI6Imh0dHBzOlwvXC9sb2NhbGhvc3Q6OTQ0M1wvb2F1dGgyXC90b2tlbiIsImF1dGhfc2Vzc2lvbl9pZCI6ImM0ODU1YzY3LTAwNzEtNGFiZC05ZjU3LTExODQxZWZlNTI1OSIsInVzZXJfZmluZ2VycHJpbnQiOiJjM2Q0OTQ3NGJjYzI2NjIzYjU0ZmIyNzRjMjAzMTE5ZDhkM2NhMDViNzFiOGY4ZjM4NTUxMGNkZTlhZGVmMzE5IiwibXNhX3Nlc3Npb25faWQiOiJiNjE0M2RhOC1mYTBkLTRjYjItOGYyNy0wYTkxN2Y1NzIzYmYiLCJhdWQiOiJDMlZZdjNiNlJIRWlnMm5fNTZiZm5uM0dmSTRhIiwiYWNyIjoibXNhPWV5SllMVlZ6WlhJdFUyVnpjMmx2YmkxSlJDSTZJbUkyTVRRelpHRTRMV1poTUdRdE5HTmlNaTA0WmpJM0xUQmhPVEUzWmpVM01qTmlaaUlzSW5KdmRYUmxUbUZ0WlNJNkltUmxabUYxYkhRaUxDSnphR0Z5WkU1aGJXVWlPaUp6TVRBaUxDSllMVkpQVlZSRkxVNUJUVVVpT2lKa1pXWmhkV3gwSWl3aVdDMVRTRUZTUkMxT1FVMUZJam9pY3pFd0lpd2lXQzFFWldKMVp5STZJblJ5ZFdVaUxDSllMVWx1YVhScFlYUnZjaTFJYjNOMElqb2lNVEF1T0RRdU1TNHhNemtpTENKWUxVbHVhWFJwWVhSdmNpMVRaWEoyYVdObElqb2lhVzUwWlhKdVpYUkNZVzVySWl3aVdDMURhR0Z1Ym1Wc0lqb2lWMWRYTWlJc0lsZ3RURzluYVc0dFRXOWtaU0k2Ym5Wc2JIMD0iLCJuYmYiOjE2MDQzMDgxMzYsInNwX25hbWUiOiJ3ZWItYmFuayIsImF6cCI6IkMyVll2M2I2UkhFaWcybl81NmJmbm4zR2ZJNGEiLCJkb21haW4iOiJtYXN0ZXIiLCJleHAiOjE2MDQzMDg0OTYsImlhdCI6MTYwNDMwODEzNn0.CNKBK7i9Dqz5BA_72Qa3jQUAdwYrYa2HcWyZlie_InzAXkpo5FT2XUShivp1CJto4CazzJI3XQ4RErCd_0G7y_g8Fe3gDPIc2wGg-ce5pE-_jeZ7H9LthzIfI9TmuJj9qTeZ-ZxyWAZOAJO50Kc38Yx5SXDq9qXyqXOBYc6oTmVSEZ552Tkn6EJ54VuhHVOWzpvSDs1kCe2eb6xKGLa0YAN0h9hB7NtyIVTD0RCw1gTB8_KIl7aUHDyW-9nUoX9iJ0FbAksmFeW3nALlcZyn_jVp595hW--VevkSBilc5uT61iIBAU-soDuYEW-U5MMdNfO6C6MQbU3S2QHire7eKg";
 
@@ -121,5 +124,22 @@ public class WSOStepdefs {
         Map<String, Claim> map = jwt.getClaims();
         Claim claim = map.get("iss");
         System.out.println(map);
+    }
+
+    @Then("Check JWT Token")
+    public void checkJWTToken() {
+        String token = (String) RUN_CONTEXT.get("login", ValidatableResponse.class).extract().as(Map.class).get("id_token");
+        log.info("token: " + token);
+        Map<String, Object> param = RUN_CONTEXT.get("par", Map.class);
+        log.info("Parameters: " + param.toString());
+        DecodedJWT jwt = JWT.decode(token);
+        Map<String, Claim> decodedJwt = jwt.getClaims();
+        log.info("Decoded jwt: " + decodedJwt.toString());
+
+        Assert.assertEquals(param.get("id").toString(), decodedJwt.get("sub").as(String.class));
+        Assert.assertTrue(decodedJwt.get("amr").toString().contains(param.get("grandType").toString()));
+
+
+
     }
 }
