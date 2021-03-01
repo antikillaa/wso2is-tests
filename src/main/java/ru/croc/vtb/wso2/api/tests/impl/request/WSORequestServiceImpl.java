@@ -53,6 +53,7 @@ public class WSORequestServiceImpl implements WsoRequestService {
                 body.put("sessionDataKey", "123123");
             } else if (sessionKey.equals("blank")) {
                 body.put("sessionDataKey", "");
+            } else if (sessionKey.equals("no")) {
             }
         } else
             body.put("sessionDataKey", property.get("transactionId"));
