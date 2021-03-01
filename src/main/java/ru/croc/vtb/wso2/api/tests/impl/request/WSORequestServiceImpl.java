@@ -47,16 +47,20 @@ public class WSORequestServiceImpl implements WsoRequestService {
     }
 
     private void setSessionDataKey(Map property, Map body) {
-        String sessionKey = RUN_CONTEXT.get("par", Map.class).get("sessionDataKey").toString();
-        if (sessionKey != null) {
-            if (sessionKey.equals("wrong")) {
-                body.put("sessionDataKey", "123123");
-            } else if (sessionKey.equals("blank")) {
-                body.put("sessionDataKey", "");
-            } else if (sessionKey.equals("no")) {
+        try {
+            String sessionKey = RUN_CONTEXT.get("par", Map.class).get("sessionDataKey").toString();
+            if (sessionKey != null) {
+                if (sessionKey.equals("wrong")) {
+                    body.put("sessionDataKey", "123123");
+                } else if (sessionKey.equals("blank")) {
+                    body.put("sessionDataKey", "");
+                } else if (sessionKey.equals("no")) {
+                }
             }
-        } else
-            body.put("sessionDataKey", property.get("transactionId"));
+        } catch (NullPointerException e) {
+            body.put("sessionDataKey", property.get("sessionDataKey"));
+        }
+
     }
 
     private String getOtp(Map<String, Object> par) {
