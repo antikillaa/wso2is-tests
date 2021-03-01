@@ -32,7 +32,7 @@ public class WSORequestServiceImpl implements WsoRequestService {
         String URL = getLoginURL(par, testsProperties);
 
         Map<String, Object> body = RUN_CONTEXT.get("body", Map.class);
-        body.put("sessionDataKey", property.get("sessionDataKey"));
+        body.put("sessionDataKey", getSessionDataKey(property));
         body.put("transactionId", property.get("transactionId"));
         body.put("otp", getOtp(par));
 
@@ -46,11 +46,21 @@ public class WSORequestServiceImpl implements WsoRequestService {
         RUN_CONTEXT.put("login", r);
     }
 
+    private String getSessionDataKey(Map property) {
+        String sessionKey = RUN_CONTEXT.get("par", Map.class).get("sessionDataKey").toString();
+        if (sessionKey.equals("wrong")) {
+            return "123123";
+        } else if (sessionKey.equals("no")) {
+            return "";
+        }
+        return (String) property.get("transactionId");
+    }
+
     private String getOtp(Map<String, Object> par) {
         if (par.get("otp") != null) {
             return "123123";
         } else
-        return "000000";
+            return "000000";
     }
 
     @Override
