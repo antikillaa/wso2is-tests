@@ -10,6 +10,8 @@ Feature: Grant type Login Stub
       | <grandType> | <id_type> | <id> | true  |  k3  | k3           | <Authorization>  |
     And Status code response is: "200"
 
+    Then Check JWT Token
+
     Examples:
       | grandType      | id_type       | id               |  Authorization |
       | login_mb       | login         | 20002571         |                |
@@ -17,6 +19,5 @@ Feature: Grant type Login Stub
       | card_number    | cardNumber    | 4714870078440778 |                |
       | card_number_mb | cardNumber    | 4714870078440778 |                |
       | phone_number   | phoneNumber   | 9152547896       |                                                                                     |
-      | guest_auth     | phone_number  | 9809935444       | Basic MjcxSVNzWGZ5Y1U2VnRTZkw0Z2dfTURYUWxVYTpKRzByRWZkRmZidDM4UTB4UkV0UlNmWTFWdndh |
-      | guest_smb_auth | phone_number  | 9809935444       | Basic UlAyZ3d0aXl4WldMZ2NZM0l3Wl9hM1QzU0Y4YTpxRWVzOWNXUXJPT0hpd29IaXViOXkwZnVTZ0lh |
+      | guest_auth     | phone_number  | 9809935444       | Basic ajhiT29aMnkxRmh3RUtQY2FGU1NnWUhGYmZvYTprV3NrV2ZmNzVVUkJnSm9WeWlzalRjTWI4OUlh |
 
