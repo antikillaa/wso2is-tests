@@ -26,7 +26,7 @@ Feature: Wrong Session Data Key
     Then Send login by Grant type Request
       | grandType   | id_type   | id   | scope | env | finger_print | Authorization   | sessionDataKey |
       | <grandType> | <id_type> | <id> | true  | k3  | k3           | <Authorization> | blank          |
-    And Status code response is: "500"
+    And Status code response is: "401"
 
     Examples:
       | grandType      | id_type      | id               | Authorization                                                                      |
