@@ -140,6 +140,5 @@ public class WSOStepdefs {
         Assert.assertNotNull(decodedJwt.get("aud"));
         Assert.assertEquals(firstFactor.get("domain"), decodedJwt.get("domain").as(String.class));
         Assert.assertEquals(firstFactor.get("sessionDataKey"), decodedJwt.get("auth_session_id").as(String.class));
-
     }
 }
