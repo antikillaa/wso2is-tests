@@ -3,7 +3,7 @@
 @authLogink3
 Feature: Grant type Login Stub
 
-  @wip
+  @k3
   Scenario Outline: Check JWT Token
     Then Send login by Grant type Request
       | grandType   | id_type   | id   | scope |  env | finger_print | Authorization    |

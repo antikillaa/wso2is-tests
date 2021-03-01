@@ -1,18 +1,12 @@
 package ru.croc.vtb.wso2.api.tests.steps;
 
 import com.auth0.jwt.JWT;
-import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
-
 import io.restassured.response.ValidatableResponse;
 import lombok.Getter;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
-import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -22,15 +16,10 @@ import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
 import ru.croc.vtb.wso2.api.tests.impl.request.WSORequestServiceImpl;
 import ru.croc.vtb.wso2.api.tests.services.request.WsoRequestService;
 
-import javax.xml.bind.DatatypeConverter;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
-import static ru.croc.vtb.wso2.api.tests.context.RunContext.valueOf;
 
 public class WSOStepdefs {
     @Autowired
@@ -135,7 +124,6 @@ public class WSOStepdefs {
                         .extract().as(Map.class).get("additional_properties");
         log.info("firstFactor: " + firstFactor);
 
-
         Map<String, Object> param = RUN_CONTEXT.get("par", Map.class);
         log.info("Parameters: " + param.toString());
         DecodedJWT jwt = JWT.decode(token);
@@ -152,14 +140,6 @@ public class WSOStepdefs {
         Assert.assertNotNull(decodedJwt.get("aud"));
         Assert.assertEquals(firstFactor.get("domain"), decodedJwt.get("domain").as(String.class));
         Assert.assertEquals(firstFactor.get("sessionDataKey"), decodedJwt.get("auth_session_id").as(String.class));
-
-
-
-
-
-
-
-
 
     }
 }
