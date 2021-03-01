@@ -48,10 +48,12 @@ public class WSORequestServiceImpl implements WsoRequestService {
 
     private String getSessionDataKey(Map property) {
         String sessionKey = RUN_CONTEXT.get("par", Map.class).get("sessionDataKey").toString();
-        if (sessionKey.equals("wrong")) {
-            return "123123";
-        } else if (sessionKey.equals("no")) {
-            return "";
+        if (sessionKey != null) {
+            if (sessionKey.equals("wrong")) {
+                return "123123";
+            } else if (sessionKey.equals("no")) {
+                return "";
+            }
         }
         return (String) property.get("transactionId");
     }

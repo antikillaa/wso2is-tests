@@ -39,10 +39,12 @@ public class WSOBodyServiceImpl implements WSOBodyService {
 
     private String getSessionDataKey(String sessionDataKey) {
         String sessionKey = RUN_CONTEXT.get("par", Map.class).get("sessionDataKey").toString();
+        if (sessionKey != null) {
             if (sessionKey.equals("wrong")) {
                 return "123123";
             } else if (sessionKey.equals("no")) {
                 return "";
+            }
         }
         return sessionDataKey;
     }
