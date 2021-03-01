@@ -129,10 +129,13 @@ public class WSOStepdefs {
     @Then("Check JWT Token")
     public void checkJWTToken() {
         String token = (String) RUN_CONTEXT.get("login", ValidatableResponse.class).extract().as(Map.class).get("id_token");
-        Map<String, Object> firstFactor = (Map<String, Object>) RUN_CONTEXT.get("login", ValidatableResponse.class)
-                        .extract().as(Map.class).get("additional_properties");
-
         log.info("token: " + token);
+
+        Map<String, Object> firstFactor = (Map<String, Object>) RUN_CONTEXT.get("firstFactor", ValidatableResponse.class)
+                        .extract().as(Map.class).get("additional_properties");
+        log.info("firstFactor: " + firstFactor);
+
+
         Map<String, Object> param = RUN_CONTEXT.get("par", Map.class);
         log.info("Parameters: " + param.toString());
         DecodedJWT jwt = JWT.decode(token);
