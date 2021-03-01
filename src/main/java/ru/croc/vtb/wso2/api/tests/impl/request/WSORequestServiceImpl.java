@@ -24,7 +24,7 @@ public class WSORequestServiceImpl implements WsoRequestService {
 
     @Override
     public void getSecondFactorGrandTypeRequest(TestsProperties testsProperties) {
-        ValidatableResponse firstFactor = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
+        ValidatableResponse firstFactor = RUN_CONTEXT.get("firstFactor", ValidatableResponse.class);
         Map bodyResponse = firstFactor.extract().as(Map.class);
         Map property = (Map) bodyResponse.get("additional_properties");
 

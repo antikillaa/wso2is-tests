@@ -40,8 +40,6 @@ public class WSOStepdefs {
     public void sendLoginByGrantTypeRequest(DataTable par) {
         Map<String, String> param = par.asMaps().get(0);
         RUN_CONTEXT.put("par", param);
-        sendSecondFactorLoginRequest();
-
         acRequestService.sendGetTokenDTORequest(param, testsProperties);
         /**
          Send second factor request
