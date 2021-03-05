@@ -34,8 +34,9 @@ Feature: Partner SSO
 
   @wip
   Scenario: Partner SSO CHALLENGE
-  | env | clientId                     | redirectUri |
-  | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           |
+    Then Send Partner SSO INIT Request
+      | env | clientId                     | redirectUri |
+      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           |
     And Status code response is: "200"
     And Response Body contains "stage" equals "AUTHENTICATE"
 
