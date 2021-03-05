@@ -82,7 +82,7 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
 
     private Map<String, Object> getAuthCodeBody(Map<String, String> param) throws URISyntaxException {
         ValidatableResponse responseBody = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
-        log.info("ResponseBody: " + responseBody);
+        log.info("ResponseBody: " + responseBody.extract().toString());
         String header = responseBody.extract().header("Location");
         log.info("Location header: " + header);
         String code = URLEncodedUtils.parse(new URI(header).getQuery(), StandardCharsets.UTF_8).get(0).getValue();
