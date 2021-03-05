@@ -122,6 +122,6 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
                     break;
             }
         }
-        return URL + ":9090/authorize";
+        return URL + ":9090/oauth/authorize";
     }
 }
