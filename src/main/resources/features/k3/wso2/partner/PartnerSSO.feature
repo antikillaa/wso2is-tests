@@ -42,10 +42,6 @@ Feature: Partner SSO
     Then Send Partner SSO AUTHENTICATE Request
       | type  | id_type | id       | env | clientId                     | redirectUri |
       | LOGIN | login   | 20002730 | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           |
-
-    Then Send Partner SSO AUTHENTICATE Request
-      | type  | id_type | id       | env | clientId                     | redirectUri |
-      | LOGIN | login   | 20002730 | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           |
     And Status code response is: "200"
 
     Then Send Partner SSO CHALLENGE Request
