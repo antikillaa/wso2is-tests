@@ -12,7 +12,7 @@ Feature: Partner SSO
       | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           |
     And Status code response is: "200"
     And Response Body contains "stage" equals "AUTHENTICATE"
-    And Response Body contains key: "params.site"
+    And Response Body contains key: "params.companyName"
     And Response Body contains key: "params.icon"
     And Response Body contains "error" equals "null"
 
