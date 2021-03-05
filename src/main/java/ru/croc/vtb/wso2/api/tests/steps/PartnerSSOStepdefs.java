@@ -8,6 +8,7 @@ import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
 import ru.croc.vtb.wso2.api.tests.impl.request.PartnerSSORequestServiceImpl;
 import ru.croc.vtb.wso2.api.tests.services.request.PartnerSSORequestService;
 
+import java.net.URISyntaxException;
 import java.util.Map;
 
 public class PartnerSSOStepdefs {
@@ -34,5 +35,11 @@ public class PartnerSSOStepdefs {
     public void sendPartnerSSOINITRequest(DataTable par) {
         Map<String, String> param = par.asMaps().get(0);
         partnerSSORequestService.sendPartnerSSOInitRequest(param, testsProperties);
+    }
+
+    @Then("Send Partner SSO auth-code Request")
+    public void sendPartnerSSOAuthCodeRequest(DataTable par) throws URISyntaxException {
+        Map<String, String> param = par.asMaps().get(0);
+        partnerSSORequestService.sendPartnerSSOAuthCodeRequest(param, testsProperties);
     }
 }

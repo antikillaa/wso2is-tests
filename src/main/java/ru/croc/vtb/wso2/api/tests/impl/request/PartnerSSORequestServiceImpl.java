@@ -2,19 +2,27 @@ package ru.croc.vtb.wso2.api.tests.impl.request;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.json.JSONException;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
 import ru.croc.vtb.wso2.api.tests.services.request.PartnerSSORequestService;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
 
 public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PartnerSSORequestServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(PartnerSSORequestServiceImpl.class);
 
     @Override
     public void sendPartnerSSOAuthenticateRequest(Map<String, String> param, TestsProperties testsProperties) {
@@ -34,12 +42,12 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
         String URL = getLoginURL(param, testsProperties);
         Map<String, Object> body = getChallengeBody(param);
 
-        ValidatableResponse AuthenticateRequest = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
+        ValidatableResponse responseBody = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
 
         ValidatableResponse r = given().log().everything(true)
                 .body(body)
                 .contentType(ContentType.JSON)
-                .cookies(AuthenticateRequest.extract().cookies())
+                .cookies(responseBody.extract().cookies())
                 .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
@@ -56,6 +64,33 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
                 .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
+    }
+
+    @Override
+    public void sendPartnerSSOAuthCodeRequest(Map<String, String> param, TestsProperties testsProperties) throws URISyntaxException {
+        String URL = getLoginURL(param, testsProperties);
+        Map<String, Object> body = getAuthCodeBody(param);
+
+        ValidatableResponse r = given().log().everything(true)
+                .body(body)
+                .contentType(ContentType.JSON)
+                .header("Authorization", param.get("Authorization"))
+                .post(URL)
+                .then().log().all(true);
+        RUN_CONTEXT.put("responseBody", r);
+    }
+
+    private Map<String, Object> getAuthCodeBody(Map<String, String> param) throws URISyntaxException {
+        ValidatableResponse responseBody = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
+        log.info("ResponseBody: " + responseBody);
+        String header = responseBody.extract().header("Location");
+        log.info("Location header: " + header);
+        String code = URLEncodedUtils.parse(new URI(header).getQuery(), StandardCharsets.UTF_8).get(0).getValue();
+
+        Map<String, Object> body = new HashMap();
+        body.put("grant_type", "code");
+        body.put("code", code);
+        return body;
     }
 
     private Map<String, Object> getInitBody(Map<String, String> param) {
@@ -106,6 +141,7 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
 
     private String getLoginURL(Map par, TestsProperties testsProperties) {
         String URL = null;
+        String path = (String) par.get("path");
         if (par.get("env") != null) {
             switch (par.get("env").toString()) {
                 case "k3":
@@ -122,6 +158,16 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
                     break;
             }
         }
-        return URL + ":9090/oauth2/authorize";
+        return URL + ":9090/oauth2/" + path;
+    }
+
+
+    @Test
+    public void test() throws URISyntaxException, JSONException {
+        String url = "http://google.com/?code=123&state=gnreokgb";
+        URLEncodedUtils.parse(new URI(url).getQuery(), StandardCharsets.UTF_8)
+                .forEach(pair -> log.info("{} {}", pair.getName(), pair.getValue()));
+        List<NameValuePair> nameValuePairs = URLEncodedUtils.parse(new URI(url).getQuery(), StandardCharsets.UTF_8);
+        System.out.println(url);
     }
 }
