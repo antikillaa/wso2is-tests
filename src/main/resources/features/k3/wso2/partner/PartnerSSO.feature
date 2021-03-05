@@ -5,7 +5,7 @@
 @k3
 Feature: Grant type Guest Auth k3
 
-  @k3
+  @TODO
   Scenario: Partner SSO AUTHENTICATE
     Then Send Partner SSO AUTHENTICATE Request
       | type  | id_type | id         |  env | clientId                     | redirectUri        |
@@ -16,7 +16,7 @@ Feature: Grant type Guest Auth k3
     And Response Body contains "params.ucn" equals "20002730"
     And Response Body contains "error" equals "null"
 
-  @k3
+  @TODO
   Scenario: Partner SSO CHALLENGE
     Then Send Partner SSO AUTHENTICATE Request
       | type  | id_type | id         |  env | clientId                     | redirectUri        |
@@ -29,7 +29,7 @@ Feature: Grant type Guest Auth k3
 
     And Status code response is: "302"
 
-  @k3
+  @TODO
   Scenario: Partner SSO INIT
     Then Send Partner SSO INIT Request
       |  env | clientId                     | redirectUri        |
@@ -40,7 +40,7 @@ Feature: Grant type Guest Auth k3
     And Response Body contains key: "params.icon"
     And Response Body contains "error" equals "null"
 
-  @k3
+  @TODO
   Scenario: Partner SSO Success
     Then Send Partner SSO INIT Request
       |  env | clientId                     | redirectUri        |
