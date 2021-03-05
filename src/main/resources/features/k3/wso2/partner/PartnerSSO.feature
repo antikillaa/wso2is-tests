@@ -46,8 +46,8 @@ Feature: Partner SSO
     And Status code response is: "200"
 
     Then Send Partner SSO CHALLENGE Request
-      | secureCode | env |
-      | 000000     | k3  |
+      | secureCode | env | path      |
+      | 000000     | k3  | authorize |
     And Status code response is: "302"
 
   @k3
