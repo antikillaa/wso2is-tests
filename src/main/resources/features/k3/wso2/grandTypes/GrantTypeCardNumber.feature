@@ -169,7 +169,7 @@ Feature: Grant type Card Number K3
     And Status code response is: "403"
     And Response Body contains "type" equals "card_not_valid"
 
-  @k3
+  @TODO
   Scenario: Login by Card MB Moscow bank with UNK
     Then Send login by Grant type Request
       | grandType         | id_type    | id               | scope | finger_print | env | Authorization |
@@ -180,7 +180,7 @@ Feature: Grant type Card Number K3
     And Response Body contains key: "refresh_token"
     And Response Body contains "scope" equals "openid"
 
-  @k3
+  @TODO
   Scenario: Login by Card Moscow bank with UNK
     Then Send login by Grant type Request
       | grandType      | id_type    | id               | scope | finger_print | env | Authorization |
@@ -191,7 +191,7 @@ Feature: Grant type Card Number K3
     And Response Body contains key: "refresh_token"
     And Response Body contains "scope" equals "openid"
 
-  @k3
+  @TODO
   Scenario: Login by Card MB Moscow bank without UNK
     Then Send login by Grant type Request
       | grandType         | id_type    | id               | scope | finger_print | env | Authorization |
@@ -200,7 +200,7 @@ Feature: Grant type Card Number K3
     And Response Body contains "message_title" equals "Что-то пошло не так"
 
 
-  @k3
+  @TODO
   Scenario: Login by Card MB Moscow bank without UNK
     Then Send login by Grant type Request
       | grandType      | id_type    | id               | scope | finger_print | env | Authorization |
