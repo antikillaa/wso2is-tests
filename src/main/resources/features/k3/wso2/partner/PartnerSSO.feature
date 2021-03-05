@@ -5,7 +5,7 @@
 @k3
 Feature: Partner SSO
 
-  @wip
+  @k3
   Scenario: Partner SSO INIT
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri |
@@ -16,15 +16,20 @@ Feature: Partner SSO
     And Response Body contains key: "params.icon"
     And Response Body contains "error" equals "null"
 
-  @TODO
+  @wip
   Scenario: Partner SSO AUTHENTICATE
+    Then Send Partner SSO INIT Request
+      | env | clientId                     | redirectUri |
+      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           |
+    And Status code response is: "200"
+    And Response Body contains "stage" equals "AUTHENTICATE"
+
     Then Send Partner SSO AUTHENTICATE Request
-      | type  | id_type | id       | env | clientId                     | redirectUri        |
-      | LOGIN | login   | 20002730 | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | http://google.com/ |
+      | type  | id_type | id       | env | clientId                     | redirectUri |
+      | LOGIN | login   | 20002730 | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           |
 
     And Status code response is: "200"
     And Response Body contains "stage" equals "CHALLENGE"
-    And Response Body contains "params.ucn" equals "20002730"
     And Response Body contains "error" equals "null"
 
   @TODO

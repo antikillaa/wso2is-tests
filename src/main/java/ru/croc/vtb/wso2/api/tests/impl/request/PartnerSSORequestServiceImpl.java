@@ -50,9 +50,12 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
         String URL = getLoginURL(param, testsProperties);
         Map<String, Object> body = getInitBody(param);
 
+        ValidatableResponse response = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
+
         ValidatableResponse r = given().log().everything(true)
                 .body(body)
                 .contentType(ContentType.JSON)
+                .cookies(response.extract().cookies())
                 .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
