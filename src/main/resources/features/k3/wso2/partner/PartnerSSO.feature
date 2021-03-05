@@ -50,7 +50,7 @@ Feature: Partner SSO
       | 000000     | k3  |
     And Status code response is: "302"
 
-  @wip
+  @k3
   Scenario: Partner SSO auth-code request
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      |
