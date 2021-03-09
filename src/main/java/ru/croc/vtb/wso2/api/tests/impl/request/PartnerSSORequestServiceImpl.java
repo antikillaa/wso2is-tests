@@ -150,7 +150,7 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
         oidc.put("clientId", param.get("clientId"));
         oidc.put("responseType", "code");
         oidc.put("redirectUri", param.get("redirectUri"));
-        oidc.put("scope", "openid");
+        oidc.put("scope", "surname name gender inn patronymic birthDate maritalStatus");
         oidc.put("state", "fnnvjvn");
         body.put("oidc", oidc);
 
