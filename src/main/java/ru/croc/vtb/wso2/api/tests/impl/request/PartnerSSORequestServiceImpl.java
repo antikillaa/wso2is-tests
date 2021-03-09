@@ -83,16 +83,17 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
     @Override
     public void sendPartnerSSOUserInfoRequest(Map<String, String> param, TestsProperties testsProperties) {
         String URL = getLoginURL(param, testsProperties);
-        String access_token = (String) RUN_CONTEXT.get("responseBody", ValidatableResponse.class)
-                .extract().body().as(Map.class).get("access_token");
+        ValidatableResponse responseBody = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
 
         Map<String, Object> header = new HashMap<>();
         header.put("x-finger-print", "ey");
-        header.put("Authorization", "Bearer " + access_token);
+        header.put("Authorization", "Bearer " + responseBody
+                .extract().body().as(Map.class).get("access_token"));
 
         ValidatableResponse r = given().log().everything(true)
                 .contentType(ContentType.JSON)
                 .headers(header)
+                .cookies(responseBody.extract().cookies())
                 .get(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
