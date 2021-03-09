@@ -16,7 +16,7 @@ Feature: Partner SSO
     And Response Body contains key: "params.icon"
     And Response Body contains "error" equals "null"
 
-  @л3
+  @k3
   Scenario: Partner SSO AUTHENTICATE
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      |
@@ -76,7 +76,7 @@ Feature: Partner SSO
     And Response Body contains key: "access_token"
     And Response Body contains key: "refresh_token"
 
-  @wip
+  @k3
   Scenario: Partner SSO user-info request
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      |
