@@ -42,4 +42,10 @@ public class PartnerSSOStepdefs {
         Map<String, String> param = par.asMaps().get(0);
         partnerSSORequestService.sendPartnerSSOAuthCodeRequest(param, testsProperties);
     }
+
+    @Then("Send Partner SSO user-info Request")
+    public void sendPartnerSSOUserInfoRequest(DataTable par) {
+        Map<String, String> param = par.asMaps().get(0);
+        partnerSSORequestService.sendPartnerSSOUserInfoRequest(param, testsProperties);
+    }
 }

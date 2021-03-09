@@ -13,4 +13,6 @@ public interface PartnerSSORequestService {
     void sendPartnerSSOInitRequest(Map<String, String> param, TestsProperties testsProperties);
 
     void sendPartnerSSOAuthCodeRequest(Map<String, String> param, TestsProperties testsProperties) throws URISyntaxException;
+
+    void sendPartnerSSOUserInfoRequest(Map<String, String> param, TestsProperties testsProperties);
 }

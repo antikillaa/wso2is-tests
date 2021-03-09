@@ -80,6 +80,24 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
         RUN_CONTEXT.put("responseBody", r);
     }
 
+    @Override
+    public void sendPartnerSSOUserInfoRequest(Map<String, String> param, TestsProperties testsProperties) {
+        String URL = getLoginURL(param, testsProperties);
+        String access_token = (String) RUN_CONTEXT.get("responseBody", ValidatableResponse.class)
+                .extract().body().as(Map.class).get("access_token");
+
+        Map<String, Object> header = new HashMap<>();
+        header.put("x-finger-print", "123456");
+        header.put("Authorization", "Bearer " + access_token);
+
+        ValidatableResponse r = given().log().everything(true)
+                .contentType(ContentType.JSON)
+                .headers(header)
+                .get(URL)
+                .then().log().all(true);
+        RUN_CONTEXT.put("responseBody", r);
+    }
+
     private Map<String, Object> getAuthCodeBody(Map<String, String> param) throws URISyntaxException {
         ValidatableResponse responseBody = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
         log.info("ResponseBody: " + responseBody.extract().toString());
