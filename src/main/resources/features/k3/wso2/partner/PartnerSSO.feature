@@ -101,11 +101,3 @@ Feature: Partner SSO
     And Response Body contains key: "scope"
     And Response Body contains key: "access_token"
     And Response Body contains key: "refresh_token"
-
-    Then Send Partner SSO auth-code Request
-      | env | path      |
-      | k3  | authorize |
-    And Status code response is: "200"
-    And Response Body contains key: "scope"
-    And Response Body contains key: "access_token"
-    And Response Body contains key: "refresh_token"
