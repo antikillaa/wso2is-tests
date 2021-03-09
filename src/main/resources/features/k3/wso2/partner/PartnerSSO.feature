@@ -104,5 +104,5 @@ Feature: Partner SSO
 
     Then Send Partner SSO user-info Request
       | env | path      |
-      | k3  | authorize |
+      | k3  | me   |
     And Status code response is: "200"
