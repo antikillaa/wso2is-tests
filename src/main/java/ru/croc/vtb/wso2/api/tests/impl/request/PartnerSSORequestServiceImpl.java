@@ -87,7 +87,7 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
                 .extract().body().as(Map.class).get("access_token");
 
         Map<String, Object> header = new HashMap<>();
-        header.put("x-finger-print", "123456");
+        header.put("x-finger-print", "ey");
         header.put("Authorization", "Bearer " + access_token);
 
         ValidatableResponse r = given().log().everything(true)
