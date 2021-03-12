@@ -5,7 +5,7 @@
 @k3
 Feature: Partner SSO
 
-  @wip
+  @k3
   Scenario: Partner SSO INIT
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
@@ -19,16 +19,17 @@ Feature: Partner SSO
   @wip
   Scenario Outline: Partner SSO INIT Negative
     Then Send Partner SSO INIT Request
-      | env   | clientId   | redirectUri   | scope | responseType | state | path      |
-      | <env> | <clientId> | <redirectUri> |       |              |       | authorize |
+      | env | clientId   | redirectUri   | scope   | responseType   | state   | path      |
+      | k3  | <clientId> | <redirectUri> | <scope> | <responseType> | <state> | authorize |
     And Status code response is: "<status>"
     And Response Body contains "stage" equals "<stage>"
     And Response Body contains "error" not equals "<error>"
 
     Examples:
-      | env | clientId                     | redirectUri | scope | responseType | state | status | stage | error |
-      | k3  | wrong                        | /           |       |              |       | 200    | FAIL  | null  |
-      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | wrong       |       |              |       | 200    | FAIL  | null  |
+      | clientId                     | redirectUri | scope  | responseType | state   | status | stage | error |
+      | wrong                        | /           | openid | code         | fnnvjvn | 200    | FAIL  | null  |
+      | C2VYv3b6RHEig2n_56bfnn3GfI4a | wrong       | openid | code         | fnnvjvn | 200    | FAIL  | null  |
+      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | wrong  | code         | fnnvjvn | 200    | FAIL  | null  |
 
 
   @k3
@@ -91,7 +92,7 @@ Feature: Partner SSO
     And Response Body contains key: "access_token"
     And Response Body contains key: "refresh_token"
 
-  @wip
+  @k3
   Scenario: Partner SSO user-info request
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
