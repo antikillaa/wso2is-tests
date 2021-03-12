@@ -25,6 +25,9 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
     private static final Logger log = LoggerFactory.getLogger(PartnerSSORequestServiceImpl.class);
     public static final String CLIENT_ID = "clientId";
     public static final String REDIRECT_URI = "redirectUri";
+    public static final String RESPONSE_TYPE = "responseType";
+    public static final String SCOPE = "scope";
+    public static final String STATE = "state";
 
     @Override
     public void sendPartnerSSOAuthenticateRequest(Map<String, String> param, TestsProperties testsProperties) {
@@ -120,10 +123,10 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
 
         Map<String, Object> oidc = new HashMap();
         getBodyParam(oidc, param, CLIENT_ID);
-        oidc.put("responseType", "code");
+        getBodyParam(oidc, param, RESPONSE_TYPE);
         getBodyParam(oidc, param, REDIRECT_URI);
-        oidc.put("scope", "openid");
-        oidc.put("state", "fnnvjvn");
+        getBodyParam(oidc, param, SCOPE);
+        getBodyParam(oidc, param, STATE);
         body.put("oidc", oidc);
         return body;
     }
