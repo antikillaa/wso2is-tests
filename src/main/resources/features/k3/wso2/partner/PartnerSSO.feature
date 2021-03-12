@@ -19,15 +19,16 @@ Feature: Partner SSO
   @wip
   Scenario Outline: Partner SSO INIT Negative
     Then Send Partner SSO INIT Request
-      | env   | clientId   | redirectUri   | path      |
-      | <env> | <clientId> | <redirectUri> | authorize |
+      | env   | clientId   | redirectUri   | scope | responseType | state | path      |
+      | <env> | <clientId> | <redirectUri> |       |              |       | authorize |
     And Status code response is: "<status>"
     And Response Body contains "stage" equals "<stage>"
-    And Response Body contains "error" not equals "null"
+    And Response Body contains "error" not equals "<error>"
 
     Examples:
-      | env | clientId | redirectUri | status | stage |
-      | k3  | wrong    | /           | 200    | FAIL  |
+      | env | clientId                     | redirectUri | scope | responseType | state | status | stage | error |
+      | k3  | wrong                        | /           |       |              |       | 200    | FAIL  | null  |
+      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | wrong       |       |              |       | 200    | FAIL  | null  |
 
 
   @k3

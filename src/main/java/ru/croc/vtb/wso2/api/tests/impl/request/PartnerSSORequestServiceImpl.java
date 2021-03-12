@@ -23,6 +23,8 @@ import static ru.croc.vtb.wso2.api.tests.context.RunContext.RUN_CONTEXT;
 
 public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
     private static final Logger log = LoggerFactory.getLogger(PartnerSSORequestServiceImpl.class);
+    public static final String CLIENT_ID = "clientId";
+    public static final String REDIRECT_URI = "redirectUri";
 
     @Override
     public void sendPartnerSSOAuthenticateRequest(Map<String, String> param, TestsProperties testsProperties) {
@@ -117,14 +119,19 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
         body.put("stage", "INIT");
 
         Map<String, Object> oidc = new HashMap();
-        oidc.put("clientId", param.get("clientId"));
+        getBodyParam(oidc, param, CLIENT_ID);
         oidc.put("responseType", "code");
-        oidc.put("redirectUri", param.get("redirectUri"));
+        getBodyParam(oidc, param, REDIRECT_URI);
         oidc.put("scope", "openid");
         oidc.put("state", "fnnvjvn");
         body.put("oidc", oidc);
-
         return body;
+    }
+
+    private void getBodyParam(Map<String, Object> oidc, Map<String, String> param, String bodyParam) {
+        if (param.get(bodyParam) != null) {
+            oidc.put(bodyParam, param.get(bodyParam));
+        }
     }
 
     private Map<String, Object> getChallengeBody(Map<String, String> param) {
@@ -147,7 +154,7 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
         body.put("params", params);
 
         Map<String, Object> oidc = new HashMap();
-        oidc.put("clientId", param.get("clientId"));
+        getBodyParam(oidc, param, CLIENT_ID);
         oidc.put("responseType", "code");
         oidc.put("redirectUri", param.get("redirectUri"));
         oidc.put("scope", "surname name gender inn patronymic birthDate maritalStatus");
