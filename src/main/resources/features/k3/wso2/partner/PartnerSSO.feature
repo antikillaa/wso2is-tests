@@ -5,11 +5,11 @@
 @k3
 Feature: Partner SSO
 
-  @k3
+  @wip
   Scenario: Partner SSO INIT
     Then Send Partner SSO INIT Request
-      | env | clientId                     | redirectUri | path      |
-      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize |
+      | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
+      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | openid | code         | fnnvjvn |
     And Status code response is: "200"
     And Response Body contains "stage" equals "AUTHENTICATE"
     And Response Body contains key: "params.companyName"
@@ -34,8 +34,8 @@ Feature: Partner SSO
   @k3
   Scenario: Partner SSO AUTHENTICATE
     Then Send Partner SSO INIT Request
-      | env | clientId                     | redirectUri | path      |
-      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize |
+      | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
+      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | openid | code         | fnnvjvn |
     And Status code response is: "200"
     And Response Body contains "stage" equals "AUTHENTICATE"
 
@@ -50,8 +50,8 @@ Feature: Partner SSO
   @k3
   Scenario: Partner SSO CHALLENGE
     Then Send Partner SSO INIT Request
-      | env | clientId                     | redirectUri | path      |
-      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize |
+      | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
+      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | openid | code         | fnnvjvn |
     And Status code response is: "200"
     And Response Body contains "stage" equals "AUTHENTICATE"
 
@@ -68,8 +68,8 @@ Feature: Partner SSO
   @k3
   Scenario: Partner SSO auth-code request
     Then Send Partner SSO INIT Request
-      | env | clientId                     | redirectUri | path      |
-      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize |
+      | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
+      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | openid | code         | fnnvjvn |
     And Status code response is: "200"
     And Response Body contains "stage" equals "AUTHENTICATE"
 
@@ -91,11 +91,11 @@ Feature: Partner SSO
     And Response Body contains key: "access_token"
     And Response Body contains key: "refresh_token"
 
-  @k3
+  @wip
   Scenario: Partner SSO user-info request
     Then Send Partner SSO INIT Request
-      | env | clientId                     | redirectUri | path      |
-      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize |
+      | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
+      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | openid | code         | fnnvjvn |
     And Status code response is: "200"
     And Response Body contains "stage" equals "AUTHENTICATE"
 
