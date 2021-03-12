@@ -132,7 +132,6 @@ public class WSOStepdefs {
         Assert.assertEquals(firstFactor.get("username"), decodedJwt.get("sub").as(String.class));
         Assert.assertNotNull(decodedJwt.get("amr"));
         Assert.assertTrue(decodedJwt.get("amr").toString().contains(param.get("grandType").toString()));
-        Assert.assertNotNull(decodedJwt.get("at_hash"));
         Assert.assertNotNull(decodedJwt.get("auth_session_id"));
         Assert.assertNotNull(decodedJwt.get("user_fingerprint"));
         Assert.assertNotNull(decodedJwt.get("msa_session_id"));

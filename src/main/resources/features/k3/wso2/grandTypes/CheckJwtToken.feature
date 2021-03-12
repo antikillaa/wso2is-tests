@@ -9,7 +9,6 @@ Feature: Check JWT Token
       | grandType   | id_type   | id   | scope | env | finger_print | Authorization   |
       | <grandType> | <id_type> | <id> | true  | k3  | k3           | <Authorization> |
     And Status code response is: "200"
-
     Then Check JWT Token
 
     Examples:

@@ -42,7 +42,6 @@ public class TestsProperties {
     @Value("${test.restorePasswordServiceUrlK5}")
     private String restorePasswordServiceUrlK5;
 
-
     @Value("${test.qrServicePrivateUrlK3}")
     private String qrServicePrivateUrlK3;
 
@@ -147,6 +146,9 @@ public class TestsProperties {
 
     @Value("${test.ac.port}")
     private String acPort;
+
+    @Value("${test.wso.port}")
+    private String wsoPort;
 
     @Value("${test.id}")
     private String userId;

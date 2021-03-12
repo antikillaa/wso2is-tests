@@ -74,7 +74,6 @@ public class WSORequestServiceImpl implements WsoRequestService {
     public void sendGetTokenDTORequest(Map par, TestsProperties testsProperties) {
         String URL = getLoginURL(par, testsProperties);
 
-
         RUN_CONTEXT.put("grandType", par.get("grandType"));
         RUN_CONTEXT.put("id_type", par.get("id_type"));
         RUN_CONTEXT.put("scope", par.get("scope"));
@@ -266,7 +265,7 @@ public class WSORequestServiceImpl implements WsoRequestService {
                     break;
             }
         }
-        return URL + ":8989/oauth2/token";
+        return URL + testsProperties.getWsoPort() + "/oauth2/token";
     }
 
 }
