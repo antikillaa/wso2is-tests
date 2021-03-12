@@ -16,6 +16,20 @@ Feature: Partner SSO
     And Response Body contains key: "params.icon"
     And Response Body contains "error" equals "null"
 
+  @wip
+  Scenario Outline: Partner SSO INIT Negative
+    Then Send Partner SSO INIT Request
+      | env   | clientId   | redirectUri   | path      |
+      | <env> | <clientId> | <redirectUri> | authorize |
+    And Status code response is: "<status>"
+    And Response Body contains "stage" equals "<stage>"
+    And Response Body contains "error" not equals "null"
+
+    Examples:
+      | env | clientId | redirectUri | status | stage |
+      | k3  | wrong    | /           | 200    | FAIL  |
+
+
   @k3
   Scenario: Partner SSO AUTHENTICATE
     Then Send Partner SSO INIT Request
