@@ -26,10 +26,10 @@ Feature: Partner SSO
     And Response Body contains "error" not equals "<error>"
 
     Examples:
-      | clientId                     | redirectUri | scope  | responseType | state   | status | stage | error |
-      | wrong                        | /           | openid | code         | fnnvjvn | 200    | FAIL  | null  |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | wrong       | openid | code         | fnnvjvn | 200    | FAIL  | null     |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | wrong  | code         | fnnvjvn | 200    | FAIL  | not null |
+      | clientId                     | redirectUri | scope  | responseType | state   | status | stage        | error |
+      | wrong                        | /           | openid | code         | fnnvjvn | 200    | FAIL         | null  |
+      | C2VYv3b6RHEig2n_56bfnn3GfI4a | wrong       | openid | code         | fnnvjvn | 200    | FAIL         | null  |
+      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | wrong  | code         | fnnvjvn | 200    | AUTHENTICATE |       |
 
 
   @k3
