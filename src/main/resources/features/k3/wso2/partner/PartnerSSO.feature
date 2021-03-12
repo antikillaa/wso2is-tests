@@ -30,6 +30,8 @@ Feature: Partner SSO
       | wrong                        | /           | openid | code         | fnnvjvn | 200    | FAIL         | null  |
       | C2VYv3b6RHEig2n_56bfnn3GfI4a | wrong       | openid | code         | fnnvjvn | 200    | FAIL         | null  |
       | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | wrong  | code         | fnnvjvn | 200    | AUTHENTICATE |       |
+      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | openid | wrong        | fnnvjvn | 200    | AUTHENTICATE |       |
+      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | openid | code         | wrong   | 200    | AUTHENTICATE |       |
 
 
   @k3
