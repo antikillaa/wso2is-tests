@@ -34,7 +34,7 @@ Feature: Partner SSO
       | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | openid | code         | wrong   | 200    | AUTHENTICATE |       |
 
 
-  @k3
+  @wip
   Scenario: Partner SSO AUTHENTICATE
     Given Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
