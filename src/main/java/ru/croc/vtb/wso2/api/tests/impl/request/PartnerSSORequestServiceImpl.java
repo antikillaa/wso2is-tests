@@ -161,7 +161,6 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
 
         params.put("password", testsProperties.getUserPassword());
         body.put("params", params);
-
         getOidc(param, body);
         return body;
     }

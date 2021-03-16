@@ -68,7 +68,7 @@ Feature: Partner SSO
 
     Examples:
       | clientId                     | redirectUri | id_type | type  | id       | status | stage        | error | scope                                                      |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | login   | LOGIN | 20002730 | 200    | CHALLENGE |       | surname name gender inn patronymic birthDate maritalStatus |
+      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | login   | LOGIN | 20002730 | 200    | AUTHENTICATE |       | surname name gender inn patronymic birthDate maritalStatus |
 
 
   @k3
