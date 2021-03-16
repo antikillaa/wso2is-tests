@@ -70,6 +70,7 @@ Feature: Partner SSO
       | clientId                     | redirectUri | login    | type  | status | stage     | error         | scope                                                      |
       | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | 20002730 | LOGIN | 200    | CHALLENGE | null          | surname name gender inn patronymic birthDate maritalStatus |
       | wrong                        | /           | 20002730 | LOGIN | 200    | FAIL      | generic_error | surname name gender inn patronymic birthDate maritalStatus |
+      | C2VYv3b6RHEig2n_56bfnn3GfI4a | wrong       | 20002730 | LOGIN | 200    | FAIL      | generic_error | surname name gender inn patronymic birthDate maritalStatus |
 
 
   @k3
