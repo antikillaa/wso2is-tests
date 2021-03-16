@@ -43,8 +43,8 @@ Feature: Partner SSO
     And Response Body contains "stage" equals "AUTHENTICATE"
 
     Then Send Partner SSO AUTHENTICATE Request
-      | type  | id_type | id       | env | clientId                     | redirectUri | path      |
-      | LOGIN | login   | 20002730 | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize |
+      | type  | id_type | id       | env | clientId                     | redirectUri | path      | scope                                                      | responseType | state   |
+      | LOGIN | login   | 20002730 | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | surname name gender inn patronymic birthDate maritalStatus | code         | fnnvjvn |
 
     And Status code response is: "200"
     And Response Body contains "stage" equals "CHALLENGE"
@@ -84,8 +84,8 @@ Feature: Partner SSO
     And Response Body contains "stage" equals "AUTHENTICATE"
 
     Then Send Partner SSO AUTHENTICATE Request
-      | type  | id_type | id       | env | clientId                     | redirectUri | path      |
-      | LOGIN | login   | 20002730 | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize |
+      | type  | id_type | id       | env | clientId                     | redirectUri | path      | scope                                                      | responseType | state   |
+      | LOGIN | login   | 20002730 | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | surname name gender inn patronymic birthDate maritalStatus | code         | fnnvjvn |
     And Status code response is: "200"
 
     Then Send Partner SSO CHALLENGE Request
@@ -102,8 +102,8 @@ Feature: Partner SSO
     And Response Body contains "stage" equals "AUTHENTICATE"
 
     Then Send Partner SSO AUTHENTICATE Request
-      | type  | id_type | id       | env | clientId                     | redirectUri | path      |
-      | LOGIN | login   | 20002730 | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize |
+      | type  | id_type | id       | env | clientId                     | redirectUri | path      | scope                                                      | responseType | state   |
+      | LOGIN | login   | 20002730 | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | surname name gender inn patronymic birthDate maritalStatus | code         | fnnvjvn |
     And Status code response is: "200"
 
     Then Send Partner SSO CHALLENGE Request
@@ -128,8 +128,8 @@ Feature: Partner SSO
     And Response Body contains "stage" equals "AUTHENTICATE"
 
     Then Send Partner SSO AUTHENTICATE Request
-      | type  | id_type | id       | env | clientId                     | redirectUri | path      |
-      | LOGIN | login   | 20002730 | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize |
+      | type  | id_type | id       | env | clientId                     | redirectUri | path      | scope                                                      | responseType | state   |
+      | LOGIN | login   | 20002730 | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | surname name gender inn patronymic birthDate maritalStatus | code         | fnnvjvn |
     And Status code response is: "200"
 
     Then Send Partner SSO CHALLENGE Request
