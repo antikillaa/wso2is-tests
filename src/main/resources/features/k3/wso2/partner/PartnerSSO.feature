@@ -53,8 +53,8 @@ Feature: Partner SSO
   @wip
   Scenario Outline: Partner SSO AUTHENTICATE Negative
     Given Send Partner SSO INIT Request
-      | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
-      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | openid | code         | fnnvjvn |
+      | env | clientId                     | redirectUri | path      | scope  | responseType | state   | scope   |
+      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | openid | code         | fnnvjvn | <scope> |
     And Status code response is: "200"
     And Response Body contains "stage" equals "AUTHENTICATE"
 
@@ -67,8 +67,8 @@ Feature: Partner SSO
     And Response Body contains "error" equals "<error>"
 
     Examples:
-      | clientId                     | redirectUri | id_type | type  | id       | status | stage     | error |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | login   | LOGIN | 20002730 | 200    | CHALLENGE | null  |
+      | clientId                     | redirectUri | id_type | type  | id       | status | stage        | error | scope                                                      |
+      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | login   | LOGIN | 20002730 | 200    | AUTHENTICATE | null  | surname name gender inn patronymic birthDate maritalStatus |
 
 
   @k3

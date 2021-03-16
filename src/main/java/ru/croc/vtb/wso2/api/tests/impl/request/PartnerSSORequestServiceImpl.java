@@ -28,6 +28,8 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
     public static final String RESPONSE_TYPE = "responseType";
     public static final String SCOPE = "scope";
     public static final String STATE = "state";
+    public static final String LOGIN = "login";
+    public static final String TYPE = "type";
 
     @Override
     public void sendPartnerSSOAuthenticateRequest(Map<String, String> param, TestsProperties testsProperties) {
@@ -120,15 +122,18 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
     private Map<String, Object> getInitBody(Map<String, String> param) {
         Map<String, Object> body = new HashMap();
         body.put("stage", "INIT");
+        getOidc(param, body);
+        return body;
+    }
 
-        Map<String, Object> oidc = new HashMap();
+    private void getOidc(Map<String, String> param, Map<String, Object> body) {
+        HashMap oidc = new HashMap();
         getBodyParam(oidc, param, CLIENT_ID);
         getBodyParam(oidc, param, RESPONSE_TYPE);
         getBodyParam(oidc, param, REDIRECT_URI);
         getBodyParam(oidc, param, SCOPE);
         getBodyParam(oidc, param, STATE);
         body.put("oidc", oidc);
-        return body;
     }
 
     private void getBodyParam(Map<String, Object> oidc, Map<String, String> param, String bodyParam) {
@@ -151,19 +156,13 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
         body.put("stage", "AUTHENTICATE");
 
         Map<String, Object> params = new HashMap();
-        params.put("type", param.get("type"));
-        params.put("login", param.get("id"));
+        getBodyParam(params, param, TYPE);
+        getBodyParam(params, param, LOGIN);
+
         params.put("password", testsProperties.getUserPassword());
         body.put("params", params);
 
-        Map<String, Object> oidc = new HashMap();
-        getBodyParam(oidc, param, CLIENT_ID);
-        oidc.put("responseType", "code");
-        oidc.put("redirectUri", param.get("redirectUri"));
-        oidc.put("scope", "surname name gender inn patronymic birthDate maritalStatus");
-        oidc.put("state", "fnnvjvn");
-        body.put("oidc", oidc);
-
+        getOidc(param, body);
         return body;
     }
 
