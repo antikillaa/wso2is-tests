@@ -59,15 +59,15 @@ Feature: Partner SSO
     And Response Body contains "stage" equals "AUTHENTICATE"
 
     Then Send Partner SSO AUTHENTICATE Request
-      | env | type   | id_type   | id   | clientId   | redirectUri   | path      | scope   | responseType | state   |
-      | k3  | <type> | <id_type> | <id> | <clientId> | <redirectUri> | authorize | <scope> | code         | fnnvjvn |
+      | env | type   | login   | id   | clientId   | redirectUri   | path      | scope   | responseType | state   |
+      | k3  | <type> | <login> | <id> | <clientId> | <redirectUri> | authorize | <scope> | code         | fnnvjvn |
 
     And Status code response is: "<status>"
     And Response Body contains "stage" equals "<stage>"
     And Response Body contains "error" equals "<error>"
 
     Examples:
-      | clientId                     | redirectUri | id_type | type  | id       | status | stage        | error | scope                                                      |
+      | clientId                     | redirectUri | login | type  | id       | status | stage     | error | scope                                                      |
       | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | login   | LOGIN | 20002730 | 200    | CHALLENGE |       | surname name gender inn patronymic birthDate maritalStatus |
 
 

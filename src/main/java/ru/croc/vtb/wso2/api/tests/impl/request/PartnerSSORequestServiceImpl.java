@@ -28,8 +28,9 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
     public static final String RESPONSE_TYPE = "responseType";
     public static final String SCOPE = "scope";
     public static final String STATE = "state";
-    public static final String LOGIN = "login";
     public static final String TYPE = "type";
+    public static final String LOGIN = "login";
+    public static final String ID_TYPE = "id_type";
 
     @Override
     public void sendPartnerSSOAuthenticateRequest(Map<String, String> param, TestsProperties testsProperties) {
@@ -158,8 +159,8 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
         Map<String, Object> params = new HashMap();
         getBodyParam(params, param, TYPE);
         getBodyParam(params, param, LOGIN);
-
         params.put("password", testsProperties.getUserPassword());
+
         body.put("params", params);
         getOidc(param, body);
         return body;
