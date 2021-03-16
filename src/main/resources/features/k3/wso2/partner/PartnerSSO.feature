@@ -36,7 +36,7 @@ Feature: Partner SSO
 
   @k3
   Scenario: Partner SSO AUTHENTICATE
-    Then Send Partner SSO INIT Request
+    Given Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
       | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | openid | code         | fnnvjvn |
     And Status code response is: "200"
@@ -49,6 +49,27 @@ Feature: Partner SSO
     And Status code response is: "200"
     And Response Body contains "stage" equals "CHALLENGE"
     And Response Body contains "error" equals "null"
+
+  @wip
+  Scenario Outline: Partner SSO AUTHENTICATE Negative
+    Given Send Partner SSO INIT Request
+      | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
+      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | openid | code         | fnnvjvn |
+    And Status code response is: "200"
+    And Response Body contains "stage" equals "AUTHENTICATE"
+
+    Then Send Partner SSO AUTHENTICATE Request
+      | env | type   | id_type   | id   | clientId   | redirectUri   | path      |
+      | k3  | <type> | <id_type> | <id> | <clientId> | <redirectUri> | authorize |
+
+    And Status code response is: "<status>"
+    And Response Body contains "stage" equals "<stage>"
+    And Response Body contains "error" equals "<error>"
+
+    Examples:
+      | clientId                     | redirectUri | id_type | type  | id       | status | stage | error |
+      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | login   | LOGIN | 20002730 | 200    | FAIL  | null  |
+
 
   @k3
   Scenario: Partner SSO CHALLENGE
