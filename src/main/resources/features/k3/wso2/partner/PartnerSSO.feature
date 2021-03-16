@@ -67,9 +67,9 @@ Feature: Partner SSO
     And Response Body contains "error" equals "<error>"
 
     Examples:
-      | clientId                     | redirectUri | login    | type  | status | stage     | error | scope                                                      |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | 20002730 | LOGIN | 200    | CHALLENGE | null  | surname name gender inn patronymic birthDate maritalStatus |
-      | wrong                        | /           | 20002730 | LOGIN | 200    | FAIL      |       | surname name gender inn patronymic birthDate maritalStatus |
+      | clientId                     | redirectUri | login    | type  | status | stage     | error              | scope                                                      |
+      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | 20002730 | LOGIN | 200    | CHALLENGE | null               | surname name gender inn patronymic birthDate maritalStatus |
+      | wrong                        | /           | 20002730 | LOGIN | 200    | FAIL      | type=generic_error | surname name gender inn patronymic birthDate maritalStatus |
 
 
   @k3
