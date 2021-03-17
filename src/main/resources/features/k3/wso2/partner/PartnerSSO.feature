@@ -93,6 +93,28 @@ Feature: Partner SSO
       | 000000     | k3  | authorize |
     And Status code response is: "302"
 
+  @wip
+  Scenario Outline: Partner SSO CHALLENGE Negative
+    Then Send Partner SSO INIT Request
+      | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
+      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | openid | code         | fnnvjvn |
+    And Status code response is: "200"
+    And Response Body contains "stage" equals "AUTHENTICATE"
+
+    Then Send Partner SSO AUTHENTICATE Request
+      | type  | login    | env | clientId                     | redirectUri | path      | responseType | state   | scope                                                      |
+      | LOGIN | 20002730 | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | code         | fnnvjvn | surname name gender inn patronymic birthDate maritalStatus |
+    And Status code response is: "200"
+
+    Then Send Partner SSO CHALLENGE Request
+      | secureCode   | env | path      |
+      | <secureCode> | k3  | authorize |
+    And Status code response is: "<status>"
+    Examples:
+      | secureCode | status |
+      | 000000     | 302    |
+      | wrong      | 302    |
+
   @k3
   Scenario: Partner SSO auth-code request
     Then Send Partner SSO INIT Request
