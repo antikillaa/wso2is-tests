@@ -165,12 +165,11 @@ Feature: Partner SSO
       | env | Authorization   | path   | grant_type   | code   |
       | k3  | <Authorization> | <path> | <grant_type> | <code> |
     And Status code response is: "<status>"
-    And Response Body contains key: "scope"
-    And Response Body contains key: "access_token"
-    And Response Body contains key: "refresh_token"
+    And Response Body contains key: "additional_properties.technical_message"
+
     Examples:
       | Authorization | path  | grant_type | code | status |
-      | Basic wrong   | token | code       |      | 200    |
+      | Basic wrong   | token | code       |      | 500    |
 
 
   @k3
