@@ -169,8 +169,8 @@ Feature: Partner SSO
     And Response Body contains key: "access_token"
     And Response Body contains key: "refresh_token"
     Examples:
-      | Authorization                                                                      | path  | grant_type | code | status |
-      | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh | token | code       |      | 200    |
+      | Authorization | path  | grant_type | code | status |
+      | Basic wrong   | token | code       |      | 200    |
 
 
   @k3
