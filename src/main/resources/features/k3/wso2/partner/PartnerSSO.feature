@@ -114,9 +114,8 @@ Feature: Partner SSO
 
     Examples:
       | secureCode | status | error                 |
-      | 000000     | 302    |                       |
       | wrong      | 200    | authentication_failed |
-      |            | 200    | authentication_failed |
+      |            | 200    | generic_error         |
 
   @k3
   Scenario: Partner SSO auth-code request
