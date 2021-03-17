@@ -60,7 +60,7 @@ Feature: Partner SSO
     And Response Body contains "stage" equals "CHALLENGE"
     And Response Body contains "error" equals "null"
 
-  @wip
+  @k3
   Scenario Outline: Partner SSO AUTHENTICATE Negative
     Given Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
