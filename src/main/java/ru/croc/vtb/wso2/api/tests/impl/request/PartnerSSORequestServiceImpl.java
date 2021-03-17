@@ -31,6 +31,7 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
     public static final String TYPE = "type";
     public static final String LOGIN = "login";
     public static final String ID_TYPE = "id_type";
+    public static final String GRANT_TYPE = "grant_type";
 
     @Override
     public void sendPartnerSSOAuthenticateRequest(Map<String, String> param, TestsProperties testsProperties) {
@@ -115,8 +116,12 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
         String code = URLEncodedUtils.parse(new URI(header).getQuery(), StandardCharsets.UTF_8).get(0).getValue();
 
         Map<String, Object> body = new HashMap();
-        body.put("grant_type", "code");
-        body.put("code", code);
+        getBodyParam(body, param, GRANT_TYPE);
+
+        if (param.get("code") == null) {
+            body.put("code", code);
+        } else body.put("code", param.get("code"));
+
         return body;
     }
 

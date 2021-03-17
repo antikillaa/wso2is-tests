@@ -93,7 +93,7 @@ Feature: Partner SSO
       | 000000     | k3  | authorize |
     And Status code response is: "302"
 
-  @wip
+  @k3
   Scenario Outline: Partner SSO CHALLENGE Negative
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
@@ -117,7 +117,7 @@ Feature: Partner SSO
       | wrong      | 200    | authentication_failed |
       |            | 200    | generic_error         |
 
-  @k3
+  @wip
   Scenario: Partner SSO auth-code request
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
@@ -136,8 +136,8 @@ Feature: Partner SSO
     And Status code response is: "302"
 
     Then Send Partner SSO auth-code Request
-      | env | Authorization                                                                      | path  |
-      | k3  | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh | token |
+      | env | Authorization                                                                      | path  | grant_type |
+      | k3  | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh | token | code       |
     And Status code response is: "200"
     And Response Body contains key: "scope"
     And Response Body contains key: "access_token"
