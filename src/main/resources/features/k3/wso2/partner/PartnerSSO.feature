@@ -117,7 +117,7 @@ Feature: Partner SSO
       | wrong      | 200    | authentication_failed |
       |            | 200    | generic_error         |
 
-  @wip
+  @k3
   Scenario: Partner SSO auth-code request
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
@@ -142,6 +142,36 @@ Feature: Partner SSO
     And Response Body contains key: "scope"
     And Response Body contains key: "access_token"
     And Response Body contains key: "refresh_token"
+
+  @wip
+  Scenario Outline: Partner SSO auth-code request Negative
+    Then Send Partner SSO INIT Request
+      | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
+      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | openid | code         | fnnvjvn |
+    And Status code response is: "200"
+    And Response Body contains "stage" equals "AUTHENTICATE"
+
+    Then Send Partner SSO AUTHENTICATE Request
+      | type  | login    | env | clientId                     | redirectUri | path      | responseType | state   | scope                                                      |
+      | LOGIN | 20002730 | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | code         | fnnvjvn | surname name gender inn patronymic birthDate maritalStatus |
+    And Status code response is: "200"
+
+    Then Send Partner SSO CHALLENGE Request
+      | secureCode | env | path      |
+      | 000000     | k3  | authorize |
+    And Status code response is: "302"
+
+    Then Send Partner SSO auth-code Request
+      | env | Authorization   | path   | grant_type   | code   |
+      | k3  | <Authorization> | <path> | <grant_type> | <code> |
+    And Status code response is: "<status>"
+    And Response Body contains key: "scope"
+    And Response Body contains key: "access_token"
+    And Response Body contains key: "refresh_token"
+    Examples:
+      | Authorization                                                                      | path  | grant_type | code | status |
+      | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh | token | code       |      | 200    |
+
 
   @k3
   Scenario: Partner SSO user-info request
