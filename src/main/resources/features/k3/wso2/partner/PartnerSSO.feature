@@ -16,7 +16,7 @@ Feature: Partner SSO
     And Response Body contains key: "params.icon"
     And Response Body contains "error" equals "null"
 
-  @k3
+  @wip
   Scenario Outline: Partner SSO INIT Negative
     Then Send Partner SSO INIT Request
       | env | clientId   | redirectUri   | scope   | responseType   | state   | path      |
@@ -32,6 +32,11 @@ Feature: Partner SSO
       | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | wrong  | code         | fnnvjvn | 200    | AUTHENTICATE |       |
       | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | openid | wrong        | fnnvjvn | 200    | AUTHENTICATE |       |
       | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | openid | code         | wrong   | 200    | AUTHENTICATE |       |
+      | no                           | /           | openid | code         | fnnvjvn | 200    | FAIL         | null  |
+      | C2VYv3b6RHEig2n_56bfnn3GfI4a | no          | openid | code         | fnnvjvn | 200    | FAIL         | null  |
+      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | no     | code         | fnnvjvn | 200    | AUTHENTICATE |       |
+      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | openid | no           | fnnvjvn | 200    | AUTHENTICATE |       |
+      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | openid | code         | no      | 200    | AUTHENTICATE |       |
 
 
   @k3

@@ -149,7 +149,10 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
 
     private void getBodyParam(Map<String, Object> oidc, Map<String, String> param, String bodyParam) {
         if (param.get(bodyParam) != null) {
-            oidc.put(bodyParam, param.get(bodyParam));
+            if (param.get(bodyParam).equals("no")) {
+                oidc.put(bodyParam, "");
+            } else
+                oidc.put(bodyParam, param.get(bodyParam));
         }
     }
 
