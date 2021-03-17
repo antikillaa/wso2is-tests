@@ -80,10 +80,15 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
         String URL = getLoginURL(param, testsProperties);
         Map<String, Object> body = getAuthCodeBody(param);
 
+        Map<String, Object> header = getAuthCodeBody(param);
+        if (param.get("Authorization") != null) {
+            header.put("Authorization", param.get("Authorization"));
+        }
+
         ValidatableResponse r = given().log().everything(true)
                 .body(body)
                 .contentType(ContentType.JSON)
-                .header("Authorization", param.get("Authorization"))
+                .headers(header)
                 .post(URL)
                 .then().log().all(true);
         RUN_CONTEXT.put("responseBody", r);
