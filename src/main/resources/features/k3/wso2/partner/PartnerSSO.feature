@@ -173,6 +173,7 @@ Feature: Partner SSO
       | token | wrong      |       | 500    | additional_properties.technical_message | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh |
       | token | code       | wrong | 401    | error                                   | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh |
       | wrong | code       |       | 404    | error                                   | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh |
+      | token | code       |       | 500    | additional_properties.technical_message |                                                                                    |
 
 
   @k3
