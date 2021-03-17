@@ -168,8 +168,9 @@ Feature: Partner SSO
     And Response Body contains key: "additional_properties.technical_message"
 
     Examples:
-      | Authorization | path  | grant_type | code | status |
-      | Basic wrong   | token | code       |      | 500    |
+      | path  | grant_type | code | status | Authorization                                                                      |
+      | token | code       |      | 500    | Basic wrong                                                                        |
+      | token | wrong      |      | 500    | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh |
 
 
   @k3
