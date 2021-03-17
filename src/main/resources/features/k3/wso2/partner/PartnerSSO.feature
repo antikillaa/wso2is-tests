@@ -143,7 +143,7 @@ Feature: Partner SSO
     And Response Body contains key: "access_token"
     And Response Body contains key: "refresh_token"
 
-  @wip
+  @k3
   Scenario Outline: Partner SSO auth-code request Negative
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
@@ -175,7 +175,6 @@ Feature: Partner SSO
       | token |            |       | 500    | additional_properties.technical_message | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh |
       | token | code       | wrong | 401    | error                                   | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh |
       | wrong | code       |       | 404    | error                                   | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh |
-      | token | code       |       | 401    | error                                   | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh |
 
 
   @k3
