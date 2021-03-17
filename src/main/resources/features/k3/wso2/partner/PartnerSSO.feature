@@ -78,7 +78,7 @@ Feature: Partner SSO
       | C2VYv3b6RHEig2n_56bfnn3GfI4a | wrong       | 20002730 | LOGIN | 200    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
       | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | wrong    | LOGIN | 200    | AUTHENTICATE | authentication_failed | surname name gender inn patronymic birthDate maritalStatus |
       | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | 20002730 | wrong | 200    | FAIL         | generic_error         | surname name gender inn patronymic birthDate maritalStatus |
-      | no                           | /           | 20002730 | LOGIN | 200    | FAIL         | generic_error         | surname name gender inn patronymic birthDate maritalStatus |
+      | no                           | /           | 20002730 | LOGIN | 200    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
       | C2VYv3b6RHEig2n_56bfnn3GfI4a | no          | 20002730 | LOGIN | 200    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
       | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | no       | LOGIN | 200    | AUTHENTICATE | authentication_failed | surname name gender inn patronymic birthDate maritalStatus |
       | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | 20002730 | no    | 200    | FAIL         | generic_error         | surname name gender inn patronymic birthDate maritalStatus |
