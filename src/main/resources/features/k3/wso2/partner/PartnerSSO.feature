@@ -110,10 +110,13 @@ Feature: Partner SSO
       | secureCode   | env | path      |
       | <secureCode> | k3  | authorize |
     And Status code response is: "<status>"
+    And Response Body contains "error.type" equals "<error>"
+
     Examples:
-      | secureCode | status |
-      | 000000     | 302    |
-      | wrong      | 302    |
+      | secureCode | status | error                 |
+      | 000000     | 302    |                       |
+      | wrong      | 200    | authentication_failed |
+      |            | 200    | authentication_failed |
 
   @k3
   Scenario: Partner SSO auth-code request
