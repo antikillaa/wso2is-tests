@@ -136,8 +136,8 @@ Feature: Partner SSO
     And Status code response is: "302"
 
     Then Send Partner SSO auth-code Request
-      | env | Authorization                                                                      | path  | grant_type |
-      | k3  | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh | token | code       |
+      | env | Authorization                                                                      | path  | grant_type | code |
+      | k3  | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh | token | code       |      |
     And Status code response is: "200"
     And Response Body contains key: "scope"
     And Response Body contains key: "access_token"
