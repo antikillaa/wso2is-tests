@@ -171,7 +171,7 @@ Feature: Partner SSO
       | path  | grant_type | code  | status | error                                   | Authorization                                                                      |
       | token | code       |       | 500    | additional_properties.technical_message | Basic wrong                                                                        |
       | token | wrong      |       | 500    | additional_properties.technical_message | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh |
-      | token | code       | wrong | 401    | error.invalid_client                    | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh |
+      | token | code       | wrong | 401    | error                                   | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh |
 
 
   @k3
