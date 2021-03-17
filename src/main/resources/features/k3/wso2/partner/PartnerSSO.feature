@@ -16,7 +16,7 @@ Feature: Partner SSO
     And Response Body contains key: "params.icon"
     And Response Body contains "error" equals "null"
 
-  @k3
+  @wip
   Scenario Outline: Partner SSO INIT Negative
     Then Send Partner SSO INIT Request
       | env | clientId   | redirectUri   | scope   | responseType   | state   | path      |
@@ -37,6 +37,11 @@ Feature: Partner SSO
       | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | no     | code         | fnnvjvn | 200    | AUTHENTICATE |       |
       | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | openid | no           | fnnvjvn | 200    | AUTHENTICATE |       |
       | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | openid | code         | no      | 200    | AUTHENTICATE |       |
+      |                              | /           | openid | code         | fnnvjvn | 200    | FAIL         | null  |
+      | C2VYv3b6RHEig2n_56bfnn3GfI4a |             | openid | code         | fnnvjvn | 200    | FAIL         | null  |
+      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           |        | code         | fnnvjvn | 200    | AUTHENTICATE |       |
+      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | openid |              | fnnvjvn | 200    | AUTHENTICATE |       |
+      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | openid | code         |         | 200    | AUTHENTICATE |       |
 
 
   @k3
@@ -55,7 +60,7 @@ Feature: Partner SSO
     And Response Body contains "stage" equals "CHALLENGE"
     And Response Body contains "error" equals "null"
 
-  @wip
+  @k3
   Scenario Outline: Partner SSO AUTHENTICATE Negative
     Given Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
@@ -123,8 +128,9 @@ Feature: Partner SSO
 
     Examples:
       | secureCode | status | error                 |
-      | wrong      | 200    | authentication_failed |
       |            | 200    | generic_error         |
+      | wrong      | 200    | authentication_failed |
+
 
   @k3
   Scenario: Partner SSO auth-code request
