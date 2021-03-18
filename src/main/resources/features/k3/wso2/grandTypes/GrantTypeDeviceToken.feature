@@ -3,7 +3,7 @@
 @authDeviceTokenk3
 Feature: Grant type Device Token Stub
 
-  @k3
+  @TODO
   Scenario: Grant type DeviceToken: Two Factor Success
     Then Send login by Grant type Request
       | grandType    | id_type       | id               | finger_print | scope | env | Authorization                                                                      |

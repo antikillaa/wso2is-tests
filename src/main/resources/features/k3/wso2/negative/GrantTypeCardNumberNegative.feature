@@ -31,7 +31,7 @@ Feature: Grant type Card Number Negative
       | card_number | no         | 4714870078440778 | true  | k3           | k3  |
 
     And Status code response is: "500"
-    And Response Body contains "additional_properties.technical_message" equals "[ExceptionName:IllegalArgumentException; Message:The parameter 'cardNumber' is missing] "
+    And Response Body contains "additional_properties.tech_messages" equals "[ExceptionName:IllegalArgumentException; Message:The parameter 'cardNumber' is missing] "
 
 
   @k3
@@ -39,21 +39,18 @@ Feature: Grant type Card Number Negative
     Then Send login by Grant type Request
       | grandType   | id_type    | id | scope | finger_print | env |
       | card_number | cardNumber | no | true  | k3           | k3  |
-
-    And Status code response is: "404"
-
-  @k3
-  Scenario: Login by Card MB empty ID
-    Then Send login by Grant type Request
-      | grandType   | id_type    | id  | scope | finger_print | env |
-      | card_number | cardNumber |  no   | true  | k3           | k3  |
-
-    And Status code response is: "404"
+    And Status code response is: "500"
 
   @k3
   Scenario: Login by Card MB empty ID
     Then Send login by Grant type Request
-      | grandType   | id_type    | id  | scope | finger_print | env |
-      | card_number | cardNumber | no    | true  | k3           | k3  |
+      | grandType   | id_type    | id | scope | finger_print | env |
+      | card_number | cardNumber | no | true  | k3           | k3  |
+    And Status code response is: "500"
 
-    And Status code response is: "404"
+  @k3
+  Scenario: Login by Card MB empty ID
+    Then Send login by Grant type Request
+      | grandType   | id_type    | id | scope | finger_print | env |
+      | card_number | cardNumber | no | true  | k3           | k3  |
+    And Status code response is: "500"
