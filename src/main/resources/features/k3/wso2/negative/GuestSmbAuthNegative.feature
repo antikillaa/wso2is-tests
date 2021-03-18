@@ -22,4 +22,4 @@ Feature: Grant type Guest Smb Auth k3
 
 
     And Status code response is: "500"
-    And Response Body contains "additional_properties.technical_message" equals "[ExceptionName:IllegalArgumentException; Message:The parameter 'phone_number' is missing] "
+    And Response Body contains "additional_properties.tech_messages" equals "[ExceptionName:IllegalArgumentException; Message:The parameter 'phone_number' is missing] "

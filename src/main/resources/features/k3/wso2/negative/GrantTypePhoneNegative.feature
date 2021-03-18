@@ -21,7 +21,7 @@ Feature: Grant type Phone number k3
       | phone_number | no          | 9152547896 | true  | k3           | k3  |
 
     And Status code response is: "500"
-    And Response Body contains "additional_properties.technical_message" equals "[ExceptionName:IllegalArgumentException; Message:The parameter 'phoneNumber' is missing] "
+    And Response Body contains "additional_properties.tech_messages" equals "[ExceptionName:IllegalArgumentException; Message:The parameter 'phoneNumber' is missing] "
 
   @k3
   Scenario: Grant type Phone number No Phone

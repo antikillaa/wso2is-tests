@@ -12,7 +12,7 @@ Feature: Grant type Device Token Stub
       | device_token | no            | 8888000000056316 | true         | true  | k3  | Basic Uzh3dWRkMmY2bHdIVEVra214NHB5VGxsbU1ZYTpTOHd1ZGQyZjZsd0hURWtrbXg0cHlUbGxtTVlB |
 
     And Status code response is: "500"
-    And Response Body contains "additional_properties.technical_message" equals "[ExceptionName:IllegalArgumentException; Message:The parameter 'deviceTokenID' is missing] "
+    And Response Body contains "additional_properties.tech_messages" equals "[ExceptionName:IllegalArgumentException; Message:The parameter 'deviceTokenID' is missing] "
 
   @k3
   Scenario: Grant type DeviceToken: No ID
