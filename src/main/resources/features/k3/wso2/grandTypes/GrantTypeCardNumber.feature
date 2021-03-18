@@ -101,14 +101,14 @@ Feature: Grant type Card Number K3
     Then "k3" Send Logout Request
     And Status code response is: "200"
 
-  @k3
+  @TODO
   Scenario: Login by Card MB without UNK
     Then Send login by Grant type Request
       | grandType      | id_type    | id               | scope | finger_print | env | Authorization                                                                      |
       | card_number_mb | cardNumber | 1234222233334444 | true  | k3           | k3  | Basic Uzh3dWRkMmY2bHdIVEVra214NHB5VGxsbU1ZYTpTOHd1ZGQyZjZsd0hURWtrbXg0cHlUbGxtTVlB |
     And Status code response is: "500"
 
-  @k3
+  @TODO
   Scenario: Login by Card without UNK
     Then Send login by Grant type Request
       | grandType   | id_type    | id               | scope | finger_print | env | Authorization                                                                      |
@@ -208,14 +208,14 @@ Feature: Grant type Card Number K3
     And Status code response is: "500"
     And Response Body contains "message_title" equals "Приносим извинения за доставленные неудобства. Воспользуйтесь старой версией интернет-банка по ссылке: [url=https://online-old.vtb.ru]https://online-old.vtb.ru[/url]"
 
-  @k3
+  @TODO
   Scenario: Login by Card issued for third person
     Then Send login by Grant type Request
       | grandType         | id_type    | id               | scope | finger_print | env | Authorization |
       | card_number       | cardNumber | 2200650565343666 | true  | k3           | k3  | Basic Uzh3dWRkMmY2bHdIVEVra214NHB5VGxsbU1ZYTpTOHd1ZGQyZjZsd0hURWtrbXg0cHlUbGxtTVlB |
     And Status code response is: "403"
 
-  @k3
+  @TODO
   Scenario: Login by Card MB issued for third person
     Then Send login by Grant type Request
       | grandType         | id_type    | id               | scope | finger_print | env | Authorization |
