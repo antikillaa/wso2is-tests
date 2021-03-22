@@ -21,7 +21,7 @@ Feature: Wrong Session Data Key
       | guest_auth     | phone_number | 9809935444       | Basic ajhiT29aMnkxRmh3RUtQY2FGU1NnWUhGYmZvYTprV3NrV2ZmNzVVUkJnSm9WeWlzalRjTWI4OUlh |
       | guest_smb_auth | phone_number | 9809935444       | Basic UlAyZ3d0aXl4WldMZ2NZM0l3Wl9hM1QzU0Y4YTpxRWVzOWNXUXJPT0hpd29IaXViOXkwZnVTZ0lh |
 
-  @wip
+  @k3
   Scenario Outline: Blank Session Data Key
     Then Send login by Grant type Request
       | grandType   | id_type   | id   | scope | env | finger_print | Authorization   | sessionDataKey |
