@@ -32,7 +32,7 @@ public class WSORequestServiceImpl implements WsoRequestService {
         String URL = getLoginURL(par, testsProperties);
 
         Map<String, Object> body = RUN_CONTEXT.get("body", Map.class);
-        body.put("transactionId", property.get("transactionId"));
+//        body.put("transactionId", property.get("transactionId"));
         setSessionDataKey(property, body);
         body.put("otp", getOtp(par));
 
