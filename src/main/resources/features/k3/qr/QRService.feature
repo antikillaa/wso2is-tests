@@ -10,8 +10,8 @@ Feature: QR service
   @wip
   Scenario: Approve QR
     Then Send login by Grant type Request
-      | grandType | id_type | id       | scope | finger_print | env |
-      | login_mb  | login   | 20002571 | true  | k3           | k3  |
+      | grandType | id_type | id       | scope | finger_print | env | Authorization                                                                      |
+      | login_mb  | login   | 20002571 | true  | k3           | k3  | Basic ajhiT29aMnkxRmh3RUtQY2FGU1NnWUhGYmZvYTprV3NrV2ZmNzVVUkJnSm9WeWlzalRjTWI4OUlh |
     And Status code response is: "200"
 
     Then "k3" Send generate QR Request
