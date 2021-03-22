@@ -4,7 +4,7 @@
 @negativek3
 Feature: No device finger print
 
-  @wip
+  @k3
   Scenario Outline: Wrong OTP
     Then Send login by Grant type Request
       | grandType   | id_type   | id   | scope |  env | finger_print | Authorization    | otp   |
