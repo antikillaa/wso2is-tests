@@ -2,13 +2,13 @@
 @authk3
 @negative
 @negativek3
-Feature: No device finger print
+Feature: Wrong OTP
 
   @k3
   Scenario Outline: Wrong OTP
     Then Send login by Grant type Request
-      | grandType   | id_type   | id   | scope |  env | finger_print | Authorization    | otp   |
-      | <grandType> | <id_type> | <id> | true  |  k3  | k3           | <Authorization>  | wrong |
+      | grandType   | id_type   | id   | scope | env | finger_print | Authorization   | otp   |
+      | <grandType> | <id_type> | <id> | true  | k3  | k3           | <Authorization> | wrong |
     And Status code response is: "401"
 
     Examples:
