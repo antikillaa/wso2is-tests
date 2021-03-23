@@ -7,7 +7,7 @@ Feature: QR service
     Then "k3" Send generate QR Request
     And Status code response is: "200"
 
-  @wip
+  @k3
   Scenario: Approve QR
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env | Authorization                                                                      |
