@@ -160,7 +160,7 @@ public class QRRequestServiceImpl implements QRRequestService {
 
     private Map<String, Object> getQRHeaderWithFinger(TestsProperties testsProperties) {
         Map<String, Object> header = new HashMap<>();
-        header.put("Authorization", testsProperties.getAuthorization());
+        header.put("Authorization", testsProperties.getAuthorizationIB());
         header.put("x-finger-print", "123456");
         header.put("X-Device-FingerPrint", testsProperties.getMobileFingerPrint());
         header.put("Referer", "http://k3-vol-cch103v.msk.vtb24.ru/login");
