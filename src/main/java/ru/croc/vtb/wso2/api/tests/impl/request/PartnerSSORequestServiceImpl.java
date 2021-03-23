@@ -199,7 +199,7 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
                     break;
             }
         }
-        return URL + ":" + testsProperties.getWsoPort() + "/oauth2/" + path;
+        return URL + testsProperties.getWsoPort() + "/oauth2/" + path;
     }
 
 
