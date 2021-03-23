@@ -39,7 +39,7 @@ Feature: Grant type Card Number K3
     And Response Body contains key: "refresh_token"
     And Response Body contains key: "scope"
 
-  @wip
+  @k3
   Scenario: Grant type Card Number Mb: Refresh token
     Then Send login by Grant type Request
       | grandType      | id_type    | id               | scope | finger_print | env | Authorization                                                                      |
@@ -56,8 +56,8 @@ Feature: Grant type Card Number K3
   @k3
   Scenario: Grant type Card Number Mb: Token Exchange
     Then Send login by Grant type Request
-      | grandType      | id_type    | id               | scope | finger_print | env |
-      | card_number_mb | cardNumber | 4714870078440778 | true  | k3           | k3  |
+      | grandType      | id_type    | id               | scope | finger_print | env | Authorization                                                                      |
+      | card_number_mb | cardNumber | 4714870078440778 | true  | k3           | k3  | Basic ajhiT29aMnkxRmh3RUtQY2FGU1NnWUhGYmZvYTprV3NrV2ZmNzVVUkJnSm9WeWlzalRjTWI4OUlh |
     And Status code response is: "200"
 
     Then "k3" Send Token Exchange Request
@@ -84,8 +84,8 @@ Feature: Grant type Card Number K3
   @k3
   Scenario: Grant type card_number_mb Logout
     Then Send login by Grant type Request
-      | grandType      | id_type    | id               | scope | finger_print | env |
-      | card_number_mb | cardNumber | 4714870078440778 | true  | k3           | k3  |
+      | grandType      | id_type    | id               | scope | finger_print | env | Authorization                                                                      |
+      | card_number_mb | cardNumber | 4714870078440778 | true  | k3           | k3  | Basic ajhiT29aMnkxRmh3RUtQY2FGU1NnWUhGYmZvYTprV3NrV2ZmNzVVUkJnSm9WeWlzalRjTWI4OUlh |
     And Status code response is: "200"
 
     Then "k3" Send Logout Request
@@ -115,7 +115,7 @@ Feature: Grant type Card Number K3
       | card_number | cardNumber | 1234222233334444 | true  | k3           | k3  | Basic Uzh3dWRkMmY2bHdIVEVra214NHB5VGxsbU1ZYTpTOHd1ZGQyZjZsd0hURWtrbXg0cHlUbGxtTVlB |
     And Status code response is: "500"
 
-  @k3
+  @TODO
   Scenario: Login by not active Card status card 240
     Then Send login by Grant type Request
       | grandType   | id_type    | id               | scope | finger_print | env |
@@ -123,7 +123,7 @@ Feature: Grant type Card Number K3
     And Status code response is: "403"
     And Response Body contains "type" equals "card_not_valid"
 
-  @k3
+  @TODO
   Scenario: Login by not active Card MB status card 240
     Then Send login by Grant type Request
       | grandType      | id_type    | id               | scope | finger_print | env |
@@ -131,7 +131,7 @@ Feature: Grant type Card Number K3
     And Status code response is: "403"
     And Response Body contains "type" equals "card_not_valid"
 
-  @k3
+  @TODO
   Scenario: Login by not active Card status card 430
     Then Send login by Grant type Request
       | grandType   | id_type    | id               | scope | finger_print | env |
@@ -142,7 +142,7 @@ Feature: Grant type Card Number K3
     And Response Body contains key: "refresh_token"
     And Response Body contains "scope" equals "openid"
 
-  @k3
+  @TODO
   Scenario: Login by not active Card status card 430
     Then Send login by Grant type Request
       | grandType      | id_type    | id               | scope | finger_print | env |
@@ -153,7 +153,7 @@ Feature: Grant type Card Number K3
     And Response Body contains key: "refresh_token"
     And Response Body contains "scope" equals "openid"
 
-  @k3
+  @TODO
   Scenario: Login by by expired card
     Then Send login by Grant type Request
       | grandType   | id_type    | id               | scope | finger_print | env |
@@ -161,7 +161,7 @@ Feature: Grant type Card Number K3
     And Status code response is: "403"
     And Response Body contains "type" equals "card_not_valid"
 
-  @k3
+  @TODO
   Scenario: Login by by expired card Mb
     Then Send login by Grant type Request
       | grandType      | id_type    | id               | scope | finger_print | env |
