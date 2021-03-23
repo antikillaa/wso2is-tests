@@ -4,7 +4,7 @@
 @negativek3
 Feature: Check Id Token
 
-  @k3
+  @wip
   Scenario Outline: Check Id Token
     Then Send login by Grant type Request
       | grandType   | id_type   | id   | scope | env | finger_print | Authorization   | otp   |
