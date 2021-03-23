@@ -33,6 +33,9 @@ public class TestsProperties {
     @Value("${test.urlToProxyK5}")
     private String urlToProxyK5;
 
+    @Value("${test.urlToPartnerK3}")
+    private String urlToPartnerK3;
+
     @Value("${test.restorePasswordServiceUrlK3}")
     private String restorePasswordServiceUrlK3;
 

@@ -2,10 +2,7 @@ package ru.croc.vtb.wso2.api.tests.impl.request;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
-import org.json.JSONException;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.croc.vtb.wso2.api.tests.config.TestsProperties;
@@ -15,7 +12,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
@@ -186,7 +182,7 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
         if (par.get("env") != null) {
             switch (par.get("env").toString()) {
                 case "k3":
-                    URL = testsProperties.getUrlToProxyK3();
+                    URL = testsProperties.getUrlToPartnerK3();
                     break;
                 case "k4":
                     URL = testsProperties.getUrlToProxyK4();
@@ -199,16 +195,6 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
                     break;
             }
         }
-        return URL + testsProperties.getWsoPort() + "/oauth2/" + path;
-    }
-
-
-    @Test
-    public void test() throws URISyntaxException, JSONException {
-        String url = "http://google.com/?code=123&state=gnreokgb";
-        URLEncodedUtils.parse(new URI(url).getQuery(), StandardCharsets.UTF_8)
-                .forEach(pair -> log.info("{} {}", pair.getName(), pair.getValue()));
-        List<NameValuePair> nameValuePairs = URLEncodedUtils.parse(new URI(url).getQuery(), StandardCharsets.UTF_8);
-        System.out.println(url);
+        return URL + "/oauth2/" + path;
     }
 }
