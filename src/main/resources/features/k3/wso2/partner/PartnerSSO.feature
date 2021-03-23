@@ -9,7 +9,7 @@ Feature: Partner SSO
   Scenario: Partner SSO INIT
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
-      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | openid | code         | fnnvjvn |
+      | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | openid | code         | fnnvjvn |
     And Status code response is: "200"
     And Response Body contains "stage" equals "AUTHENTICATE"
     And Response Body contains key: "params.companyName"
@@ -26,35 +26,35 @@ Feature: Partner SSO
     And Response Body contains "error" not equals "<error>"
 
     Examples:
-      | clientId                     | redirectUri | scope  | responseType | state   | status | stage        | error |
-      | wrong                        | /           | openid | code         | fnnvjvn | 200    | FAIL         | null  |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | wrong       | openid | code         | fnnvjvn | 200    | FAIL         | null  |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | wrong  | code         | fnnvjvn | 200    | AUTHENTICATE |       |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | openid | wrong        | fnnvjvn | 200    | AUTHENTICATE |       |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | openid | code         | wrong   | 200    | AUTHENTICATE |       |
-      | no                           | /           | openid | code         | fnnvjvn | 200    | FAIL         | null  |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | no          | openid | code         | fnnvjvn | 200    | FAIL         | null  |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | no     | code         | fnnvjvn | 200    | AUTHENTICATE |       |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | openid | no           | fnnvjvn | 200    | AUTHENTICATE |       |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | openid | code         | no      | 200    | AUTHENTICATE |       |
-      |                              | /           | openid | code         | fnnvjvn | 200    | FAIL         | null  |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a |             | openid | code         | fnnvjvn | 200    | FAIL         | null  |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           |        | code         | fnnvjvn | 200    | AUTHENTICATE |       |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | openid |              | fnnvjvn | 200    | AUTHENTICATE |       |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | openid | code         |         | 200    | AUTHENTICATE |       |
+      | clientId            | redirectUri                   | scope  | responseType | state   | status | stage        | error |
+      | wrong               | http://mobile-bank-partner.ru | openid | code         | fnnvjvn | 200    | FAIL         | null  |
+      | mobile-bank-partner | wrong                         | openid | code         | fnnvjvn | 200    | FAIL         | null  |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | wrong  | code         | fnnvjvn | 200    | AUTHENTICATE |       |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | openid | wrong        | fnnvjvn | 200    | AUTHENTICATE |       |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | openid | code         | wrong   | 200    | AUTHENTICATE |       |
+      | no                  | http://mobile-bank-partner.ru | openid | code         | fnnvjvn | 200    | FAIL         | null  |
+      | mobile-bank-partner | no                            | openid | code         | fnnvjvn | 200    | FAIL         | null  |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | no     | code         | fnnvjvn | 200    | AUTHENTICATE |       |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | openid | no           | fnnvjvn | 200    | AUTHENTICATE |       |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | openid | code         | no      | 200    | AUTHENTICATE |       |
+      |                     | http://mobile-bank-partner.ru | openid | code         | fnnvjvn | 200    | FAIL         | null  |
+      | mobile-bank-partner |                               | openid | code         | fnnvjvn | 200    | FAIL         | null  |
+      | mobile-bank-partner | http://mobile-bank-partner.ru |        | code         | fnnvjvn | 200    | AUTHENTICATE |       |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | openid |              | fnnvjvn | 200    | AUTHENTICATE |       |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | openid | code         |         | 200    | AUTHENTICATE |       |
 
 
   @k3
   Scenario: Partner SSO AUTHENTICATE
     Given Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
-      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | openid | code         | fnnvjvn |
+      | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | openid | code         | fnnvjvn |
     And Status code response is: "200"
     And Response Body contains "stage" equals "AUTHENTICATE"
 
     Then Send Partner SSO AUTHENTICATE Request
       | type  | login    | env | clientId                     | redirectUri | path      | responseType | state   | scope                                                      |
-      | LOGIN | 20002730 | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | code         | fnnvjvn | surname name gender inn patronymic birthDate maritalStatus |
+      | LOGIN | 20002730 | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | code         | fnnvjvn | surname name gender inn patronymic birthDate maritalStatus |
 
     And Status code response is: "200"
     And Response Body contains "stage" equals "CHALLENGE"
@@ -64,7 +64,7 @@ Feature: Partner SSO
   Scenario Outline: Partner SSO AUTHENTICATE Negative
     Given Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
-      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | openid | code         | fnnvjvn |
+      | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | openid | code         | fnnvjvn |
     And Status code response is: "200"
     And Response Body contains "stage" equals "AUTHENTICATE"
 
@@ -77,33 +77,33 @@ Feature: Partner SSO
     And Response Body contains "error.type" equals "<error>"
 
     Examples:
-      | clientId                     | redirectUri | login    | type  | status | stage        | error                 | scope                                                      |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | 20002730 | LOGIN | 200    | CHALLENGE    | null                  | surname name gender inn patronymic birthDate maritalStatus |
-      | wrong                        | /           | 20002730 | LOGIN | 200    | FAIL         | generic_error         | surname name gender inn patronymic birthDate maritalStatus |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | wrong       | 20002730 | LOGIN | 200    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | wrong    | LOGIN | 200    | AUTHENTICATE | authentication_failed | surname name gender inn patronymic birthDate maritalStatus |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | 20002730 | wrong | 200    | FAIL         | generic_error         | surname name gender inn patronymic birthDate maritalStatus |
-      | no                           | /           | 20002730 | LOGIN | 200    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | no          | 20002730 | LOGIN | 200    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | no       | LOGIN | 200    | AUTHENTICATE | authentication_failed | surname name gender inn patronymic birthDate maritalStatus |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | 20002730 | no    | 200    | FAIL         | generic_error         | surname name gender inn patronymic birthDate maritalStatus |
-      |                              | /           | 20002730 | LOGIN | 200    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a |             | 20002730 | LOGIN | 200    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           |          | LOGIN | 200    | AUTHENTICATE | authentication_failed | surname name gender inn patronymic birthDate maritalStatus |
-      | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | 20002730 |       | 200    | FAIL         | generic_error         | surname name gender inn patronymic birthDate maritalStatus |
+      | clientId            | redirectUri                   | login    | type  | status | stage        | error                 | scope                                                      |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | 20002730 | LOGIN | 200    | CHALLENGE    | null                  | surname name gender inn patronymic birthDate maritalStatus |
+      | wrong               | http://mobile-bank-partner.ru | 20002730 | LOGIN | 200    | FAIL         | generic_error         | surname name gender inn patronymic birthDate maritalStatus |
+      | mobile-bank-partner | wrong                         | 20002730 | LOGIN | 200    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | wrong    | LOGIN | 200    | AUTHENTICATE | authentication_failed | surname name gender inn patronymic birthDate maritalStatus |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | 20002730 | wrong | 200    | FAIL         | generic_error         | surname name gender inn patronymic birthDate maritalStatus |
+      | no                  | http://mobile-bank-partner.ru | 20002730 | LOGIN | 200    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
+      | mobile-bank-partner | no                            | 20002730 | LOGIN | 200    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | no       | LOGIN | 200    | AUTHENTICATE | authentication_failed | surname name gender inn patronymic birthDate maritalStatus |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | 20002730 | no    | 200    | FAIL         | generic_error         | surname name gender inn patronymic birthDate maritalStatus |
+      |                     | http://mobile-bank-partner.ru | 20002730 | LOGIN | 200    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
+      | mobile-bank-partner |                               | 20002730 | LOGIN | 200    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
+      | mobile-bank-partner | http://mobile-bank-partner.ru |          | LOGIN | 200    | AUTHENTICATE | authentication_failed | surname name gender inn patronymic birthDate maritalStatus |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | 20002730 |       | 200    | FAIL         | generic_error         | surname name gender inn patronymic birthDate maritalStatus |
 
 
   @k3
   Scenario: Partner SSO CHALLENGE
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
-      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | openid | code         | fnnvjvn |
+      | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | openid | code         | fnnvjvn |
     And Status code response is: "200"
     And Response Body contains "stage" equals "AUTHENTICATE"
 
     Then Send Partner SSO AUTHENTICATE Request
       | type  | login    | env | clientId                     | redirectUri | path      | responseType | state   | scope                                                      |
-      | LOGIN | 20002730 | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | code         | fnnvjvn | surname name gender inn patronymic birthDate maritalStatus |
+      | LOGIN | 20002730 | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | code         | fnnvjvn | surname name gender inn patronymic birthDate maritalStatus |
     And Status code response is: "200"
 
     Then Send Partner SSO CHALLENGE Request
@@ -115,13 +115,13 @@ Feature: Partner SSO
   Scenario Outline: Partner SSO CHALLENGE Negative
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
-      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | openid | code         | fnnvjvn |
+      | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | openid | code         | fnnvjvn |
     And Status code response is: "200"
     And Response Body contains "stage" equals "AUTHENTICATE"
 
     Then Send Partner SSO AUTHENTICATE Request
       | type  | login    | env | clientId                     | redirectUri | path      | responseType | state   | scope                                                      |
-      | LOGIN | 20002730 | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | code         | fnnvjvn | surname name gender inn patronymic birthDate maritalStatus |
+      | LOGIN | 20002730 | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | code         | fnnvjvn | surname name gender inn patronymic birthDate maritalStatus |
     And Status code response is: "200"
 
     Then Send Partner SSO CHALLENGE Request
@@ -140,13 +140,13 @@ Feature: Partner SSO
   Scenario: Partner SSO auth-code request
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
-      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | openid | code         | fnnvjvn |
+      | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | openid | code         | fnnvjvn |
     And Status code response is: "200"
     And Response Body contains "stage" equals "AUTHENTICATE"
 
     Then Send Partner SSO AUTHENTICATE Request
       | type  | login    | env | clientId                     | redirectUri | path      | responseType | state   | scope                                                      |
-      | LOGIN | 20002730 | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | code         | fnnvjvn | surname name gender inn patronymic birthDate maritalStatus |
+      | LOGIN | 20002730 | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | code         | fnnvjvn | surname name gender inn patronymic birthDate maritalStatus |
     And Status code response is: "200"
 
     Then Send Partner SSO CHALLENGE Request
@@ -166,13 +166,13 @@ Feature: Partner SSO
   Scenario Outline: Partner SSO auth-code request Negative
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
-      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | openid | code         | fnnvjvn |
+      | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | openid | code         | fnnvjvn |
     And Status code response is: "200"
     And Response Body contains "stage" equals "AUTHENTICATE"
 
     Then Send Partner SSO AUTHENTICATE Request
       | type  | login    | env | clientId                     | redirectUri | path      | responseType | state   | scope                                                      |
-      | LOGIN | 20002730 | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | code         | fnnvjvn | surname name gender inn patronymic birthDate maritalStatus |
+      | LOGIN | 20002730 | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | code         | fnnvjvn | surname name gender inn patronymic birthDate maritalStatus |
     And Status code response is: "200"
 
     Then Send Partner SSO CHALLENGE Request
@@ -200,13 +200,13 @@ Feature: Partner SSO
   Scenario: Partner SSO user-info request
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
-      | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | openid | code         | fnnvjvn |
+      | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | openid | code         | fnnvjvn |
     And Status code response is: "200"
     And Response Body contains "stage" equals "AUTHENTICATE"
 
     Then Send Partner SSO AUTHENTICATE Request
       | type  | login    | env | clientId                     | redirectUri | path      | responseType | state   | scope                                                      |
-      | LOGIN | 20002730 | k3  | C2VYv3b6RHEig2n_56bfnn3GfI4a | /           | authorize | code         | fnnvjvn | surname name gender inn patronymic birthDate maritalStatus |
+      | LOGIN | 20002730 | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | code         | fnnvjvn | surname name gender inn patronymic birthDate maritalStatus |
     And Status code response is: "200"
 
     Then Send Partner SSO CHALLENGE Request
