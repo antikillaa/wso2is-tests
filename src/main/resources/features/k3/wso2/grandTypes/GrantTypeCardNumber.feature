@@ -39,11 +39,11 @@ Feature: Grant type Card Number K3
     And Response Body contains key: "refresh_token"
     And Response Body contains key: "scope"
 
-  @k3
+  @wip
   Scenario: Grant type Card Number Mb: Refresh token
     Then Send login by Grant type Request
-      | grandType      | id_type    | id               | scope | finger_print | env |
-      | card_number_mb | cardNumber | 4714870078440778 | true  | k3           | k3  |
+      | grandType      | id_type    | id               | scope | finger_print | env | Authorization                                                                      |
+      | card_number_mb | cardNumber | 4714870078440778 | true  | k3           | k3  | Basic ajhiT29aMnkxRmh3RUtQY2FGU1NnWUhGYmZvYTprV3NrV2ZmNzVVUkJnSm9WeWlzalRjTWI4OUlh |
     And Status code response is: "200"
 
     Then "k3" Send Refresh token Request
