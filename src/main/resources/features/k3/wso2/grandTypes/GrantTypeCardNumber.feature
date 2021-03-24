@@ -26,7 +26,7 @@ Feature: Grant type Card Number K3
     And Response Body contains key: "refresh_token"
     And Response Body contains "scope" equals "openid"
 
-  @wip
+  @k3
   Scenario: Grant type Card Number: Refresh token
     Then Send login by Grant type Request
       | grandType   | id_type    | id               | scope | finger_print | env |
@@ -39,7 +39,7 @@ Feature: Grant type Card Number K3
     And Response Body contains key: "refresh_token"
     And Response Body contains key: "scope"
 
-  @wip
+  @k3
   Scenario: Grant type Card Number Mb: Refresh token
     Then Send login by Grant type Request
       | grandType      | id_type    | id               | scope | finger_print | env | Authorization                                                                      |
@@ -67,7 +67,7 @@ Feature: Grant type Card Number K3
     And Response Body contains key: "refresh_token"
     And Response Body contains key: "scope"
 
-  @k3
+  @wip
   Scenario: Grant type Card Number: Token Exchange
     Then Send login by Grant type Request
       | grandType      | id_type    | id               | scope | finger_print | env |
