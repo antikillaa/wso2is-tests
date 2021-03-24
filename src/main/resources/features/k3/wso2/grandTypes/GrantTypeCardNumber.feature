@@ -29,8 +29,8 @@ Feature: Grant type Card Number K3
   @wip
   Scenario: Grant type Card Number: Refresh token
     Then Send login by Grant type Request
-      | grandType   | id_type    | id               | scope | finger_print | env | Authorization                                                                      |
-      | card_number | cardNumber | 4714870078440778 | true  | k3           | k3  | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh |
+      | grandType   | id_type    | id               | scope | finger_print | env |
+      | card_number | cardNumber | 4714870078440778 | true  | k3           | k3  |
     And Status code response is: "200"
     Then "k3" Send Refresh token Request
     And Status code response is: "200"
