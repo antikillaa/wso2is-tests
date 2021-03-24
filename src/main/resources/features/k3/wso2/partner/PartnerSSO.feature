@@ -18,7 +18,7 @@ Feature: Partner SSO
     Then Send Partner SSO INIT Request
       | env | clientId   | redirectUri   | scope   | responseType   | state   | path      |
       | k3  | <clientId> | <redirectUri> | <scope> | <responseType> | <state> | authorize |
-    And Status code response is: "<status>"
+    And Status code response is: "302"
     And Response Body contains "stage" equals "<stage>"
     And Response Body contains "error" not equals "<error>"
 
@@ -67,7 +67,7 @@ Feature: Partner SSO
       | env | type   | login   | id   | clientId   | redirectUri   | path      | scope   | responseType | state   |
       | k3  | <type> | <login> | <id> | <clientId> | <redirectUri> | authorize | <scope> | code         | fnnvjvn |
 
-    And Status code response is: "<status>"
+    And Status code response is: "302"
     And Response Body contains "stage" equals "<stage>"
     And Response Body contains "error.type" equals "<error>"
 
@@ -120,7 +120,7 @@ Feature: Partner SSO
     Then Send Partner SSO CHALLENGE Request
       | secureCode   | env | path      |
       | <secureCode> | k3  | authorize |
-    And Status code response is: "<status>"
+    And Status code response is: "302"
     And Response Body contains "error.type" equals "<error>"
 
     Examples:
