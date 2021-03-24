@@ -2,10 +2,9 @@
 @authk3
 @partnerssok3
 @partnersso
-@k3
+@skip
 Feature: Partner SSO
 
-  @k3
   Scenario: Partner SSO INIT
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
@@ -16,7 +15,6 @@ Feature: Partner SSO
     And Response Body contains key: "params.icon"
     And Response Body contains "error" equals "null"
 
-  @k3
   Scenario Outline: Partner SSO INIT Negative
     Then Send Partner SSO INIT Request
       | env | clientId   | redirectUri   | scope   | responseType   | state   | path      |
@@ -44,7 +42,6 @@ Feature: Partner SSO
       | mobile-bank-partner | http://mobile-bank-partner.ru | openid | code         |         | 200    | AUTHENTICATE |       |
 
 
-  @k3
   Scenario: Partner SSO AUTHENTICATE
     Given Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
@@ -60,7 +57,6 @@ Feature: Partner SSO
     And Response Body contains "stage" equals "CHALLENGE"
     And Response Body contains "error" equals "null"
 
-  @k3
   Scenario Outline: Partner SSO AUTHENTICATE Negative
     Given Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
@@ -93,7 +89,6 @@ Feature: Partner SSO
       | mobile-bank-partner | http://mobile-bank-partner.ru | 20002730 |       | 200    | FAIL         | generic_error         | surname name gender inn patronymic birthDate maritalStatus |
 
 
-  @k3
   Scenario: Partner SSO CHALLENGE
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
@@ -111,7 +106,6 @@ Feature: Partner SSO
       | 000000     | k3  | authorize |
     And Status code response is: "302"
 
-  @k3
   Scenario Outline: Partner SSO CHALLENGE Negative
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
@@ -136,7 +130,6 @@ Feature: Partner SSO
       | wrong      | 200    | authentication_failed |
 
 
-  @k3
   Scenario: Partner SSO auth-code request
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
@@ -162,7 +155,6 @@ Feature: Partner SSO
     And Response Body contains key: "access_token"
     And Response Body contains key: "refresh_token"
 
-  @k3
   Scenario Outline: Partner SSO auth-code request Negative
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
@@ -196,7 +188,6 @@ Feature: Partner SSO
       | wrong | code       |       | 404    | error                                   | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh |
 
 
-  @k3
   Scenario: Partner SSO user-info request
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
