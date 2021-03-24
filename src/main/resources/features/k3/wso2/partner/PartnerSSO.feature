@@ -1,5 +1,4 @@
 @auth
-@authk3
 @partnerssok3
 @partnersso
 @skip
