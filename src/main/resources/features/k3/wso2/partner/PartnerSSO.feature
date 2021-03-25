@@ -19,25 +19,25 @@ Feature: Partner SSO
     Then Send Partner SSO INIT Request
       | env | clientId   | redirectUri   | scope   | responseType   | state   | path      |
       | k3  | <clientId> | <redirectUri> | <scope> | <responseType> | <state> | authorize |
-    And Status code response is: "302"
+    And Status code response is: "<status>"
 
     Examples:
       | clientId            | redirectUri                   | scope  | responseType | state   | status | stage        | error |
-      | wrong               | http://mobile-bank-partner.ru | openid | code         | fnnvjvn | 200    | FAIL         | null  |
-      | mobile-bank-partner | wrong                         | openid | code         | fnnvjvn | 200    | FAIL         | null  |
-      | mobile-bank-partner | http://mobile-bank-partner.ru | wrong  | code         | fnnvjvn | 200    | AUTHENTICATE |       |
-      | mobile-bank-partner | http://mobile-bank-partner.ru | openid | wrong        | fnnvjvn | 200    | AUTHENTICATE |       |
+      | wrong               | http://mobile-bank-partner.ru | openid | code         | fnnvjvn | 302    | FAIL         | null  |
+      | mobile-bank-partner | wrong                         | openid | code         | fnnvjvn | 302    | FAIL         | null  |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | wrong  | code         | fnnvjvn | 302    | AUTHENTICATE |       |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | openid | wrong        | fnnvjvn | 302    | AUTHENTICATE |       |
       | mobile-bank-partner | http://mobile-bank-partner.ru | openid | code         | wrong   | 200    | AUTHENTICATE |       |
-      | no                  | http://mobile-bank-partner.ru | openid | code         | fnnvjvn | 200    | FAIL         | null  |
-      | mobile-bank-partner | no                            | openid | code         | fnnvjvn | 200    | FAIL         | null  |
-      | mobile-bank-partner | http://mobile-bank-partner.ru | no     | code         | fnnvjvn | 200    | AUTHENTICATE |       |
-      | mobile-bank-partner | http://mobile-bank-partner.ru | openid | no           | fnnvjvn | 200    | AUTHENTICATE |       |
+      | no                  | http://mobile-bank-partner.ru | openid | code         | fnnvjvn | 302    | FAIL         | null  |
+      | mobile-bank-partner | no                            | openid | code         | fnnvjvn | 302    | FAIL         | null  |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | no     | code         | fnnvjvn | 302    | AUTHENTICATE |       |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | openid | no           | fnnvjvn | 302    | AUTHENTICATE |       |
       | mobile-bank-partner | http://mobile-bank-partner.ru | openid | code         | no      | 200    | AUTHENTICATE |       |
-      |                     | http://mobile-bank-partner.ru | openid | code         | fnnvjvn | 200    | FAIL         | null  |
-      | mobile-bank-partner |                               | openid | code         | fnnvjvn | 200    | FAIL         | null  |
+      |                     | http://mobile-bank-partner.ru | openid | code         | fnnvjvn | 302    | FAIL         | null  |
+      | mobile-bank-partner |                               | openid | code         | fnnvjvn | 500    | FAIL         | null  |
       | mobile-bank-partner | http://mobile-bank-partner.ru |        | code         | fnnvjvn | 200    | AUTHENTICATE |       |
-      | mobile-bank-partner | http://mobile-bank-partner.ru | openid |              | fnnvjvn | 200    | AUTHENTICATE |       |
-      | mobile-bank-partner | http://mobile-bank-partner.ru | openid | code         |         | 200    | AUTHENTICATE |       |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | openid |              | fnnvjvn | 302    | AUTHENTICATE |       |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | openid | code         |         | 302    | AUTHENTICATE |       |
 
 
   Scenario: Partner SSO AUTHENTICATE
