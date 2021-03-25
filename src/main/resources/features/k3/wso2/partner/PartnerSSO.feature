@@ -37,7 +37,7 @@ Feature: Partner SSO
       | mobile-bank-partner |                               | openid | code         | fnnvjvn | 500    | FAIL         | null  |
       | mobile-bank-partner | http://mobile-bank-partner.ru |        | code         | fnnvjvn | 200    | AUTHENTICATE |       |
       | mobile-bank-partner | http://mobile-bank-partner.ru | openid |              | fnnvjvn | 302    | AUTHENTICATE |       |
-      | mobile-bank-partner | http://mobile-bank-partner.ru | openid | code         |         | 302    | AUTHENTICATE |       |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | openid | code         |         | 200    | AUTHENTICATE |       |
 
 
   Scenario: Partner SSO AUTHENTICATE
