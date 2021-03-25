@@ -38,10 +38,9 @@ Feature: Partner SSO
       | mobile-bank-partner | http://mobile-bank-partner.ru | openid |              | fnnvjvn | 302    | AUTHENTICATE |       |
       | mobile-bank-partner | http://mobile-bank-partner.ru | openid | code         |         | 200    | AUTHENTICATE |       |
 
-  @wip
   Scenario: Partner SSO AUTHENTICATE
     Given Send Partner SSO INIT Request
-      | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
+      | env | clientId            | redirectUri                   | path      | scope  | responseType | state   |
       | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | openid | code         | fnnvjvn |
     And Status code response is: "200"
     And Response Body contains "stage" equals "AUTHENTICATE"
@@ -54,6 +53,7 @@ Feature: Partner SSO
     And Response Body contains "stage" equals "CHALLENGE"
     And Response Body contains "error" equals "null"
 
+  @wip
   Scenario Outline: Partner SSO AUTHENTICATE Negative
     Given Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
@@ -66,8 +66,7 @@ Feature: Partner SSO
       | k3  | <type> | <login> | <id> | <clientId> | <redirectUri> | authorize | <scope> | code         | fnnvjvn |
 
     And Status code response is: "302"
-    And Response Body contains "stage" equals "<stage>"
-    And Response Body contains "error.type" equals "<error>"
+
 
     Examples:
       | clientId            | redirectUri                   | login    | type  | status | stage        | error                 | scope                                                      |
