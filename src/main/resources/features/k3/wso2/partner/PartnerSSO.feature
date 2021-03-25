@@ -53,7 +53,6 @@ Feature: Partner SSO
     And Response Body contains "stage" equals "CHALLENGE"
     And Response Body contains "error" equals "null"
 
-  @wip
   Scenario Outline: Partner SSO AUTHENTICATE Negative
     Given Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
@@ -84,7 +83,7 @@ Feature: Partner SSO
       | mobile-bank-partner | http://mobile-bank-partner.ru |          | LOGIN | 302    | AUTHENTICATE | authentication_failed | surname name gender inn patronymic birthDate maritalStatus |
       | mobile-bank-partner | http://mobile-bank-partner.ru | 20002730 |       | 302    | FAIL         | generic_error         | surname name gender inn patronymic birthDate maritalStatus |
 
-
+  @wip
   Scenario: Partner SSO CHALLENGE
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
