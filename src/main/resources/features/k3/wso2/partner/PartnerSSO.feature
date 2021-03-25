@@ -65,24 +65,24 @@ Feature: Partner SSO
       | env | type   | login   | id   | clientId   | redirectUri   | path      | scope   | responseType | state   |
       | k3  | <type> | <login> | <id> | <clientId> | <redirectUri> | authorize | <scope> | code         | fnnvjvn |
 
-    And Status code response is: "302"
+    And Status code response is: "<status>"
 
 
     Examples:
       | clientId            | redirectUri                   | login    | type  | status | stage        | error                 | scope                                                      |
-      | mobile-bank-partner | http://mobile-bank-partner.ru | 20002730 | LOGIN | 200    | CHALLENGE    | null                  | surname name gender inn patronymic birthDate maritalStatus |
-      | wrong               | http://mobile-bank-partner.ru | 20002730 | LOGIN | 200    | FAIL         | generic_error         | surname name gender inn patronymic birthDate maritalStatus |
-      | mobile-bank-partner | wrong                         | 20002730 | LOGIN | 200    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
-      | mobile-bank-partner | http://mobile-bank-partner.ru | wrong    | LOGIN | 200    | AUTHENTICATE | authentication_failed | surname name gender inn patronymic birthDate maritalStatus |
-      | mobile-bank-partner | http://mobile-bank-partner.ru | 20002730 | wrong | 200    | FAIL         | generic_error         | surname name gender inn patronymic birthDate maritalStatus |
-      | no                  | http://mobile-bank-partner.ru | 20002730 | LOGIN | 200    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
-      | mobile-bank-partner | no                            | 20002730 | LOGIN | 200    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
-      | mobile-bank-partner | http://mobile-bank-partner.ru | no       | LOGIN | 200    | AUTHENTICATE | authentication_failed | surname name gender inn patronymic birthDate maritalStatus |
-      | mobile-bank-partner | http://mobile-bank-partner.ru | 20002730 | no    | 200    | FAIL         | generic_error         | surname name gender inn patronymic birthDate maritalStatus |
-      |                     | http://mobile-bank-partner.ru | 20002730 | LOGIN | 200    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
-      | mobile-bank-partner |                               | 20002730 | LOGIN | 200    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
-      | mobile-bank-partner | http://mobile-bank-partner.ru |          | LOGIN | 200    | AUTHENTICATE | authentication_failed | surname name gender inn patronymic birthDate maritalStatus |
-      | mobile-bank-partner | http://mobile-bank-partner.ru | 20002730 |       | 200    | FAIL         | generic_error         | surname name gender inn patronymic birthDate maritalStatus |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | 20002730 | LOGIN | 302    | CHALLENGE    | null                  | surname name gender inn patronymic birthDate maritalStatus |
+      | wrong               | http://mobile-bank-partner.ru | 20002730 | LOGIN | 302    | FAIL         | generic_error         | surname name gender inn patronymic birthDate maritalStatus |
+      | mobile-bank-partner | wrong                         | 20002730 | LOGIN | 302    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | wrong    | LOGIN | 302    | AUTHENTICATE | authentication_failed | surname name gender inn patronymic birthDate maritalStatus |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | 20002730 | wrong | 302    | FAIL         | generic_error         | surname name gender inn patronymic birthDate maritalStatus |
+      | no                  | http://mobile-bank-partner.ru | 20002730 | LOGIN | 302    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
+      | mobile-bank-partner | no                            | 20002730 | LOGIN | 302    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | no       | LOGIN | 302    | AUTHENTICATE | authentication_failed | surname name gender inn patronymic birthDate maritalStatus |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | 20002730 | no    | 302    | FAIL         | generic_error         | surname name gender inn patronymic birthDate maritalStatus |
+      |                     | http://mobile-bank-partner.ru | 20002730 | LOGIN | 302    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
+      | mobile-bank-partner |                               | 20002730 | LOGIN | 500    | FAIL         | invalid_request       | surname name gender inn patronymic birthDate maritalStatus |
+      | mobile-bank-partner | http://mobile-bank-partner.ru |          | LOGIN | 302    | AUTHENTICATE | authentication_failed | surname name gender inn patronymic birthDate maritalStatus |
+      | mobile-bank-partner | http://mobile-bank-partner.ru | 20002730 |       | 302    | FAIL         | generic_error         | surname name gender inn patronymic birthDate maritalStatus |
 
 
   Scenario: Partner SSO CHALLENGE
