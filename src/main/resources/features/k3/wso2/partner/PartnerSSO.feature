@@ -14,7 +14,6 @@ Feature: Partner SSO
     And Response Body contains key: "params.icon"
     And Response Body contains "error" equals "null"
 
-  @wip
   Scenario Outline: Partner SSO INIT Negative
     Then Send Partner SSO INIT Request
       | env | clientId   | redirectUri   | scope   | responseType   | state   | path      |
@@ -39,7 +38,7 @@ Feature: Partner SSO
       | mobile-bank-partner | http://mobile-bank-partner.ru | openid |              | fnnvjvn | 302    | AUTHENTICATE |       |
       | mobile-bank-partner | http://mobile-bank-partner.ru | openid | code         |         | 200    | AUTHENTICATE |       |
 
-
+  @wip
   Scenario: Partner SSO AUTHENTICATE
     Given Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
