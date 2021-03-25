@@ -116,7 +116,7 @@ Feature: Partner SSO
     Then Send Partner SSO CHALLENGE Request
       | secureCode   | env | path      |
       | <secureCode> | k3  | authorize |
-    And Status code response is: "302"
+    And Status code response is: "200"
 
     Examples:
       | secureCode | status | error                 |
