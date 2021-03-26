@@ -123,6 +123,7 @@ Feature: Partner SSO
       | wrong      | 200    | authentication_failed |
 
 
+  @wip
   Scenario: Partner SSO auth-code request
     Then Send Partner SSO INIT Request
       | env | clientId            | redirectUri                   | path      | scope  | responseType | state   |
@@ -141,8 +142,8 @@ Feature: Partner SSO
     And Status code response is: "302"
 
     Then Send Partner SSO auth-code Request
-      | env | Authorization                                              | path  | grant_type | code |
-      | k3  | Basic bW9iaWxlLWJhbmstcGFydG5lcjptb2JpbGUtYmFuay1wYXJ0bmVy | token | code       |      |
+      | env | Authorization                                              | path  | grant_type |
+      | k3  | Basic bW9iaWxlLWJhbmstcGFydG5lcjptb2JpbGUtYmFuay1wYXJ0bmVy | token | code       |
     And Status code response is: "200"
     And Response Body contains key: "scope"
     And Response Body contains key: "access_token"
