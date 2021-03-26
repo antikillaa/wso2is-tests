@@ -100,7 +100,6 @@ Feature: Partner SSO
       | 000000     | k3  | authorize |
     And Status code response is: "302"
 
-  @wip
   Scenario Outline: Partner SSO CHALLENGE Negative
     Then Send Partner SSO INIT Request
       | env | clientId            | redirectUri                   | path      | scope  | responseType | state   |
@@ -124,16 +123,17 @@ Feature: Partner SSO
       | wrong      | 200    | authentication_failed |
 
 
+  @wip
   Scenario: Partner SSO auth-code request
     Then Send Partner SSO INIT Request
-      | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
+      | env | clientId            | redirectUri                   | path      | scope  | responseType | state   |
       | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | openid | code         | fnnvjvn |
     And Status code response is: "200"
     And Response Body contains "stage" equals "AUTHENTICATE"
 
     Then Send Partner SSO AUTHENTICATE Request
-      | type  | login    | env | clientId                     | redirectUri | path      | responseType | state   | scope                                                      |
-      | LOGIN | 20002730 | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | code         | fnnvjvn | surname name gender inn patronymic birthDate maritalStatus |
+      | type  | login    | env | clientId            | redirectUri                   | path      | responseType | state   | scope  |
+      | LOGIN | 20002730 | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | code         | fnnvjvn | openid |
     And Status code response is: "200"
 
     Then Send Partner SSO CHALLENGE Request
@@ -142,12 +142,10 @@ Feature: Partner SSO
     And Status code response is: "302"
 
     Then Send Partner SSO auth-code Request
-      | env | Authorization                                                                      | path  | grant_type | code |
-      | k3  | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh | token | code       |      |
+      | env | Authorization                                              | path  | grant_type | code |
+      | k3  | Basic bW9iaWxlLWJhbmstcGFydG5lcjptb2JpbGUtYmFuay1wYXJ0bmVy | token | code       |      |
     And Status code response is: "200"
-    And Response Body contains key: "scope"
-    And Response Body contains key: "access_token"
-    And Response Body contains key: "refresh_token"
+
 
   Scenario Outline: Partner SSO auth-code request Negative
     Then Send Partner SSO INIT Request
