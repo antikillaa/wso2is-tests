@@ -144,9 +144,11 @@ Feature: Partner SSO
       | env | Authorization                                              | path  | grant_type | code |
       | k3  | Basic bW9iaWxlLWJhbmstcGFydG5lcjptb2JpbGUtYmFuay1wYXJ0bmVy | token | code       |      |
     And Status code response is: "200"
+    And Response Body contains key: "scope"
+    And Response Body contains key: "access_token"
+    And Response Body contains key: "refresh_token"
 
 
-  @skip
   Scenario Outline: Partner SSO auth-code request Negative
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
@@ -199,7 +201,7 @@ Feature: Partner SSO
 
     Then Send Partner SSO auth-code Request
       | env | Authorization                                                                      | path  | grant_type | code |
-      | k3  | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh | token | code       |      |
+      | k3  | Basic bW9iaWxlLWJhbmstcGFydG5lcjptb2JpbGUtYmFuay1wYXJ0bmVy | token | code       |      |
     And Status code response is: "200"
     And Response Body contains key: "scope"
     And Response Body contains key: "access_token"
