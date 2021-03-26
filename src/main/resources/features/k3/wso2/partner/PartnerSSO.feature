@@ -123,7 +123,6 @@ Feature: Partner SSO
       | wrong      | 200    | authentication_failed |
 
 
-  @wip
   Scenario: Partner SSO auth-code request
     Then Send Partner SSO INIT Request
       | env | clientId            | redirectUri                   | path      | scope  | responseType | state   |
@@ -147,6 +146,7 @@ Feature: Partner SSO
     And Status code response is: "200"
 
 
+  @skip
   Scenario Outline: Partner SSO auth-code request Negative
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
@@ -171,13 +171,13 @@ Feature: Partner SSO
     And Response Body contains key: "<error>"
 
     Examples:
-      | path  | grant_type | code  | status | error                                   | Authorization                                                                      |
-      | token | code       |       | 500    | additional_properties.technical_message | Basic wrong                                                                        |
-      | token | code       |       | 500    | additional_properties.technical_message |                                                                                    |
-      | token | wrong      |       | 500    | additional_properties.technical_message | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh |
-      | token |            |       | 500    | additional_properties.technical_message | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh |
-      | token | code       | wrong | 401    | error                                   | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh |
-      | wrong | code       |       | 404    | error                                   | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh |
+      | path  | grant_type | code  | status | error                                   | Authorization                                              |
+      | token | code       |       | 500    | additional_properties.technical_message | Basic wrong                                                |
+      | token | code       |       | 500    | additional_properties.technical_message |                                                            |
+      | token | wrong      |       | 500    | additional_properties.technical_message | Basic bW9iaWxlLWJhbmstcGFydG5lcjptb2JpbGUtYmFuay1wYXJ0bmVy |
+      | token |            |       | 500    | additional_properties.technical_message | Basic bW9iaWxlLWJhbmstcGFydG5lcjptb2JpbGUtYmFuay1wYXJ0bmVy |
+      | token | code       | wrong | 401    | error                                   | Basic bW9iaWxlLWJhbmstcGFydG5lcjptb2JpbGUtYmFuay1wYXJ0bmVy |
+      | wrong | code       |       | 404    | error                                   | Basic bW9iaWxlLWJhbmstcGFydG5lcjptb2JpbGUtYmFuay1wYXJ0bmVy |
 
 
   Scenario: Partner SSO user-info request
