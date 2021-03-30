@@ -114,7 +114,7 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
         log.info("ResponseBody: " + responseBody.extract().toString());
         String header = responseBody.extract().header("Location");
         log.info("Location header: " + header);
-        String code = URLEncodedUtils.parse(new URI(header).getQuery(), StandardCharsets.UTF_8).get(0).getValue();
+        String code = URLEncodedUtils.parse(new URI(header).getQuery(), StandardCharsets.UTF_8).get(1).getValue();
 
         Map<String, Object> body = new HashMap();
         getBodyParam(body, param, GRANT_TYPE);
