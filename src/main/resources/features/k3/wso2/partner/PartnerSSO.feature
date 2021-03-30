@@ -152,14 +152,14 @@ Feature: Partner SSO
   @wip
   Scenario Outline: Partner SSO auth-code request Negative
     Then Send Partner SSO INIT Request
-      | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
+      | env | clientId            | redirectUri                   | path      | scope  | responseType | state   |
       | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | openid | code         | fnnvjvn |
     And Status code response is: "200"
     And Response Body contains "stage" equals "AUTHENTICATE"
 
     Then Send Partner SSO AUTHENTICATE Request
-      | type  | login    | env | clientId                     | redirectUri | path      | responseType | state   | scope                                                      |
-      | LOGIN | 20002730 | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | code         | fnnvjvn | surname name gender inn patronymic birthDate maritalStatus |
+      | type  | login    | env | clientId            | redirectUri                   | path      | responseType | state   | scope  |
+      | LOGIN | 20002730 | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | code         | fnnvjvn | openid |
     And Status code response is: "200"
 
     Then Send Partner SSO CHALLENGE Request
