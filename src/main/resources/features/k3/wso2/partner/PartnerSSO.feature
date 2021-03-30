@@ -171,14 +171,13 @@ Feature: Partner SSO
       | env | Authorization   | path   | grant_type   | code   |
       | k3  | <Authorization> | <path> | <grant_type> | <code> |
     And Status code response is: "<status>"
-    And Response Body contains key: "<error>"
 
     Examples:
       | path  | grant_type | code  | status | error                                   | Authorization                                              |
-      | token | code       |       | 500    | additional_properties.technical_message | Basic wrong                                                |
+      | token | code       |       | 401    | additional_properties.technical_message | Basic wrong                                                |
       | token | code       |       | 500    | additional_properties.technical_message |                                                            |
-      | token | wrong      |       | 500    | additional_properties.technical_message | Basic bW9iaWxlLWJhbmstcGFydG5lcjptb2JpbGUtYmFuay1wYXJ0bmVy |
-      | token |            |       | 500    | additional_properties.technical_message | Basic bW9iaWxlLWJhbmstcGFydG5lcjptb2JpbGUtYmFuay1wYXJ0bmVy |
+      | token | wrong      |       | 401    | additional_properties.technical_message | Basic bW9iaWxlLWJhbmstcGFydG5lcjptb2JpbGUtYmFuay1wYXJ0bmVy |
+      | token |            |       | 401    | additional_properties.technical_message | Basic bW9iaWxlLWJhbmstcGFydG5lcjptb2JpbGUtYmFuay1wYXJ0bmVy |
       | token | code       | wrong | 401    | error                                   | Basic bW9iaWxlLWJhbmstcGFydG5lcjptb2JpbGUtYmFuay1wYXJ0bmVy |
       | wrong | code       |       | 404    | error                                   | Basic bW9iaWxlLWJhbmstcGFydG5lcjptb2JpbGUtYmFuay1wYXJ0bmVy |
 
