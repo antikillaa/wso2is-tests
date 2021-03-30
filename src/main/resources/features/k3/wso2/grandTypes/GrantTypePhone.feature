@@ -18,8 +18,8 @@ Feature: Grant type Phone number k3
 
   Scenario: Grant type Phone number k3 Refresh token
     Then Send login by Grant type Request
-      | grandType    | id_type     | id         | scope | finger_print | env |
-      | phone_number | phoneNumber | 9152547896 | true  | k3           | k3  |
+      | grandType    | id_type     | id         | scope | finger_print | env | Authorization |
+      | phone_number | phoneNumber | 9152547896 | true  | k3           | k3  | IB            |
 
     And Status code response is: "200"
 
