@@ -123,7 +123,6 @@ Feature: Partner SSO
       | wrong      | 200    | authentication_failed |
 
 
-  @wip
   Scenario: Partner SSO auth-code request
     Then Send Partner SSO INIT Request
       | env | clientId            | redirectUri                   | path      | scope  | responseType | state   |
@@ -150,6 +149,7 @@ Feature: Partner SSO
     And Response Body contains key: "refresh_token"
 
 
+  @wip
   Scenario Outline: Partner SSO auth-code request Negative
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
