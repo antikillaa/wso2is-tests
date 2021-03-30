@@ -1,9 +1,10 @@
 @auth
 @authk3
 @authPhonek3
+@k3
+@wip
 Feature: Grant type Phone number k3
 
-  @wip
   Scenario: Grant type Phone number k3 Success
     Then Send login by Grant type Request
       | grandType    | id_type     | id         | scope | finger_print | env | Authorization |
@@ -15,7 +16,6 @@ Feature: Grant type Phone number k3
     And Response Body contains key: "refresh_token"
     And Response Body contains "scope" equals "openid"
 
-  @k3
   Scenario: Grant type Phone number k3 Refresh token
     Then Send login by Grant type Request
       | grandType    | id_type     | id         | scope | finger_print | env |
@@ -30,11 +30,10 @@ Feature: Grant type Phone number k3
     And Response Body contains key: "refresh_token"
     And Response Body contains key: "scope"
 
-  @k3
   Scenario: Grant type Phone number k3 Token Exchange
     Then Send login by Grant type Request
-      | grandType    | id_type     | id         | scope | finger_print | env |
-      | phone_number | phoneNumber | 9152547896 | true  | k3           | k3  |
+      | grandType    | id_type     | id         | scope | finger_print | env | Authorization |
+      | phone_number | phoneNumber | 9152547896 | true  | k3           | k3  | IB            |
 
     And Status code response is: "200"
 
@@ -45,11 +44,10 @@ Feature: Grant type Phone number k3
     And Response Body contains key: "refresh_token"
     And Response Body contains key: "scope"
 
-  @k3
   Scenario: Grant type Phone_number Logout
     Then Send login by Grant type Request
-      | grandType    | id_type     | id         | scope | finger_print | env |
-      | phone_number | phoneNumber | 9152547896 | true  | k3           | k3  |
+      | grandType    | id_type     | id         | scope | finger_print | env | Authorization |
+      | phone_number | phoneNumber | 9152547896 | true  | k3           | k3  | IB            |
 
     Then "k3" Send Logout Request
     And Status code response is: "200"
