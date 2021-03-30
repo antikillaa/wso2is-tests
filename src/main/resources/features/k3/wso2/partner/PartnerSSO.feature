@@ -1,7 +1,7 @@
 @auth
 @partnerssok3
 @partnersso
-@skip
+@k3
 Feature: Partner SSO
 
   Scenario: Partner SSO INIT
@@ -183,6 +183,7 @@ Feature: Partner SSO
       | wrong | code       |       | 404    |               | Basic bW9iaWxlLWJhbmstcGFydG5lcjptb2JpbGUtYmFuay1wYXJ0bmVy |
 
 
+  @skip
   Scenario: Partner SSO user-info request
     Then Send Partner SSO INIT Request
       | env | clientId                     | redirectUri | path      | scope  | responseType | state   |
@@ -200,6 +201,7 @@ Feature: Partner SSO
       | 000000     | k3  | authorize |
     And Status code response is: "302"
 
+  @skip
     Then Send Partner SSO auth-code Request
       | env | Authorization                                                                      | path  | grant_type | code |
       | k3  | Basic bW9iaWxlLWJhbmstcGFydG5lcjptb2JpbGUtYmFuay1wYXJ0bmVy | token | code       |      |
