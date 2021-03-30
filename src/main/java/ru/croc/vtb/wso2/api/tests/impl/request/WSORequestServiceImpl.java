@@ -212,13 +212,13 @@ public class WSORequestServiceImpl implements WsoRequestService {
             header.put("Authorization", testsProperties.getAuthorization());
         } else if (par.get("Authorization").equals("k3")) {
             header.put("Authorization", testsProperties.getAuthorizationK3());
-        } else if (par.get("Authorization").toString().contains("Basic")) {
-            header.put("Authorization", par.get("Authorization"));
+        } else if (par.get("Authorization").toString().equals("MB")) {
+            header.put("Authorization", testsProperties.getAuthorizationMB());
+        } else if (par.get("Authorization").toString().equals("IB")) {
+            header.put("Authorization", testsProperties.getAuthorizationIB());
         } else
             log.error("Authorization is missing");
-
         setFingerPrint(par, testsProperties, header);
-
         return header;
     }
 
