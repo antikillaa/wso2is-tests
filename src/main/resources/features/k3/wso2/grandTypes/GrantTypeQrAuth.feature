@@ -2,7 +2,6 @@
 @authk3
 @authQrk3
 @k3
-@wip
 Feature: Grant type QR Auth
 
   Scenario: Grant type QR Auth Success
