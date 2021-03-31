@@ -2,6 +2,7 @@
 @authk3
 @authLogink3
 @k3
+@wip
 Feature: Grant type Login Stub
 
   Scenario: Grant type Login Success
@@ -26,7 +27,6 @@ Feature: Grant type Login Stub
     And Response Body contains key: "refresh_token"
     And Response Body contains "scope" equals "openid"
 
-  @wip
   Scenario: Grant type Login Refresh Token
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env | Authorization |
@@ -55,8 +55,8 @@ Feature: Grant type Login Stub
 
   Scenario: Grant type Login Token Exchange
     Then Send login by Grant type Request
-      | grandType | id_type | id       | scope | finger_print | env |
-      | login     | login   | 20002571 | true  | k3           | k3  |
+      | grandType | id_type | id       | scope | finger_print | env | Authorization |
+      | login     | login   | 20002571 | true  | k3           | k3  | IB            |
     And Status code response is: "200"
 
     Then "k3" Send Token Exchange Request
@@ -90,8 +90,8 @@ Feature: Grant type Login Stub
 
   Scenario: Grant type login Logout
     Then Send login by Grant type Request
-      | grandType | id_type | id       | scope | finger_print | env |
-      | login     | login   | 20002571 | true  | k3           | k3  |
+      | grandType | id_type | id       | scope | finger_print | env | Authorization |
+      | login     | login   | 20002571 | true  | k3           | k3  | IB            |
     And Status code response is: "200"
 
     Then "k3" Send Logout Request
