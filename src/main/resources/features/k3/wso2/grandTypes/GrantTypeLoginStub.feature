@@ -1,9 +1,9 @@
 @auth
 @authk3
 @authLogink3
+@k3
 Feature: Grant type Login Stub
 
-  @wip
   Scenario: Grant type Login Success
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env | Authorization |
@@ -15,7 +15,6 @@ Feature: Grant type Login Stub
     And Response Body contains key: "refresh_token"
     And Response Body contains "scope" equals "openid"
 
-  @k3
   Scenario: Grant type Login Mb Success
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
@@ -27,11 +26,11 @@ Feature: Grant type Login Stub
     And Response Body contains key: "refresh_token"
     And Response Body contains "scope" equals "openid"
 
-  @k3
+  @wip
   Scenario: Grant type Login Refresh Token
     Then Send login by Grant type Request
-      | grandType | id_type | id       | scope | finger_print | env |
-      | login     | login   | 20002571 | true  | k3           | k3  |
+      | grandType | id_type | id       | scope | finger_print | env | Authorization |
+      | login     | login   | 20002571 | true  | k3           | k3  | IB            |
     And Status code response is: "200"
 
     Then "k3" Send Refresh token Request
@@ -41,7 +40,6 @@ Feature: Grant type Login Stub
     And Response Body contains key: "refresh_token"
     And Response Body contains key: "scope"
 
-  @k3
   Scenario: Grant type Login Mb Refresh Token
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
@@ -55,7 +53,6 @@ Feature: Grant type Login Stub
     And Response Body contains key: "refresh_token"
     And Response Body contains key: "scope"
 
-  @k3
   Scenario: Grant type Login Token Exchange
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
@@ -69,7 +66,6 @@ Feature: Grant type Login Stub
     And Response Body contains key: "refresh_token"
     And Response Body contains key: "scope"
 
-  @k3
   Scenario: Grant type Login Mb Token Exchange
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
@@ -83,7 +79,6 @@ Feature: Grant type Login Stub
     And Response Body contains key: "refresh_token"
     And Response Body contains key: "scope"
 
-  @k3
   Scenario: Grant type login_mb Logout
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
@@ -93,7 +88,6 @@ Feature: Grant type Login Stub
     Then "k3" Send Logout Request
     And Status code response is: "200"
 
-  @k3
   Scenario: Grant type login Logout
     Then Send login by Grant type Request
       | grandType | id_type | id       | scope | finger_print | env |
