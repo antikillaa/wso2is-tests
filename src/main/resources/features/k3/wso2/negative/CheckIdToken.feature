@@ -2,9 +2,9 @@
 @authk3
 @negative
 @negativek3
+@k3
 Feature: Check Id Token
 
-  @wip
   Scenario Outline: Check Id Token
     Then Send login by Grant type Request
       | grandType   | id_type   | id   | scope | env | finger_print | Authorization   | otp   |
@@ -19,4 +19,4 @@ Feature: Check Id Token
       | card_number_mb | cardNumber   | 4714870078440778 | MB                                                                                 |
       | phone_number   | phoneNumber  | 9152547896       | IB                                                                                 |
       | guest_auth     | phone_number | 9809935426       | MB                                                                                 |
-      | guest_smb_auth | phone_number | 9809935426       | Basic UlAyZ3d0aXl4WldMZ2NZM0l3Wl9hM1QzU0Y4YTpxRWVzOWNXUXJPT0hpd29IaXViOXkwZnVTZ0lh |
+      | guest_smb_auth | phone_number | 9809935543       | Basic UlAyZ3d0aXl4WldMZ2NZM0l3Wl9hM1QzU0Y4YTpxRWVzOWNXUXJPT0hpd29IaXViOXkwZnVTZ0lh |
