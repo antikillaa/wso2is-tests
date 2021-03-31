@@ -2,7 +2,6 @@
 @authk3
 @authPhonek3
 @k3
-@wip
 Feature: Grant type Phone number k3
 
   Scenario: Grant type Phone number k3 Success
