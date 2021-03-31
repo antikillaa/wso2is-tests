@@ -5,8 +5,8 @@ Feature: Guest Onboarding Service
   @wip
   Scenario: Activate Non Client Success
     Then Send login by Grant type Request
-      | grandType  | id_type      | scope | finger_print | env | Authorization                                                                      |
-      | guest_auth | phone_number | true  | k3           | k3  | Basic ajhiT29aMnkxRmh3RUtQY2FGU1NnWUhGYmZvYTprV3NrV2ZmNzVVUkJnSm9WeWlzalRjTWI4OUlh |
+      | grandType  | id_type      | scope | finger_print | env | Authorization |
+      | guest_auth | phone_number | true  | k3           | k3  | MB            |
     And Status code response is: "200"
 
     Then Send non-client-cards Request
