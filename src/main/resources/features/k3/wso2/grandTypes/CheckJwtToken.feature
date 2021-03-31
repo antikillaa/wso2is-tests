@@ -13,11 +13,11 @@ Feature: Check JWT Token
     Then Check JWT Token
 
     Examples:
-      | grandType      | id_type      | id               | Authorization                                                                      |
-      | login_mb       | login        | 20002571         | MB                                                                                 |
-      | login          | login        | 20002571         | IB                                                                                 |
-      | card_number    | cardNumber   | 4714870078440778 | IB                                                                                 |
-      | card_number_mb | cardNumber   | 4714870078440778 | MB                                                                                 |
-      | phone_number   | phoneNumber  | 9152547896       | Basic QzJWWXYzYjZSSEVpZzJuXzU2YmZubjNHZkk0YTpWaXFLSG9fTXRSYm05bFNTeVJGQ1hmTnRDblFh |
-      | guest_auth     | phone_number | 9809935444       | MB                                                                                 |
+      | grandType      | id_type      | id               | Authorization |
+      | login_mb       | login        | 20002571         | MB            |
+      | login          | login        | 20002571         | IB            |
+      | card_number    | cardNumber   | 4714870078440778 | IB            |
+      | card_number_mb | cardNumber   | 4714870078440778 | MB            |
+      | phone_number   | phoneNumber  | 9152547896       | IB            |
+      | guest_auth     | phone_number | 9809935426       | MB            |
 
