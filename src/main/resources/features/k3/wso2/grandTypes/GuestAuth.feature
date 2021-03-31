@@ -2,7 +2,6 @@
 @authk3
 @authGuestk3
 @k3
-@wip
 Feature: Grant type Guest Auth k3
 
   Scenario: Grant type Guest Auth k3 Success
