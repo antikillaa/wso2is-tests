@@ -2,7 +2,6 @@
 @authk3
 @authLogink3
 @k3
-@wip
 Feature: Grant type Login Stub
 
   Scenario: Grant type Login Success
