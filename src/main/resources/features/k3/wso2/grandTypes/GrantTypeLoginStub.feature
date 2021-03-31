@@ -3,11 +3,11 @@
 @authLogink3
 Feature: Grant type Login Stub
 
-  @k3
+  @wip
   Scenario: Grant type Login Success
     Then Send login by Grant type Request
-      | grandType | id_type | id       | scope | finger_print | env |
-      | login     | login   | 20002571 | true  | k3           | k3  |
+      | grandType | id_type | id       | scope | finger_print | env | Authorization |
+      | login     | login   | 20002571 | true  | k3           | k3  | IB            |
 
     And Status code response is: "200"
     And Response Body contains key: "access_token"
