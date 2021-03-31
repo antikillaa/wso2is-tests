@@ -1,9 +1,10 @@
 @auth
 @authk3
 @authGuestSmbk3
+@k3
 Feature: Grant type Guest Smb Auth k3
 
-  @k3
+  @wip
   Scenario: Grant type Guest Smb Auth k3 Success
     Then Send login by Grant type Request
       | grandType      | id_type      | id         | scope | finger_print | env | Authorization                                                                      |
@@ -15,7 +16,6 @@ Feature: Grant type Guest Smb Auth k3
     And Response Body contains key: "refresh_token"
     And Response Body contains "scope" equals "openid"
 
-  @k3
   Scenario: Grant type uest Smb Auth k3 Refresh token
     Then Send login by Grant type Request
       | grandType      | id_type      | id         | scope | finger_print | env | Authorization                                                                      |
@@ -30,7 +30,6 @@ Feature: Grant type Guest Smb Auth k3
     And Response Body contains key: "refresh_token"
     And Response Body contains key: "scope"
 
-  @k3
   Scenario: Grant type Guest Smb Auth Logout
     Then Send login by Grant type Request
       | grandType      | id_type      | id         | scope | finger_print | env | Authorization                                                                      |
