@@ -20,4 +20,4 @@ Feature: Wrong OTP
       | card_number_mb | cardNumber   | 4714870078440778 | MB                                                                                 |
       | phone_number   | phoneNumber  | 9152547896       | IB                                                                                 |
       | guest_auth     | phone_number | 9809935426       | MB                                                                                 |
-      | guest_smb_auth | phone_number | 9809935426       | Basic UlAyZ3d0aXl4WldMZ2NZM0l3Wl9hM1QzU0Y4YTpxRWVzOWNXUXJPT0hpd29IaXViOXkwZnVTZ0lh |
+      | guest_smb_auth | phone_number | 9809935765       | Basic UlAyZ3d0aXl4WldMZ2NZM0l3Wl9hM1QzU0Y4YTpxRWVzOWNXUXJPT0hpd29IaXViOXkwZnVTZ0lh |
