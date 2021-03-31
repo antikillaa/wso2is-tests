@@ -3,11 +3,11 @@
 @authGuestk3
 Feature: Grant type Guest Auth k3
 
-  @k3
+  @wip
   Scenario: Grant type Guest Auth k3 Success
     Then Send login by Grant type Request
-      | grandType  | id_type      | id         | scope | finger_print | env | Authorization                                                                      |
-      | guest_auth | phone_number | 9809935426 | true  | k3           | k3  | Basic ajhiT29aMnkxRmh3RUtQY2FGU1NnWUhGYmZvYTprV3NrV2ZmNzVVUkJnSm9WeWlzalRjTWI4OUlh |
+      | grandType  | id_type      | id         | scope | finger_print | env | Authorization |
+      | guest_auth | phone_number | 9809935426 | true  | k3           | k3  | MB            |
 
     And Status code response is: "200"
     And Response Body contains key: "access_token"
