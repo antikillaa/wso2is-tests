@@ -2,7 +2,6 @@
 @authk3
 @authCardk3
 @k3
-@wip
 Feature: Grant type Card Number K3
 
   Scenario: Grant type Card Number: Success

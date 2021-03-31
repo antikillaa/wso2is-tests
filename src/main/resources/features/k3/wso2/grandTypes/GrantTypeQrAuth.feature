@@ -1,9 +1,10 @@
 @auth
 @authk3
 @authQrk3
+@k3
+@wip
 Feature: Grant type QR Auth
 
-  @k3
   Scenario: Grant type QR Auth Success
     Then Send login by Grant type Request
       | grandType | id_type | id       | finger_print | scope | password | env |
@@ -17,11 +18,10 @@ Feature: Grant type QR Auth
     And Response Body contains key: "refresh_token"
     And Response Body contains "scope" equals "openid"
 
-  @k3
   Scenario: Grant type QR Auth Refresh Token
     Then Send login by Grant type Request
-      | grandType | id_type | id       | scope | finger_print | env |
-      | login     | login   | 20002571 | true  | k3           | k3  |
+      | grandType | id_type | id       | scope | finger_print | env | Authorization |
+      | login     | login   | 20002571 | true  | k3           | k3  | IB            |
 
     And Status code response is: "200"
 
@@ -35,11 +35,10 @@ Feature: Grant type QR Auth
     And Response Body contains key: "refresh_token"
     And Response Body contains key: "scope"
 
-  @k3
   Scenario: Grant type QR Auth Token Exchange
     Then Send login by Grant type Request
-      | grandType | id_type | id       | scope | finger_print | env |
-      | login     | login   | 20002571 | true  | k3           | k3  |
+      | grandType | id_type | id       | scope | finger_print | env | Authorization |
+      | login     | login   | 20002571 | true  | k3           | k3  | IB            |
     And Status code response is: "200"
 
     Then "k3" Send login by Grant type QR Auth Request
@@ -52,7 +51,6 @@ Feature: Grant type QR Auth
     And Response Body contains key: "refresh_token"
     And Response Body contains key: "scope"
 
-  @k3
   Scenario: Grant type QR Auth Logout
     Then Send login by Grant type Request
       | grandType | id_type | id       | finger_print | scope | password | env |
