@@ -81,7 +81,7 @@ public class QRRequestServiceImpl implements QRRequestService {
 
         Map<String, Object> header = new HashMap<>();
         header.put("Authorization", "Bearer " + loginResponse.get("id_token"));
-        header.put("Referer", URL);
+//        header.put("Referer", URL);
 
         Map<String, Object> body = new HashMap<>();
         body.put("id", qrResponse.get("id"));
