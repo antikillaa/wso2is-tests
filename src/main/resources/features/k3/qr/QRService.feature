@@ -1,17 +1,18 @@
 @qr
 @qrk3
+@k3
 Feature: QR service
 
-  @k3
+
   Scenario: Generate QR
     Then "k3" Send generate QR Request
     And Status code response is: "200"
 
-  @k3
+  @wip
   Scenario: Approve QR
     Then Send login by Grant type Request
-      | grandType | id_type | id       | scope | finger_print | env | Authorization                                                                      |
-      | login_mb  | login   | 20002571 | true  | k3           | k3  | Basic ajhiT29aMnkxRmh3RUtQY2FGU1NnWUhGYmZvYTprV3NrV2ZmNzVVUkJnSm9WeWlzalRjTWI4OUlh |
+      | grandType | id_type | id       | scope | finger_print | env | Authorization |
+      | login_mb  | login   | 20002571 | true  | k3           | k3  | MB            |
     And Status code response is: "200"
 
     Then "k3" Send generate QR Request
@@ -31,7 +32,6 @@ Feature: QR service
     Then "k3" Send approve QR Request
     And Status code response is: "200"
 
-  @k3
   Scenario: Get status QR
     Then "k3" Send generate QR Request
     And Status code response is: "200"
