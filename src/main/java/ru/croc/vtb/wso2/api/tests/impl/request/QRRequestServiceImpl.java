@@ -19,7 +19,7 @@ public class QRRequestServiceImpl implements QRRequestService {
 
     private final String privateURLQr = "/mobilebanking/api-gw/private/integration/integration-auth-qrcode";
 
-    private final String URLQr = "/msa/api-gw/integration/integration-auth-qrcode";
+    private final String URLQr = "/mobilebanking/api-gw/integration/integration-auth-qrcode";
 
 
     @Override
