@@ -84,6 +84,9 @@ public class TestsProperties {
     @Value("${test.authorizationK3}")
     private String authorizationK3;
 
+    @Value("${test.authorizationAutoTest}")
+    private String authorizationAutoTest;
+
     @Value("${test.authorizationIB}")
     private String authorizationIB;
 

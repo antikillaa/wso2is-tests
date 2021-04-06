@@ -216,6 +216,8 @@ public class WSORequestServiceImpl implements WsoRequestService {
             header.put("Authorization", testsProperties.getAuthorizationMB());
         } else if (par.get("Authorization").toString().equals("IB")) {
             header.put("Authorization", testsProperties.getAuthorizationIB());
+        } else if (par.get("Authorization").toString().equals("AutoTest")) {
+            header.put("Authorization", testsProperties.getAuthorizationAutoTest());
         } else if (par.get("Authorization").toString().contains("Basic")) {
             header.put("Authorization", par.get("Authorization"));
         } else
