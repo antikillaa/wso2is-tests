@@ -3,9 +3,9 @@
 @authCardk3
 @negative
 @negativek3
+@k3
 Feature: Grant type Card Number Negative
 
-  @k3
   Scenario: Login by Card wrong authorization
     Then Send login by Grant type Request
       | grandType   | id_type    | id               | scope | finger_print | env | Authorization                                                                      |
@@ -15,7 +15,6 @@ Feature: Grant type Card Number Negative
     And Response Body contains key: "additional_properties.tech_messages"
 
 
-  @k3
   Scenario: Login by Card wrong authorization
     Then Send login by Grant type Request
       | grandType   | id_type    | id               | scope | finger_print | env | Authorization                                                                      |
@@ -24,7 +23,6 @@ Feature: Grant type Card Number Negative
     And Status code response is: "500"
     And Response Body contains key: "additional_properties.tech_messages"
 
-  @k3
   Scenario: Grant type Card Number: No cardNumber parameter
     Then Send login by Grant type Request
       | grandType   | id_type    | id               | scope | finger_print | env |
@@ -34,23 +32,39 @@ Feature: Grant type Card Number Negative
     And Response Body contains "additional_properties.tech_messages" equals "[ExceptionName:IllegalArgumentException; Message:The parameter 'cardNumber' is missing] "
 
 
-  @k3
   Scenario: Login by Card empty ID
     Then Send login by Grant type Request
       | grandType   | id_type    | id | scope | finger_print | env |
       | card_number | cardNumber | no | true  | k3           | k3  |
     And Status code response is: "500"
 
-  @k3
   Scenario: Login by Card MB empty ID
     Then Send login by Grant type Request
       | grandType   | id_type    | id | scope | finger_print | env |
       | card_number | cardNumber | no | true  | k3           | k3  |
     And Status code response is: "500"
 
-  @k3
   Scenario: Login by Card MB empty ID
     Then Send login by Grant type Request
       | grandType   | id_type    | id | scope | finger_print | env |
       | card_number | cardNumber | no | true  | k3           | k3  |
     And Status code response is: "500"
+
+
+  @wip
+  Scenario: Card not active IB
+    Then Send login by Grant type Request
+      | grandType   | id_type    | id               | scope | finger_print | env | Authorization |
+      | card_number | cardNumber | 4111111111111111 | true  | k3           | k3  | AutoTest      |
+
+    And Status code response is: "403"
+    And Response Body contains "type" equals "card_not_valid"
+
+  @wip
+  Scenario: Card not active MB
+    Then Send login by Grant type Request
+      | grandType   | id_type       | id               | scope | finger_print | env | Authorization |
+      | card_number | cardNumber_mb | 4111111111111111 | true  | k3           | k3  | AutoTest      |
+
+    And Status code response is: "403"
+    And Response Body contains "type" equals "card_not_valid"
