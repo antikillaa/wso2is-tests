@@ -207,3 +207,5 @@ Feature: Partner SSO
       | env | path |
       | k3  | me   |
     And Status code response is: "200"
+    And Response Body contains key: "surname"
+    And Response Body contains key: "name"
