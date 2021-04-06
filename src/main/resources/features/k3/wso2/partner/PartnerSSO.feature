@@ -181,7 +181,6 @@ Feature: Partner SSO
       | wrong | code       |       | 404    |               | Basic bW9iaWxlLWJhbmstcGFydG5lcjptb2JpbGUtYmFuay1wYXJ0bmVy |
 
 
-  @wip
   Scenario: Partner SSO user-info request
     Then Send Partner SSO INIT Request
       | env | clientId            | redirectUri                   | path      | scope               | responseType | state   |

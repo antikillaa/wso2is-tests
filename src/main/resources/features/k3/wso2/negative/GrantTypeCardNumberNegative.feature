@@ -50,8 +50,6 @@ Feature: Grant type Card Number Negative
       | card_number | cardNumber | no | true  | k3           | k3  |
     And Status code response is: "500"
 
-
-  @wip
   Scenario: Card not active IB
     Then Send login by Grant type Request
       | grandType   | id_type    | id               | scope | finger_print | env | Authorization |
@@ -60,7 +58,6 @@ Feature: Grant type Card Number Negative
     And Status code response is: "403"
     And Response Body contains "type" equals "card_not_valid"
 
-  @wip
   Scenario: Card not active MB
     Then Send login by Grant type Request
       | grandType      | id_type    | id               | scope | finger_print | env | Authorization |
@@ -68,3 +65,19 @@ Feature: Grant type Card Number Negative
 
     And Status code response is: "403"
     And Response Body contains "type" equals "card_not_valid"
+
+  @wip
+  Scenario: Card Moscow bank IB
+    Then Send login by Grant type Request
+      | grandType   | id_type    | id               | scope | finger_print | env | Authorization |
+      | card_number | cardNumber | 4111111111111616 | true  | k3           | k3  | AutoTest      |
+
+    And Status code response is: "200"
+
+  @wip
+  Scenario: Card Moscow bank MB
+    Then Send login by Grant type Request
+      | grandType      | id_type    | id               | scope | finger_print | env | Authorization |
+      | card_number_mb | cardNumber | 4111111111111616 | true  | k3           | k3  | AutoTest      |
+
+    And Status code response is: "200"
