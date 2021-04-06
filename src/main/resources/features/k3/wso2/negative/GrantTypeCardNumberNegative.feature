@@ -63,8 +63,8 @@ Feature: Grant type Card Number Negative
   @wip
   Scenario: Card not active MB
     Then Send login by Grant type Request
-      | grandType   | id_type       | id               | scope | finger_print | env | Authorization |
-      | card_number | cardNumber_mb | 4111111111111111 | true  | k3           | k3  | AutoTest      |
+      | grandType      | id_type    | id               | scope | finger_print | env | Authorization |
+      | card_number_mb | cardNumber | 4111111111111111 | true  | k3           | k3  | AutoTest      |
 
     And Status code response is: "403"
     And Response Body contains "type" equals "card_not_valid"
