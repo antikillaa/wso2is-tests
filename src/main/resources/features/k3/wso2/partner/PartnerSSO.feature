@@ -190,8 +190,8 @@ Feature: Partner SSO
     And Response Body contains "stage" equals "AUTHENTICATE"
 
     Then Send Partner SSO AUTHENTICATE Request
-      | type  | login    | env | clientId            | redirectUri                   | path      | responseType | state   | scope                                                      |
-      | LOGIN | 20002730 | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | code         | fnnvjvn | surname name gender inn patronymic birthDate maritalStatus |
+      | type  | login    | env | clientId            | redirectUri                   | path      | responseType | state   | scope                      |
+      | LOGIN | 20002730 | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | code         | fnnvjvn | openid openid name surname |
     And Status code response is: "200"
 
     Then Send Partner SSO CHALLENGE Request
@@ -200,12 +200,8 @@ Feature: Partner SSO
     And Status code response is: "302"
 
     Then Send Partner SSO auth-code Request
-      | env | Authorization                                              | path  | grant_type | code |
-      | k3  | Basic bW9iaWxlLWJhbmstcGFydG5lcjptb2JpbGUtYmFuay1wYXJ0bmVy | token | code       |      |
-    And Status code response is: "200"
-    And Response Body contains key: "scope"
-    And Response Body contains key: "access_token"
-    And Response Body contains key: "refresh_token"
+      | env | Authorization                                              | path  | grant_type |
+      | k3  | Basic bW9iaWxlLWJhbmstcGFydG5lcjptb2JpbGUtYmFuay1wYXJ0bmVy | token | code       |
 
     Then Send Partner SSO user-info Request
       | env | path |
