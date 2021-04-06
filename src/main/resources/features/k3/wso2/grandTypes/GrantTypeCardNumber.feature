@@ -78,8 +78,8 @@ Feature: Grant type Card Number K3
 
   Scenario: Grant type card_number_mb Logout
     Then Send login by Grant type Request
-      | grandType      | id_type    | id               | scope | finger_print | env | Authorization                                                                      |
-      | card_number_mb | cardNumber | 4714870078440778 | true  | k3           | k3  | Basic ajhiT29aMnkxRmh3RUtQY2FGU1NnWUhGYmZvYTprV3NrV2ZmNzVVUkJnSm9WeWlzalRjTWI4OUlh |
+      | grandType      | id_type    | id               | scope | finger_print | env | Authorization |
+      | card_number_mb | cardNumber | 4714870078440778 | true  | k3           | k3  | MB            |
     And Status code response is: "200"
 
     Then "k3" Send Logout Request
