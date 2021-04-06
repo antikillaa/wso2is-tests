@@ -181,11 +181,11 @@ Feature: Partner SSO
       | wrong | code       |       | 404    |               | Basic bW9iaWxlLWJhbmstcGFydG5lcjptb2JpbGUtYmFuay1wYXJ0bmVy |
 
 
-  @skip
+  @wip
   Scenario: Partner SSO user-info request
     Then Send Partner SSO INIT Request
-      | env | clientId            | redirectUri                   | path      | scope  | responseType | state   |
-      | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | openid | code         | fnnvjvn |
+      | env | clientId            | redirectUri                   | path      | scope               | responseType | state   |
+      | k3  | mobile-bank-partner | http://mobile-bank-partner.ru | authorize | openid name surname | code         | fnnvjvn |
     And Status code response is: "200"
     And Response Body contains "stage" equals "AUTHENTICATE"
 
