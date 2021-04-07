@@ -3,9 +3,9 @@
 @authGuestSmbk3
 @negative
 @negativek3
+@k3
 Feature: Grant type Guest Smb Auth k3
 
-  @k3
   Scenario: Grant type Guest Smb Auth Wrong authorization
     Then Send login by Grant type Request
       | grandType      | id_type      | id         | scope | finger_print | env | Authorization                                                                      |
@@ -14,7 +14,7 @@ Feature: Grant type Guest Smb Auth k3
     And Status code response is: "500"
     And Response Body contains key: "additional_properties.tech_messages"
 
-  @k3
+  @wip
   Scenario: Grant type guest_smb_auth no phoneNumber parameter
     Then Send login by Grant type Request
       | grandType      | id_type      | id         | scope | finger_print | env | Authorization                                                                      |
