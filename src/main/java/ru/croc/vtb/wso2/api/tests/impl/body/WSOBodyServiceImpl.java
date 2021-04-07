@@ -16,7 +16,6 @@ public class WSOBodyServiceImpl implements WSOBodyService {
 
     public Map<String, Object> getLoginByGrandTypeRequestBody(Map par, TestsProperties testsProperties) {
         Map<String, Object> body = new HashMap<>();
-
         setPassword(par, testsProperties, body);
         setGrandType(par, body);
         setId(par, body);

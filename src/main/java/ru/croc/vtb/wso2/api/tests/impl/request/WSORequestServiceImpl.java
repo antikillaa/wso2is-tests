@@ -220,6 +220,8 @@ public class WSORequestServiceImpl implements WsoRequestService {
             header.put("Authorization", testsProperties.getAuthorizationAutoTest());
         } else if (par.get("Authorization").toString().contains("Basic")) {
             header.put("Authorization", par.get("Authorization"));
+        } else if (par.get("Authorization").toString().equals("SMB")) {
+            header.put("Authorization", testsProperties.getAuthorizationSMB());
         } else
             log.error("Authorization is missing");
         setFingerPrint(par, testsProperties, header);
