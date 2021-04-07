@@ -80,7 +80,6 @@ Feature: Grant type Card Number Negative
 
     And Status code response is: "200"
 
-  @wip
   Scenario: Card Moscow bank without UNK IB
     Then Send login by Grant type Request
       | grandType   | id_type    | id               | scope | finger_print | env | Authorization |
@@ -89,8 +88,6 @@ Feature: Grant type Card Number Negative
     And Status code response is: "500"
     And Response Body contains "type" equals "generic_error"
 
-
-  @wip
   Scenario: Card Moscow bank without UNK MB
     Then Send login by Grant type Request
       | grandType      | id_type    | id               | scope | finger_print | env | Authorization |
@@ -98,3 +95,22 @@ Feature: Grant type Card Number Negative
 
     And Status code response is: "500"
     And Response Body contains "type" equals "generic_error"
+
+  @wip
+  Scenario: Third person card IB
+    Then Send login by Grant type Request
+      | grandType   | id_type    | id               | scope | finger_print | env | Authorization |
+      | card_number | cardNumber | 4111111116111116 | true  | k3           | k3  | AutoTest      |
+
+    And Status code response is: "403"
+    And Response Body contains "type" equals "card_not_valid"
+
+
+  @wip
+  Scenario: Third person card MB
+    Then Send login by Grant type Request
+      | grandType      | id_type    | id               | scope | finger_print | env | Authorization |
+      | card_number_mb | cardNumber | 4111111116111116 | true  | k3           | k3  | AutoTest      |
+
+    And Status code response is: "500"
+    And Response Body contains "type" equals "card_not_valid"
