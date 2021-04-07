@@ -96,7 +96,7 @@ Feature: Grant type Card Number Negative
     And Status code response is: "500"
     And Response Body contains "type" equals "generic_error"
 
-  @wip
+  @TODO
   Scenario: Third person card IB
     Then Send login by Grant type Request
       | grandType   | id_type    | id               | scope | finger_print | env | Authorization |
@@ -106,7 +106,7 @@ Feature: Grant type Card Number Negative
     And Response Body contains "type" equals "card_not_valid"
 
 
-  @wip
+  @TODO
   Scenario: Third person card MB
     Then Send login by Grant type Request
       | grandType      | id_type    | id               | scope | finger_print | env | Authorization |
