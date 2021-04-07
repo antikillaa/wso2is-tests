@@ -98,7 +98,7 @@ Feature: Partner SSO
     Then Send Partner SSO CHALLENGE Request
       | secureCode | env | path      |
       | 000000     | k3  | authorize |
-    And Status code response is: "302"
+    And Status code response is: "200"
 
   Scenario Outline: Partner SSO CHALLENGE Negative
     Then Send Partner SSO INIT Request
@@ -138,7 +138,7 @@ Feature: Partner SSO
     Then Send Partner SSO CHALLENGE Request
       | secureCode | env | path      |
       | 000000     | k3  | authorize |
-    And Status code response is: "302"
+    And Status code response is: "200"
 
     Then Send Partner SSO auth-code Request
       | env | Authorization                                              | path  | grant_type |
@@ -163,7 +163,7 @@ Feature: Partner SSO
     Then Send Partner SSO CHALLENGE Request
       | secureCode | env | path      |
       | 000000     | k3  | authorize |
-    And Status code response is: "302"
+    And Status code response is: "200"
 
     Then Send Partner SSO auth-code Request
       | env | Authorization   | path   | grant_type   | code   |
@@ -196,7 +196,7 @@ Feature: Partner SSO
     Then Send Partner SSO CHALLENGE Request
       | secureCode | env | path      |
       | 000000     | k3  | authorize |
-    And Status code response is: "302"
+    And Status code response is: "200"
 
     Then Send Partner SSO auth-code Request
       | env | Authorization                                              | path  | grant_type |
