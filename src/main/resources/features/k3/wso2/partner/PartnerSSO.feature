@@ -164,6 +164,9 @@ Feature: Partner SSO
       | secureCode | env | path      |
       | 000000     | k3  | authorize |
     And Status code response is: "200"
+    And Response Body contains "stage" equals "SUCCESS"
+    And Response Body contains key: "params.redirectUri"
+
 
     Then Send Partner SSO auth-code Request
       | env | Authorization   | path   | grant_type   | code   |
