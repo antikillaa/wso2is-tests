@@ -112,9 +112,10 @@ public class PartnerSSORequestServiceImpl implements PartnerSSORequestService {
     private Map<String, Object> getAuthCodeBody(Map<String, String> param) throws URISyntaxException {
         ValidatableResponse responseBody = RUN_CONTEXT.get("responseBody", ValidatableResponse.class);
         log.info("ResponseBody: " + responseBody.extract().toString());
-        String header = responseBody.extract().header("Location");
-        log.info("Location header: " + header);
-        String code = URLEncodedUtils.parse(new URI(header).getQuery(), StandardCharsets.UTF_8).get(1).getValue();
+        Map<String, Object> params = (Map) responseBody.extract().body().as(Map.class).get("params");
+        String redirectUri = params.get("redirectUri").toString();
+        log.info("Location redirectUri: " + redirectUri);
+        String code = URLEncodedUtils.parse(new URI(redirectUri).getQuery(), StandardCharsets.UTF_8).get(1).getValue();
 
         Map<String, Object> body = new HashMap();
         getBodyParam(body, param, GRANT_TYPE);
