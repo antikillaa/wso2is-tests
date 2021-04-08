@@ -50,27 +50,8 @@ Feature: Grant type Card Number Negative
       | card_number | cardNumber | no | true  | k3           | k3  |
     And Status code response is: "500"
 
-  @TODO
-  Scenario: Third person card IB
-    Then Send login by Grant type Request
-      | grandType   | id_type    | id               | scope | finger_print | env | Authorization |
-      | card_number | cardNumber | 4111111116111116 | true  | k3           | k3  | AutoTest      |
-
-    And Status code response is: "403"
-    And Response Body contains "type" equals "card_not_valid"
-
-
-  @TODO
-  Scenario: Third person card MB
-    Then Send login by Grant type Request
-      | grandType      | id_type    | id               | scope | finger_print | env | Authorization |
-      | card_number_mb | cardNumber | 4111111116111116 | true  | k3           | k3  | AutoTest      |
-
-    And Status code response is: "500"
-    And Response Body contains "type" equals "card_not_valid"
-
   @wip
-  Scenario Outline: Login by card stubs <id>
+  Scenario Outline: Login by card stubs
     Then Send login by Grant type Request
       | grandType   | id_type   | id   | scope | finger_print | env | Authorization |
       | <grandType> | <id_type> | <id> | true  | k3           | k3  | AutoTest      |
@@ -78,16 +59,16 @@ Feature: Grant type Card Number Negative
     And Response Body contains "<error_path>" equals "<text>"
 
     Examples:
-      | grandType      | id_type    | id               | status | error_path | text           |
+      | grandType      | id_type    | id               | status | error_path | text           | case                            |
         #Card not active
-      | card_number    | cardNumber | 4111111116111116 | 403    | type       | card_not_valid |
-      | card_number_mb | cardNumber | 4111111116111116 | 403    | type       | card_not_valid |
+      | card_number    | cardNumber | 4111111116111116 | 403    | type       | card_not_valid | Card not active IB              |
+      | card_number_mb | cardNumber | 4111111116111116 | 403    | type       | card_not_valid | Card not active MB              |
         #Card Moscow bank
-      | card_number    | cardNumber | 4111111111111616 | 200    | scope      | openid         |
-      | card_number_mb | cardNumber | 4111111111111616 | 200    | scope      | openid         |
+      | card_number    | cardNumber | 4111111111111616 | 200    | scope      | openid         | Card Moscow bank IB             |
+      | card_number_mb | cardNumber | 4111111111111616 | 200    | scope      | openid         | Card Moscow bank MB             |
         #Card Moscow bank without UNK
-      | card_number    | cardNumber | 4111111116161616 | 500    | type       | generic_error  |
-      | card_number_mb | cardNumber | 4111111116161616 | 500    | type       | generic_error  |
-        #Third person card
-      | card_number    | cardNumber | 4111111116111116 | 403    | type       | card_not_valid |
-      | card_number_mb | cardNumber | 4111111116111116 | 500    | type       | card_not_valid |
+      | card_number    | cardNumber | 4111111116161616 | 500    | type       | generic_error  | Card Moscow bank without UNK IB |
+      | card_number_mb | cardNumber | 4111111116161616 | 500    | type       | generic_error  | Card Moscow bank without UNK MB |
+        #Third person issued card
+      | card_number    | cardNumber | 4111111116111116 | 403    | type       | card_not_valid | Third person issued card IB     |
+      | card_number_mb | cardNumber | 4111111116111116 | 403    | type       | card_not_valid | Third person issued card MB     |
