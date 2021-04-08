@@ -59,16 +59,16 @@ Feature: Grant type Card Number Negative
     And Response Body contains "<error_path>" equals "<text>"
 
     Examples:
-      | grandType      | id_type    | id               | status | error_path | text           | case                            |
+      | grandType      | id_type    | id               | status | error_path | text                 | case                                |
         #1 Card not active
-      | card_number    | cardNumber | 4111111116111116 | 403    | type       | card_not_valid | Card not active IB              |
-      | card_number_mb | cardNumber | 4111111116111116 | 403    | type       | card_not_valid | Card not active MB              |
+      | card_number    | cardNumber | 4111111116111116 | 403    | type       | card_not_valid       | Card not active IB                  |
+      | card_number_mb | cardNumber | 4111111116111116 | 403    | type       | card_not_valid       | Card not active MB                  |
         #2 Card Moscow bank
-      | card_number    | cardNumber | 4111111111111616 | 200    | scope      | openid         | Card Moscow bank IB             |
-      | card_number_mb | cardNumber | 4111111111111616 | 200    | scope      | openid         | Card Moscow bank MB             |
+      | card_number    | cardNumber | 4111111111111616 | 200    | scope      | openid               | Card Moscow bank IB                 |
+      | card_number_mb | cardNumber | 4111111111111616 | 200    | scope      | openid               | Card Moscow bank MB                 |
         #3 Card Moscow bank without UNK
-      | card_number    | cardNumber | 4111111116161616 | 500    | type       | generic_error  | Card Moscow bank without UNK IB |
-      | card_number_mb | cardNumber | 4111111116161616 | 500    | type       | generic_error        | Card Moscow bank without UNK MB |
+      | card_number    | cardNumber | 4111111116161616 | 500    | type       | generic_error        | Card Moscow bank without UNK IB     |
+      | card_number_mb | cardNumber | 4111111116161616 | 500    | type       | generic_error        | Card Moscow bank without UNK MB     |
         #4 Card VTB bank without UNK
       | card_number    | cardNumber | 4111111616111111 | 500    | type       | generic_error        | Card VTB bank without UNK IB        |
       | card_number_mb | cardNumber | 4111111616111111 | 500    | type       | generic_error        | Card VTB bank without UNK MB        |
