@@ -114,3 +114,18 @@ Feature: Grant type Card Number Negative
 
     And Status code response is: "500"
     And Response Body contains "type" equals "card_not_valid"
+
+  @wip
+  Scenario Outline: Login by card stubs
+    Then Send login by Grant type Request
+      | grandType   | id_type   | id   | scope | finger_print | env | Authorization |
+      | <grandType> | <id_type> | <id> | true  | k3           | k3  | AutoTest      |
+    And Status code response is: "<status>"
+    And Response Body contains "<error_path>" equals "<text>"
+
+    Examples:
+      | grandType      | id_type    | id               | status | error_path | text           |
+        #Card not active IB
+      | card_number    | cardNumber | 4111111116111116 | 403    | type       | card_not_valid |
+      | card_number_mb | cardNumber | 4111111116111116 | 403    | type       | card_not_valid |
+
