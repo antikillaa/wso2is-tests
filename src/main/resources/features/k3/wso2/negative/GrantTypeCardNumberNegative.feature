@@ -50,21 +50,6 @@ Feature: Grant type Card Number Negative
       | card_number | cardNumber | no | true  | k3           | k3  |
     And Status code response is: "500"
 
-
-  Scenario: Card Moscow bank IB
-    Then Send login by Grant type Request
-      | grandType   | id_type    | id               | scope | finger_print | env | Authorization |
-      | card_number | cardNumber | 4111111111111616 | true  | k3           | k3  | AutoTest      |
-
-    And Status code response is: "200"
-
-  Scenario: Card Moscow bank MB
-    Then Send login by Grant type Request
-      | grandType      | id_type    | id               | scope | finger_print | env | Authorization |
-      | card_number_mb | cardNumber | 4111111111111616 | true  | k3           | k3  | AutoTest      |
-
-    And Status code response is: "200"
-
   Scenario: Card Moscow bank without UNK IB
     Then Send login by Grant type Request
       | grandType   | id_type    | id               | scope | finger_print | env | Authorization |
@@ -114,5 +99,8 @@ Feature: Grant type Card Number Negative
       | card_number    | cardNumber | 4111111116111116 | 403    | type       | card_not_valid |
       | card_number_mb | cardNumber | 4111111116111116 | 403    | type       | card_not_valid |
         #Card Moscow bank IB
-      | card_number    | cardNumber | 4111111111111616 | 200    |            |                |
+      | card_number    | cardNumber | 4111111111111616 | 200    | scope      | openid         |
       | card_number_mb | cardNumber | 4111111111111616 | 200    | scope      | openid         |
+        #Card Moscow bank without UNK IB
+      | card_number    | cardNumber | 4111111116161616 | 500    | type       | generic_error  |
+      | card_number_mb | cardNumber | 4111111116161616 | 500    | type       | generic_error  |
