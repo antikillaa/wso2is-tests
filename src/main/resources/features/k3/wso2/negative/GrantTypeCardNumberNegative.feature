@@ -70,14 +70,20 @@ Feature: Grant type Card Number Negative
       | card_number    | cardNumber | 4111111116161616 | 500    | type       | generic_error  | Card Moscow bank without UNK IB |
       | card_number_mb | cardNumber | 4111111116161616 | 500    | type       | generic_error        | Card Moscow bank without UNK MB |
         #4 Card VTB bank without UNK
-      | card_number    | cardNumber | 4111111616111111 | 500    | type       | generic_error        | Card VTB bank without UNK IB    |
-      | card_number_mb | cardNumber | 4111111616111111 | 500    | type       | generic_error        | Card VTB bank without UNK MB    |
+      | card_number    | cardNumber | 4111111616111111 | 500    | type       | generic_error        | Card VTB bank without UNK IB        |
+      | card_number_mb | cardNumber | 4111111616111111 | 500    | type       | generic_error        | Card VTB bank without UNK MB        |
         #5 Third person issued card
-      | card_number    | cardNumber | 4111111116111116 | 403    | type       | card_not_valid       | Third person issued card IB     |
-      | card_number_mb | cardNumber | 4111111116111116 | 403    | type       | card_not_valid       | Third person issued card MB     |
+      | card_number    | cardNumber | 4111111116111116 | 403    | type       | card_not_valid       | Third person issued card IB         |
+      | card_number_mb | cardNumber | 4111111116111116 | 403    | type       | card_not_valid       | Third person issued card MB         |
         #6 Expired card
-      | card_number    | cardNumber | 4111111116111611 | 403    | type       | card_not_valid       | Expired card IB                 |
-      | card_number_mb | cardNumber | 4111111116111611 | 403    | type       | card_not_valid       | Expired card MB                 |
+      | card_number    | cardNumber | 4111111116111611 | 403    | type       | card_not_valid       | Expired card IB                     |
+      | card_number_mb | cardNumber | 4111111116111611 | 403    | type       | card_not_valid       | Expired card MB                     |
         #7 Restricted card
-      | card_number    | cardNumber | 4893470511287960 | 403    | type       | card_type_restricted | Restricted card IB              |
-      | card_number_mb | cardNumber | 4893470511287960 | 403    | type       | card_type_restricted | Restricted card MB              |
+      | card_number    | cardNumber | 4893470511287960 | 403    | type       | card_type_restricted | Restricted card IB                  |
+      | card_number_mb | cardNumber | 4893470511287960 | 403    | type       | card_type_restricted | Restricted card MB                  |
+        #8 Card of another bank
+      | card_number    | cardNumber | 4111111116161111 | 404    | type       | card_not_found       | Card of another bank IB             |
+      | card_number_mb | cardNumber | 4111111116161111 | 404    | type       | card_not_found       | Card of another bank MB             |
+        #9 Not active card, Issued complete
+      | card_number    | cardNumber | 4111111111161611 | 200    | scope      | openid               | Not active card, Issued complete IB |
+      | card_number_mb | cardNumber | 4111111111161611 | 200    | scope      | openid               | Not active card, Issued complete MB |
