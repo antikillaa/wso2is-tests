@@ -115,4 +115,4 @@ Feature: Grant type Card Number Negative
       | card_number_mb | cardNumber | 4111111116111116 | 403    | type       | card_not_valid |
         #Card Moscow bank IB
       | card_number    | cardNumber | 4111111111111616 | 200    |            |                |
-      | card_number_mb | cardNumber | 4111111111111616 | 200    |            |                |
+      | card_number_mb | cardNumber | 4111111111111616 | 200    | scope      | openid         |
