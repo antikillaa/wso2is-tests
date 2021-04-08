@@ -4,6 +4,7 @@
 @k3
 Feature: Partner SSO
 
+  @wip
   Scenario: Partner SSO INIT
     Then Send Partner SSO INIT Request
       | env | clientId            | redirectUri                   | path      | scope  | responseType | state   |
