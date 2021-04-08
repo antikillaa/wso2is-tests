@@ -4,6 +4,7 @@
 @k3
 Feature: Grant type Guest Auth k3
 
+  @wip
   Scenario: Grant type Guest Auth k3 Success
     Then Send login by Grant type Request
       | grandType  | id_type      | id         | scope | finger_print | env | Authorization |
