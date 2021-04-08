@@ -50,7 +50,6 @@ Feature: Grant type Card Number Negative
       | card_number | cardNumber | no | true  | k3           | k3  |
     And Status code response is: "500"
 
-  @wip
   Scenario Outline: Login by card stubs
     Then Send login by Grant type Request
       | grandType   | id_type   | id   | scope | finger_print | env | Authorization |
