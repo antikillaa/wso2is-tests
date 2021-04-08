@@ -50,22 +50,6 @@ Feature: Grant type Card Number Negative
       | card_number | cardNumber | no | true  | k3           | k3  |
     And Status code response is: "500"
 
-  Scenario: Card Moscow bank without UNK IB
-    Then Send login by Grant type Request
-      | grandType   | id_type    | id               | scope | finger_print | env | Authorization |
-      | card_number | cardNumber | 4111111116161616 | true  | k3           | k3  | AutoTest      |
-
-    And Status code response is: "500"
-    And Response Body contains "type" equals "generic_error"
-
-  Scenario: Card Moscow bank without UNK MB
-    Then Send login by Grant type Request
-      | grandType      | id_type    | id               | scope | finger_print | env | Authorization |
-      | card_number_mb | cardNumber | 4111111116161616 | true  | k3           | k3  | AutoTest      |
-
-    And Status code response is: "500"
-    And Response Body contains "type" equals "generic_error"
-
   @TODO
   Scenario: Third person card IB
     Then Send login by Grant type Request
@@ -86,7 +70,7 @@ Feature: Grant type Card Number Negative
     And Response Body contains "type" equals "card_not_valid"
 
   @wip
-  Scenario Outline: Login by card stubs
+  Scenario Outline: Login by card stubs <id>
     Then Send login by Grant type Request
       | grandType   | id_type   | id   | scope | finger_print | env | Authorization |
       | <grandType> | <id_type> | <id> | true  | k3           | k3  | AutoTest      |
@@ -95,12 +79,15 @@ Feature: Grant type Card Number Negative
 
     Examples:
       | grandType      | id_type    | id               | status | error_path | text           |
-        #Card not active IB
+        #Card not active
       | card_number    | cardNumber | 4111111116111116 | 403    | type       | card_not_valid |
       | card_number_mb | cardNumber | 4111111116111116 | 403    | type       | card_not_valid |
-        #Card Moscow bank IB
+        #Card Moscow bank
       | card_number    | cardNumber | 4111111111111616 | 200    | scope      | openid         |
       | card_number_mb | cardNumber | 4111111111111616 | 200    | scope      | openid         |
-        #Card Moscow bank without UNK IB
+        #Card Moscow bank without UNK
       | card_number    | cardNumber | 4111111116161616 | 500    | type       | generic_error  |
       | card_number_mb | cardNumber | 4111111116161616 | 500    | type       | generic_error  |
+        #Third person card
+      | card_number    | cardNumber | 4111111116111116 | 403    | type       | card_not_valid |
+      | card_number_mb | cardNumber | 4111111116111116 | 500    | type       | card_not_valid |
