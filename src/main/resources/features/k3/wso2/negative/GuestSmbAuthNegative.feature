@@ -14,7 +14,6 @@ Feature: Grant type Guest Smb Auth k3
     And Status code response is: "500"
     And Response Body contains key: "additional_properties.tech_messages"
 
-  @wip
   Scenario: Grant type guest_smb_auth no phoneNumber parameter
     Then Send login by Grant type Request
       | grandType      | id_type | id         | scope | finger_print | env | Authorization |
