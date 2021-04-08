@@ -69,6 +69,12 @@ Feature: Grant type Card Number Negative
         #Card Moscow bank without UNK
       | card_number    | cardNumber | 4111111116161616 | 500    | type       | generic_error  | Card Moscow bank without UNK IB |
       | card_number_mb | cardNumber | 4111111116161616 | 500    | type       | generic_error  | Card Moscow bank without UNK MB |
+        #Card VTB bank without UNK
+      | card_number    | cardNumber | 4111111616111111 | 500    | type       | generic_error  | Card VTB bank without UNK IB    |
+      | card_number_mb | cardNumber | 4111111616111111 | 500    | type       | generic_error  | Card VTB bank without UNK MB    |
         #Third person issued card
       | card_number    | cardNumber | 4111111116111116 | 403    | type       | card_not_valid | Third person issued card IB     |
       | card_number_mb | cardNumber | 4111111116111116 | 403    | type       | card_not_valid | Third person issued card MB     |
+        #Expired card
+      | card_number    | cardNumber | 4111111116111611 | 403    | type       | card_not_valid | Expired card IB                 |
+      | card_number_mb | cardNumber | 4111111116111611 | 403    | type       | card_not_valid | Expired card MB                 |
