@@ -90,7 +90,13 @@ Feature: Grant type Card Number Negative
         #10 Card VTB way4
       | card_number    | cardNumber | 4272290786956599 | 200    | scope      | openid               | Card VTB way4 IB                    |
       | card_number_mb | cardNumber | 4272290786956599 | 200    | scope      | openid               | Card VTB way4 MB                    |
-        #11 Card VTB profil
+        #11 Card VTB profile
       | card_number    | cardNumber | 4714870004240359 | 200    | scope      | openid               | Card VTB profile IB                 |
       | card_number_mb | cardNumber | 4714870004240359 | 200    | scope      | openid               | Card VTB profile MB                 |
+        #12 500 generic_error
+      | card_number    | cardNumber | 4111111616111111 | 500    | type       | generic_error        | 500 generic_error IB                |
+      | card_number_mb | cardNumber | 4111111616111111 | 500    | type       | generic_error        | 500 generic_error MB                |
+        #13 spm access deny
+      | card_number    | cardNumber | 4111111616161611 | 403    | type       | spm_access_deny      | spm access deny IB                  |
+      | card_number_mb | cardNumber | 4111111616161611 | 403    | type       | spm_access_deny      | spm access deny MB                  |
 
