@@ -87,3 +87,10 @@ Feature: Grant type Card Number Negative
         #9 Not active card, Issued complete
       | card_number    | cardNumber | 4111111111161611 | 200    | scope      | openid               | Not active card, Issued complete IB |
       | card_number_mb | cardNumber | 4111111111161611 | 200    | scope      | openid               | Not active card, Issued complete MB |
+        #10 Card VTB way4
+      | card_number    | cardNumber | 4272290786956599 | 200    | scope      | openid               | Card VTB way4 IB                    |
+      | card_number_mb | cardNumber | 4272290786956599 | 200    | scope      | openid               | Card VTB way4 MB                    |
+        #11 Card VTB profil
+      | card_number    | cardNumber | 4714870004240359 | 200    | scope      | openid               | Card VTB profile IB                 |
+      | card_number_mb | cardNumber | 4714870004240359 | 200    | scope      | openid               | Card VTB profile MB                 |
+
