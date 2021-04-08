@@ -60,21 +60,24 @@ Feature: Grant type Card Number Negative
 
     Examples:
       | grandType      | id_type    | id               | status | error_path | text           | case                            |
-        #Card not active
+        #1 Card not active
       | card_number    | cardNumber | 4111111116111116 | 403    | type       | card_not_valid | Card not active IB              |
       | card_number_mb | cardNumber | 4111111116111116 | 403    | type       | card_not_valid | Card not active MB              |
-        #Card Moscow bank
+        #2 Card Moscow bank
       | card_number    | cardNumber | 4111111111111616 | 200    | scope      | openid         | Card Moscow bank IB             |
       | card_number_mb | cardNumber | 4111111111111616 | 200    | scope      | openid         | Card Moscow bank MB             |
-        #Card Moscow bank without UNK
+        #3 Card Moscow bank without UNK
       | card_number    | cardNumber | 4111111116161616 | 500    | type       | generic_error  | Card Moscow bank without UNK IB |
-      | card_number_mb | cardNumber | 4111111116161616 | 500    | type       | generic_error  | Card Moscow bank without UNK MB |
-        #Card VTB bank without UNK
-      | card_number    | cardNumber | 4111111616111111 | 500    | type       | generic_error  | Card VTB bank without UNK IB    |
-      | card_number_mb | cardNumber | 4111111616111111 | 500    | type       | generic_error  | Card VTB bank without UNK MB    |
-        #Third person issued card
-      | card_number    | cardNumber | 4111111116111116 | 403    | type       | card_not_valid | Third person issued card IB     |
-      | card_number_mb | cardNumber | 4111111116111116 | 403    | type       | card_not_valid | Third person issued card MB     |
-        #Expired card
-      | card_number    | cardNumber | 4111111116111611 | 403    | type       | card_not_valid | Expired card IB                 |
-      | card_number_mb | cardNumber | 4111111116111611 | 403    | type       | card_not_valid | Expired card MB                 |
+      | card_number_mb | cardNumber | 4111111116161616 | 500    | type       | generic_error        | Card Moscow bank without UNK MB |
+        #4 Card VTB bank without UNK
+      | card_number    | cardNumber | 4111111616111111 | 500    | type       | generic_error        | Card VTB bank without UNK IB    |
+      | card_number_mb | cardNumber | 4111111616111111 | 500    | type       | generic_error        | Card VTB bank without UNK MB    |
+        #5 Third person issued card
+      | card_number    | cardNumber | 4111111116111116 | 403    | type       | card_not_valid       | Third person issued card IB     |
+      | card_number_mb | cardNumber | 4111111116111116 | 403    | type       | card_not_valid       | Third person issued card MB     |
+        #6 Expired card
+      | card_number    | cardNumber | 4111111116111611 | 403    | type       | card_not_valid       | Expired card IB                 |
+      | card_number_mb | cardNumber | 4111111116111611 | 403    | type       | card_not_valid       | Expired card MB                 |
+        #7 Restricted card
+      | card_number    | cardNumber | 4893470511287960 | 403    | type       | card_type_restricted | Restricted card IB              |
+      | card_number_mb | cardNumber | 4893470511287960 | 403    | type       | card_type_restricted | Restricted card MB              |
